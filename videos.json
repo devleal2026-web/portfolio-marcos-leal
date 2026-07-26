@@ -42,6 +42,13 @@
     "poster": "assets/videos/posters/neuroloop.jpg"
   },
   {
+    "titulo": "Construindo Palavras",
+    "categoria": "Jogo educativo",
+    "descricao": "Experiência educativa e multilíngue que estimula leitura, memória e confiança por meio da formação de palavras.",
+    "arquivo": "assets/videos/construindo-palavras.mp4",
+    "poster": "assets/videos/posters/construindo-palavras.jpg"
+  },
+  {
     "titulo": "Airport Baggage Simulator",
     "categoria": "Simulador operacional",
     "descricao": "Simulação integrada da jornada da bagagem, do check-in ao tratamento de ocorrências.",
