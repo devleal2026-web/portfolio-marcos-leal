@@ -345,6 +345,11 @@
             font-size: 0.92rem;
         }
 
+        .projeto .btn {
+            width: 100%;
+            margin-top: 18px;
+        }
+
         .media-preview {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -721,9 +726,11 @@
         },
         {
             titulo: "Neuro Loop",
-            descricao: "Jogo arcade.",
+            descricao: "Jogo arcade de ritmo e precis&atilde;o, com sistema de score, combos e ranking.",
             imagem: "assets/projetos/neuroloop.jpg",
-            tecnologias: "Android &bull; Kotlin"
+            tecnologias: "Android &bull; Kotlin",
+            apk: "assets/apks/neuroloop-v2.3.2.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 2.3.2"
         },
         {
             titulo: "Adivinhe o Animal",
@@ -796,6 +803,7 @@
                     <h3>${projeto.titulo}</h3>
                     <p>${projeto.descricao}</p>
                     <strong>${projeto.tecnologias}</strong>
+                    ${projeto.apk ? `<a href="${projeto.apk}" class="btn" download>${projeto.versao || "Baixar APK"}</a>` : ""}
                 </div>
             </article>
         `).join("");

@@ -13,9 +13,11 @@
   },
   {
     "titulo": "Neuro Loop",
-    "descricao": "Jogo arcade.",
+    "descricao": "Jogo arcade de ritmo e precisão, com sistema de score, combos e ranking.",
     "imagem": "assets/projetos/neuroloop.jpg",
-    "tecnologias": "Android • Kotlin"
+    "tecnologias": "Android • Kotlin",
+    "apk": "assets/apks/neuroloop-v2.3.2.apk",
+    "versao": "Baixar APK • versão 2.3.2"
   },
   {
     "titulo": "Adivinhe o Animal",
