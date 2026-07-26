@@ -1,0 +1,51 @@
+[
+  {
+    "titulo": "Aero Access",
+    "categoria": "Operação aeroportuária",
+    "descricao": "Solução digital para inspeção, rastreabilidade e tratamento seguro de ocorrências com bagagens.",
+    "arquivo": "assets/videos/aero-access.mp4",
+    "poster": "assets/videos/posters/aero-access.jpg"
+  },
+  {
+    "titulo": "ALF — Bagagens Extraviadas",
+    "categoria": "Operação aeroportuária",
+    "descricao": "Fluxo estruturado para registrar, acompanhar e solucionar ocorrências de bagagens extraviadas.",
+    "arquivo": "assets/videos/alf.mp4",
+    "poster": "assets/videos/posters/alf.jpg"
+  },
+  {
+    "titulo": "AvisoU",
+    "categoria": "Aplicativo Android",
+    "descricao": "Comunicação ágil entre portarias e moradores para avisos e recebimento de encomendas.",
+    "arquivo": "assets/videos/avisou.mp4",
+    "poster": "assets/videos/posters/avisou.jpg"
+  },
+  {
+    "titulo": "Encontre Fácil",
+    "categoria": "Aplicativo Android",
+    "descricao": "Gestão inteligente de achados e perdidos com organização, consulta e rastreabilidade.",
+    "arquivo": "assets/videos/encontre-facil.mp4",
+    "poster": "assets/videos/posters/encontre-facil.jpg"
+  },
+  {
+    "titulo": "Mibis",
+    "categoria": "Jogo",
+    "descricao": "Experiência visual de aventura com personagens carismáticos, evolução e cenários imersivos.",
+    "arquivo": "assets/videos/mibis.mp4",
+    "poster": "assets/videos/posters/mibis.jpg"
+  },
+  {
+    "titulo": "NeuroLoop",
+    "categoria": "Jogo",
+    "descricao": "Jogo arcade de ritmo e precisão que desafia reflexos, concentração e formação de combos.",
+    "arquivo": "assets/videos/neuroloop.mp4",
+    "poster": "assets/videos/posters/neuroloop.jpg"
+  },
+  {
+    "titulo": "Airport Baggage Simulator",
+    "categoria": "Simulador operacional",
+    "descricao": "Simulação integrada da jornada da bagagem, do check-in ao tratamento de ocorrências.",
+    "arquivo": "assets/videos/airport-baggage-simulator.mp4",
+    "poster": "assets/videos/posters/airport-baggage-simulator.jpg"
+  }
+]

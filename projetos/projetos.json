@@ -1,0 +1,44 @@
+[
+  {
+    "titulo": "Sistema de Achados e Perdidos",
+    "descricao": "Aplicativo Android para registro, busca, matches e entrega de objetos perdidos.",
+    "imagem": "assets/projetos/encontrefacil.jpg",
+    "tecnologias": "Android • Kotlin • Supabase • PostgreSQL"
+  },
+  {
+    "titulo": "Quadroo",
+    "descricao": "Mural multiorganizacional digital.",
+    "imagem": "assets/projetos/quadroo.jpg",
+    "tecnologias": "JavaScript • Supabase • HTML • CSS"
+  },
+  {
+    "titulo": "Neuro Loop",
+    "descricao": "Jogo arcade.",
+    "imagem": "assets/projetos/neuroloop.jpg",
+    "tecnologias": "Android • Kotlin"
+  },
+  {
+    "titulo": "Adivinhe o Animal",
+    "descricao": "Jogo de adivinhação em que vence quem reconhecer mais animais.",
+    "imagem": "assets/projetos/adivinheoanimal.jpg",
+    "tecnologias": "Android • Kotlin"
+  },
+  {
+    "titulo": "Insect Hunter",
+    "descricao": "Jogo para esmagar o maior número de insetos.",
+    "imagem": "assets/projetos/insecthunter.jpg",
+    "tecnologias": "Android • Kotlin"
+  },
+  {
+    "titulo": "Construindo Palavras",
+    "descricao": "Jogo educativo de formação de palavras.",
+    "imagem": "assets/projetos/construindopalavras.jpg",
+    "tecnologias": "Android • Kotlin"
+  },
+  {
+    "titulo": "AvisoU",
+    "descricao": "Aplicativo de alerta de entrega de encomendas.",
+    "imagem": "assets/projetos/avisou.jpg",
+    "tecnologias": "Android • Kotlin"
+  }
+]
