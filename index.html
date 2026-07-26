@@ -350,6 +350,44 @@
             margin-top: 18px;
         }
 
+        .support-box {
+            margin-top: 18px;
+            padding: 16px;
+            color: var(--muted);
+            background: rgba(47, 125, 246, 0.08);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .support-box b,
+        .support-box code {
+            display: block;
+            color: #ffffff;
+        }
+
+        .support-box code {
+            margin-top: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+        }
+
+        .support-box .btn {
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .card-actions {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .media-card .card-actions .btn {
+            width: 100%;
+            margin-top: 0;
+        }
+
         .media-preview {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -746,9 +784,13 @@
         },
         {
             titulo: "Construindo Palavras",
-            descricao: "Jogo educativo de formacao de palavras.",
+            descricao: "Jogo educativo e multil&iacute;ngue que transforma letras em descobertas, estimula a leitura e fortalece a confian&ccedil;a infantil.",
             imagem: "assets/projetos/construindopalavras.jpg",
-            tecnologias: "Android &bull; Kotlin"
+            tecnologias: "Android &bull; Kotlin &bull; Educa&ccedil;&atilde;o",
+            apk: "assets/apks/construindo-palavras-v1.0.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.0",
+            pix: "17909502877",
+            favorecido: "Marcos Antonio de Sousa Leal"
         },
         {
             titulo: "AvisoU",
@@ -804,9 +846,18 @@
                     <p>${projeto.descricao}</p>
                     <strong>${projeto.tecnologias}</strong>
                     ${projeto.apk ? `<a href="${projeto.apk}" class="btn" download>${projeto.versao || "Baixar APK"}</a>` : ""}
+                    ${projeto.pix ? `
+                        <div class="support-box">
+                            <b>Apoie o desenvolvimento</b>
+                            <span>Doa&ccedil;&atilde;o via Pix para ${projeto.favorecido}</span>
+                            <code>CPF ${projeto.pix}</code>
+                            <button type="button" class="btn secondary copiar-pix" data-pix="${projeto.pix}">Copiar chave Pix</button>
+                        </div>
+                    ` : ""}
                 </div>
             </article>
         `).join("");
+        ativarBotoesPix();
     }
 
     function renderizarVideos() {
@@ -818,12 +869,43 @@
                 <span class="video-category">${video.categoria}</span>
                 <h3>${video.titulo}</h3>
                 <p>${video.descricao}</p>
-                <button type="button" class="btn assistir-video" data-video="${video.arquivo}" data-titulo="${video.titulo}">Assistir ao filme</button>
+                <div class="card-actions">
+                    <button type="button" class="btn assistir-video" data-video="${video.arquivo}" data-titulo="${video.titulo}">Assistir ao filme</button>
+                    ${video.apk ? `<a href="${video.apk}" class="btn secondary" download>Baixar APK &bull; vers&atilde;o ${video.versao}</a>` : ""}
+                </div>
+                ${video.pix ? `
+                    <div class="support-box">
+                        <b>Gostou do projeto? Fa&ccedil;a uma doa&ccedil;&atilde;o</b>
+                        <span>Pix para ${video.favorecido}</span>
+                        <code>CPF ${video.pix}</code>
+                        <button type="button" class="btn secondary copiar-pix" data-pix="${video.pix}">Copiar chave Pix</button>
+                    </div>
+                ` : ""}
             </article>
         `).join("");
 
         document.querySelectorAll(".assistir-video").forEach(botao => {
             botao.addEventListener("click", () => abrirVideo(botao.dataset.video, botao.dataset.titulo));
+        });
+        ativarBotoesPix();
+    }
+
+    function ativarBotoesPix() {
+        document.querySelectorAll(".copiar-pix").forEach(botao => {
+            if (botao.dataset.ativo) return;
+            botao.dataset.ativo = "true";
+            botao.addEventListener("click", async () => {
+                const rotuloOriginal = botao.textContent;
+                try {
+                    await navigator.clipboard.writeText(botao.dataset.pix);
+                    botao.textContent = "Chave Pix copiada!";
+                } catch {
+                    window.prompt("Copie a chave Pix:", botao.dataset.pix);
+                }
+                window.setTimeout(() => {
+                    botao.textContent = rotuloOriginal;
+                }, 2200);
+            });
         });
     }
 

@@ -33,9 +33,13 @@
   },
   {
     "titulo": "Construindo Palavras",
-    "descricao": "Jogo educativo de formação de palavras.",
+    "descricao": "Jogo educativo e multilíngue que transforma letras em descobertas, estimula a leitura e fortalece a confiança infantil.",
     "imagem": "assets/projetos/construindopalavras.jpg",
-    "tecnologias": "Android • Kotlin"
+    "tecnologias": "Android • Kotlin • Educação",
+    "apk": "assets/apks/construindo-palavras-v1.0.apk",
+    "versao": "Baixar APK • versão 1.0",
+    "pix": "17909502877",
+    "favorecido": "Marcos Antonio de Sousa Leal"
   },
   {
     "titulo": "AvisoU",

@@ -46,7 +46,11 @@
     "categoria": "Jogo educativo",
     "descricao": "Experiência educativa e multilíngue que estimula leitura, memória e confiança por meio da formação de palavras.",
     "arquivo": "assets/videos/construindo-palavras.mp4",
-    "poster": "assets/videos/posters/construindo-palavras.jpg"
+    "poster": "assets/videos/posters/construindo-palavras.jpg",
+    "apk": "assets/apks/construindo-palavras-v1.0.apk",
+    "versao": "1.0",
+    "pix": "17909502877",
+    "favorecido": "Marcos Antonio de Sousa Leal"
   },
   {
     "titulo": "Airport Baggage Simulator",
