@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devleal2026-web.github.io/portfolio-marcos-leal/sitemap.xml
