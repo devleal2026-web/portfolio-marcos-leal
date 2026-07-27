@@ -392,9 +392,28 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             overflow: hidden;
+            position: relative;
+            display: block;
+            padding: 0;
             margin-bottom: 16px;
+            color: inherit;
             background: #020617;
+            border: 0;
             border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .preview-hint {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            padding: 7px 11px;
+            color: #ffffff;
+            background: rgba(3, 13, 29, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            font-size: 0.78rem;
+            pointer-events: none;
         }
 
         .media-preview img,
@@ -754,7 +773,9 @@
             titulo: "Sistema de Achados e Perdidos",
             descricao: "Aplicativo Android para registro, busca, matches e entrega de objetos perdidos.",
             imagem: "assets/projetos/encontrefacil.jpg",
-            tecnologias: "Android &bull; Kotlin &bull; Supabase &bull; PostgreSQL"
+            tecnologias: "Android &bull; Kotlin &bull; Supabase &bull; PostgreSQL",
+            apk: "assets/apks/encontre-facil-v1.0.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.0"
         },
         {
             titulo: "Quadroo",
@@ -767,20 +788,24 @@
             descricao: "Jogo arcade de ritmo e precis&atilde;o, com sistema de score, combos e ranking.",
             imagem: "assets/projetos/neuroloop.jpg",
             tecnologias: "Android &bull; Kotlin",
-            apk: "assets/apks/neuroloop-v2.3.2.apk",
-            versao: "Baixar APK &bull; vers&atilde;o 2.3.2"
+            apk: "assets/apks/neuroloop-v2.3.3.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 2.3.3"
         },
         {
             titulo: "Adivinhe o Animal",
             descricao: "Jogo de adivinhacao em que vence quem reconhecer mais animais.",
             imagem: "assets/projetos/adivinheoanimal.jpg",
-            tecnologias: "Android &bull; Kotlin"
+            tecnologias: "Android &bull; Kotlin",
+            apk: "assets/apks/adivinhe-o-animal-v1.0.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.0"
         },
         {
             titulo: "Insect Hunter",
             descricao: "Jogo para esmagar o maior numero de insetos.",
             imagem: "assets/projetos/insecthunter.jpg",
-            tecnologias: "Android &bull; Kotlin"
+            tecnologias: "Android &bull; Kotlin",
+            apk: "assets/apks/insect-hunter-v1.0.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.0"
         },
         {
             titulo: "Construindo Palavras",
@@ -796,19 +821,25 @@
             titulo: "AvisoU",
             descricao: "Aplicativo de alerta de entrega de encomendas.",
             imagem: "assets/projetos/avisou.jpg",
-            tecnologias: "Android &bull; Kotlin"
+            tecnologias: "Android &bull; Kotlin",
+            apk: "assets/apks/avisou-v1.0.0.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.0.0"
         },
         {
             titulo: "Aero Access",
             descricao: "Solu&ccedil;&atilde;o para inspe&ccedil;&atilde;o, rastreabilidade e tratamento seguro de ocorr&ecirc;ncias com bagagens.",
             imagem: "assets/videos/posters/aero-access.jpg",
-            tecnologias: "Opera&ccedil;&atilde;o aeroportu&aacute;ria &bull; Rastreabilidade &bull; Gest&atilde;o de ocorr&ecirc;ncias"
+            tecnologias: "Opera&ccedil;&atilde;o aeroportu&aacute;ria &bull; Rastreabilidade &bull; Gest&atilde;o de ocorr&ecirc;ncias",
+            apk: "assets/apks/aero-access-v1.0.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.0"
         },
         {
             titulo: "Mibis",
             descricao: "Jogo de aventura com personagens carism&aacute;ticos, evolu&ccedil;&atilde;o progressiva e cen&aacute;rios imersivos.",
             imagem: "assets/videos/posters/mibis.jpg",
-            tecnologias: "Android &bull; Kotlin &bull; Game Design"
+            tecnologias: "Android &bull; Kotlin &bull; Game Design",
+            apk: "assets/apks/mibis-v1.2.1.apk",
+            versao: "Baixar APK &bull; vers&atilde;o 1.2.1"
         }
     ];
 
@@ -863,9 +894,10 @@
     function renderizarVideos() {
         containerVideos.innerHTML = videos.map(video => `
             <article class="media-card video-card">
-                <div class="media-preview">
-                    <img class="video-poster" src="${video.poster}" alt="Capa do filme ${video.titulo}" loading="lazy">
-                </div>
+                <button type="button" class="media-preview preview-video" data-video="${video.arquivo}" data-titulo="${video.titulo}" aria-label="Abrir o filme ${video.titulo} com &aacute;udio">
+                    <video class="video-poster" src="${video.arquivo}" poster="${video.poster}" muted autoplay loop playsinline preload="metadata"></video>
+                    <span class="preview-hint">Clique para assistir com &aacute;udio</span>
+                </button>
                 <span class="video-category">${video.categoria}</span>
                 <h3>${video.titulo}</h3>
                 <p>${video.descricao}</p>
@@ -884,10 +916,29 @@
             </article>
         `).join("");
 
-        document.querySelectorAll(".assistir-video").forEach(botao => {
+        document.querySelectorAll(".assistir-video, .preview-video").forEach(botao => {
             botao.addEventListener("click", () => abrirVideo(botao.dataset.video, botao.dataset.titulo));
         });
+        ativarPreviasAutomaticas();
         ativarBotoesPix();
+    }
+
+    function ativarPreviasAutomaticas() {
+        const observador = new IntersectionObserver(entradas => {
+            entradas.forEach(entrada => {
+                const previa = entrada.target;
+                if (entrada.isIntersecting) {
+                    previa.play().catch(() => {});
+                } else {
+                    previa.pause();
+                }
+            });
+        }, { threshold: 0.35 });
+
+        document.querySelectorAll(".preview-video video").forEach(previa => {
+            previa.muted = true;
+            observador.observe(previa);
+        });
     }
 
     function ativarBotoesPix() {
@@ -924,6 +975,7 @@
     function abrirVideo(arquivo, titulo) {
         videoModalTitle.textContent = titulo;
         videoPlayer.src = arquivo;
+        videoPlayer.muted = false;
         videoModal.classList.add("open");
         document.body.style.overflow = "hidden";
         videoPlayer.play().catch(() => {});

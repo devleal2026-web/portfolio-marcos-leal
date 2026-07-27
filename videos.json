@@ -4,7 +4,9 @@
     "categoria": "Operação aeroportuária",
     "descricao": "Solução digital para inspeção, rastreabilidade e tratamento seguro de ocorrências com bagagens.",
     "arquivo": "assets/videos/aero-access.mp4",
-    "poster": "assets/videos/posters/aero-access.jpg"
+    "poster": "assets/videos/posters/aero-access.jpg",
+    "apk": "assets/apks/aero-access-v1.0.apk",
+    "versao": "1.0"
   },
   {
     "titulo": "ALF — Bagagens Extraviadas",
@@ -18,28 +20,36 @@
     "categoria": "Aplicativo Android",
     "descricao": "Comunicação ágil entre portarias e moradores para avisos e recebimento de encomendas.",
     "arquivo": "assets/videos/avisou.mp4",
-    "poster": "assets/videos/posters/avisou.jpg"
+    "poster": "assets/videos/posters/avisou.jpg",
+    "apk": "assets/apks/avisou-v1.0.0.apk",
+    "versao": "1.0.0"
   },
   {
     "titulo": "Encontre Fácil",
     "categoria": "Aplicativo Android",
     "descricao": "Gestão inteligente de achados e perdidos com organização, consulta e rastreabilidade.",
     "arquivo": "assets/videos/encontre-facil.mp4",
-    "poster": "assets/videos/posters/encontre-facil.jpg"
+    "poster": "assets/videos/posters/encontre-facil.jpg",
+    "apk": "assets/apks/encontre-facil-v1.0.apk",
+    "versao": "1.0"
   },
   {
     "titulo": "Mibis",
     "categoria": "Jogo",
     "descricao": "Experiência visual de aventura com personagens carismáticos, evolução e cenários imersivos.",
     "arquivo": "assets/videos/mibis.mp4",
-    "poster": "assets/videos/posters/mibis.jpg"
+    "poster": "assets/videos/posters/mibis.jpg",
+    "apk": "assets/apks/mibis-v1.2.1.apk",
+    "versao": "1.2.1"
   },
   {
     "titulo": "NeuroLoop",
     "categoria": "Jogo",
     "descricao": "Jogo arcade de ritmo e precisão que desafia reflexos, concentração e formação de combos.",
     "arquivo": "assets/videos/neuroloop.mp4",
-    "poster": "assets/videos/posters/neuroloop.jpg"
+    "poster": "assets/videos/posters/neuroloop.jpg",
+    "apk": "assets/apks/neuroloop-v2.3.3.apk",
+    "versao": "2.3.3"
   },
   {
     "titulo": "Construindo Palavras",
