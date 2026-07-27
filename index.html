@@ -525,11 +525,82 @@
         }
 
         footer {
-            padding: 34px 20px;
+            padding: 0 0 28px;
             color: var(--muted);
             text-align: center;
             background: #050b14;
             border-top: 1px solid var(--line);
+        }
+
+        .footer-marquee {
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 26px;
+            padding: 15px 0;
+            background: linear-gradient(90deg, #0a1830, #102b50 50%, #0a1830);
+            border-bottom: 1px solid rgba(122, 176, 255, 0.24);
+            mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+        }
+
+        .footer-marquee-track {
+            display: flex;
+            width: max-content;
+            animation: footer-marquee 34s linear infinite;
+            will-change: transform;
+        }
+
+        .footer-marquee:hover .footer-marquee-track,
+        .footer-marquee:focus-within .footer-marquee-track {
+            animation-play-state: paused;
+        }
+
+        .footer-marquee-group {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 24px;
+            padding-right: 24px;
+            color: #dbeafe;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .footer-marquee-group span::before,
+        .footer-marquee-group a::before {
+            content: "◆";
+            margin-right: 24px;
+            color: var(--blue-light);
+            font-size: 0.68rem;
+            vertical-align: middle;
+        }
+
+        .footer-marquee-group a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer-marquee-group a:hover {
+            color: var(--blue-light);
+        }
+
+        .footer-copyright {
+            padding: 0 20px;
+        }
+
+        @keyframes footer-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .footer-marquee-track {
+                animation: none;
+            }
+
+            .footer-marquee {
+                overflow-x: auto;
+                mask-image: none;
+            }
         }
 
         @media (max-width: 860px) {
@@ -764,7 +835,31 @@
 </div>
 
 <footer>
-    &copy; 2026 Marcos Leal. Todos os direitos reservados.
+    <div class="footer-marquee" role="region" aria-label="Contatos e especializa&ccedil;&otilde;es">
+        <div class="footer-marquee-track">
+            <div class="footer-marquee-group">
+                <a href="https://wa.me/5511950436161" target="_blank" rel="noopener">WhatsApp +55 11 95043-6161</a>
+                <a href="mailto:devleal2026@gmail.com">devleal2026@gmail.com</a>
+                <span>Desenvolvedor Full Stack</span>
+                <span>Android e Kotlin</span>
+                <span>Supabase e PostgreSQL</span>
+                <span>APIs e Integra&ccedil;&otilde;es</span>
+                <span>Automa&ccedil;&atilde;o de Processos</span>
+                <span>Solu&ccedil;&otilde;es Cloud</span>
+            </div>
+            <div class="footer-marquee-group" aria-hidden="true">
+                <a href="https://wa.me/5511950436161" tabindex="-1">WhatsApp +55 11 95043-6161</a>
+                <a href="mailto:devleal2026@gmail.com" tabindex="-1">devleal2026@gmail.com</a>
+                <span>Desenvolvedor Full Stack</span>
+                <span>Android e Kotlin</span>
+                <span>Supabase e PostgreSQL</span>
+                <span>APIs e Integra&ccedil;&otilde;es</span>
+                <span>Automa&ccedil;&atilde;o de Processos</span>
+                <span>Solu&ccedil;&otilde;es Cloud</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">&copy; 2026 Marcos Leal. Todos os direitos reservados.</div>
 </footer>
 
 <script>
