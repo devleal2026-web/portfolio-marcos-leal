@@ -68,5 +68,14 @@
     "descricao": "Simulação integrada da jornada da bagagem, do check-in ao tratamento de ocorrências.",
     "arquivo": "assets/videos/airport-baggage-simulator.mp4",
     "poster": "assets/videos/posters/airport-baggage-simulator.jpg"
+  },
+  {
+    "titulo": "Laura & Lara - A Grande Missão Sapeca",
+    "categoria": "Jogo educativo",
+    "descricao": "Aventura educativa com tarefas guiadas de organização, higiene, alimentação e responsabilidade infantil.",
+    "arquivo": "assets/videos/laura-lara-aventura.mp4",
+    "poster": "assets/videos/posters/laura-lara-aventura.jpg",
+    "apk": "assets/apks/laura-lara-aventura-v1.0.apk",
+    "versao": "1.0"
   }
 ]
