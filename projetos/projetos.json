@@ -70,5 +70,13 @@
     "tecnologias": "Android • Kotlin • Game Design",
     "apk": "assets/apks/mibis-v1.2.1.apk",
     "versao": "Baixar APK • versão 1.2.1"
+  },
+  {
+    "titulo": "Laura & Lara - A Grande Missão Sapeca",
+    "descricao": "Jogo infantil de aventura e educação que ensina organização, higiene, alimentação e responsabilidade por meio de tarefas guiadas.",
+    "imagem": "assets/projetos/laura-lara-aventura.png",
+    "tecnologias": "Android • Java • Game Design • Educação Infantil",
+    "apk": "assets/apks/laura-lara-aventura-v1.0.apk",
+    "versao": "Baixar APK • versão 1.0"
   }
 ]
