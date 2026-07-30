@@ -633,6 +633,23 @@
             padding: 0 20px;
         }
 
+        .site-stats {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 8px 20px 0;
+            color: #9fb4ce;
+            font-size: 0.74rem;
+        }
+
+        .download-count {
+            display: block;
+            min-height: 1em;
+            margin-top: 7px;
+            color: #8296ad;
+            font-size: 0.72rem;
+        }
+
         @keyframes footer-marquee {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
@@ -906,6 +923,10 @@
         </div>
     </div>
     <div class="footer-copyright">&copy; 2026 Marcos Leal. Todos os direitos reservados.</div>
+    <div class="site-stats" aria-label="Estat&iacute;sticas do portf&oacute;lio">
+        <span title="Uma visita por sess&atilde;o">&#9673; <b id="total-acessos">--</b> acessos</span>
+        <span title="Downloads de todos os projetos">&#8595; <b id="total-downloads">--</b> downloads</span>
+    </div>
 </footer>
 
 <script>
@@ -1025,7 +1046,10 @@
                     <h3>${projeto.titulo}</h3>
                     <p>${projeto.descricao}</p>
                     <strong>${projeto.tecnologias}</strong>
-                    ${projeto.apk ? `<a href="${projeto.apk}" class="btn" download>${projeto.versao || "Baixar APK"}</a>` : ""}
+                    ${projeto.apk ? `
+                        <a href="${projeto.apk}" class="btn projeto-download" download data-projeto="${identificadorDownload(projeto.apk)}">${projeto.versao || "Baixar APK"}</a>
+                        <small class="download-count" data-download-count="${identificadorDownload(projeto.apk)}" aria-live="polite"></small>
+                    ` : ""}
                     ${projeto.pix ? `
                         <div class="support-box">
                             <b>Apoie o desenvolvimento</b>
@@ -1038,6 +1062,7 @@
             </article>
         `).join("");
         ativarBotoesPix();
+        ativarContadoresDownloads();
     }
 
     function renderizarVideos() {
@@ -1052,7 +1077,10 @@
                 <p>${video.descricao}</p>
                 <div class="card-actions">
                     <button type="button" class="btn assistir-video" data-video="${video.arquivo}" data-titulo="${video.titulo}">Assistir ao filme</button>
-                    ${video.apk ? `<a href="${video.apk}" class="btn secondary" download>Baixar APK &bull; vers&atilde;o ${video.versao}</a>` : ""}
+                    ${video.apk ? `
+                        <a href="${video.apk}" class="btn secondary projeto-download" download data-projeto="${identificadorDownload(video.apk)}">Baixar APK &bull; vers&atilde;o ${video.versao}</a>
+                        <small class="download-count" data-download-count="${identificadorDownload(video.apk)}" aria-live="polite"></small>
+                    ` : ""}
                 </div>
                 ${video.pix ? `
                     <div class="support-box">
@@ -1070,6 +1098,89 @@
         });
         ativarPreviasAutomaticas();
         ativarBotoesPix();
+        ativarContadoresDownloads();
+    }
+
+    const CONTADOR_NAMESPACE = "portfolio-marcos-leal-2026";
+    const CONTADOR_API = "https://api.counterapi.dev/v1";
+
+    function identificadorDownload(arquivo) {
+        const nome = arquivo.split("/").pop().replace(/\.[^.]+$/, "");
+        return `download-${nome.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+    }
+
+    async function consultarContador(nome, incrementar = false) {
+        const acao = incrementar ? "/up" : "/";
+        const resposta = await fetch(`${CONTADOR_API}/${CONTADOR_NAMESPACE}/${nome}${acao}`, {
+            cache: "no-store",
+            keepalive: incrementar
+        });
+        if ((resposta.status === 400 || resposta.status === 404) && !incrementar) return 0;
+        if (!resposta.ok) throw new Error(`Contador indisponível: ${resposta.status}`);
+        const dados = await resposta.json();
+        return Number(dados.value ?? dados.count ?? 0);
+    }
+
+    function formatarContagem(valor) {
+        return new Intl.NumberFormat("pt-BR").format(valor);
+    }
+
+    async function atualizarTotalAcessos() {
+        const elemento = document.getElementById("total-acessos");
+        try {
+            const chaveSessao = "portfolio-acesso-registrado";
+            const jaRegistrado = sessionStorage.getItem(chaveSessao) === "1";
+            const total = await consultarContador("acessos", !jaRegistrado);
+            if (!jaRegistrado) sessionStorage.setItem(chaveSessao, "1");
+            elemento.textContent = formatarContagem(total);
+        } catch (erro) {
+            elemento.closest("span").hidden = true;
+            console.warn("Não foi possível carregar o contador de acessos.", erro);
+        }
+    }
+
+    async function carregarContagemDownload(nome) {
+        try {
+            const total = await consultarContador(nome);
+            document.querySelectorAll(`[data-download-count="${nome}"]`).forEach(elemento => {
+                elemento.textContent = `${formatarContagem(total)} download${total === 1 ? "" : "s"}`;
+            });
+        } catch {
+            document.querySelectorAll(`[data-download-count="${nome}"]`).forEach(elemento => {
+                elemento.textContent = "";
+            });
+        }
+    }
+
+    function ativarContadoresDownloads() {
+        const nomes = new Set();
+        document.querySelectorAll(".projeto-download").forEach(link => {
+            nomes.add(link.dataset.projeto);
+            if (link.dataset.contadorAtivo) return;
+            link.dataset.contadorAtivo = "true";
+            link.addEventListener("click", () => {
+                Promise.all([
+                    consultarContador(link.dataset.projeto, true),
+                    consultarContador("downloads-totais", true)
+                ]).then(([totalProjeto, totalGeral]) => {
+                    document.querySelectorAll(`[data-download-count="${link.dataset.projeto}"]`).forEach(elemento => {
+                        elemento.textContent = `${formatarContagem(totalProjeto)} download${totalProjeto === 1 ? "" : "s"}`;
+                    });
+                    document.getElementById("total-downloads").textContent = formatarContagem(totalGeral);
+                }).catch(erro => console.warn("Não foi possível registrar o download.", erro));
+            });
+        });
+        nomes.forEach(carregarContagemDownload);
+    }
+
+    async function carregarTotalDownloads() {
+        try {
+            const total = await consultarContador("downloads-totais");
+            document.getElementById("total-downloads").textContent = formatarContagem(total);
+        } catch (erro) {
+            document.getElementById("total-downloads").closest("span").hidden = true;
+            console.warn("Não foi possível carregar o total de downloads.", erro);
+        }
     }
 
     function ativarPreviasAutomaticas() {
@@ -1163,6 +1274,8 @@
     renderizarProjetos();
     carregarVideos();
     renderizarApresentacoes();
+    atualizarTotalAcessos();
+    carregarTotalDownloads();
 </script>
 </body>
 </html>
