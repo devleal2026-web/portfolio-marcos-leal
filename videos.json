@@ -6,14 +6,16 @@
     "arquivo": "assets/videos/aero-access.mp4",
     "poster": "assets/videos/posters/aero-access.jpg",
     "apk": "assets/apks/aero-access-v1.0.apk",
-    "versao": "1.0"
+    "versao": "1.0",
+    "pagina": "videos/aero-access/"
   },
   {
     "titulo": "ALF — Bagagens Extraviadas",
     "categoria": "Operação aeroportuária",
     "descricao": "Fluxo estruturado para registrar, acompanhar e solucionar ocorrências de bagagens extraviadas.",
     "arquivo": "assets/videos/alf.mp4",
-    "poster": "assets/videos/posters/alf.jpg"
+    "poster": "assets/videos/posters/alf.jpg",
+    "pagina": "videos/alf/"
   },
   {
     "titulo": "AvisoU",
@@ -22,7 +24,8 @@
     "arquivo": "assets/videos/avisou.mp4",
     "poster": "assets/videos/posters/avisou.jpg",
     "apk": "assets/apks/avisou-v1.0.0.apk",
-    "versao": "1.0.0"
+    "versao": "1.0.0",
+    "pagina": "videos/avisou/"
   },
   {
     "titulo": "Encontre Fácil",
@@ -31,7 +34,8 @@
     "arquivo": "assets/videos/encontre-facil.mp4",
     "poster": "assets/videos/posters/encontre-facil.jpg",
     "apk": "assets/apks/encontre-facil-v1.0.apk",
-    "versao": "1.0"
+    "versao": "1.0",
+    "pagina": "videos/encontre-facil/"
   },
   {
     "titulo": "Mibis",
@@ -40,7 +44,8 @@
     "arquivo": "assets/videos/mibis.mp4",
     "poster": "assets/videos/posters/mibis.jpg",
     "apk": "assets/apks/mibis-v1.2.1.apk",
-    "versao": "1.2.1"
+    "versao": "1.2.1",
+    "pagina": "videos/mibis/"
   },
   {
     "titulo": "NeuroLoop",
@@ -49,7 +54,8 @@
     "arquivo": "assets/videos/neuroloop.mp4",
     "poster": "assets/videos/posters/neuroloop.jpg",
     "apk": "assets/apks/neuroloop-v2.3.3.apk",
-    "versao": "2.3.3"
+    "versao": "2.3.3",
+    "pagina": "videos/neuroloop/"
   },
   {
     "titulo": "Construindo Palavras",
@@ -60,14 +66,16 @@
     "apk": "assets/apks/construindo-palavras-v1.0.apk",
     "versao": "1.0",
     "pix": "17909502877",
-    "favorecido": "Marcos Antonio de Sousa Leal"
+    "favorecido": "Marcos Antonio de Sousa Leal",
+    "pagina": "videos/construindo-palavras/"
   },
   {
     "titulo": "Airport Baggage Simulator",
     "categoria": "Simulador operacional",
     "descricao": "Simulação integrada da jornada da bagagem, do check-in ao tratamento de ocorrências.",
     "arquivo": "assets/videos/airport-baggage-simulator.mp4",
-    "poster": "assets/videos/posters/airport-baggage-simulator.jpg"
+    "poster": "assets/videos/posters/airport-baggage-simulator.jpg",
+    "pagina": "videos/airport-baggage-simulator/"
   },
   {
     "titulo": "Laura & Lara - A Grande Missão Sapeca",
@@ -76,6 +84,7 @@
     "arquivo": "assets/videos/laura-lara-aventura.mp4",
     "poster": "assets/videos/posters/laura-lara-aventura.jpg",
     "apk": "assets/apks/laura-lara-aventura-v1.0.apk",
-    "versao": "1.0"
+    "versao": "1.0",
+    "pagina": "videos/laura-lara-aventura/"
   }
 ]

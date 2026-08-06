@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/aero-access/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/aero-access.jpg</video:thumbnail_loc>
+      <video:title>Aero Access — filme promocional</video:title>
+      <video:description>Solução digital para inspeção, rastreabilidade e tratamento seguro de ocorrências com bagagens.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/aero-access.mp4</video:content_loc>
+      <video:duration>91</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/alf/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/alf.jpg</video:thumbnail_loc>
+      <video:title>ALF — Bagagens Extraviadas — filme promocional</video:title>
+      <video:description>Fluxo estruturado para registrar, acompanhar e solucionar ocorrências de bagagens extraviadas.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/alf.mp4</video:content_loc>
+      <video:duration>44</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/avisou/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/avisou.jpg</video:thumbnail_loc>
+      <video:title>AvisoU — filme promocional</video:title>
+      <video:description>Comunicação ágil entre portarias e moradores para avisos e recebimento de encomendas.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/avisou.mp4</video:content_loc>
+      <video:duration>75</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/encontre-facil/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/encontre-facil.jpg</video:thumbnail_loc>
+      <video:title>Encontre Fácil — filme promocional</video:title>
+      <video:description>Gestão inteligente de achados e perdidos com organização, consulta e rastreabilidade.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/encontre-facil.mp4</video:content_loc>
+      <video:duration>60</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/mibis/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/mibis.jpg</video:thumbnail_loc>
+      <video:title>Mibis — filme promocional</video:title>
+      <video:description>Experiência visual de aventura com personagens carismáticos, evolução e cenários imersivos.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/mibis.mp4</video:content_loc>
+      <video:duration>54</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/neuroloop/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/neuroloop.jpg</video:thumbnail_loc>
+      <video:title>NeuroLoop — filme promocional</video:title>
+      <video:description>Jogo arcade de ritmo e precisão que desafia reflexos, concentração e formação de combos.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/neuroloop.mp4</video:content_loc>
+      <video:duration>49</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/construindo-palavras/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/construindo-palavras.jpg</video:thumbnail_loc>
+      <video:title>Construindo Palavras — filme promocional</video:title>
+      <video:description>Experiência educativa e multilíngue que estimula leitura, memória e confiança por meio da formação de palavras.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/construindo-palavras.mp4</video:content_loc>
+      <video:duration>54</video:duration>
+      <video:publication_date>2026-07-26T15:40:48-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/airport-baggage-simulator/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/airport-baggage-simulator.jpg</video:thumbnail_loc>
+      <video:title>Airport Baggage Simulator — filme promocional</video:title>
+      <video:description>Simulação integrada da jornada da bagagem, do check-in ao tratamento de ocorrências.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/airport-baggage-simulator.mp4</video:content_loc>
+      <video:duration>127</video:duration>
+      <video:publication_date>2026-07-26T10:40:05-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/laura-lara-aventura/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/posters/laura-lara-aventura.jpg</video:thumbnail_loc>
+      <video:title>Laura &amp; Lara — A Grande Missão Sapeca — filme promocional</video:title>
+      <video:description>Aventura educativa com tarefas guiadas de organização, higiene, alimentação e responsabilidade infantil.</video:description>
+      <video:content_loc>https://devleal2026-web.github.io/portfolio-marcos-leal/assets/videos/laura-lara-aventura.mp4</video:content_loc>
+      <video:duration>382</video:duration>
+      <video:publication_date>2026-07-29T17:12:17-03:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+</urlset>

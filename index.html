@@ -1077,6 +1077,7 @@
                 <p>${video.descricao}</p>
                 <div class="card-actions">
                     <button type="button" class="btn assistir-video" data-video="${video.arquivo}" data-titulo="${video.titulo}">Assistir ao filme</button>
+                    ${video.pagina ? `<a href="${video.pagina}" class="btn secondary">P&aacute;gina do v&iacute;deo</a>` : ""}
                     ${video.apk ? `
                         <a href="${video.apk}" class="btn secondary projeto-download" download data-projeto="${identificadorDownload(video.apk)}">Baixar APK &bull; vers&atilde;o ${video.versao}</a>
                         <small class="download-count" data-download-count="${identificadorDownload(video.apk)}" aria-live="polite"></small>
