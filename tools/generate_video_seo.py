@@ -119,6 +119,11 @@ def page(video: dict[str, object]) -> str:
             "name": "Marcos Antonio de Sousa Leal",
             "url": f"{BASE}/",
         },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "DevLeal2026",
+            "url": f"{BASE}/",
+        },
     }
     json_ld = json.dumps(structured, ensure_ascii=False, indent=8).replace("</", "<\\/")
     return f"""<!doctype html>
@@ -126,13 +131,18 @@ def page(video: dict[str, object]) -> str:
 <head>
     <meta charset=\"utf-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-    <title>{html.escape(title)} | Filme promocional</title>
-    <meta name=\"description\" content=\"{html.escape(description, quote=True)}\">
+    <title>{html.escape(title)} | Filme promocional DevLeal2026</title>
+    <meta name=\"description\" content=\"{html.escape(description, quote=True)} Assista ao filme promocional no portfólio DevLeal2026 de Marcos Leal.\">
+    <meta name=\"author\" content=\"Marcos Antonio de Sousa Leal\">
     <meta name=\"robots\" content=\"index, follow, max-image-preview:large, max-video-preview:-1\">
     <meta name=\"google-site-verification\" content=\"{VERIFY}\">
     <link rel=\"canonical\" href=\"{canonical}\">
+    <link rel=\"alternate\" hreflang=\"pt-BR\" href=\"{canonical}\">
+    <link rel=\"alternate\" hreflang=\"x-default\" href=\"{canonical}\">
     <meta property=\"og:type\" content=\"video.other\">
-    <meta property=\"og:title\" content=\"{html.escape(title, quote=True)} — filme promocional\">
+    <meta property=\"og:locale\" content=\"pt_BR\">
+    <meta property=\"og:site_name\" content=\"DevLeal2026\">
+    <meta property=\"og:title\" content=\"{html.escape(title, quote=True)} — filme promocional DevLeal2026\">
     <meta property=\"og:description\" content=\"{html.escape(description, quote=True)}\">
     <meta property=\"og:url\" content=\"{canonical}\">
     <meta property=\"og:image\" content=\"{thumbnail}\">
@@ -165,11 +175,11 @@ def page(video: dict[str, object]) -> str:
 </head>
 <body>
     <header>
-        <a class=\"brand\" href=\"../../\">LEAL DESENVOLVEDOR</a>
+        <a class=\"brand\" href=\"../../\">DEVLEAL2026</a>
         <a class=\"back\" href=\"../../#videos\">← Todos os filmes</a>
     </header>
     <main>
-        <span class=\"tag\">{html.escape(category)}</span>
+        <span class=\"tag\">{html.escape(category)} · Filme DevLeal2026</span>
         <h1>{html.escape(title)}</h1>
         <p class=\"lead\">{html.escape(description)}</p>
         <section class=\"player\" aria-label=\"Filme promocional de {html.escape(title, quote=True)}\">
@@ -183,7 +193,7 @@ def page(video: dict[str, object]) -> str:
             </div>
         </section>
     </main>
-    <footer>WhatsApp: <a href=\"https://wa.me/5511950436161\">+55 11 95043-6161</a> · E-mail: <a href=\"mailto:devleal2026@gmail.com\">devleal2026@gmail.com</a></footer>
+    <footer>DevLeal2026 · WhatsApp: <a href=\"https://wa.me/5511950436161\">+55 11 95043-6161</a> · E-mail: <a href=\"mailto:devleal2026@gmail.com\">devleal2026@gmail.com</a></footer>
 </body>
 </html>
 """
@@ -196,13 +206,13 @@ def main() -> None:
         (target / "index.html").write_text(page(video), encoding="utf-8", newline="\n")
 
     urls = [
-        f"  <url>\n    <loc>{BASE}/</loc>\n    <lastmod>2026-08-06</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>"
+        f"  <url>\n    <loc>{BASE}/</loc>\n    <lastmod>2026-08-07</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>"
     ]
     for video in VIDEOS:
         urls.append(
             "  <url>\n"
             f"    <loc>{BASE}/videos/{video['slug']}/</loc>\n"
-            "    <lastmod>2026-08-06</lastmod>\n"
+            "    <lastmod>2026-08-07</lastmod>\n"
             "    <changefreq>monthly</changefreq>\n"
             "    <priority>0.8</priority>\n"
             "  </url>"
