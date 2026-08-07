@@ -28,7 +28,10 @@
         "url": "https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/neuroloop/",
         "image": "https://devleal2026-web.github.io/portfolio-marcos-leal/assets/projetos/neuroloop.jpg",
         "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Android",
+        "operatingSystem": [
+                "Web Browser",
+                "Android"
+        ],
         "author": {
                 "@type": "Person",
                 "name": "Marcos Antonio de Sousa Leal",
@@ -39,7 +42,8 @@
                 "Kotlin"
         ],
         "inLanguage": "pt-BR",
-        "downloadUrl": "https://devleal2026-web.github.io/portfolio-marcos-leal/assets/apks/neuroloop-v2.3.3.apk"
+        "downloadUrl": "https://devleal2026-web.github.io/portfolio-marcos-leal/assets/apks/neuroloop-v2.3.3.apk",
+        "installUrl": "https://devleal2026-web.github.io/portfolio-marcos-leal/jogos/neuroloop/"
 }
     </script>
     <style>
@@ -62,6 +66,10 @@
         .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
         .button { display:inline-flex; padding:12px 18px; border-radius:999px; color:white; background:linear-gradient(135deg,var(--blue),#0891b2); text-decoration:none; font-weight:800; }
         .button.secondary { background:#172a45; border:1px solid #365579; }
+        .button.play { background:linear-gradient(135deg,#08b981,#0891b2); }
+        .support { margin-top:24px;padding:18px;border:1px solid #38628a;border-radius:14px;background:#071221; }
+        .support b { color:var(--cyan); } .support code { display:inline-block;padding:10px;background:#020711;border-radius:8px;color:#ffe66d;margin-right:8px; }
+        .support button { border:0;border-radius:999px;padding:10px 15px;background:#185f80;color:white;font-weight:800;cursor:pointer; }
         footer { padding:24px 0 42px; color:var(--muted); border-top:1px solid #233956; }
         footer a { color:var(--cyan); }
         @media(max-width:760px) { .project { grid-template-columns:1fr; } }
@@ -83,10 +91,13 @@
                 <p>Android • Kotlin</p>
                 <p>Projeto desenvolvido por Marcos Leal e apresentado no portfólio DevLeal2026.</p>
                 <div class="actions">
+                    <a class="button play" href="../../jogos/neuroloop/">Jogar online</a>
                     <a class="button" href="../../assets/apks/neuroloop-v2.3.3.apk" download>Baixar APK</a>
+                    <a class="button secondary" href="../../assets/downloads/neuroloop-web.zip" download>Baixar versão web</a>
                     <a class="button secondary" href="../../videos/neuroloop/">Assistir ao filme promocional</a>
                     <a class="button secondary" href="mailto:devleal2026@gmail.com">Entre em contato</a>
                 </div>
+                <div class="support"><b>Apoie o desenvolvimento</b><p>Doação via Pix para Marcos Antonio de Sousa Leal</p><code>CPF 17909502877</code><button type="button" onclick="navigator.clipboard.writeText('17909502877').then(()=>this.textContent='Chave Pix copiada!')">Copiar chave Pix</button></div>
             </div>
         </article>
     </main>

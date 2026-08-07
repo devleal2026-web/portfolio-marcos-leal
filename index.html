@@ -1000,7 +1000,10 @@
             imagem: "assets/projetos/neuroloop.jpg",
             tecnologias: "Android &bull; Kotlin",
             apk: "assets/apks/neuroloop-v2.3.3.apk",
-            versao: "Baixar APK &bull; vers&atilde;o 2.3.3"
+            versao: "Baixar APK &bull; vers&atilde;o 2.3.3",
+            web: "jogos/neuroloop/",
+            pix: "17909502877",
+            favorecido: "Marcos Antonio de Sousa Leal"
         },
         {
             titulo: "Adivinhe o Animal",
@@ -1050,7 +1053,10 @@
             imagem: "assets/videos/posters/mibis.jpg",
             tecnologias: "Android &bull; Kotlin &bull; Game Design",
             apk: "assets/apks/mibis-v1.2.1.apk",
-            versao: "Baixar APK &bull; vers&atilde;o 1.2.1"
+            versao: "Baixar APK &bull; vers&atilde;o 1.2.1",
+            web: "jogos/mibis/",
+            pix: "17909502877",
+            favorecido: "Marcos Antonio de Sousa Leal"
         },
         {
             titulo: "Laura &amp; Lara - A Grande Miss&atilde;o Sapeca",
@@ -1096,6 +1102,7 @@
                     <p>${projeto.descricao}</p>
                     <strong>${projeto.tecnologias}</strong>
                     ${projeto.pagina ? `<a href="${projeto.pagina}" class="btn secondary">P&aacute;gina do projeto</a>` : ""}
+                    ${projeto.web ? `<a href="${projeto.web}" class="btn">Jogar online</a>` : ""}
                     ${projeto.apk ? `
                         <a href="${projeto.apk}" class="btn projeto-download" download data-projeto="${identificadorDownload(projeto.apk)}">${projeto.versao || "Baixar APK"}</a>
                         <small class="download-count" data-download-count="${identificadorDownload(projeto.apk)}" aria-live="polite"></small>

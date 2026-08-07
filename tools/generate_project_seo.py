@@ -59,12 +59,26 @@ def project_page(project: dict[str, str], slug: str) -> str:
     }
     if project.get("apk"):
         schema["downloadUrl"] = f"{BASE}/{project['apk']}"
+    if project.get("web"):
+        schema["operatingSystem"] = ["Web Browser", "Android"]
+        schema["installUrl"] = f"{BASE}/{project['web']}"
 
     json_ld = json.dumps(schema, ensure_ascii=False, indent=8).replace("</", "<\\/")
     image_path = "../../" + project["imagem"]
     download = ""
     if project.get("apk"):
         download = f'<a class="button" href="../../{html.escape(project["apk"], quote=True)}" download>Baixar APK</a>'
+    web = ""
+    if project.get("web"):
+        web = f'<a class="button play" href="../../{html.escape(project["web"], quote=True)}">Jogar online</a>'
+    web_download = ""
+    if project.get("web_download"):
+        web_download = f'<a class="button secondary" href="../../{html.escape(project["web_download"], quote=True)}" download>Baixar versão web</a>'
+    support = ""
+    if project.get("pix"):
+        pix = html.escape(project["pix"])
+        favored = html.escape(project.get("favorecido", "Marcos Antonio de Sousa Leal"))
+        support = f'<div class="support"><b>Apoie o desenvolvimento</b><p>Doação via Pix para {favored}</p><code>CPF {pix}</code><button type="button" onclick="navigator.clipboard.writeText(\'{pix}\').then(()=>this.textContent=\'Chave Pix copiada!\')">Copiar chave Pix</button></div>'
     video = ""
     if title in VIDEO_SLUGS:
         video = f'<a class="button secondary" href="../../videos/{VIDEO_SLUGS[title]}/">Assistir ao filme promocional</a>'
@@ -113,6 +127,10 @@ def project_page(project: dict[str, str], slug: str) -> str:
         .actions {{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }}
         .button {{ display:inline-flex; padding:12px 18px; border-radius:999px; color:white; background:linear-gradient(135deg,var(--blue),#0891b2); text-decoration:none; font-weight:800; }}
         .button.secondary {{ background:#172a45; border:1px solid #365579; }}
+        .button.play {{ background:linear-gradient(135deg,#08b981,#0891b2); }}
+        .support {{ margin-top:24px;padding:18px;border:1px solid #38628a;border-radius:14px;background:#071221; }}
+        .support b {{ color:var(--cyan); }} .support code {{ display:inline-block;padding:10px;background:#020711;border-radius:8px;color:#ffe66d;margin-right:8px; }}
+        .support button {{ border:0;border-radius:999px;padding:10px 15px;background:#185f80;color:white;font-weight:800;cursor:pointer; }}
         footer {{ padding:24px 0 42px; color:var(--muted); border-top:1px solid #233956; }}
         footer a {{ color:var(--cyan); }}
         @media(max-width:760px) {{ .project {{ grid-template-columns:1fr; }} }}
@@ -134,10 +152,13 @@ def project_page(project: dict[str, str], slug: str) -> str:
                 <p>{html.escape(technologies)}</p>
                 <p>Projeto desenvolvido por Marcos Leal e apresentado no portfólio DevLeal2026.</p>
                 <div class="actions">
+                    {web}
                     {download}
+                    {web_download}
                     {video}
                     <a class="button secondary" href="mailto:devleal2026@gmail.com">Entre em contato</a>
                 </div>
+                {support}
             </div>
         </article>
     </main>
