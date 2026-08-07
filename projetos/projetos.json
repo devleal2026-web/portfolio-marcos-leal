@@ -5,13 +5,15 @@
     "imagem": "assets/projetos/encontrefacil.jpg",
     "tecnologias": "Android • Kotlin • Supabase • PostgreSQL",
     "apk": "assets/apks/encontre-facil-v1.0.apk",
-    "versao": "Baixar APK • versão 1.0"
+    "versao": "Baixar APK • versão 1.0",
+    "pagina": "projetos/sistema-achados-perdidos/"
   },
   {
     "titulo": "Quadroo",
     "descricao": "Mural multiorganizacional digital.",
     "imagem": "assets/projetos/quadroo.jpg",
-    "tecnologias": "JavaScript • Supabase • HTML • CSS"
+    "tecnologias": "JavaScript • Supabase • HTML • CSS",
+    "pagina": "projetos/quadroo/"
   },
   {
     "titulo": "Neuro Loop",
@@ -19,7 +21,8 @@
     "imagem": "assets/projetos/neuroloop.jpg",
     "tecnologias": "Android • Kotlin",
     "apk": "assets/apks/neuroloop-v2.3.3.apk",
-    "versao": "Baixar APK • versão 2.3.3"
+    "versao": "Baixar APK • versão 2.3.3",
+    "pagina": "projetos/neuroloop/"
   },
   {
     "titulo": "Adivinhe o Animal",
@@ -27,7 +30,8 @@
     "imagem": "assets/projetos/adivinheoanimal.jpg",
     "tecnologias": "Android • Kotlin",
     "apk": "assets/apks/adivinhe-o-animal-v1.0.apk",
-    "versao": "Baixar APK • versão 1.0"
+    "versao": "Baixar APK • versão 1.0",
+    "pagina": "projetos/adivinhe-o-animal/"
   },
   {
     "titulo": "Insect Hunter",
@@ -35,7 +39,8 @@
     "imagem": "assets/projetos/insecthunter.jpg",
     "tecnologias": "Android • Kotlin",
     "apk": "assets/apks/insect-hunter-v1.0.apk",
-    "versao": "Baixar APK • versão 1.0"
+    "versao": "Baixar APK • versão 1.0",
+    "pagina": "projetos/insect-hunter/"
   },
   {
     "titulo": "Construindo Palavras",
@@ -45,7 +50,8 @@
     "apk": "assets/apks/construindo-palavras-v1.0.apk",
     "versao": "Baixar APK • versão 1.0",
     "pix": "17909502877",
-    "favorecido": "Marcos Antonio de Sousa Leal"
+    "favorecido": "Marcos Antonio de Sousa Leal",
+    "pagina": "projetos/construindo-palavras/"
   },
   {
     "titulo": "AvisoU",
@@ -53,7 +59,8 @@
     "imagem": "assets/projetos/avisou.jpg",
     "tecnologias": "Android • Kotlin",
     "apk": "assets/apks/avisou-v1.0.0.apk",
-    "versao": "Baixar APK • versão 1.0.0"
+    "versao": "Baixar APK • versão 1.0.0",
+    "pagina": "projetos/avisou/"
   },
   {
     "titulo": "Aero Access",
@@ -61,7 +68,8 @@
     "imagem": "assets/videos/posters/aero-access.jpg",
     "tecnologias": "Operação aeroportuária • Rastreabilidade • Gestão de ocorrências",
     "apk": "assets/apks/aero-access-v1.0.apk",
-    "versao": "Baixar APK • versão 1.0"
+    "versao": "Baixar APK • versão 1.0",
+    "pagina": "projetos/aero-access/"
   },
   {
     "titulo": "Mibis",
@@ -69,7 +77,8 @@
     "imagem": "assets/videos/posters/mibis.jpg",
     "tecnologias": "Android • Kotlin • Game Design",
     "apk": "assets/apks/mibis-v1.2.1.apk",
-    "versao": "Baixar APK • versão 1.2.1"
+    "versao": "Baixar APK • versão 1.2.1",
+    "pagina": "projetos/mibis/"
   },
   {
     "titulo": "Laura & Lara - A Grande Missão Sapeca",
@@ -77,6 +86,7 @@
     "imagem": "assets/projetos/laura-lara-aventura.png",
     "tecnologias": "Android • Java • Game Design • Educação Infantil",
     "apk": "assets/apks/laura-lara-aventura-v1.0.apk",
-    "versao": "Baixar APK • versão 1.0"
+    "versao": "Baixar APK • versão 1.0",
+    "pagina": "projetos/laura-lara-aventura/"
   }
 ]
