@@ -106,7 +106,7 @@ function gerarPNR(){
 
     return pnr
 }
-function gerarTagLatam(){
+function gerarTagCompanhia(){
 
     const serial =
 

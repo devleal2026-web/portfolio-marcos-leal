@@ -44,120 +44,10 @@ const courseVisuals = {
     "lideranca-bagagem-extraviada": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(12,74,110,.84)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" },
     "atendimento-pcd": { image: "linear-gradient(135deg, rgba(8,145,178,.92), rgba(30,64,175,.84)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80')", icon: "access" }
 };
-const lessonMediaProfiles = {
-    "fundamentos": { image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=82", query: "atendimento aeroportuario passageiros treinamento" },
-    "bagagem-extraviada": { image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=82", query: "worldtracer AHL lost baggage training" },
-    "objetos-esquecidos": { image: "https://images.unsplash.com/photo-1517404215738-15263e9f9178?auto=format&fit=crop&w=1200&q=82", query: "airport lost and found property procedure", videos: { 0: "../assets/academy-videos/rfp-trilha-01-definicao-responsabilidade-v2.mp4" } },
-    "avsec": { image: "https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=1200&q=82", query: "aviation security AVSEC airport training" },
-    "manuseio-bagagem": { image: "https://images.unsplash.com/photo-1529074963764-98f45c47344b?auto=format&fit=crop&w=1200&q=82", query: "airport baggage handling ramp training" },
-    "worldtracer-completo": { image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=82", query: "WorldTracer baggage tracing system training" },
-    "atendimento-cliente-aviacao": { image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=82", query: "airport customer service training" },
-    "boas-praticas-atendimento": { image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=82", query: "customer service excellence aviation training" },
-    "bagagem-violada": { image: "https://images.unsplash.com/photo-1499914485622-a88fac536970?auto=format&fit=crop&w=1200&q=82", query: "baggage pilferage claim airport training" },
-    "bagagem-danificada": { image: "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?auto=format&fit=crop&w=1200&q=82", query: "damaged baggage claim airport training" },
-    "tratativa-rl-mct": { image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=82", query: "airport baggage connection MCT training" },
-    "bagagem-sem-etiqueta-ohd": { image: "https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=1200&q=82", query: "on hand baggage OHD WorldTracer training" },
-    "ahl": { image: "https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1200&q=82", query: "AHL delayed baggage WorldTracer" },
-    "ohd": { image: "https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=1200&q=82", query: "OHD on hand baggage WorldTracer" },
-    "matches": { image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=82", query: "baggage tracing match lost found luggage" },
-    "dpr": { image: "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=1200&q=82", query: "DPR damaged baggage report WorldTracer" },
-    "lideranca-bagagem-extraviada": { image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=82", query: "airport baggage service leadership training" },
-    "atendimento-pcd": { image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1200&q=82", query: "airport accessibility passenger assistance training" }
-};
-const courseIntroVideos = {
-    "objetos-esquecidos": {
-        title: "Resumo do curso",
-        subtitle: "RFP - visao geral operacional",
-        description: "Assista antes das trilhas para entender o fluxo completo de registro, armazenamento, transporte e entrega de objetos esquecidos.",
-        src: "../assets/academy-videos/rfp-curso-resumo.mp4"
-    }
-};
-const lessonScreenshots = {
-    "bagagem-extraviada": {
-        default: [
-            {
-                title: "Abertura de AHL no sistema",
-                caption: "Exemplo visual dos campos TN, CT, BI, BW, FD, RT, NM, contatos e endereco do passageiro.",
-                src: "../assets/academy-screenshots/ahl-fd-rt-passageiro.svg"
-            }
-        ],
-        0: [
-            {
-                title: "Campos obrigatorios do AHL",
-                caption: "Use o print para localizar os campos essenciais durante a abertura da ocorrencia de bagagem extraviada.",
-                src: "../assets/academy-screenshots/ahl-fd-rt-passageiro.svg"
-            }
-        ]
-    },
-    "worldtracer-completo": {
-        default: [
-            {
-                title: "Mascara SITA WorldTracer",
-                caption: "Visualizacao em formato operacional, aproximando o aluno da mascara usada nas transacoes WorldTracer.",
-                src: "../assets/academy-screenshots/worldtracer-sita-ahl.svg"
-            }
-        ]
-    },
-    "bagagem-sem-etiqueta-ohd": {
-        default: [
-            {
-                title: "OHD e campo de contents",
-                caption: "Exemplo do preenchimento de CC com conteudo detalhado e dos dados usados para envio da bagagem.",
-                src: "../assets/academy-screenshots/ohd-cc-conteudo.svg"
-            }
-        ]
-    },
-    "bagagem-danificada": {
-        default: [
-            {
-                title: "DPR - registro do dano",
-                caption: "Exemplo de selecao de elemento, localizacao e extensao do dano na mascara de DPR.",
-                src: "../assets/academy-screenshots/dpr-dano-localizacao.svg"
-            }
-        ]
-    },
-    "bagagem-violada": {
-        default: [
-            {
-                title: "AHL com registro complementar",
-                caption: "A trilha de violacao usa a mesma base de ocorrencia, reforcando onde registrar dados, contatos e observacoes.",
-                src: "../assets/academy-screenshots/ahl-fd-rt-passageiro.svg"
-            }
-        ]
-    },
-    "tratativa-rl-mct": {
-        default: [
-            {
-                title: "Campos FD e RT para analise operacional",
-                caption: "O print destaca voo/data e rota, campos usados na analise de conexao, MCT e Reason for Loss.",
-                src: "../assets/academy-screenshots/ahl-fd-rt-passageiro.svg"
-            }
-        ]
-    }
-};
-const msbCoursePages = {
-    "fundamentos": [7, 8, 9, 10, 11, 12, 13],
-    "boas-praticas-atendimento": [7, 8, 9, 10, 11, 12, 13],
-    "atendimento-cliente-aviacao": [7, 8, 9, 10, 11, 12, 13],
-    "atendimento-pcd": [7, 8, 9, 10, 11, 12, 13],
-    "manuseio-bagagem": [7, 8, 9, 10, 11, 12, 13],
-
-    "bagagem-extraviada": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-    "ahl": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-    "worldtracer-completo": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-    "lideranca-bagagem-extraviada": [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-
-    "bagagem-sem-etiqueta-ohd": [69, 70, 71, 72],
-    "ohd": [69, 70, 71, 72],
-    "matches": [69, 70, 71, 72],
-
-    "bagagem-danificada": [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84],
-    "dpr": [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84],
-
-    "bagagem-violada": [91, 92, 93],
-    "tratativa-rl-mct": [95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109],
-    "objetos-esquecidos": [113, 114, 115, 116]
-};
+const lessonMediaProfiles = {};
+const courseIntroVideos = {};
+const lessonScreenshots = {};
+const msbCoursePages = {};
 function readJson(key){
     try{
         return JSON.parse(localStorage.getItem(key)) || {};
@@ -250,15 +140,7 @@ function iconSvg(type){
 }
 
 function materialForCourse(course){
-    if(course && course.material){
-        return String(course.material || "").trim();
-    }
-
-    if(typeof academyMaterials === "undefined"){
-        return "";
-    }
-
-    return String(academyMaterials[course.id] || "").trim();
+    return "";
 }
 
 function materialSections(course){
@@ -579,38 +461,13 @@ function currentModule(course){
 }
 
 function lessonMedia(course, module, moduleIndex){
-    const profile = lessonMediaProfiles[course.id] || lessonMediaProfiles.fundamentos;
-    const query = encodeURIComponent(`${profile.query} ${module.title}`);
-    const videoUrl = `https://www.youtube.com/embed?listType=search&list=${query}`;
-    const watchUrl = `https://www.youtube.com/results?search_query=${query}`;
-
-    const localVideo = profile.videos && profile.videos[moduleIndex];
-    const videoEmbed = localVideo
-        ? `<video class="lesson-local-video" controls preload="metadata" src="${localVideo}"></video>`
-        : `<iframe
-                    title="Video relacionado - ${escapeHtml(module.title)}"
-                    src="${videoUrl}"
-                    loading="lazy"
-                    allowfullscreen>
-                </iframe>`;
-
     return `
         <section class="lesson-media-card">
-            <div class="lesson-media-image" style="background-image:linear-gradient(135deg, ${course.color || "#2563eb"}cc, rgba(15,23,42,.28)), url('${profile.image}')">
+            <div class="lesson-media-image lesson-media-image-local" style="background-image:linear-gradient(135deg, rgba(7,20,33,.12), rgba(7,20,33,.26)), url('../assets/academy-covers/${course.id}.svg')">
                 <div>
-                    <span>Midia da trilha ${String(moduleIndex + 1).padStart(2, "0")}</span>
+                    <span>Trilha ${String(moduleIndex + 1).padStart(2, "0")}</span>
                     <strong>${escapeHtml(module.title)}</strong>
                 </div>
-            </div>
-
-            <div class="lesson-video-box">
-                <div class="lesson-video-copy">
-                    <span>${localVideo ? "Video narrado" : "Video relacionado"}</span>
-                    <strong>${localVideo ? "Aula sincronizada com narracao" : "Pesquisa contextual pronta"}</strong>
-                    <p>${localVideo ? "Este video foi montado com os audios fornecidos para acompanhar o conteudo desta trilha." : "Use para complementar a aula com demonstracoes, exemplos visuais e treinamento operacional."}</p>
-                    ${localVideo ? "" : `<a href="${watchUrl}" target="_blank" rel="noopener">Abrir videos</a>`}
-                </div>
-                ${videoEmbed}
             </div>
         </section>
     `;
@@ -718,7 +575,6 @@ function renderHome(){
     grid.innerHTML = academyCourses.map(course => {
         const visual = courseVisual(course);
         const percent = courseProgress(course);
-        const hasMaterial = materialForCourse(course) ? "Material completo" : "Trilha pratica";
 
         return `
             <a class="academy-course-card" href="course.html?id=${encodeURIComponent(course.id)}" target="_blank" rel="noopener">
@@ -735,7 +591,7 @@ function renderHome(){
                     <div class="course-card-footer">
                         <strong>${courseModules(course).length} trilhas</strong>
                         <small>${percent}% concluido</small>
-                        <small>${hasMaterial}</small>
+                        <small>Conteudo curado</small>
                     </div>
                 </div>
             </a>
@@ -832,9 +688,8 @@ function renderTracks(course){
 function renderLesson(course){
     const module = currentModule(course);
     const panel = document.getElementById("lessonPanel");
-    const fullContent = lessonMaterial(course, state.selectedModuleIndex);
-    const lessonContent = fullContent || module.content;
-    const contentLabel = fullContent ? "Conteudo desta trilha" : "Trilha pratica";
+    const lessonContent = module.content;
+    const contentLabel = "Conteudo da trilha";
 
     panel.innerHTML = `
         <div class="lesson-topline">
@@ -844,15 +699,12 @@ function renderLesson(course){
         <h2>${module.title}</h2>
         ${lessonMedia(course, module, state.selectedModuleIndex)}
         <div class="lesson-content-label">${contentLabel}</div>
-        ${lessonScreenshotCards(course, state.selectedModuleIndex)}
         <article class="lesson-full-content">${formatLessonContent(lessonContent)}</article>
         <div class="lesson-actions">
             <button class="primary-action" id="completeLesson" type="button">Marcar como concluida</button>
             <button class="secondary-action" id="resetCourse" type="button">Reiniciar progresso</button>
         </div>
     `;
-
-    bindLessonScreenshots();
 
     document.getElementById("completeLesson").addEventListener("click", () => {
         const progress = readProgress();
@@ -873,69 +725,10 @@ function renderLesson(course){
 
 
 function msbImageForLesson(course, moduleIndex){
-    const pages = msbCoursePages[course.id] || [];
-
-    if(pages.length === 0){
-        return null;
-    }
-
-    const page = pages[moduleIndex % pages.length];
-
-    return {
-        title: `MSB2025 - pagina ${page}`,
-        caption: "Imagem extraida do manual, recortada para exibir apenas a area instrucional relacionada ao tema.",
-        src: `../assets/academy-msb/msb-page-${String(page).padStart(3, "0")}.jpg`,
-        source: "MSB2025"
-    };
+    return null;
 }
 function lessonScreenshotCards(course, moduleIndex){
-    const setup = lessonScreenshots[course.id];
-
-    const fallback = {
-        title: course.title || "Imagem do curso",
-        caption: "Imagem de apoio para contextualizar esta trilha.",
-        src: `../assets/academy-covers/${course.id}.svg`,
-        source: "Curso"
-    };
-
-    const configuredItems = setup
-        ? setup[moduleIndex] || setup.default || []
-        : [];
-
-    const msbItem = msbImageForLesson(course, moduleIndex);
-    const items = [msbItem, ...configuredItems].filter(Boolean);
-
-    if(items.length === 0){
-        items.push(fallback);
-    }
-
-    return `
-        <div class="lesson-screenshot-block">
-            <div class="lesson-screenshot-heading">
-                <span>Print do sistema</span>
-                <strong>Aplicacao pratica na mascara</strong>
-            </div>
-
-            <div class="lesson-screenshot-grid">
-                ${items.map(item => `
-                    <figure class="lesson-screenshot-card">
-                        <button
-                            type="button"
-                            class="lesson-screenshot-zoom"
-                            data-screenshot-src="${escapeHtml(item.src)}"
-                            data-screenshot-title="${escapeHtml(item.title)}">
-                            <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
-                        </button>
-
-                        <figcaption>
-                            <strong>${escapeHtml(item.title)}</strong>
-                            <span>${escapeHtml(item.caption)}</span>
-                        </figcaption>
-                    </figure>
-                `).join("")}
-            </div>
-        </div>
-    `;
+    return "";
 }
 
 function bindLessonScreenshots(){
@@ -1111,35 +904,7 @@ function renderAssessment(course){
     });
 }
 function renderFullMaterial(course){
-    const panel = document.getElementById("fullMaterialPanel");
-
-    if(!panel){
-        return;
-    }
-
-    const material = materialForCourse(course);
-    const quizText = (course.quiz || []).length > 0
-        ? "\n\n============================================================\nBANCO DE PERGUNTAS DO CURSO\n============================================================\n\n" +
-            course.quiz.map((item, index) => {
-                const normalized = normalizeQuizQuestion(item); const options = normalized.options.map((option, optionIndex) => `${String.fromCharCode(65 + optionIndex)}) ${option}`).join("\n"); return `${index + 1}. ${normalized.question}\n${options}\nResposta correta: ${normalized.options[normalized.correct]}`;
-            }).join("\n\n")
-        : "";
-
-    const fullText = [material, quizText].filter(Boolean).join("\n");
-
-    if(!fullText){
-        panel.innerHTML = `<div class="assessment-empty">Este curso ainda nao possui material integral cadastrado.</div>`;
-        return;
-    }
-
-    panel.innerHTML = `
-        <details class="full-material">
-            <summary>Ver apostila completa e perguntas cadastradas</summary>
-            <pre id="fullMaterialText"></pre>
-        </details>
-    `;
-
-    document.getElementById("fullMaterialText").textContent = stripEmoji(fullText);
+    return;
 }
 
 function renderCoursePage(){
@@ -1153,19 +918,13 @@ function renderCoursePage(){
         return;
     }
     renderCourseHeader(course);
-    renderCourseIntroVideo(course);
     renderTracks(course);
     renderLesson(course);
     renderLabs(course);
     renderAssessment(course);
-    renderFullMaterial(course);
 }
 
 async function bootAcademy(){
-    if(typeof loadAcademyFromSupabase === "function"){
-        await loadAcademyFromSupabase();
-    }
-
     if(document.getElementById("courseGrid")){
         renderHome();
         return;

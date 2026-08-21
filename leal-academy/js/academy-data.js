@@ -45,7 +45,7 @@ const academyCourses = [
             { question: "Qual nome deve ser usado para registrar o AHL?", options: ["Nome da reserva", "Nome do acompanhante", "Nome na etiqueta da bagagem", "Nome do comprador da passagem"], correct: 2 },
             { question: "Um dos objetivos de consultar mensagens FWD recebidas e:", options: ["Atualizar banco de dados", "Identificar passageiros com bagagem deixada na origem", "Cancelar voos", "Enviar bagagens ao exterior"], correct: 1 },
             { question: "Ao consultar FWD, o agente deve:", options: ["Informar que a bagagem ja esta no destino", "Confirmar reembolso", "Anunciar nomes para evitar espera na esteira", "Encaminhar ao embarque"], correct: 2 },
-            { question: "Em qual sistema as bagagens extraviadas sao registradas?", options: ["LATAM Check-In", "IATA Secure", "SITA WorldTracer Desktop", "ANAC Baggage Portal"], correct: 2 },
+            { question: "Em qual sistema as bagagens extraviadas sao registradas?", options: ["Sistema de check-in da companhia", "IATA Secure", "SITA WorldTracer Desktop", "ANAC Baggage Portal"], correct: 2 },
             { question: "A sigla PIR significa:", options: ["Passenger Identification Record", "Personal Item Receipt", "Property Irregularity Report", "Package Identification Request"], correct: 2 },
             { question: "Quais documentos devem ser inseridos no campo PP?", options: ["Somente passaporte", "Qualquer documento com foto", "CPF, RG, DNI ou passaporte com sigla e numero", "Apenas cartao de embarque"], correct: 2 },
             { question: "Qual legislacao e aplicada no caso de extravio?", options: ["Codigo de Defesa do Consumidor", "Lei de Aeroportos", "Convencao de Montreal e Resolucao 400 ANAC", "Normas do Procon"], correct: 2 },
@@ -75,7 +75,7 @@ const academyCourses = [
         quiz: [
             { question: "Qual o prazo maximo para registrar objeto esquecido no WorldTracer Desktop?", options: ["24 horas apos o voo", "Imediatamente apos o desembarque", "12 horas apos a chegada do voo", "Ate o final do expediente"], correct: 2 },
             { question: "Qual transacao e utilizada para registrar objetos esquecidos?", options: ["Found Item Entry - FIE", "On-Hand Bag - OHD", "Missing Report - PIR", "Lost and Found Property - RFP"], correct: 3 },
-            { question: "Para onde objetos nao retirados em ate 30 dias devem ser enviados?", options: ["Escritorio Central LATAM", "Departamento de Seguranca", "Deposito de bagagens em Sao Paulo (LZ)", "Setor LL do aeroporto"], correct: 2 },
+            { question: "Para onde objetos nao retirados em ate 30 dias devem ser enviados?", options: ["Escritorio central da companhia", "Departamento de Seguranca", "Deposito de bagagens designado", "Setor LL do aeroporto"], correct: 2 },
             { question: "Qual item nao deve ser enviado ao deposito central, seguindo orientacao local?", options: ["Documentos pessoais", "Dinheiro", "Powerbanks", "Joias"], correct: 2 },
             { question: "Quais campos sao obrigatorios no cadastro do objeto?", options: ["Nome do passageiro e voo", "Categoria e data em que foi encontrado", "Local de armazenamento e companhia", "Numero da bagagem e destino"], correct: 1 },
             { question: "Qual procedimento correto para transporte entre aeroportos?", options: ["Entregar a tripulacao", "Enviar por malote", "Enviar com etiqueta rush em caixa lacrada", "Enviar junto com bagagens de passageiros"], correct: 2 },
@@ -87,7 +87,7 @@ const academyCourses = [
             { question: "No transporte entre aeroportos, o que inserir no AI02?", options: ["Nome e conteudo", "Valor estimado", "Voo, data e numero da etiqueta rush", "Origem e companhia"], correct: 2 },
             { question: "Se o objeto foi localizado, mas ainda nao chegou ao Servico de Bagagem, deve-se informar:", options: ["Que esta disponivel", "Que ainda nao foi localizado", "Que ira ao domicilio", "Que a PF fara busca"], correct: 1 },
             { question: "Quando o objeto e dinheiro, o que registrar no sistema?", options: ["Valor exato", "Moeda e montante", "A palavra Valores, sem especificar quantia", "Nome e CPF"], correct: 2 },
-            { question: "Onde encontrar a planilha de controle de objetos localizados?", options: ["GDS LATAM", "Site da Central de Bagagem", "Sistema de vendas", "Intranet da equipe de voo"], correct: 1 }
+            { question: "Onde encontrar a planilha de controle de objetos localizados?", options: ["GDS da companhia", "Site da Central de Bagagem", "Sistema de vendas", "Intranet da equipe de voo"], correct: 1 }
         ]
     },
     {
@@ -395,12 +395,12 @@ academyCourses.push(
         eyebrow: "Analise operacional",
         duration: "2h 30min",
         level: "Avancado",
-        summary: "Uso correto de Reason for Loss, tabela MCT LATAM, conexoes criticas e classificacao de falhas por area operacional.",
+        summary: "Uso correto de Reason for Loss, tabela MCT operacional, conexoes criticas e classificacao de falhas por area operacional.",
         color: "#7c3aed",
         modules: [
             { title: "Conceito de RL", type: "Aula", duration: "18 min", content: "Reason for Loss classifica causa de extravio, atraso ou dano, apoiando investigacao, estatistica e acao corretiva." },
             { title: "Grupos de RL", type: "Consulta", duration: "30 min", content: "RL10 check-in origem; RL20 carregamento origem; RL30 carregamento/descarga; RL40 destino; RL50 conexao; RL60 fatores gerais; RL90 violacao/DPR." },
-            { title: "MCT LATAM", type: "Pratica", duration: "24 min", content: "MCT e Minimum Connection Time. RL51 indica tempo inviavel, RL56 conexao critica e RL55 tempo adequado." },
+            { title: "MCT operacional", type: "Pratica", duration: "24 min", content: "MCT e Minimum Connection Time. RL51 indica tempo inviavel, RL56 conexao critica e RL55 tempo adequado." },
             { title: "Areas de transferencia", type: "Simulacao", duration: "24 min", content: "DOMxDOM, DOMxINTER e INTERxINTER possuem fluxos e riscos diferentes. INTERxDOM nao possui MCT porque inicia novo trecho." },
             { title: "Casos praticos de RL", type: "Exercicio", duration: "30 min", content: "Etiqueta ilegivel, tag em mala errada, porao errado, area incorreta e deportacao exigem selecao correta do RL." }
         ],

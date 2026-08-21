@@ -16,7 +16,7 @@ carregarBagagens()
 
 async function gerarBagagem(){
 
-    const tag = gerarTagLatam()
+    const tag = gerarTagCompanhia()
 
     const itinerario =
 
