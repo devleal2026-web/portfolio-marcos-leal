@@ -488,11 +488,209 @@ function lessonMedia(course, module, moduleIndex){
     `;
 }
 
-function formatLessonContent(value){
+function lessonVisualKind(course, module){
+    const text = normalizeSearch([
+        course.id,
+        course.title,
+        module.title,
+        module.content
+    ].join(" "));
+
+    if(text.includes("etiqueta") || text.includes("lpn") || text.includes("iata")){
+        return "tag";
+    }
+
+    if(text.includes("rota") || text.includes("mct") || text.includes("conexao") || text.includes("fluxo")){
+        return "route";
+    }
+
+    if(text.includes("match") || text.includes("roh") || text.includes("foh")){
+        return "match";
+    }
+
+    if(text.includes("dano") || text.includes("danificada") || text.includes("violada") || text.includes("dpr") || text.includes("limited")){
+        return "damage";
+    }
+
+    if(text.includes("avsec") || text.includes("seguranca") || text.includes("ameaca") || text.includes("rbac")){
+        return "security";
+    }
+
+    if(text.includes("pcd") || text.includes("pnae") || text.includes("atendimento") || text.includes("cliente") || text.includes("passageiro")){
+        return "service";
+    }
+
+    if(text.includes("documento") || text.includes("campo") || text.includes("mascara") || text.includes("registro")){
+        return "form";
+    }
+
+    return "flow";
+}
+
+function lessonVisualLabels(course, module, moduleIndex){
+    const title = stripEmoji(module.title || course.title || "Trilha").trim();
+    const words = title
+        .split(/\s+/)
+        .filter(word => word.length > 2)
+        .slice(0, 4)
+        .join(" ");
+
+    const presets = {
+        tag: ["Origem", "Conexao", "Destino", "LPN/TN"],
+        route: ["Origem", "Conexao", "Destino", "Conferencia"],
+        match: ["AHL", "OHD", "Match", "Acao"],
+        damage: ["Elemento", "Local", "Extensao", "Registro"],
+        security: ["Identificar", "Isolar", "Acionar", "Registrar"],
+        service: ["Ouvir", "Orientar", "Apoiar", "Resolver"],
+        form: ["Dados", "Campos", "Historico", "Salvar"],
+        flow: ["Entrada", "Analise", "Acao", "Conclusao"]
+    };
+
+    const kind = lessonVisualKind(course, module);
+    const labels = [...presets[kind]];
+
+    if(words){
+        labels[0] = words.length > 18 ? words.slice(0, 18).trim() : words;
+    }
+
+    if(course.id === "interpretacao-etiqueta-bagagem"){
+        const tagLabels = [
+            ["Etiqueta", "Codigo de barras", "LPN", "Destino"],
+            ["LPN", "Numero unico", "Comprovante", "Sistema"],
+            ["LPN/TN", "Busca", "AHL/OHD", "Entrega"],
+            ["GRU", "REC", "MIA", "IATA"],
+            ["Destino", "Conexao", "Origem", "Baixo para cima"],
+            ["Priority", "Rush", "Reetiqueta", "Divergencia"],
+            ["Check-in", "Triagem", "Aeronave", "Esteira"],
+            ["Conferir", "Comparar", "Registrar", "Corrigir"]
+        ];
+
+        return tagLabels[moduleIndex] || labels;
+    }
+
+    return labels;
+}
+
+function lessonInlineIllustration(course, module, moduleIndex){
+    const kind = lessonVisualKind(course, module);
+    const labels = lessonVisualLabels(course, module, moduleIndex).map(escapeHtml);
+    const caption = escapeHtml(module.content || course.summary || "");
+    const title = escapeHtml(module.title || course.title || "Trilha");
+
+    const diagrams = {
+        tag: `
+            <div class="lesson-visual-tag">
+                <div class="tag-slip">
+                    <span class="tag-airport">${labels[0]}</span>
+                    <span class="tag-airport">${labels[1]}</span>
+                    <span class="tag-airport">${labels[2]}</span>
+                    <div class="tag-barcode"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    <strong>${labels[3]}</strong>
+                </div>
+                <div class="tag-note">
+                    <b>Leitura operacional</b>
+                    <span>Conferir rota, etiqueta e registro antes de agir.</span>
+                </div>
+            </div>
+        `,
+        route: `
+            <div class="lesson-visual-route">
+                <span>${labels[0]}</span>
+                <i></i>
+                <span>${labels[1]}</span>
+                <i></i>
+                <span>${labels[2]}</span>
+                <strong>${labels[3]}</strong>
+            </div>
+        `,
+        match: `
+            <div class="lesson-visual-match">
+                <div><b>${labels[0]}</b><span>Processo origem</span></div>
+                <strong>60%+</strong>
+                <div><b>${labels[1]}</b><span>Processo localizado</span></div>
+                <footer>${labels[2]} | ${labels[3]}</footer>
+            </div>
+        `,
+        damage: `
+            <div class="lesson-visual-damage">
+                <div class="damage-case"><i></i><i></i><i></i></div>
+                <ul>
+                    <li>${labels[0]}</li>
+                    <li>${labels[1]}</li>
+                    <li>${labels[2]}</li>
+                    <li>${labels[3]}</li>
+                </ul>
+            </div>
+        `,
+        security: `
+            <div class="lesson-visual-security">
+                <div class="shield-shape"></div>
+                <ol>
+                    <li>${labels[0]}</li>
+                    <li>${labels[1]}</li>
+                    <li>${labels[2]}</li>
+                    <li>${labels[3]}</li>
+                </ol>
+            </div>
+        `,
+        service: `
+            <div class="lesson-visual-service">
+                <div class="service-person"></div>
+                <div class="service-counter">
+                    <span>${labels[0]}</span>
+                    <span>${labels[1]}</span>
+                    <span>${labels[2]}</span>
+                    <span>${labels[3]}</span>
+                </div>
+            </div>
+        `,
+        form: `
+            <div class="lesson-visual-form">
+                <span>${labels[0]}</span>
+                <span>${labels[1]}</span>
+                <span>${labels[2]}</span>
+                <strong>${labels[3]}</strong>
+            </div>
+        `,
+        flow: `
+            <div class="lesson-visual-flow">
+                <span>${labels[0]}</span>
+                <span>${labels[1]}</span>
+                <span>${labels[2]}</span>
+                <span>${labels[3]}</span>
+            </div>
+        `
+    };
+
+    return `
+        <figure class="lesson-inline-visual lesson-inline-visual-${kind}">
+            <div class="lesson-inline-visual-art">
+                ${diagrams[kind] || diagrams.flow}
+            </div>
+            <figcaption>
+                <strong>${title}</strong>
+                <span>${caption}</span>
+            </figcaption>
+        </figure>
+    `;
+}
+
+function formatLessonContent(value, inlineIllustration = ""){
     const lines = stripEmoji(value).replace(/\r\n/g, "\n").split("\n");
     let html = "";
     let listOpen = false;
     let preOpen = false;
+    let paragraphCount = 0;
+    let illustrationInserted = false;
+
+    function insertIllustration(){
+        if(inlineIllustration && !illustrationInserted){
+            closeList();
+            closePre();
+            html += inlineIllustration;
+            illustrationInserted = true;
+        }
+    }
 
     function closeList(){
         if(listOpen){
@@ -551,10 +749,20 @@ function formatLessonContent(value){
         }
 
         html += `<p>${escapeHtml(line)}</p>`;
+        paragraphCount += 1;
+
+        if(paragraphCount === 2){
+            insertIllustration();
+        }
     });
 
     closeList();
     closePre();
+
+    if(!illustrationInserted){
+        insertIllustration();
+    }
+
     return html;
 }
 
@@ -840,7 +1048,10 @@ function renderLesson(course){
         <h2>${module.title}</h2>
         ${lessonMedia(course, module, state.selectedModuleIndex)}
         <div class="lesson-content-label">${contentLabel}</div>
-        <article class="lesson-full-content">${formatLessonContent(lessonContent)}</article>
+        <article class="lesson-full-content">${formatLessonContent(
+            lessonContent,
+            lessonInlineIllustration(course, module, state.selectedModuleIndex)
+        )}</article>
         <div class="lesson-actions">
             <button class="secondary-action" id="previousLesson" type="button" ${hasPrevious ? "" : "disabled"}>Trilha anterior</button>
             <button class="primary-action" id="completeLesson" type="button">Marcar como concluida</button>
