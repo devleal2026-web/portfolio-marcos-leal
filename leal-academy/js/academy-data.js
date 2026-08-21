@@ -2481,6 +2481,155 @@ const academyCourses = [
                 "correct": 1
             }
         ]
+    },
+    {
+        "id": "gestao-pessoas-rampa",
+        "title": "Gestao de Pessoas e Comportamento Assertivo na Rampa",
+        "eyebrow": "Lideranca operacional",
+        "duration": "1h 40min",
+        "level": "Intermediario",
+        "summary": "Lideranca presente, comunicacao assertiva, mudanca de cultura, desenvolvimento continuo e gestao de conflitos na operacao de rampa.",
+        "color": "#0f766e",
+        "modules": [
+            {
+                "title": "Fundamentos da gestao na rampa",
+                "type": "Aula",
+                "duration": "20 min",
+                "content": "Papel do lider como facilitador, exemplo e ponto de equilibrio entre pontualidade, seguranca, produtividade e clima da equipe."
+            },
+            {
+                "title": "Comunicacao assertiva no patio",
+                "type": "Pratica guiada",
+                "duration": "18 min",
+                "content": "Comunicacao clara, curta e respeitosa sob pressao, uso correto do radio, confirmacao de entendimento e feedback imediato."
+            },
+            {
+                "title": "Mudanca de cultura e osmose operacional",
+                "type": "Aula",
+                "duration": "20 min",
+                "content": "Como evitar que novos colaboradores copiem praticas erradas, criando mentoria positiva, padroes visiveis e correcao imediata."
+            },
+            {
+                "title": "Desenvolvimento continuo na operacao",
+                "type": "Consulta",
+                "duration": "20 min",
+                "content": "Aprendizado diario, microtreinamentos, metas trimestrais, indicadores tecnicos e comportamentais para evolucao da equipe."
+            },
+            {
+                "title": "Conflitos e seguranca psicologica",
+                "type": "Simulacao",
+                "duration": "22 min",
+                "content": "Mediacao de conflitos, canal seguro para reporte de riscos, escuta ativa e tecnica ouvir-entender-agir."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual e o papel central do lider na rampa?",
+                "options": [
+                    "Controlar tudo sozinho sem delegar",
+                    "Ser facilitador, exemplo e organizador da operacao",
+                    "Ficar apenas no escritorio acompanhando mensagens",
+                    "Priorizar somente a pontualidade, mesmo com risco"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Uma boa pratica de lideranca antes do inicio da operacao e:",
+                "options": [
+                    "Fazer briefing curto, claro e objetivo",
+                    "Esperar a equipe perguntar o que fazer",
+                    "Distribuir tarefas sempre para as mesmas pessoas",
+                    "Corrigir erros apenas no fim do mes"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Na comunicacao por radio, a regra dos 3 Cs representa:",
+                "options": [
+                    "Controle, cobranca e comando",
+                    "Clareza, concisao e confirmacao",
+                    "Calma, carisma e competencia",
+                    "Carga, cabine e conexao"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Qual mensagem e mais assertiva no patio?",
+                "options": [
+                    "Vai la ver o negocio no aviao",
+                    "Equipe 23, loader avariado. Mover para posicao 114 em 2 minutos",
+                    "Todo mundo esta fazendo errado",
+                    "Resolva isso logo"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "O que significa osmose operacional no contexto do curso?",
+                "options": [
+                    "Aprender apenas observando bons manuais",
+                    "Copiar praticas erradas por convivencia e repeticao",
+                    "Troca automatica de funcao na escala",
+                    "Sistema de medicao de carga"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Como reduzir a osmose operacional negativa?",
+                "options": [
+                    "Ignorar pequenos desvios",
+                    "Criar mentoria positiva e corrigir desvios imediatamente",
+                    "Permitir atalhos quando o voo esta atrasado",
+                    "Evitar reunioes de padronizacao"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Desenvolvimento continuo na rampa inclui:",
+                "options": [
+                    "Recusar reciclagens por experiencia anterior",
+                    "Microtreinamentos, metas e acompanhamento de indicadores",
+                    "Treinar somente novos colaboradores",
+                    "Usar apenas conhecimento informal"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Seguranca psicologica significa que a equipe pode:",
+                "options": [
+                    "Falar riscos e falhas sem medo de punicao injusta",
+                    "Ignorar procedimentos quando discordar",
+                    "Evitar comunicar incidentes",
+                    "Transferir responsabilidades para outro turno"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A tecnica ouvir-entender-agir ajuda principalmente em:",
+                "options": [
+                    "Conflitos e reportes de risco",
+                    "Calculo de peso de bagagem",
+                    "Emissao de etiqueta",
+                    "Controle de combustivel"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um exemplo de ma lideranca operacional e:",
+                "options": [
+                    "Reconhecer uma acao preventiva",
+                    "Acompanhar a operacao por presenca",
+                    "Ignorar sugestoes da equipe e permanecer distante",
+                    "Distribuir tarefas de forma equilibrada"
+                ],
+                "correct": 2
+            }
+        ]
     }
 ];
 

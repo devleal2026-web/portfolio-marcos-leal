@@ -152,7 +152,7 @@ function runBrowser(browserPath){
         "--disable-dev-shm-usage",
         "--no-sandbox",
         "--allow-file-access-from-files",
-        "--virtual-time-budget=5000",
+        "--virtual-time-budget=12000",
         "--dump-dom",
         `file:///${outputPath.replace(/\\/g, "/")}`
     ], {

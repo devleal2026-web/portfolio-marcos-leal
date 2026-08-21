@@ -49,7 +49,8 @@ const courseVisuals = {
     "bagagem-sem-etiqueta-ohd": { image: "linear-gradient(135deg, rgba(202,138,4,.92), rgba(113,63,18,.84)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "tag" },
     "lideranca-bagagem-extraviada": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(12,74,110,.84)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" },
     "atendimento-pcd": { image: "linear-gradient(135deg, rgba(8,145,178,.92), rgba(30,64,175,.84)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80')", icon: "access" },
-    "interpretacao-etiqueta-bagagem": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "barcode" }
+    "interpretacao-etiqueta-bagagem": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "barcode" },
+    "gestao-pessoas-rampa": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -177,6 +178,13 @@ const lessonMediaProfiles = {
         { kind:"tag", labels:["Priority", "Rush", "Reprint", "Alerta"], caption:"Etiquetas especiais sinalizam prioridade, reenvio ou divergencia." },
         { kind:"flow", labels:["Check-in", "BHS", "Porao", "Esteira"], caption:"A etiqueta acompanha a bagagem em cada etapa do fluxo aeroportuario." },
         { kind:"form", labels:["Conferir", "Comparar", "Registrar", "Corrigir"], caption:"Boas praticas evitam erro de leitura, troca de mala e perda de rastreabilidade." }
+    ],
+    "gestao-pessoas-rampa": [
+        { kind:"service", labels:["Briefing", "Escala", "Equipe", "Exemplo"], caption:"Lideranca presente organiza recursos, orienta prioridades e da exemplo na operacao." },
+        { kind:"flow", labels:["Clareza", "Curto", "Confirma", "Feedback"], caption:"Comunicacao assertiva no patio usa mensagens objetivas, respeito e confirmacao." },
+        { kind:"service", labels:["Mentor", "Padrao", "Corrigir", "Cultura"], caption:"Mentoria positiva evita que novos colaboradores copiem praticas inseguras." },
+        { kind:"form", labels:["Treino", "Meta", "KPI", "Evoluir"], caption:"Desenvolvimento continuo transforma rotina, indicadores e falhas em aprendizado." },
+        { kind:"security", labels:["Ouvir", "Entender", "Agir", "Seguro"], caption:"Conflitos bem mediados e reportes sem medo fortalecem seguranca psicologica." }
     ]
 };
 const courseIntroVideos = {};
