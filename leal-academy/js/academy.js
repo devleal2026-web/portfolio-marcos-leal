@@ -723,6 +723,9 @@ function renderHome(){
         return `
             <a class="academy-course-card" href="course.html?id=${encodeURIComponent(course.id)}" target="_blank" rel="noopener">
                 <div class="course-card-image" style="background-image:${visual.image}">
+                    <strong class="course-card-image-title">
+                        ${escapeHtml(course.title)}
+                    </strong>
                     <span class="course-card-icon">${iconSvg(visual.icon)}</span>
                 </div>
                 <div class="course-card-body">

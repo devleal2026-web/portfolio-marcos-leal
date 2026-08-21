@@ -155,7 +155,9 @@ body{
 .course-card-image{
     position:relative;
     height:178px;
-    background-size:cover;
+    background-color:#071421;
+    background-repeat:no-repeat;
+    background-size:contain;
     background-position:center;
 }
 
@@ -163,14 +165,34 @@ body{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.10));
+    background:linear-gradient(180deg,rgba(255,255,255,.01),rgba(0,0,0,.26));
+}
+
+.course-card-image-title{
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    z-index:2;
+    display:block;
+    max-width:calc(100% - 24px);
+    padding:9px 11px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:10px;
+    background:rgba(7,20,33,.84);
+    color:#f8fbff;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.2;
+    text-shadow:0 2px 8px rgba(0,0,0,.45);
 }
 
 .course-card-icon{
     position:absolute;
     left:18px;
-    bottom:-26px;
-    z-index:1;
+    top:14px;
+    bottom:auto;
+    z-index:2;
     display:grid;
     place-items:center;
     width:56px;
@@ -192,7 +214,7 @@ body{
 }
 
 .course-card-body{
-    padding:38px 18px 18px;
+    padding:18px 18px 18px;
     display:flex;
     flex:1;
     flex-direction:column;
