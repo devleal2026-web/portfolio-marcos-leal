@@ -932,6 +932,7 @@ body{
 .lesson-visual-security,
 .lesson-visual-service,
 .lesson-visual-form,
+.lesson-visual-found,
 .lesson-visual-flow{
     width:100%;
     min-height:210px;
@@ -1047,6 +1048,9 @@ body{
     color:#0f172a;
     font-weight:900;
     text-align:center;
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
 }
 
 .lesson-visual-route i{
@@ -1243,6 +1247,103 @@ body{
     align-content:center;
 }
 
+.lesson-visual-found{
+    display:grid;
+    grid-template-columns:.95fr 1.05fr;
+    grid-template-rows:1fr auto;
+    gap:14px;
+    align-items:center;
+}
+
+.found-cabin{
+    min-height:145px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    align-items:end;
+    padding:14px;
+    border-radius:16px;
+    background:rgba(15,23,42,.45);
+    position:relative;
+}
+
+.found-cabin span{
+    height:92px;
+    border-radius:14px 14px 8px 8px;
+    background:#e2e8f0;
+    box-shadow:inset 0 -14px 0 rgba(15,23,42,.1);
+}
+
+.found-cabin strong{
+    position:absolute;
+    left:14px;
+    bottom:14px;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#0ea5e9;
+    color:#ffffff;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+}
+
+.found-object{
+    min-height:145px;
+    display:grid;
+    place-items:center;
+    gap:8px;
+    padding:16px;
+    border-radius:16px;
+    background:rgba(255,255,255,.92);
+    color:#0f172a;
+    text-align:center;
+    font-weight:900;
+}
+
+.found-object i{
+    width:72px;
+    height:58px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#facc15,#f97316);
+    position:relative;
+    display:block;
+}
+
+.found-object i::before{
+    content:"";
+    position:absolute;
+    left:22px;
+    top:-18px;
+    width:28px;
+    height:22px;
+    border:6px solid #334155;
+    border-bottom:0;
+    border-radius:14px 14px 0 0;
+}
+
+.found-steps{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+
+.found-steps span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:50px;
+    padding:10px;
+    border-radius:12px;
+    background:#ffffff;
+    color:#0f172a;
+    font-weight:900;
+    text-align:center;
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
+}
+
 .lesson-visual-form span,
 .lesson-visual-form strong{
     justify-content:flex-start;
@@ -1260,14 +1361,14 @@ body{
 }
 
 .lesson-visual-flow{
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
 .lesson-visual-flow span{
     position:relative;
 }
 
-.lesson-visual-flow span:not(:last-child)::after{
+.lesson-visual-flow span:nth-child(odd):not(:last-child)::after{
     content:"";
     position:absolute;
     right:-12px;
@@ -1409,11 +1510,13 @@ body{
     .lesson-visual-damage,
     .lesson-visual-security,
     .lesson-visual-service,
+    .lesson-visual-found,
     .lesson-visual-flow{
         grid-template-columns:1fr;
     }
 
     .lesson-visual-route i,
+    .lesson-visual-flow span:nth-child(odd):not(:last-child)::after,
     .lesson-visual-flow span:not(:last-child)::after{
         display:none;
     }

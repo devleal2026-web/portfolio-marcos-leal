@@ -51,7 +51,134 @@ const courseVisuals = {
     "atendimento-pcd": { image: "linear-gradient(135deg, rgba(8,145,178,.92), rgba(30,64,175,.84)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80')", icon: "access" },
     "interpretacao-etiqueta-bagagem": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "barcode" }
 };
-const lessonMediaProfiles = {};
+const lessonMediaProfiles = {
+    "fundamentos": [
+        { kind:"service", labels:["Recepcao", "Clareza", "Postura", "Solucao"], caption:"Atendimento inicial com cordialidade, comunicacao clara e orientacao segura." },
+        { kind:"service", labels:["PNAE", "Gestante", "Idoso", "Prioridade"], caption:"Reconhecimento de passageiros com prioridade e aplicacao de assistencias especiais." },
+        { kind:"form", labels:["WCHR", "DEAF", "UMNR", "PETC"], caption:"Codigos AIRIMP ajudam a identificar necessidades especiais e servicos no atendimento." }
+    ],
+    "bagagem-extraviada": [
+        { kind:"form", labels:["PIR", "AHL", "Etiqueta", "Registro"], caption:"A bagagem extraviada deve ser registrada no desembarque com dados corretos da etiqueta." },
+        { kind:"service", labels:["Esteira", "Escuta", "Busca", "Prazo"], caption:"O atendimento no desembarque exige acolhimento, consulta operacional e orientacoes realistas." },
+        { kind:"form", labels:["TN", "Contato", "Endereco", "RL/FS"], caption:"Campos obrigatorios garantem busca, contato com o passageiro e rastreabilidade do caso." },
+        { kind:"route", labels:["Excecao", "Conexao", "Alfandega", "Tratativa"], caption:"Casos especiais exigem analise de rota, conexoes, restricoes e regra operacional aplicavel." },
+        { kind:"flow", labels:["Chegada", "BDO", "Entrega", "Encerrar"], caption:"A entrega exige confirmacao, recibo, registro de voo/data e encerramento correto." }
+    ],
+    "objetos-esquecidos": [
+        { kind:"found", labels:["Cabine", "Objeto", "RFP", "Guarda"], caption:"Objeto esquecido deve ser localizado, registrado, armazenado e controlado pelo Servico de Bagagem." },
+        { kind:"form", labels:["Categoria", "Data", "Descricao", "RFP"], caption:"O registro pede categoria, data do encontro e descricao detalhada, preferencialmente em ingles." },
+        { kind:"flow", labels:["Receber", "Armazenar", "Prazo", "Destino"], caption:"O controle evita perda de rastreabilidade durante guarda, retirada ou envio ao deposito." },
+        { kind:"route", labels:["Origem", "Rush", "Destino", "AI02"], caption:"Transporte entre aeroportos deve usar caixa lacrada, etiqueta rush e dados de voo/data." },
+        { kind:"service", labels:["Identificar", "Recibo", "CPF/RG", "Entrega"], caption:"A entrega ao proprietario exige identificacao, recibo assinado e baixa formal." }
+    ],
+    "avsec": [
+        { kind:"security", labels:["Ameaca", "Area", "Pessoa", "Bagagem"], caption:"AVSEC protege aeronaves, aeroportos, pessoas e instalacoes contra interferencia ilicita." },
+        { kind:"security", labels:["Identificar", "Isolar", "Acionar", "Registrar"], caption:"Bagagem suspeita requer isolamento da area e acionamento dos responsaveis de seguranca." },
+        { kind:"security", labels:["Credencial", "Acesso", "Patio", "Controle"], caption:"Areas restritas so devem ser acessadas por pessoas autorizadas." },
+        { kind:"form", labels:["ANAC", "RBAC", "ICAO", "Normas"], caption:"Normas e regulamentos orientam os procedimentos de seguranca aeroportuaria." },
+        { kind:"flow", labels:["Prevenir", "Inspecionar", "Controlar", "Responder"], caption:"Prevencao combina controle de acesso, inspecao e resposta a eventos de risco." }
+    ],
+    "manuseio-bagagem": [
+        { kind:"damage", labels:["Alca", "Roda", "Fecho", "Funcional"], caption:"Danos funcionais afetam o uso da mala e precisam de registro adequado." },
+        { kind:"flow", labels:["Coletar", "Transportar", "Estivar", "Descarregar"], caption:"Toda equipe que interage com a bagagem influencia a integridade do volume." },
+        { kind:"damage", labels:["Fragil", "Topo", "Peso", "Manta"], caption:"Estivagem segura distribui peso, protege itens frageis e evita atrito." },
+        { kind:"security", labels:["Vazamento", "Separar", "Remover", "Registrar"], caption:"Bagagem contaminada deve ser separada e removida da area de carga." },
+        { kind:"form", labels:["Limited", "Release", "Assinatura", "Protecao"], caption:"Limited Release registra dano pre-existente e reduz reclamacoes futuras." }
+    ],
+    "ahl": [
+        { kind:"form", labels:["AHL", "TN", "NM", "Contato"], caption:"A mascara AHL organiza dados essenciais da bagagem extraviada e do passageiro." },
+        { kind:"route", labels:["FD", "RT", "FS", "RL"], caption:"Rota, voo, fault station e motivo de perda orientam a tratativa operacional." },
+        { kind:"flow", labels:["Salvar", "Buscar", "Atualizar", "Encerrar"], caption:"O fluxo AHL combina criacao, acompanhamento, historico e encerramento." }
+    ],
+    "ohd": [
+        { kind:"form", labels:["OHD", "CT", "BI", "CC"], caption:"OHD registra bagagem sobrante com caracteristicas e conteudo detalhado." },
+        { kind:"found", labels:["Esteira", "Sem dono", "OHD", "Guarda"], caption:"Bagagem nao retirada ou sem identificacao deve ser registrada e armazenada." },
+        { kind:"route", labels:["ROH", "FOH", "Envio", "Destino"], caption:"Solicitacao e envio de OHD devem ficar registrados no historico." }
+    ],
+    "matches": [
+        { kind:"match", labels:["AHL", "OHD", "50%+", "Alerta"], caption:"Matches com 50% ou mais indicam possivel relacao entre AHL e OHD." },
+        { kind:"match", labels:["Tag", "Nome", "Rota", "Conteudo"], caption:"A tag tem maior peso, mas todos os campos ajudam na comparacao." },
+        { kind:"flow", labels:["Analisar", "ROH", "FOH", "Historico"], caption:"O agente analisa o match e registra ROH/FOH quando houver acao operacional." }
+    ],
+    "dpr": [
+        { kind:"damage", labels:["DPR", "Dano", "Local", "Extensao"], caption:"DPR registra dano ou violacao com elemento, localizacao e extensao." },
+        { kind:"form", labels:["NM", "FD", "RT", "AG"], caption:"Campos obrigatorios conectam passageiro, voo, rota e agente responsavel." },
+        { kind:"damage", labels:["TOP", "SIDE", "END", "BOTT"], caption:"Codigos de localizacao ajudam a descrever onde ocorreu a danificacao." }
+    ],
+    "worldtracer-completo": [
+        { kind:"form", labels:["AHL", "OHD", "DPR", "RFP"], caption:"WorldTracer centraliza registros de extravio, sobrante, dano e objetos encontrados." },
+        { kind:"tag", labels:["TN", "LPN", "Rota", "Status"], caption:"A rastreabilidade depende da leitura correta dos identificadores da bagagem." },
+        { kind:"route", labels:["Origem", "Conexao", "Destino", "FWD"], caption:"Rotas e mensagens operacionais orientam a busca e o envio." },
+        { kind:"match", labels:["AHL", "OHD", "Match", "Acao"], caption:"Comparacoes ajudam a localizar bagagens e acionar ROH/FOH." },
+        { kind:"flow", labels:["Criar", "Atualizar", "Historico", "Fechar"], caption:"O ciclo do processo exige atualizacoes consistentes ate o encerramento." }
+    ],
+    "atendimento-cliente-aviacao": [
+        { kind:"service", labels:["Jornada", "Escuta", "Empatia", "Solucao"], caption:"O objetivo e garantir uma experiencia satisfatoria em toda a jornada." },
+        { kind:"service", labels:["Ouvir", "Acolher", "Orientar", "Resolver"], caption:"Comunicacao positiva combina cordialidade, foco em solucao e linguagem clara." },
+        { kind:"service", labels:["Crise", "Calma", "Empatia", "Acao"], caption:"Passageiros em crise precisam de escuta ativa, postura calma e encaminhamento." },
+        { kind:"service", labels:["Gestante", "Idoso", "PcD", "Apoio"], caption:"Atendimento inclusivo adapta a abordagem a necessidades especificas." },
+        { kind:"flow", labels:["Feedback", "Registro", "Melhoria", "Padrao"], caption:"Feedbacks reforcam boas praticas e corrigem falhas do atendimento." }
+    ],
+    "boas-praticas-atendimento": [
+        { kind:"service", labels:["Sorriso", "Clareza", "Respeito", "Agilidade"], caption:"Excelencia une postura profissional, empatia, eficiencia e agilidade." },
+        { kind:"service", labels:["Perfil", "Necessidade", "Apoio", "Seguranca"], caption:"Conhecer o perfil do cliente ajuda a adaptar o atendimento." },
+        { kind:"service", labels:["Overbook", "Acolher", "Explicar", "Solucao"], caption:"Situacoes sensiveis pedem transparencia, acolhimento e busca de alternativas." },
+        { kind:"form", labels:["ANAC", "IATA", "Padrao", "Registro"], caption:"Procedimentos reduzem risco operacional e aumentam seguranca juridica." },
+        { kind:"flow", labels:["Atender", "Registrar", "Aprender", "Melhorar"], caption:"A melhoria continua nasce do uso correto de elogios, reclamacoes e feedbacks." }
+    ],
+    "bagagem-violada": [
+        { kind:"damage", labels:["Lacre", "Foto", "PIR", "FF"], caption:"Violacao exige evidencias, registro no PIR e historico da tratativa." },
+        { kind:"form", labels:["Prazo", "Nota", "Item", "Compensar"], caption:"Prazos, documentos e tipo de item definem a analise de compensacao." },
+        { kind:"security", labels:["Valor", "Eletronico", "RL93", "Encerrar"], caption:"Objetos de valor e eletronicos seguem regra especifica e registro adequado." },
+        { kind:"flow", labels:["Contato", "Proposta", "Recusa", "Derivar"], caption:"A tratativa deve registrar contatos, propostas, recusas e encaminhamentos." }
+    ],
+    "bagagem-danificada": [
+        { kind:"damage", labels:["Vistoria", "Foto", "Dano", "PIR"], caption:"Dano declarado no desembarque deve ser vistoriado e registrado imediatamente." },
+        { kind:"damage", labels:["Elemento", "Local", "TD", "Codigo"], caption:"O campo TD descreve tipo, localizacao e extensao da danificacao." },
+        { kind:"form", labels:["Documento", "Etiqueta", "Foto", "Analise"], caption:"Reclamacoes fora do aeroporto exigem documentos e evidencias." },
+        { kind:"damage", labels:["Arranhao", "Rachadura", "Total", "Negativa"], caption:"A classificacao do dano orienta registro, compensacao ou negativa." },
+        { kind:"route", labels:["Origem", "FS", "Direto", "Conexao"], caption:"Fault Station deve refletir a regra operacional do trecho." }
+    ],
+    "tratativa-rl-mct": [
+        { kind:"route", labels:["MCT", "Conexao", "Tempo", "Risco"], caption:"MCT ajuda a avaliar risco de extravio em conexoes." },
+        { kind:"form", labels:["RL51", "RL55", "RL56", "RL53"], caption:"Codigos RL classificam falhas de conexao, check-in, carregamento e entrega." },
+        { kind:"route", labels:["DOM", "INTER", "Alfandega", "Novo trecho"], caption:"Tipos de conexao mudam a leitura operacional do caso." },
+        { kind:"form", labels:["Etiqueta", "A/B/C", "Erro", "RL"], caption:"Falhas de etiquetagem exigem codigo RL coerente com a causa." },
+        { kind:"flow", labels:["Analisar", "Justificar", "Registrar", "Encerrar"], caption:"A tratativa completa combina causa, evidencias, registros e decisao final." }
+    ],
+    "bagagem-sem-etiqueta-ohd": [
+        { kind:"found", labels:["Sem tag", "Esteira", "OHD", "Guarda"], caption:"Bagagem sobrante sem identificacao deve ser registrada como OHD." },
+        { kind:"form", labels:["CC", "Marca", "Cor", "Detalhes"], caption:"Conteudo e caracteristicas devem ser descritos de forma fiel e detalhada." },
+        { kind:"match", labels:["AHL", "OHD", "Conteudo", "Match"], caption:"Dados do OHD podem gerar match com AHLs abertos." },
+        { kind:"route", labels:["ROH", "FOH", "Rush", "Destino"], caption:"Envio de OHD depende de solicitacao ativa e mensagem operacional." },
+        { kind:"flow", labels:["5o dia", "Deposito", "FLZ", "Baixa"], caption:"Bagagens nao reclamadas seguem fluxo de deposito conforme prazo." }
+    ],
+    "lideranca-bagagem-extraviada": [
+        { kind:"service", labels:["Equipe", "Briefing", "Meta", "Foco"], caption:"Lideranca orienta a equipe para atendimento consistente em bagagem extraviada." },
+        { kind:"flow", labels:["Fila", "Prioridade", "Distribuir", "Acompanhar"], caption:"Organizacao do fluxo reduz espera e melhora a experiencia do passageiro." },
+        { kind:"form", labels:["Indicador", "PIR", "Tempo", "Pendencia"], caption:"Indicadores ajudam a monitorar desempenho e pendencias operacionais." },
+        { kind:"service", labels:["Conflito", "Escuta", "Calma", "Solucao"], caption:"Situacoes criticas pedem comunicacao firme, empatica e orientada a solucao." },
+        { kind:"route", labels:["Base", "Busca", "Contato", "Entrega"], caption:"Coordenacao entre bases acelera localizacao, envio e entrega da bagagem." },
+        { kind:"flow", labels:["Treinar", "Auditar", "Corrigir", "Evoluir"], caption:"Lideranca sustenta melhoria continua com treinamento e acompanhamento." }
+    ],
+    "atendimento-pcd": [
+        { kind:"service", labels:["Respeito", "Acesso", "Autonomia", "Apoio"], caption:"Atendimento inclusivo deve ser respeitoso, acessivel e eficiente." },
+        { kind:"service", labels:["Perguntar", "Ouvir", "Ajudar", "Respeitar"], caption:"A ajuda deve ser oferecida, nao imposta, preservando autonomia." },
+        { kind:"form", labels:["ANAC 280", "LBI", "Direito", "Registro"], caption:"Normas de acessibilidade orientam atendimento e responsabilidades." },
+        { kind:"service", labels:["Libras", "Escrita", "Frente", "Clareza"], caption:"Passageiros surdos podem precisar de comunicacao visual, escrita ou Libras." },
+        { kind:"flow", labels:["Recurso", "Embarque", "Acompanhamento", "Seguranca"], caption:"Recursos como ambulift e apoio especializado garantem embarque seguro." }
+    ],
+    "interpretacao-etiqueta-bagagem": [
+        { kind:"tag", labels:["Etiqueta", "Codigo", "LPN", "Destino"], caption:"A etiqueta conecta passageiro, bagagem, voo e destino no fluxo operacional." },
+        { kind:"tag", labels:["LPN", "Unico", "Recibo", "Sistema"], caption:"LPN e codigo de barras permitem localizar a bagagem nos sistemas." },
+        { kind:"match", labels:["LPN/TN", "Busca", "AHL", "OHD"], caption:"A rastreabilidade facilita buscas, matches e comprovacao de entrega." },
+        { kind:"tag", labels:["GRU", "REC", "MIA", "IATA"], caption:"Codigos IATA identificam aeroportos de origem, conexao e destino." },
+        { kind:"route", labels:["Destino", "Conexao", "Origem", "Leitura"], caption:"A leitura da rota deve considerar a ordem operacional da etiqueta." },
+        { kind:"tag", labels:["Priority", "Rush", "Reprint", "Alerta"], caption:"Etiquetas especiais sinalizam prioridade, reenvio ou divergencia." },
+        { kind:"flow", labels:["Check-in", "BHS", "Porao", "Esteira"], caption:"A etiqueta acompanha a bagagem em cada etapa do fluxo aeroportuario." },
+        { kind:"form", labels:["Conferir", "Comparar", "Registrar", "Corrigir"], caption:"Boas praticas evitam erro de leitura, troca de mala e perda de rastreabilidade." }
+    ]
+};
 const courseIntroVideos = {};
 const lessonScreenshots = {};
 const msbCoursePages = {};
@@ -527,14 +654,7 @@ function lessonVisualKind(course, module){
     return "flow";
 }
 
-function lessonVisualLabels(course, module, moduleIndex){
-    const title = stripEmoji(module.title || course.title || "Trilha").trim();
-    const words = title
-        .split(/\s+/)
-        .filter(word => word.length > 2)
-        .slice(0, 4)
-        .join(" ");
-
+function lessonVisualFallbackLabels(kind){
     const presets = {
         tag: ["Origem", "Conexao", "Destino", "LPN/TN"],
         route: ["Origem", "Conexao", "Destino", "Conferencia"],
@@ -543,41 +663,60 @@ function lessonVisualLabels(course, module, moduleIndex){
         security: ["Identificar", "Isolar", "Acionar", "Registrar"],
         service: ["Ouvir", "Orientar", "Apoiar", "Resolver"],
         form: ["Dados", "Campos", "Historico", "Salvar"],
+        found: ["Local", "Objeto", "Registro", "Guarda"],
         flow: ["Entrada", "Analise", "Acao", "Conclusao"]
     };
 
+    return presets[kind] || presets.flow;
+}
+
+function lessonVisualProfile(course, module, moduleIndex){
+    const courseProfiles = lessonMediaProfiles[course.id] || [];
+    const profile = courseProfiles[moduleIndex];
+
+    if(profile){
+        return {
+            kind: profile.kind || "flow",
+            labels: profile.labels || lessonVisualFallbackLabels(profile.kind || "flow"),
+            caption: profile.caption || module.content || course.summary || ""
+        };
+    }
+
     const kind = lessonVisualKind(course, module);
-    const labels = [...presets[kind]];
 
-    if(words){
-        labels[0] = words.length > 18 ? words.slice(0, 18).trim() : words;
-    }
-
-    if(course.id === "interpretacao-etiqueta-bagagem"){
-        const tagLabels = [
-            ["Etiqueta", "Codigo de barras", "LPN", "Destino"],
-            ["LPN", "Numero unico", "Comprovante", "Sistema"],
-            ["LPN/TN", "Busca", "AHL/OHD", "Entrega"],
-            ["GRU", "REC", "MIA", "IATA"],
-            ["Destino", "Conexao", "Origem", "Baixo para cima"],
-            ["Priority", "Rush", "Reetiqueta", "Divergencia"],
-            ["Check-in", "Triagem", "Aeronave", "Esteira"],
-            ["Conferir", "Comparar", "Registrar", "Corrigir"]
-        ];
-
-        return tagLabels[moduleIndex] || labels;
-    }
-
-    return labels;
+    return {
+        kind,
+        labels: lessonVisualFallbackLabels(kind),
+        caption: module.content || course.summary || ""
+    };
 }
 
 function lessonInlineIllustration(course, module, moduleIndex){
-    const kind = lessonVisualKind(course, module);
-    const labels = lessonVisualLabels(course, module, moduleIndex).map(escapeHtml);
-    const caption = escapeHtml(module.content || course.summary || "");
+    const profile = lessonVisualProfile(course, module, moduleIndex);
+    const kind = profile.kind;
+    const labels = profile.labels.map(escapeHtml);
+    const caption = escapeHtml(profile.caption);
     const title = escapeHtml(module.title || course.title || "Trilha");
 
     const diagrams = {
+        found: `
+            <div class="lesson-visual-found">
+                <div class="found-cabin">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <strong>${labels[0]}</strong>
+                </div>
+                <div class="found-object">
+                    <i></i>
+                    <b>${labels[1]}</b>
+                </div>
+                <div class="found-steps">
+                    <span>${labels[2]}</span>
+                    <span>${labels[3]}</span>
+                </div>
+            </div>
+        `,
         tag: `
             <div class="lesson-visual-tag">
                 <div class="tag-slip">
