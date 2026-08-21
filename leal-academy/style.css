@@ -412,3 +412,21 @@ pre.bg-black{
 .modal-header.bg-primary{
     background:var(--abs-primary) !important;
 }
+
+/*==========================================================
+SECURE ACCESS UI
+==========================================================*/
+.secure-logout-button{
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:8px;
+    background:rgba(255,255,255,.12);
+    color:#ffffff;
+    padding:8px 12px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.secure-logout-button:hover{
+    background:#ffffff;
+    color:#123142;
+}

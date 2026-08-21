@@ -688,8 +688,8 @@ function formatLessonContent(value){
 
 
 function academyCurrentUserName(){
-    if(window.AcademyAuth && typeof AcademyAuth.getProfile === "function"){
-        const profile = AcademyAuth.getProfile();
+    if(window.AccessControl && typeof AccessControl.readLocalProfile === "function"){
+        const profile = AccessControl.readLocalProfile();
 
         if(profile && profile.name){
             return profile.name;
@@ -1177,6 +1177,7 @@ async function bootAcademy(){
 document.addEventListener("DOMContentLoaded", () => {
     bootAcademy();
 });
+
 
 
 
