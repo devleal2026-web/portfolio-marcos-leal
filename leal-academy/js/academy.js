@@ -29,6 +29,7 @@ const state = {
 
 const storageKey = "airportBaggageAcademyProgress";
 const quizStorageKey = "airportBaggageAcademyQuiz";
+const certificateStorageKey = "airportBaggageAcademyCertificates";
 
 const courseVisuals = {
     "fundamentos": { image: "linear-gradient(135deg, rgba(21,94,117,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')", icon: "case" },
@@ -216,6 +217,14 @@ function readQuizResults(){
 
 function saveQuizResults(results){
     saveJson(quizStorageKey, results);
+}
+
+function readCertificates(){
+    return readJson(certificateStorageKey);
+}
+
+function saveCertificates(certificates){
+    saveJson(certificateStorageKey, certificates);
 }
 
 function courseProgress(course){
@@ -1315,6 +1324,261 @@ function quizScore(course){
     return { correct, total: questions.length, percent: Math.round((correct / questions.length) * 100) };
 }
 
+function academyCurrentUserProfile(){
+    if(window.AccessControl && typeof AccessControl.readLocalProfile === "function"){
+        const profile = AccessControl.readLocalProfile();
+
+        if(profile && (profile.name || profile.email)){
+            return {
+                name: profile.name || "Aluno Leal Academy",
+                email: profile.email || ""
+            };
+        }
+    }
+
+    if(window.AcademyAuth && typeof AcademyAuth.getProfile === "function"){
+        const profile = AcademyAuth.getProfile();
+
+        if(profile && (profile.name || profile.email)){
+            return {
+                name: profile.name || "Aluno Leal Academy",
+                email: profile.email || ""
+            };
+        }
+    }
+
+    return {
+        name: academyCurrentUserName() || "Aluno Leal Academy",
+        email: ""
+    };
+}
+
+function quizReview(course, questions, answers){
+    return questions.map((question, index) => {
+        const selectedIndex = Number(answers[index]);
+        const correctIndex = Number(question.correct);
+
+        return {
+            index,
+            question: question.question,
+            selectedIndex,
+            selectedAnswer: question.options[selectedIndex] || "Sem resposta",
+            correctIndex,
+            correctAnswer: question.options[correctIndex] || "Resposta nao cadastrada",
+            correct: selectedIndex === correctIndex
+        };
+    });
+}
+
+function certificateId(course, issuedAt){
+    const prefix = String(course.id || "curso")
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, "")
+        .slice(0, 10);
+
+    return `LA-${prefix}-${new Date(issuedAt).getTime().toString(36).toUpperCase()}`;
+}
+
+function issueCertificate(course, score){
+    const profile = academyCurrentUserProfile();
+    const issuedAt = new Date().toISOString();
+    const certificate = {
+        id: certificateId(course, issuedAt),
+        courseId: course.id,
+        courseTitle: course.title,
+        studentName: profile.name,
+        studentEmail: profile.email,
+        score: score.percent,
+        correct: score.correct,
+        total: score.total,
+        issuedAt
+    };
+    const certificates = readCertificates();
+    certificates[course.id] = certificate;
+    saveCertificates(certificates);
+    return certificate;
+}
+
+function certificatePageUrl(courseId){
+    return `certificate.html?id=${encodeURIComponent(courseId)}`;
+}
+
+function renderQuizReview(review){
+    const incorrect = review.filter(item => !item.correct);
+
+    if(incorrect.length === 0){
+        return `
+            <div class="assessment-review assessment-review-clean">
+                Todas as questoes foram respondidas corretamente.
+            </div>
+        `;
+    }
+
+    return `
+        <section class="assessment-review">
+            <h3>Questoes incorretas</h3>
+
+            <div class="assessment-wrong-list">
+                ${incorrect.map(item => `
+                    <article class="assessment-wrong-card">
+                        <strong>${item.index + 1}. ${escapeHtml(item.question)}</strong>
+                        <p><span>Sua resposta:</span> ${escapeHtml(item.selectedAnswer)}</p>
+                        <p><span>Resposta correta:</span> ${escapeHtml(item.correctAnswer)}</p>
+                    </article>
+                `).join("")}
+            </div>
+        </section>
+    `;
+}
+
+function certificateHtml(certificate, course){
+    const issuedDate = new Date(certificate.issuedAt).toLocaleDateString("pt-BR", {
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+    });
+
+    return `
+        <article class="certificate-document">
+            <div class="certificate-border">
+                <header class="certificate-top">
+                    <img src="../assets/brand/leal-academy-logo.png" alt="Leal Academy">
+                    <div>
+                        <span>Leal Academy</span>
+                        <strong>Certificado de Conclusao</strong>
+                    </div>
+                </header>
+
+                <section class="certificate-body">
+                    <span class="certificate-kicker">Treinamento operacional em aviacao civil</span>
+                    <h1>${escapeHtml(certificate.studentName)}</h1>
+                    <p>
+                        concluiu com aproveitamento o curso
+                        <strong>${escapeHtml(certificate.courseTitle || course?.title || "Curso Leal Academy")}</strong>,
+                        obtendo nota final de <strong>${certificate.score}%</strong>
+                        (${certificate.correct}/${certificate.total} acertos).
+                    </p>
+                </section>
+
+                <footer class="certificate-footer">
+                    <div>
+                        <span>Emitido em</span>
+                        <strong>${issuedDate}</strong>
+                    </div>
+
+                    <div>
+                        <span>Codigo</span>
+                        <strong>${escapeHtml(certificate.id)}</strong>
+                    </div>
+
+                    <div>
+                        <span>Aluno</span>
+                        <strong>${escapeHtml(certificate.studentEmail || "E-mail nao informado")}</strong>
+                    </div>
+                </footer>
+
+                <div class="certificate-runway" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </article>
+    `;
+}
+
+function openMailClient(certificate){
+    if(!certificate.studentEmail){
+        alert("Nao existe e-mail cadastrado para este aluno.");
+        return;
+    }
+
+    const subject = encodeURIComponent(`Certificado Leal Academy - ${certificate.courseTitle}`);
+    const body = encodeURIComponent([
+        `Ola, ${certificate.studentName}.`,
+        "",
+        `Seu certificado do curso ${certificate.courseTitle} foi emitido.`,
+        `Nota: ${certificate.score}% (${certificate.correct}/${certificate.total} acertos).`,
+        `Codigo do certificado: ${certificate.id}`,
+        "",
+        "Abra a pagina do certificado na plataforma e use a opcao Imprimir / Salvar em PDF para anexar ao e-mail."
+    ].join("\n"));
+
+    window.location.href = `mailto:${encodeURIComponent(certificate.studentEmail)}?subject=${subject}&body=${body}`;
+}
+
+async function sendCertificateEmail(certificate){
+    if(!certificate || !certificate.studentEmail){
+        return {
+            sent:false,
+            message:"Certificado emitido. Cadastre um e-mail para preparar o envio."
+        };
+    }
+
+    if(typeof supabaseClient !== "undefined" && supabaseClient.functions && typeof supabaseClient.functions.invoke === "function"){
+        try{
+            const { error } = await supabaseClient.functions.invoke("send-certificate", {
+                body: { certificate }
+            });
+
+            if(!error){
+                return {
+                    sent:true,
+                    message:`Certificado enviado para ${certificate.studentEmail}.`
+                };
+            }
+        }catch(error){
+            console.warn("Envio automatico de certificado indisponivel:", error);
+        }
+    }
+
+    return {
+        sent:false,
+        message:`Certificado emitido para ${certificate.studentEmail}. Use o botao de e-mail enquanto a funcao automatica nao estiver configurada.`
+    };
+}
+
+function renderAssessmentResult(course, score, review, certificate, emailStatus){
+    const approved = score.percent >= 70;
+    const certificateBlock = approved && certificate
+        ? `
+            <section class="certificate-result-card">
+                <div>
+                    <span>Certificado emitido</span>
+                    <strong>${escapeHtml(certificate.id)}</strong>
+                    <p>
+                        Aluno: ${escapeHtml(certificate.studentName)}
+                        ${certificate.studentEmail ? ` | ${escapeHtml(certificate.studentEmail)}` : ""}
+                    </p>
+                    <small>${escapeHtml(emailStatus || "Envio automatico preparado. Use o botao de e-mail se a funcao de envio nao estiver configurada.")}</small>
+                </div>
+
+                <div class="certificate-actions">
+                    <a class="primary-action" href="${certificatePageUrl(course.id)}" target="_blank" rel="noopener">
+                        Abrir certificado
+                    </a>
+                    <button class="secondary-action" type="button" id="emailCertificate">
+                        Enviar por e-mail
+                    </button>
+                </div>
+            </section>
+        `
+        : "";
+
+    return `
+        <section class="assessment-result ${approved ? "approved" : "failed"}">
+            <div>
+                <span>${approved ? "Aprovado" : "Nao aprovado"}</span>
+                <strong>Resultado: ${score.correct}/${score.total} - ${score.percent}%</strong>
+                <p>${approved ? "Parabens. O certificado foi liberado para este curso." : "Revise as trilhas e refaca a avaliacao para atingir 70%."}</p>
+            </div>
+        </section>
+
+        ${renderQuizReview(review)}
+        ${certificateBlock}
+    `;
+}
+
 function openAssessmentWindow(course){
     const questions = normalizeQuiz(course);
 
@@ -1416,7 +1680,7 @@ function renderAssessment(course){
         });
     });
 
-    document.getElementById("finishQuiz")?.addEventListener("click", () => {
+    document.getElementById("finishQuiz")?.addEventListener("click", async () => {
         const answers = state.quizAnswers[course.id] || {};
         if(Object.keys(answers).length < questions.length){
             document.getElementById("assessmentFeedback").textContent = "Responda todas as perguntas antes de finalizar.";
@@ -1424,11 +1688,34 @@ function renderAssessment(course){
         }
 
         const score = quizScore(course);
+        const review = quizReview(course, questions, answers);
+        const approved = score.percent >= 70;
+        const certificate = approved ? issueCertificate(course, score) : null;
         const results = readQuizResults();
-        results[course.id] = { correct: score.correct, total: score.total, percent: score.percent, finishedAt: new Date().toISOString() };
+        results[course.id] = {
+            correct: score.correct,
+            total: score.total,
+            percent: score.percent,
+            finishedAt: new Date().toISOString(),
+            approved,
+            review
+        };
         saveQuizResults(results);
+        const emailStatus = certificate
+            ? await sendCertificateEmail(certificate)
+            : null;
         document.getElementById("assessmentScore").textContent = `Resultado: ${score.correct}/${score.total} - ${score.percent}%`;
-        document.getElementById("assessmentFeedback").textContent = score.percent >= 70 ? "Aprovado." : "Revise as trilhas e refaca a avaliacao.";
+        document.getElementById("assessmentFeedback").innerHTML = renderAssessmentResult(
+            course,
+            score,
+            review,
+            certificate,
+            emailStatus?.message || ""
+        );
+
+        document.getElementById("emailCertificate")?.addEventListener("click", () => {
+            openMailClient(certificate);
+        });
     });
 
     document.getElementById("clearQuiz")?.addEventListener("click", () => {
@@ -1469,6 +1756,61 @@ function renderCoursePage(){
     renderAssessment(course);
 }
 
+function renderCertificatePage(){
+    initializeCourseFromUrl();
+    const course = selectedCourse();
+    const container = document.getElementById("certificatePanel");
+    const title = document.getElementById("certificateCourseTitle");
+    const meta = document.getElementById("certificateCourseMeta");
+
+    if(!container){
+        return;
+    }
+
+    if(!course){
+        container.innerHTML = `<div class="assessment-empty">Curso nao encontrado.</div>`;
+        return;
+    }
+
+    const certificate = readCertificates()[course.id];
+
+    if(title){
+        title.textContent = "Certificado";
+    }
+
+    if(meta){
+        meta.textContent = course.title;
+    }
+
+    if(!certificate){
+        container.innerHTML = `
+            <div class="assessment-empty">
+                Nenhum certificado emitido para este curso. Conclua a avaliacao com aproveitamento minimo de 70%.
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="certificate-page-actions">
+            <button class="primary-action" id="printCertificate" type="button">
+                Imprimir / Salvar PDF
+            </button>
+            <button class="secondary-action" id="emailCertificatePage" type="button">
+                Enviar por e-mail
+            </button>
+            <button class="secondary-action" type="button" onclick="window.close()">
+                Fechar aba
+            </button>
+        </div>
+
+        ${certificateHtml(certificate, course)}
+    `;
+
+    document.getElementById("printCertificate")?.addEventListener("click", () => window.print());
+    document.getElementById("emailCertificatePage")?.addEventListener("click", () => openMailClient(certificate));
+}
+
 async function bootAcademy(){
     if(document.getElementById("courseGrid")){
         renderHome();
@@ -1490,6 +1832,11 @@ async function bootAcademy(){
         }
 
         renderAssessment(course);
+        return;
+    }
+
+    if(document.body.classList.contains("certificate-page")){
+        renderCertificatePage();
         return;
     }
 
