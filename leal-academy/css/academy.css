@@ -135,7 +135,7 @@ body{
 .academy-course-card{
     display:flex;
     flex-direction:column;
-    min-height:330px;
+    min-height:360px;
     color:var(--ink);
     background:#fff;
     border:1px solid #b9dfbf;
@@ -154,7 +154,7 @@ body{
 
 .course-card-image{
     position:relative;
-    height:145px;
+    height:178px;
     background-size:cover;
     background-position:center;
 }
@@ -163,18 +163,18 @@ body{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.22));
+    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.10));
 }
 
 .course-card-icon{
     position:absolute;
     left:18px;
-    bottom:-30px;
+    bottom:-26px;
     z-index:1;
     display:grid;
     place-items:center;
-    width:62px;
-    height:62px;
+    width:56px;
+    height:56px;
     background:#fff;
     border:1px solid rgba(22,128,61,.28);
     border-radius:16px;
@@ -182,8 +182,8 @@ body{
 }
 
 .course-card-icon svg{
-    width:38px;
-    height:38px;
+    width:34px;
+    height:34px;
     fill:none;
     stroke:var(--green);
     stroke-width:4;
@@ -192,7 +192,7 @@ body{
 }
 
 .course-card-body{
-    padding:42px 18px 18px;
+    padding:38px 18px 18px;
     display:flex;
     flex:1;
     flex-direction:column;

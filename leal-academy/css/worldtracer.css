@@ -15,7 +15,9 @@ body{
 
     padding:20px;
 
-    background:#111827;
+    background:
+        radial-gradient(circle at top left, rgba(14,116,144,.20), transparent 36rem),
+        linear-gradient(180deg,#0b1726,#081421);
 
     color:#f8f9fa;
 
@@ -31,21 +33,21 @@ body{
 
     margin:auto;
 
-    background:#1f2937;
+    background:#142235;
 
-    border:1px solid #475569;
+    border:1px solid #36516a;
 
     border-radius:8px;
 
     padding:16px;
 
-    box-shadow:0 18px 45px rgba(2, 6, 23, .28);
+    box-shadow:0 18px 45px rgba(2, 6, 23, .42);
 
 }
 
 .wt-header{
 
-    border-bottom:1px solid #94a3b8;
+    border-bottom:1px solid #7aa7c7;
 
     padding-bottom:15px;
 
@@ -65,7 +67,7 @@ body{
 
 .wt-subtitle{
 
-    color:#e5eefc;
+    color:#d7ecff;
 
     font-size:14px;
 
@@ -79,7 +81,7 @@ body{
 
     font-size:28px;
 
-    color:#e5eefc;
+    color:#f8fbff;
 
     font-weight:bold;
 
@@ -103,7 +105,7 @@ body{
 
     margin-bottom:6px;
 
-    color:#e5eefc;
+    color:#d7ecff;
 
 }
 
@@ -111,11 +113,11 @@ body{
 
     width:100%;
 
-    background:#111827;
+    background:#0b1726;
 
-    color:#e5eefc;
+    color:#f8fbff;
 
-    border:1px solid #cbd5e1;
+    border:1px solid #9fb4c9;
 
     padding:6px;
 
@@ -193,7 +195,7 @@ body{
 
     margin-bottom:4px;
 
-    color:#e5eefc;
+    color:#d7ecff;
 
     font-size:12px;
 
@@ -203,11 +205,11 @@ body{
 
 .wt-field input{
 
-    background:#111827;
+    background:#0b1726;
 
-    border:1px solid #cbd5e1;
+    border:1px solid #9fb4c9;
 
-    color:#e5eefc;
+    color:#f8fbff;
 
     padding:6px;
 
@@ -221,11 +223,11 @@ body{
 
 .wt-field textarea{
 
-    background:#111827;
+    background:#0b1726;
 
-    border:1px solid #cbd5e1;
+    border:1px solid #9fb4c9;
 
-    color:#e5eefc;
+    color:#f8fbff;
 
     padding:8px;
 
@@ -352,12 +354,12 @@ body{
 WORLDTRACER FRIENDLY THEME
 ==========================================================*/
 :root{
-    --wt-page:#eef5f8;
-    --wt-panel:#243447;
-    --wt-panel-soft:#2d4055;
+    --wt-page:#0b1726;
+    --wt-panel:#142235;
+    --wt-panel-soft:#1d324b;
     --wt-ink:#f8fafc;
     --wt-muted:#cbd5e1;
-    --wt-line:#8fb3c5;
+    --wt-line:#5f86a4;
     --wt-field:#f8fafc;
     --wt-field-text:#0f172a;
     --wt-accent:#38bdf8;
@@ -365,13 +367,15 @@ WORLDTRACER FRIENDLY THEME
 }
 
 body{
-    background:radial-gradient(circle at top left,#dff5f4 0,#eef5f8 34%,#dce8ef 100%);
+    background:
+        radial-gradient(circle at top left, rgba(14,116,144,.20), transparent 36rem),
+        linear-gradient(180deg,#0b1726,#081421);
     color:var(--wt-ink);
 }
 
 .wt-container{
-    background:linear-gradient(180deg,var(--wt-panel),#1f2d3c);
-    border:1px solid rgba(143,179,197,.65);
+    background:linear-gradient(180deg,var(--wt-panel),#102033);
+    border:1px solid rgba(95,134,164,.72);
     border-radius:14px;
     box-shadow:0 18px 50px rgba(15,23,42,.22);
 }
@@ -403,7 +407,7 @@ body{
 .wt-info input[readonly],
 .wt-field input[readonly],
 .wt-field textarea[readonly]{
-    background:#eaf2f6;
+    background:#dce8f1;
     color:#1e293b;
 }
 

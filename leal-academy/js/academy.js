@@ -226,7 +226,7 @@ function courseVisual(course){
 
     return {
         ...visual,
-        image: `linear-gradient(135deg, ${course.color}d9, rgba(15,23,42,.72)), url('../assets/academy-covers/${course.id}.svg')`
+        image: `linear-gradient(135deg, rgba(7,20,33,.10), rgba(7,20,33,.18)), url('../assets/academy-covers/${course.id}.svg')`
     };
 }
 
