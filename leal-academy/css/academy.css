@@ -1034,10 +1034,10 @@ body{
 
 .lesson-visual-route{
     display:grid;
-    grid-template-columns:1fr 28px 1fr 28px 1fr;
-    grid-template-rows:1fr auto;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-rows:auto auto;
     align-items:center;
-    gap:8px;
+    gap:12px;
 }
 
 .lesson-visual-route span,
@@ -1049,7 +1049,7 @@ body{
     align-items:center;
     justify-content:center;
     min-height:52px;
-    padding:10px;
+    padding:10px 8px;
     border-radius:12px;
     background:rgba(255,255,255,.92);
     color:#0f172a;
@@ -1060,13 +1060,12 @@ body{
     hyphens:none;
     min-width:0;
     max-width:100%;
-    font-size:clamp(11px,1.55vw,14px);
+    font-size:clamp(10px,1.25vw,13px);
     line-height:1.2;
 }
 
 .lesson-visual-route i{
-    height:3px;
-    background:#38bdf8;
+    display:none;
 }
 
 .lesson-visual-route strong{

@@ -69,7 +69,7 @@ const lessonMediaProfiles = {
         { kind:"form", labels:["Categoria", "Data", "Descricao", "RFP"], caption:"O registro pede categoria, data do encontro e descricao detalhada, preferencialmente em ingles." },
         { kind:"flow", labels:["Receber", "Armazenar", "Prazo", "Destino"], caption:"O controle evita perda de rastreabilidade durante guarda, retirada ou envio ao deposito." },
         { kind:"route", labels:["Origem", "Rush", "Destino", "AI02"], caption:"Transporte entre aeroportos deve usar caixa lacrada, etiqueta rush e dados de voo/data." },
-        { kind:"service", labels:["Identificar", "Recibo", "CPF/RG", "Entrega"], caption:"A entrega ao proprietario exige identificacao, recibo assinado e baixa formal." }
+        { kind:"service", labels:["Conferir", "Recibo", "CPF/RG", "Entrega"], caption:"A entrega ao proprietario exige identificacao, recibo assinado e baixa formal." }
     ],
     "avsec": [
         { kind:"security", labels:["Ameaca", "Area", "Pessoa", "Bagagem"], caption:"AVSEC protege aeronaves, aeroportos, pessoas e instalacoes contra interferencia ilicita." },
@@ -121,7 +121,7 @@ const lessonMediaProfiles = {
     ],
     "boas-praticas-atendimento": [
         { kind:"service", labels:["Sorriso", "Clareza", "Respeito", "Agilidade"], caption:"Excelencia une postura profissional, empatia, eficiencia e agilidade." },
-        { kind:"service", labels:["Perfil", "Necessidade", "Apoio", "Seguranca"], caption:"Conhecer o perfil do cliente ajuda a adaptar o atendimento." },
+        { kind:"service", labels:["Perfil", "Demanda", "Apoio", "Seguranca"], caption:"Conhecer o perfil do cliente ajuda a adaptar o atendimento." },
         { kind:"service", labels:["Overbook", "Acolher", "Explicar", "Solucao"], caption:"Situacoes sensiveis pedem transparencia, acolhimento e busca de alternativas." },
         { kind:"form", labels:["ANAC", "IATA", "Padrao", "Registro"], caption:"Procedimentos reduzem risco operacional e aumentam seguranca juridica." },
         { kind:"flow", labels:["Atender", "Registrar", "Aprender", "Melhorar"], caption:"A melhoria continua nasce do uso correto de elogios, reclamacoes e feedbacks." }
@@ -142,7 +142,7 @@ const lessonMediaProfiles = {
     "tratativa-rl-mct": [
         { kind:"route", labels:["MCT", "Conexao", "Tempo", "Risco"], caption:"MCT ajuda a avaliar risco de extravio em conexoes." },
         { kind:"form", labels:["RL51", "RL55", "RL56", "RL53"], caption:"Codigos RL classificam falhas de conexao, check-in, carregamento e entrega." },
-        { kind:"route", labels:["DOM", "INTER", "Alfandega", "Novo trecho"], caption:"Tipos de conexao mudam a leitura operacional do caso." },
+        { kind:"route", labels:["DOM", "INTER", "Alfandega", "Trecho"], caption:"Tipos de conexao mudam a leitura operacional do caso." },
         { kind:"form", labels:["Etiqueta", "A/B/C", "Erro", "RL"], caption:"Falhas de etiquetagem exigem codigo RL coerente com a causa." },
         { kind:"flow", labels:["Analisar", "Justificar", "Registrar", "Encerrar"], caption:"A tratativa completa combina causa, evidencias, registros e decisao final." }
     ],
@@ -166,7 +166,7 @@ const lessonMediaProfiles = {
         { kind:"service", labels:["Perguntar", "Ouvir", "Ajudar", "Respeitar"], caption:"A ajuda deve ser oferecida, nao imposta, preservando autonomia." },
         { kind:"form", labels:["ANAC 280", "LBI", "Direito", "Registro"], caption:"Normas de acessibilidade orientam atendimento e responsabilidades." },
         { kind:"service", labels:["Libras", "Escrita", "Frente", "Clareza"], caption:"Passageiros surdos podem precisar de comunicacao visual, escrita ou Libras." },
-        { kind:"flow", labels:["Recurso", "Embarque", "Acompanhamento", "Seguranca"], caption:"Recursos como ambulift e apoio especializado garantem embarque seguro." }
+        { kind:"flow", labels:["Recurso", "Embarque", "Apoio", "Seguranca"], caption:"Recursos como ambulift e apoio especializado garantem embarque seguro." }
     ],
     "interpretacao-etiqueta-bagagem": [
         { kind:"tag", labels:["Etiqueta", "Codigo", "LPN", "Destino"], caption:"A etiqueta conecta passageiro, bagagem, voo e destino no fluxo operacional." },

@@ -55,6 +55,17 @@ const allowedKinds = new Set([
 
 const errors = [];
 const warnings = [];
+const maxLabelLengthByKind = {
+    route: 10,
+    service: 10,
+    flow: 11,
+    form: 11,
+    found: 10,
+    damage: 10,
+    security: 11,
+    tag: 10,
+    match: 10
+};
 
 courses.forEach(course => {
     const modules = course.modules || [];
@@ -84,13 +95,14 @@ courses.forEach(course => {
 
         profile.labels.forEach(item => {
             const text = String(item || "").trim();
+            const maxLength = maxLabelLengthByKind[profile.kind] || 10;
 
             if(text.length === 0){
                 errors.push(`${label}: rotulo vazio.`);
             }
 
-            if(text.length > 16){
-                errors.push(`${label}: rotulo longo demais para a arte: "${text}".`);
+            if(text.length > maxLength){
+                errors.push(`${label}: rotulo longo demais para arte ${profile.kind}: "${text}" (${text.length}/${maxLength}).`);
             }
 
             if(/\s{2,}/.test(text)){
