@@ -672,21 +672,24 @@ body{
 }
 
 .lesson-media-image{
-    min-height:260px;
+    min-height:320px;
     display:flex;
     align-items:flex-end;
     border-radius:18px;
     overflow:hidden;
-    background-size:cover;
+    background-color:#071421;
+    background-repeat:no-repeat;
+    background-size:contain;
     background-position:center;
     box-shadow:0 18px 42px rgba(15,23,42,.16);
 }
 
 .lesson-media-image div{
     width:100%;
+    max-width:62%;
     padding:24px;
     color:#fff;
-    background:linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,.78));
+    background:linear-gradient(90deg,rgba(15,23,42,.88),rgba(15,23,42,.58),rgba(15,23,42,0));
 }
 
 .lesson-media-image span,
@@ -701,9 +704,10 @@ body{
 .lesson-media-image strong{
     display:block;
     margin-top:6px;
-    font-size:28px;
+    font-size:clamp(20px,2.4vw,28px);
     line-height:1.15;
     text-shadow:0 2px 12px rgba(0,0,0,.45);
+    overflow-wrap:anywhere;
 }
 
 .lesson-video-box{
@@ -831,7 +835,12 @@ body{
     }
 
     .lesson-media-image{
-        min-height:210px;
+        min-height:240px;
+    }
+
+    .lesson-media-image div{
+        max-width:100%;
+        background:linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,.84));
     }
 }
 
