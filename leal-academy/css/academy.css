@@ -899,6 +899,7 @@ body{
 }
 
 .lesson-inline-visual-art{
+    min-width:0;
     min-height:210px;
     border-radius:16px;
     overflow:hidden;
@@ -907,6 +908,12 @@ body{
     color:#ffffff;
     position:relative;
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+}
+
+.lesson-inline-visual-art *,
+.lesson-inline-visual-art *::before,
+.lesson-inline-visual-art *::after{
+    box-sizing:border-box;
 }
 
 .lesson-inline-visual figcaption{
@@ -1051,6 +1058,10 @@ body{
     word-break:normal;
     overflow-wrap:normal;
     hyphens:none;
+    min-width:0;
+    max-width:100%;
+    font-size:clamp(11px,1.55vw,14px);
+    line-height:1.2;
 }
 
 .lesson-visual-route i{
@@ -1200,14 +1211,14 @@ body{
 
 .lesson-visual-service{
     display:grid;
-    grid-template-columns:.75fr 1.25fr;
-    gap:18px;
+    grid-template-columns:minmax(88px,.62fr) minmax(0,1.38fr);
+    gap:14px;
     align-items:center;
 }
 
 .service-person{
-    width:128px;
-    height:156px;
+    width:min(112px,100%);
+    height:146px;
     justify-self:center;
     position:relative;
 }
@@ -1215,10 +1226,11 @@ body{
 .service-person::before{
     content:"";
     position:absolute;
-    left:39px;
+    left:50%;
     top:0;
-    width:50px;
-    height:50px;
+    width:48px;
+    height:48px;
+    transform:translateX(-50%);
     border-radius:50%;
     background:#bfdbfe;
 }
@@ -1226,17 +1238,19 @@ body{
 .service-person::after{
     content:"";
     position:absolute;
-    left:20px;
+    left:50%;
     bottom:0;
     width:88px;
     height:94px;
+    transform:translateX(-50%);
     border-radius:34px 34px 14px 14px;
     background:#22c55e;
 }
 
 .service-counter{
+    min-width:0;
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:8px;
 }
 
