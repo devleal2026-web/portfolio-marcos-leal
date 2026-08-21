@@ -1123,9 +1123,7 @@ function renderCourseGuide(course){
         document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
     });
 
-    document.getElementById("goAssessment")?.addEventListener("click", () => {
-        document.getElementById("assessmentPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
-    });
+    document.getElementById("goAssessment")?.addEventListener("click", () => openAssessmentWindow(course));
 }
 
 function renderCourseNavigator(course){
@@ -1317,6 +1315,27 @@ function quizScore(course){
     return { correct, total: questions.length, percent: Math.round((correct / questions.length) * 100) };
 }
 
+function openAssessmentWindow(course){
+    const questions = normalizeQuiz(course);
+
+    if(questions.length === 0){
+        alert("Este curso ainda nao possui avaliacao cadastrada.");
+        return;
+    }
+
+    const confirmed = window.confirm("Iniciar a prova?");
+
+    if(!confirmed){
+        return;
+    }
+
+    window.open(
+        `assessment.html?id=${encodeURIComponent(course.id)}`,
+        "_blank",
+        "noopener"
+    );
+}
+
 function renderAssessment(course){
     const container = document.getElementById("assessmentPanel");
 
@@ -1332,9 +1351,10 @@ function renderAssessment(course){
     }
 
     const saved = readQuizResults()[course.id];
+    const isStandalone = document.body.classList.contains("assessment-page");
     const isOpen = Boolean(state.assessmentOpen[course.id]);
 
-    if(!isOpen){
+    if(!isStandalone && !isOpen){
         container.innerHTML = `
             <article class="assessment-start-card">
                 <div>
@@ -1349,24 +1369,15 @@ function renderAssessment(course){
             </article>
         `;
 
-        document.getElementById("startAssessment")?.addEventListener("click", () => {
-            const confirmed = window.confirm("Iniciar a prova?");
-
-            if(!confirmed){
-                return;
-            }
-
-            state.assessmentOpen[course.id] = true;
-            renderAssessment(course);
-        });
+        document.getElementById("startAssessment")?.addEventListener("click", () => openAssessmentWindow(course));
 
         return;
     }
 
     container.innerHTML = `
-        <details class="assessment-expander" open>
+        <details class="assessment-expander ${isStandalone ? "assessment-fullscreen-card" : ""}" open>
             <summary>
-                <span>Avaliacao em andamento</span>
+                <span>${isStandalone ? "Prova em tela cheia" : "Avaliacao em andamento"}</span>
                 <strong>${questions.length} perguntas</strong>
                 <small id="assessmentScore">${saved ? `Ultimo: ${saved.percent}%` : "Nao finalizada"}</small>
             </summary>
@@ -1388,7 +1399,7 @@ function renderAssessment(course){
             <div class="lesson-actions assessment-actions">
                 <button class="primary-action" id="finishQuiz" type="button">Finalizar avaliacao</button>
                 <button class="secondary-action" id="clearQuiz" type="button">Limpar respostas</button>
-                <button class="secondary-action" id="closeAssessment" type="button">Fechar prova</button>
+                <button class="secondary-action" id="closeAssessment" type="button">${isStandalone ? "Fechar aba" : "Fechar prova"}</button>
             </div>
 
             <div class="assessment-feedback" id="assessmentFeedback"></div>
@@ -1426,6 +1437,11 @@ function renderAssessment(course){
     });
 
     document.getElementById("closeAssessment")?.addEventListener("click", () => {
+        if(isStandalone){
+            window.close();
+            return;
+        }
+
         state.assessmentOpen[course.id] = false;
         renderAssessment(course);
     });
@@ -1456,6 +1472,24 @@ function renderCoursePage(){
 async function bootAcademy(){
     if(document.getElementById("courseGrid")){
         renderHome();
+        return;
+    }
+
+    if(document.body.classList.contains("assessment-page")){
+        initializeCourseFromUrl();
+        const course = selectedCourse();
+        const title = document.getElementById("assessmentCourseTitle");
+        const meta = document.getElementById("assessmentCourseMeta");
+
+        if(title){
+            title.textContent = course ? course.title : "Avaliacao";
+        }
+
+        if(meta && course){
+            meta.textContent = `${normalizeQuiz(course).length} perguntas | ${course.level} | ${course.duration}`;
+        }
+
+        renderAssessment(course);
         return;
     }
 

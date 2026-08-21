@@ -1626,6 +1626,86 @@ body{
     margin:0 14px 14px;
 }
 
+.assessment-page{
+    min-height:100vh;
+    background:linear-gradient(135deg,#e6eef4,#f7fbff);
+    color:#0f172a;
+}
+
+.assessment-shell{
+    min-height:100vh;
+    display:grid;
+    grid-template-rows:auto 1fr;
+    gap:18px;
+    padding:24px;
+}
+
+.assessment-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    padding:20px 24px;
+    border:1px solid #cbd5e1;
+    border-radius:18px;
+    background:#ffffff;
+    box-shadow:0 14px 36px rgba(15,23,42,.08);
+}
+
+.assessment-header span{
+    display:block;
+    margin-bottom:5px;
+    color:#15803d;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.assessment-header h1{
+    margin:0;
+    color:#0f172a;
+    font-size:clamp(24px,3vw,38px);
+    line-height:1.1;
+}
+
+.assessment-header p{
+    margin:8px 0 0;
+    color:#475569;
+    font-weight:700;
+}
+
+.assessment-main-panel{
+    min-height:0;
+}
+
+.assessment-fullscreen-card{
+    height:100%;
+    display:grid;
+    grid-template-rows:auto minmax(0,1fr) auto auto;
+}
+
+.assessment-fullscreen-card .quiz-list{
+    max-height:none;
+    overflow:auto;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+.assessment-fullscreen-card .quiz-card{
+    display:grid;
+    align-content:start;
+}
+
+.assessment-fullscreen-card .quiz-card h3{
+    font-size:16px;
+}
+
+.assessment-fullscreen-card .quiz-option{
+    min-height:46px;
+}
+
 .lesson-local-video{
     width:100%;
     aspect-ratio:16 / 9;
@@ -2071,4 +2151,22 @@ LEAL ACADEMY BRAND
 .secure-logout-button:hover{
     border-color:#16803d;
     color:#16803d;
+}
+
+@media(max-width:900px){
+    .assessment-fullscreen-card .quiz-list{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:720px){
+    .assessment-shell{
+        padding:14px;
+    }
+
+    .assessment-header{
+        align-items:flex-start;
+        flex-direction:column;
+        padding:18px;
+    }
 }
