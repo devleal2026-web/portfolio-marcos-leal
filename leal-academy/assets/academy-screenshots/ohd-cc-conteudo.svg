@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+    <defs>
+        <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#111827"/>
+            <stop offset="1" stop-color="#1f2937"/>
+        </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity=".32"/>
+        </filter>
+        <style>
+            .title{font:800 30px Arial, sans-serif; fill:#ffffff}
+            .sub{font:700 14px Arial, sans-serif; fill:#93c5fd; letter-spacing:.06em}
+            .lbl{font:800 13px Arial, sans-serif}
+            .val{font:500 14px Arial, sans-serif}
+            .section{font:800 18px Arial, sans-serif; fill:#ffffff}
+            .note{font:700 15px Arial, sans-serif; fill:#f8fafc}
+        </style>
+    </defs>
+    <rect width="1280" height="720" fill="#0f172a"/>
+    <rect x="38" y="34" width="1204" height="632" rx="18" fill="url(#bg)" stroke="#475569" filter="url(#shadow)"/>
+    <text x="66" y="78" class="title">Mascara OHD - Bagagem Sobrante</text>
+    <text x="66" y="104" class="sub">Exemplo de insercao de contents e dados de envio</text>
+    <line x1="66" y1="128" x2="1212" y2="128" stroke="#94a3b8"/>
+    
+    <text x="66" y="160" class="lbl" fill="#e5e7eb">STATION</text>
+    <rect x="66" y="170" width="230" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="76" y="193" class="val" fill="#0f172a">GRU</text>
+    
+    <text x="326" y="160" class="lbl" fill="#e5e7eb">AIRLINE</text>
+    <rect x="326" y="170" width="230" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="336" y="193" class="val" fill="#0f172a">LA</text>
+    
+    <text x="586" y="160" class="lbl" fill="#e5e7eb">STATUS</text>
+    <rect x="586" y="170" width="240" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="596" y="193" class="val" fill="#0f172a">ABERTO</text>
+    
+    <text x="66" y="235" class="lbl" fill="#e5e7eb">TN</text>
+    <rect x="66" y="245" width="250" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="76" y="268" class="val" fill="#0f172a">LA957636661</text>
+    
+    <text x="350" y="235" class="lbl" fill="#e5e7eb">CT</text>
+    <rect x="350" y="245" width="300" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="360" y="268" class="val" fill="#0f172a">BK22RHC</text>
+    
+    <text x="684" y="235" class="lbl" fill="#e5e7eb">BI</text>
+    <rect x="684" y="245" width="260" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="694" y="268" class="val" fill="#0f172a">SAMSONITE</text>
+    
+    <text x="978" y="235" class="lbl" fill="#e5e7eb">BW</text>
+    <rect x="978" y="245" width="120" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="988" y="268" class="val" fill="#0f172a">17</text>
+    
+    <text x="66" y="310" class="lbl" fill="#facc15">CC - CONTENTS</text>
+    <rect x="66" y="320" width="800" height="88" rx="5" fill="#ffffff" stroke="#facc15" stroke-width="2"/>
+    <text x="76" y="344" class="val" fill="#0f172a">ALCOHOL/WINE</text><text x="76" y="366" class="val" fill="#0f172a">FOOTWEAR/BK MALE SHOES</text>
+    <text x="902" y="348" class="lbl" fill="#facc15">BOTAO</text>
+    <rect x="902" y="358" width="230" height="36" rx="5" fill="#ffffff" stroke="#facc15" stroke-width="2"/>
+    <text x="912" y="381" class="val" fill="#0f172a">Contents Categories</text>
+    
+    <text x="66" y="430" class="lbl" fill="#e5e7eb">AB - ADDRESS FOUND</text>
+    <rect x="66" y="440" width="600" height="62" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="76" y="464" class="val" fill="#0f172a">Rua Lourdes Lopes Sanches, 300</text>
+    <text x="696" y="430" class="lbl" fill="#e5e7eb">BP</text>
+    <rect x="696" y="440" width="240" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="706" y="463" class="val" fill="#0f172a">551195425897</text>
+    
+    <text x="966" y="430" class="lbl" fill="#e5e7eb">EA</text>
+    <rect x="966" y="440" width="230" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="976" y="463" class="val" fill="#0f172a">PASSENGER@EMAIL.COM</text>
+    
+    <text x="66" y="530" class="lbl" fill="#facc15">RT</text>
+    <rect x="66" y="540" width="260" height="36" rx="5" fill="#ffffff" stroke="#facc15" stroke-width="2"/>
+    <text x="76" y="563" class="val" fill="#0f172a">REC/GRU</text>
+    
+    <text x="350" y="530" class="lbl" fill="#facc15">FD</text>
+    <rect x="350" y="540" width="260" height="36" rx="5" fill="#ffffff" stroke="#facc15" stroke-width="2"/>
+    <text x="360" y="563" class="val" fill="#0f172a">LA1234/28JUN</text>
+    
+    <text x="634" y="530" class="lbl" fill="#e5e7eb">AG</text>
+    <rect x="634" y="540" width="240" height="36" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="644" y="563" class="val" fill="#0f172a">LEAL</text>
+    
+    <rect x="66" y="610" width="1146" height="36" rx="8" fill="#0369a1" opacity=".95"/>
+    <text x="84" y="634" class="note">O campo CC deve trazer conteudo fiel e detalhado, preferencialmente em ingles.</text>
+</svg>

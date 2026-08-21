@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso - Airport Baggage Academy</title>
+    <link rel="stylesheet" href="../css/academy.css">
+</head>
+<body>
+
+<main class="academy-auth-page">
+    <section class="academy-auth-card">
+        <div class="academy-auth-copy">
+            <img class="academy-auth-logo" src="../assets/brand/leal-academy-logo.png" alt="Leal Academy">
+            <p class="academy-kicker">Airport Baggage Simulator</p>
+            <h1>Acesso à Leal Academy</h1>
+            <p>
+                No primeiro acesso, informe seu nome e Gmail. Nos próximos acessos,
+                a plataforma reconhecerá seu perfil automaticamente neste navegador.
+            </p>
+        </div>
+
+        <form id="academyAccessForm" class="academy-auth-form" autocomplete="on">
+            <label for="academyUserName">Nome completo</label>
+            <input
+                id="academyUserName"
+                name="name"
+                type="text"
+                placeholder="Ex.: Marcos Leal"
+                autocomplete="name"
+                required>
+
+            <label for="academyUserEmail">Gmail</label>
+            <input
+                id="academyUserEmail"
+                name="email"
+                type="email"
+                placeholder="seunome@gmail.com"
+                autocomplete="email"
+                required>
+
+            <button type="submit">Entrar na plataforma</button>
+
+            <div id="academyAccessMessage" class="academy-auth-message" role="status"></div>
+        </form>
+
+        <div id="academyAutoAccess" class="academy-auto-access" hidden>
+            <span>Acesso reconhecido</span>
+            <strong id="academyAutoName"></strong>
+            <p>Entrando automaticamente com seu Gmail cadastrado.</p>
+            <div class="academy-auth-actions">
+                <button id="academyContinueButton" type="button">Continuar agora</button>
+                <button id="academySwitchUserButton" type="button">Trocar usuário</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="../js/academy-auth.js"></script>
+</body>
+</html>
+
+

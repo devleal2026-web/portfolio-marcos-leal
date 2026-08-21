@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Baggage Academy</title>
+    <link rel="stylesheet" href="../css/academy.css">
+</head>
+<body data-academy-protected="true">
+
+<main class="academy-home">
+    <header class="academy-home-header">
+        <div class="academy-brand-lockup">
+            <img src="../assets/brand/leal-academy-logo.png" alt="Leal Academy">
+            <div>
+                <p class="academy-kicker">Airport Baggage Simulator</p>
+                <h1>Leal Academy</h1>
+            </div>
+        </div>
+        <div class="academy-header-copy">
+            <p>Selecione um curso para abrir a trilha em uma nova aba.</p>
+        </div>
+
+        <nav class="academy-home-actions">
+            <a href="../index.html">Simulador</a>
+            <a href="manual-wfs.html">Biblioteca</a>
+        </nav>
+    </header>
+
+    <section class="academy-welcome-card">
+        <div>
+            <span>Treinamento operacional</span>
+            <h2 id="academyWelcomeTitle">Olá. Escolha seu curso.</h2>
+        </div>
+        <div class="academy-counts">
+            <strong id="homeCourseCount">0</strong>
+            <span>cursos disponíveis</span>
+        </div>
+    </section>
+
+    <section id="courseGrid" class="course-grid-cards"></section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/academy-auth.js"></script>
+<script src="../js/academy-materials.js"></script>
+<script src="../js/academy-data.js"></script>
+<script src="../js/academy-supabase.js"></script>
+<script src="../js/academy.js"></script>
+
+</body>
+</html>
+
+
+
+
+

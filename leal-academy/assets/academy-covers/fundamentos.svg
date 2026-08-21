@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Fundamentos do Atendimento Aeroportuario">
+    <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#2563eb"/>
+            <stop offset=".55" stop-color="#0f766e"/>
+            <stop offset="1" stop-color="#0f172a"/>
+        </linearGradient>
+        <radialGradient id="light" cx=".25" cy=".2" r=".8">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+    <rect width="900" height="520" fill="url(#g)"/>
+    <rect width="900" height="520" fill="url(#light)"/>
+    <path d="M0 404c150-82 270-36 398-86 122-48 210-174 502-110v312H0z" fill="#22c55e" opacity=".26"/>
+    <g transform="translate(44 34) scale(.84)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        
+            <circle cx="170" cy="116" r="42" fill="#f8fafc"/>
+            <circle cx="304" cy="138" r="35" fill="#f8fafc" opacity=".85"/>
+            <path d="M82 338c14-88 62-136 102-136s84 48 98 136" fill="#f8fafc" opacity=".96"/>
+            <path d="M244 338c10-70 48-108 82-108s72 38 82 108" fill="#f8fafc" opacity=".72"/>
+        
+    </g>
+    <text x="440" y="252" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="800">Fundamentos do Atendimento Aeroportu</text>
+    <text x="442" y="306" fill="#dbeafe" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Airport Baggage Simulator</text>
+    <text x="442" y="360" fill="#f8fafc" opacity=".82" font-family="Segoe UI, Arial, sans-serif" font-size="18">Treinamento operacional de bagagem</text>
+</svg>

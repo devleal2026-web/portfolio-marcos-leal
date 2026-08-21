@@ -1,0 +1,414 @@
+body {
+
+    margin:0;
+
+    background:#111827;
+
+    color:white;
+
+    font-family:Segoe UI,sans-serif;
+
+}
+
+.wrapper {
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+.sidebar {
+
+    width:260px;
+
+    background:#0b1220;
+
+    border-right:1px solid #1f2937;
+
+    padding:20px;
+
+}
+
+.logo {
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    color:#3b82f6;
+
+    margin-bottom:30px;
+
+}
+
+.operator-panel {
+
+    background:#1f2937;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-bottom:30px;
+
+}
+
+.operator-panel div {
+
+    margin-bottom:5px;
+
+}
+
+.sidebar nav {
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.sidebar nav a {
+
+    text-decoration:none;
+
+    color:#d1d5db;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    margin-bottom:8px;
+
+    transition:0.3s;
+
+}
+
+.sidebar nav a:hover {
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.main-content {
+
+    flex:1;
+
+}
+
+.topbar {
+
+    background:#0b1220;
+
+    padding:20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid #1f2937;
+
+}
+
+.kpi-card {
+
+    background:#1f2937;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    height:150px;
+
+}
+
+.kpi-card h5 {
+
+    color:#9ca3af;
+
+}
+
+.kpi-card span {
+
+    font-size:50px;
+
+    font-weight:bold;
+
+}
+
+.dashboard-panel {
+
+    background:#1f2937;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+    background:#1f2937;
+    color:#fff;
+    padding:20px;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    margin:15px 0;
+}
+
+.sidebar a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.main-content{
+    margin-left:270px;
+    padding:20px;
+}
+/*==========================================================
+ABS ACADEMY FRIENDLY THEME
+==========================================================*/
+:root{
+    --abs-page:#eef5f8;
+    --abs-surface:#ffffff;
+    --abs-surface-soft:#f7fbfd;
+    --abs-ink:#0f172a;
+    --abs-muted:#64748b;
+    --abs-line:#d8e3ea;
+    --abs-nav:#123142;
+    --abs-nav-strong:#0b2635;
+    --abs-primary:#0f766e;
+    --abs-primary-strong:#115e59;
+    --abs-warning:#facc15;
+    --abs-danger:#e11d48;
+}
+
+body,
+body.bg-dark{
+    background:var(--abs-page) !important;
+    color:var(--abs-ink) !important;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+
+.wrapper,
+.main-content{
+    background:var(--abs-page) !important;
+}
+
+.sidebar,
+.navbar.bg-dark,
+.navbar.bg-black,
+.topbar{
+    background:linear-gradient(180deg,var(--abs-nav),var(--abs-nav-strong)) !important;
+    color:#f8fafc !important;
+    border-color:rgba(255,255,255,.14) !important;
+}
+
+.logo,
+.navbar-brand{
+    color:#e0f2fe !important;
+}
+
+.sidebar nav a,
+.sidebar a,
+.navbar a.text-light{
+    color:#dbeafe !important;
+}
+
+.sidebar nav a:hover,
+.sidebar a:hover,
+.navbar a:hover{
+    background:rgba(255,255,255,.10) !important;
+    color:#ffffff !important;
+}
+
+.operator-panel,
+.kpi-card,
+.dashboard-panel,
+.card,
+.card.bg-dark,
+.accordion-item.bg-dark,
+section.bg-dark,
+.modal-content.bg-dark{
+    background:var(--abs-surface) !important;
+    color:var(--abs-ink) !important;
+    border:1px solid var(--abs-line) !important;
+    box-shadow:0 12px 30px rgba(15,23,42,.08);
+}
+
+.card-header,
+.card-header.bg-light,
+.accordion-button,
+.accordion-button.bg-dark,
+.accordion-button:not(.collapsed){
+    background:#f0f7f8 !important;
+    color:var(--abs-ink) !important;
+    border-color:var(--abs-line) !important;
+}
+
+.accordion-button::after{
+    filter:none;
+}
+
+.text-light,
+.text-white{
+    color:var(--abs-ink) !important;
+}
+
+.navbar .text-light,
+.navbar .text-white,
+.sidebar .text-light,
+.sidebar .text-white,
+.topbar .text-light,
+.topbar .text-white{
+    color:#f8fafc !important;
+}
+
+.text-secondary,
+.text-muted,
+.kpi-card h5{
+    color:var(--abs-muted) !important;
+}
+
+.bg-dark-subtle{
+    background:#dfeaf0 !important;
+}
+
+.border-secondary,
+.border-dark{
+    border-color:var(--abs-line) !important;
+}
+
+.form-control,
+.form-select,
+.input-group-text{
+    background:#ffffff !important;
+    color:var(--abs-ink) !important;
+    border-color:#cbd5e1 !important;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#38bdf8 !important;
+    box-shadow:0 0 0 .2rem rgba(14,165,233,.16) !important;
+}
+
+label,
+.form-label,
+.fw-bold{
+    color:var(--abs-ink);
+}
+
+.accordion-body label,
+.accordion-body .form-label,
+.card label,
+.card .form-label{
+    color:#0f766e;
+    font-weight:700;
+}
+
+.btn-primary,
+.btn-success{
+    background:var(--abs-primary) !important;
+    border-color:var(--abs-primary) !important;
+    color:#ffffff !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover{
+    background:var(--abs-primary-strong) !important;
+    border-color:var(--abs-primary-strong) !important;
+}
+
+.btn-warning{
+    background:var(--abs-warning) !important;
+    border-color:var(--abs-warning) !important;
+    color:#1f2937 !important;
+}
+
+.btn-danger{
+    background:var(--abs-danger) !important;
+    border-color:var(--abs-danger) !important;
+    color:#ffffff !important;
+}
+
+.btn-light,
+.btn-outline-light{
+    background:#ffffff !important;
+    border-color:#cbd5e1 !important;
+    color:var(--abs-ink) !important;
+}
+
+.btn-outline-warning{
+    color:#854d0e !important;
+    border-color:#facc15 !important;
+}
+
+.btn-outline-warning:hover{
+    background:#fef3c7 !important;
+    color:#713f12 !important;
+}
+
+.table,
+.table-dark,
+.table-striped{
+    --bs-table-bg:#ffffff;
+    --bs-table-color:var(--abs-ink);
+    --bs-table-border-color:var(--abs-line);
+    --bs-table-striped-bg:#f8fafc;
+    --bs-table-striped-color:var(--abs-ink);
+    --bs-table-hover-bg:#ecfeff;
+    color:var(--abs-ink) !important;
+    border-color:var(--abs-line) !important;
+}
+
+.table thead th{
+    color:#0f766e !important;
+    background:#f0fdfa !important;
+}
+
+.badge.bg-success{
+    background:#16a34a !important;
+}
+
+.badge.bg-danger{
+    background:#e11d48 !important;
+}
+
+.list-group-item,
+.match-box .bg-dark,
+pre.bg-black{
+    background:#ffffff !important;
+    color:var(--abs-ink) !important;
+    border-color:var(--abs-line) !important;
+}
+
+pre.bg-black{
+    background:#0f172a !important;
+    color:#e5eefc !important;
+}
+
+.modal-content{
+    background:#ffffff !important;
+    color:var(--abs-ink) !important;
+}
+
+.modal-header.bg-primary{
+    background:var(--abs-primary) !important;
+}

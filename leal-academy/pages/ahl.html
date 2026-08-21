@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AHL - Bagagem Extraviada</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="../style.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold"
+           href="../index.html">
+
+            Airport Baggage Simulator
+
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="menuPrincipal">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="../index.html">
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info fw-bold"
+                       href="academy-access.html">
+                        Cursos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="checkin.html">
+
+                        Check-In
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="bhs.html">
+
+                        BHS
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="makeup.html">
+
+                        Make-Up
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="loading.html">
+
+                        Loading
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="ohd.html">
+
+                        OHD
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       href="ahl.html">
+
+                        AHL
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="dpr.html">
+                        DPR
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="mb-1">
+
+                AHL - Bagagem Extraviada
+
+            </h2>
+
+            <small class="text-secondary">
+
+                Airport Baggage Simulator
+
+            </small>
+
+        </div>
+
+        <div class="text-end">
+
+            <label class="form-label fw-bold mb-1">
+
+                Reference Number
+
+            </label>
+
+            <input
+
+                    id="reference_number"
+
+                    class="form-control text-center fw-bold"
+
+                    style="width:220px"
+
+                    readonly>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+
+    <div class="card bg-dark text-light mb-4">
+
+        <div class="card-body">
+
+            <div class="d-flex flex-wrap gap-2">
+
+
+
+                <div class="col-md-5">
+
+                    <input
+
+                            id="txtPesquisa"
+
+                            type="text"
+
+                            class="form-control"
+
+                            autocomplete="off"
+
+                            placeholder="Pesquisar por AHL, Tag, PNR ou Passageiro">
+
+                    <div
+
+                            id="resultadoPesquisa"
+
+                            class="list-group mt-2"
+
+                            style="display:none">
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="ms-auto">
+
+                    <div class="btn-group">
+
+                        <button
+                                id="btnWeb"
+                                class="btn btn-outline-light active">
+
+                            Interface Web
+
+                        </button>
+
+                        <button
+                                id="btnWorldTracer"
+                                class="btn btn-warning">
+
+                            Máscara WorldTracer
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+
+    <div class="accordion"
+         id="accordionAhl">
+
+        <!-- DADOS DA BAGAGEM -->
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button class="accordion-button bg-dark text-light fw-bold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#dadosBagagem">
+
+                    Dados da Bagagem
+
+                </button>
+
+            </h2>
+
+            <div id="dadosBagagem"
+                 class="accordion-collapse collapse show">
+
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-2">
+
+                            <label class="form-label text-warning fw-bold">
+                                TN *
+                            </label>
+
+                            <div class="text-secondary small">
+                                Tag Number
+                            </div>
+
+                            <input
+                                    id="tn"
+                                    class="form-control form-control-sm"
+                                    placeholder="Ex.: LA957636661">
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label class="form-label text-warning fw-bold">
+                                CT *
+                            </label>
+
+                            <div class="text-secondary small">
+                                Color/Type
+                            </div>
+
+                            <input
+                                    id="ct"
+                                    class="form-control form-control-sm"
+                                    placeholder="Ex.: BK22RHC">
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <label class="form-label text-warning fw-bold">
+                                BI
+                            </label>
+
+                            <div class="text-secondary small">
+                                Brand
+                            </div>
+
+                            <input
+                                    id="bi"
+                                    class="form-control form-control-sm"
+                                    placeholder="Ex.: Samsonite">
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <label class="form-label text-warning fw-bold">
+                                BW
+                            </label>
+
+                            <div class="text-secondary small">
+                                Baggage Weight
+                            </div>
+
+                            <div class="input-group input-group-sm">
+
+                                <input
+                                        id="bw"
+                                        class="form-control"
+                                        placeholder="23.5">
+
+                                <span class="input-group-text">
+                            KG
+                        </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-3">
+
+                        <label class="form-label text-warning fw-bold">
+                            CC
+                        </label>
+
+                        <div class="text-secondary small">
+                            Contents
+                        </div>
+
+                        <div class="input-group">
+
+                    <textarea
+                            id="cc"
+                            class="form-control form-control-sm"
+                            rows="4"
+                            readonly
+                            placeholder="Clique para selecionar"></textarea>
+
+                            <button
+                                    type="button"
+                                    id="btnContents"
+                                    class="btn btn-outline-warning btn-sm">
+
+                                Contents Categories
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- DADOS DA VIAGEM -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#viagemCollapse">
+
+                    Dados da Viagem
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="viagemCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+                                <span class="text-warning fw-bold">
+
+                                    FD *
+
+                                </span>
+
+                                <small class="d-block text-light">
+
+                                    Flight/Date
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Voo e Data
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="fd"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: TP088 / 24JUN">
+
+                        </div>
+
+                        <div class="col-md-5 mb-3">
+
+                            <label class="form-label">
+
+                                <span class="text-warning fw-bold">
+
+                                    RT *
+
+                                </span>
+                                <small class="d-block text-light">
+
+                                    Full Passenger Route
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Rota Completa do Passageiro
+
+                                </small>
+
+                            </label>
+
+
+
+                            <input
+
+                                    id="rt"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: GRU/LIS/OPO">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        DB
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Destination Bag Tag
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Destino da Etiqueta
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="db"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: LIS">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        BR
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Bag Routing
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Roteamento da Bagagem
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="br"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: GRU/LIS">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        FL
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Frequent Flyer
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Passageiro Frequente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="fl"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: TP123456789">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TK
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Ticket Number
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Número do Bilhete
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="tk"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: 9571234567890">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        LA
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Language
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Idioma
+
+                                </small>
+
+                            </label>
+
+                            <select
+
+                                    id="la"
+
+                                    class="form-select">
+
+                                <option value=""></option>
+
+                                <option>PT</option>
+
+                                <option>EN</option>
+
+                                <option>ES</option>
+
+                                <option>FR</option>
+
+                                <option>DE</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PASSAGEIRO -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#passageiroCollapse">
+
+                    Passageiro
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="passageiroCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                <span class="text-warning fw-bold">
+
+                                    NM *
+
+                                </span>
+
+                                <small class="d-block text-light">
+
+                                    Full Name at Tag Number
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Nome Completo que esta na Etiqueta
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="nm"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: SILVA/JOAO">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        IT
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    ID Type
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Tipo de Documento
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="it"
+
+                                    class="form-control"
+
+                                    maxlength="2"
+
+                                    placeholder="SJ">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PP
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Passport
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Passaporte
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="pp"
+
+                                    class="form-control"
+
+                                    placeholder="YA123456">
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PS
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Passenger Nationality
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Nacionalidade do Passageiro
+
+                                </small>
+
+                            </label>
+
+                            <select
+
+                                    id="passenger_status"
+
+                                    class="form-select">
+
+                                <option value=""></option>
+
+                                <option>BRA</option>
+
+                                <option>ESP</option>
+
+                                <option>ARG</option>
+
+                                <option>USA</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        DV
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Date of Stay at Temporary Address
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Data de Permanencia no Endereço Temporário
+
+                                </small>
+
+                            </label>
+
+                            <select
+
+                                    id="dv"
+
+                                    class="form-select">
+
+                                <option value=""></option>
+
+                                <option>PASSENGER PICK UP</option>
+
+                                <option>HOTEL DELIVERY</option>
+
+                                <option>HOME DELIVERY</option>
+
+                                <option>AGENT DELIVERY</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTINUA NA PARTE 3 -->
+
+        <!-- CONTATOS -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#contatosCollapse">
+
+                    Contatos
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="contatosCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        CP
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Cell Phone Númber
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Número do Telefone Celular
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="cp"
+
+                                    class="form-control"
+
+                                    placeholder="+55 11 99999-9999">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PN
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Permanent Phone Number
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Número de Telefone Permanente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="pn"
+
+                                    class="form-control"
+
+                                    placeholder="+55 11 3333-4444">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TP
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Temporary Phone Númber
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Número de Telefone Temporário
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="tp"
+
+                                    class="form-control"
+
+                                    placeholder="+351 912345678">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        EA
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Email Address
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    E-mail
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="ea"
+
+                                    type="email"
+
+                                    class="form-control"
+
+                                    placeholder="nome@email.com">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ENDEREÇO PERMANENTE -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#permanenteCollapse">
+
+                    Endereço Permanente
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="permanenteCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PA
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Permanent Address
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Endereço Permanente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="pa"
+
+                                    class="form-control"
+
+                                    placeholder="Av. Paulista, 1000">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PC
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Permanent City
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Cidade Permanente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="pc"
+
+                                    class="form-control"
+
+                                    placeholder="São Paulo">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PS
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    State / Province
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Estado / Província Permanente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="ps"
+
+                                    class="form-control"
+
+                                    placeholder="SP">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PZ
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    ZIP Code
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    CEP do Endereço Permanente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="pz"
+
+                                    class="form-control"
+
+                                    placeholder="01310-100">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+         CO
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Country
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    País do Endereço Permanente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="co"
+
+                                    class="form-control"
+
+                                    placeholder="BR">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTINUA NA PARTE 4 -->
+        <!-- ENDEREÇO TEMPORÁRIO -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#temporarioCollapse">
+
+                    Endereço Temporário
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="temporarioCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TA
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Temporary Address
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Endereço Temporário
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="ta"
+
+                                    class="form-control"
+
+                                    placeholder="Hotel, Rua, Número">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TC
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Temporary City
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Cidade do Endereço Temporário
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="tc"
+
+                                    class="form-control"
+
+                                    placeholder="Lisboa">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TS
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    State / Province
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Estado / Província do Endereço Temporário
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="ts"
+
+                                    class="form-control"
+
+                                    placeholder="Lisboa">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TZ
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Temporary ZIP Code
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    CEP do Endereço Temporário
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="tz"
+
+                                    class="form-control"
+
+                                    placeholder="1000-001">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        TC
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Temporary Country
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    País do Endereço Temporário
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="tc"
+
+                                    class="form-control"
+
+                                    placeholder="PT">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- INFORMAÇÕES OPERACIONAIS -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#operacaoCollapse">
+
+                    Informações Operacionais
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="operacaoCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <div class="row">
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        RL
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Reason for Loss
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Motivo do Extravio
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="rl"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: MI">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        FS
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Fault Station
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Aeroporto Responsável
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="fs"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: LIS">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        AG
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Agent
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Agente
+
+                                </small>
+
+                            </label>
+
+                            <input
+
+                                    id="ag"
+
+                                    class="form-control"
+
+                                    placeholder="Ex.: MLEAL">
+
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+
+                            <label class="form-label">
+
+    <span class="text-warning fw-bold">
+
+        PR
+
+    </span>
+
+                                <small class="d-block text-light">
+
+                                    Priority
+
+                                </small>
+
+                                <small class="text-secondary">
+
+                                    Prioridade
+
+                                </small>
+
+                            </label>
+
+                            <select
+
+                                    id="pr"
+
+                                    class="form-select">
+
+                                <option>Normal</option>
+
+                                <option>Rush</option>
+
+                                <option>Priority</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTINUA NA PARTE 5 -->
+        <!-- OBSERVAÇÕES -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#observacoesCollapse">
+
+                    Observações
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="observacoesCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <textarea
+
+                            id="observacoes"
+
+                            rows="6"
+
+                            class="form-control"
+
+                            placeholder="Observações sobre a ocorrência..."></textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- HISTÓRICO -->
+
+        <div class="accordion-item bg-dark border-secondary">
+
+            <h2 class="accordion-header">
+
+                <button
+
+                        class="accordion-button collapsed bg-dark text-white"
+
+                        type="button"
+
+                        data-bs-toggle="collapse"
+
+                        data-bs-target="#historicoCollapse">
+
+                    Histórico da Ocorrência
+
+                </button>
+
+            </h2>
+
+            <div
+
+                    id="historicoCollapse"
+
+                    class="accordion-collapse collapse">
+
+                <div class="accordion-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table table-dark table-hover table-sm">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>Data/Hora</th>
+
+                                <th>Usuário</th>
+
+                                <th>Evento</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="historicoAhl">
+
+                            <tr>
+
+                                <td colspan="3"
+
+                                    class="text-center text-secondary">
+
+                                    Nenhum evento registrado.
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- WORLDTRACER -->
+
+    <div
+
+            id="wtView"
+
+            style="display:none;"
+
+            class="mt-4">
+
+        <div class="card border-dark shadow">
+
+            <div class="card-header bg-light">
+
+                <div class="d-flex justify-content-between">
+
+                    <strong>
+
+                        WORLDTRACER
+
+                    </strong>
+
+                    <span>
+
+                        AHL MASK
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="alert alert-secondary mb-0">
+
+                    A máscara WorldTracer será implementada na próxima etapa.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card mt-4 border-0 shadow-sm">
+
+        <div class="card-body">
+
+            <button
+
+                    id="btnSalvar"
+
+                    type="button"
+
+                    class="btn btn-success btn-lg w-100">
+
+                Criar AHL
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- LISTA -->
+
+    <div class="card bg-dark text-light mt-4">
+
+        <div class="card-body">
+
+            <section class="bg-dark border border-secondary rounded mt-3 p-3">
+                <h5 class="fw-bold mb-3">
+                    Histórico ROH / FOH desta AHL
+                </h5>
+
+                <div id="ahlFlowRequests"></div>
+            </section>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h4 class="mb-0">
+
+                    Processos AHL
+
+                </h4>
+
+
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-dark table-hover align-middle">
+
+                    <thead>
+                    <tr>
+                        <th>File Reference</th>
+                        <th>Status</th>
+                        <th>Matches</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody id="listaAhl">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade"
+     id="modalContents"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+
+        <div class="modal-content bg-dark text-light border-secondary">
+
+            <div class="modal-header border-secondary">
+
+                <h5 class="modal-title">
+                    Contents Categories
+                </h5>
+
+                <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div id="contadorCategorias"
+                     class="alert alert-secondary">
+
+                    Categorias selecionadas: 0 / 12
+
+                </div>
+
+                <div id="listaCategorias"
+                     class="row g-3">
+                </div>
+
+            </div>
+
+            <div class="modal-footer border-secondary">
+
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                        type="button"
+                        id="btnAplicarCategorias"
+                        class="btn btn-warning">
+
+                    Aplicar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="../js/supabase.js"></script>
+
+<script src="../js/view-manager.js"></script>
+
+<script src="../js/contents.js"></script>
+
+<script src="../js/match-engine.js"></script>
+
+<script src="../js/ohd-flow.js"></script>
+
+<script src="../js/ahl.js"></script>
+
+</body>
+
+</html>
+

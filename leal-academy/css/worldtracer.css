@@ -1,0 +1,433 @@
+/*==========================================================
+WORLDTRACER
+Airport Baggage Simulator
+==========================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    padding:20px;
+
+    background:#111827;
+
+    color:#f8f9fa;
+
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+
+    font-size:13px;
+
+}
+
+.wt-container{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    background:#1f2937;
+
+    border:1px solid #475569;
+
+    border-radius:8px;
+
+    padding:16px;
+
+    box-shadow:0 18px 45px rgba(2, 6, 23, .28);
+
+}
+
+.wt-header{
+
+    border-bottom:1px solid #94a3b8;
+
+    padding-bottom:15px;
+
+    margin-bottom:20px;
+
+}
+
+.wt-title{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+}
+
+.wt-subtitle{
+
+    color:#e5eefc;
+
+    font-size:14px;
+
+    margin-top:5px;
+
+}
+
+.wt-screen{
+
+    margin-top:10px;
+
+    font-size:28px;
+
+    color:#e5eefc;
+
+    font-weight:bold;
+
+}
+
+.wt-info{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+.wt-info label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#e5eefc;
+
+}
+
+.wt-info input{
+
+    width:100%;
+
+    background:#111827;
+
+    color:#e5eefc;
+
+    border:1px solid #cbd5e1;
+
+    padding:6px;
+
+}
+
+.wt-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.wt-row{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:flex-end;
+
+}
+
+.wt-field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+}
+
+.wt-field.small{
+
+    flex:.7;
+
+}
+
+.wt-field.medium{
+
+    flex:1.2;
+
+}
+
+.wt-field.large{
+
+    flex:2;
+
+}
+
+.wt-field.xl{
+
+    flex:3;
+
+}
+
+.wt-field.full{
+
+    width:100%;
+
+}
+
+.wt-field.tiny{
+
+    width:70px;
+
+    flex:none;
+
+}
+
+.wt-field label{
+
+    margin-bottom:4px;
+
+    color:#e5eefc;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+}
+
+.wt-field input{
+
+    background:#111827;
+
+    border:1px solid #cbd5e1;
+
+    color:#e5eefc;
+
+    padding:6px;
+
+    height:34px;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+}
+
+.wt-field textarea{
+
+    background:#111827;
+
+    border:1px solid #cbd5e1;
+
+    color:#e5eefc;
+
+    padding:8px;
+
+    resize:none;
+
+    font-family:inherit;
+
+}
+
+.wt-field input:focus,
+
+.wt-field textarea:focus{
+
+    outline:none;
+
+    border-color:#38bdf8;
+
+    box-shadow:0 0 0 3px rgba(56, 189, 248, .18);
+
+}
+
+.wt-footer{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:30px;
+
+    padding-top:15px;
+
+    border-top:1px solid #94a3b8;
+
+}
+
+.wt-footer button{
+
+    background:#111827;
+
+    color:#e5eefc;
+
+    border:1px solid #cbd5e1;
+
+    padding:10px 22px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:.2s ease;
+
+}
+
+.wt-footer button:hover{
+
+    background:#38bdf8;
+
+    color:#0f172a;
+
+}
+
+@media(max-width:1400px){
+
+    .wt-container{
+
+        width:98%;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .wt-row{
+
+        flex-wrap:wrap;
+
+    }
+
+    .wt-info{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .wt-footer{
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+.wt-contents-line{
+    display:flex;
+    align-items:stretch;
+    width:100%;
+}
+
+.wt-contents-line textarea{
+    flex:1;
+}
+
+.wt-contents-button{
+    width:120px;
+    background:#111827;
+    color:#e5eefc;
+    border:1px solid #cbd5e1;
+    font-family:inherit;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.wt-contents-button:hover{
+    background:#38bdf8;
+    color:#0f172a;
+}
+
+
+/*==========================================================
+WORLDTRACER FRIENDLY THEME
+==========================================================*/
+:root{
+    --wt-page:#eef5f8;
+    --wt-panel:#243447;
+    --wt-panel-soft:#2d4055;
+    --wt-ink:#f8fafc;
+    --wt-muted:#cbd5e1;
+    --wt-line:#8fb3c5;
+    --wt-field:#f8fafc;
+    --wt-field-text:#0f172a;
+    --wt-accent:#38bdf8;
+    --wt-action:#14b8a6;
+}
+
+body{
+    background:radial-gradient(circle at top left,#dff5f4 0,#eef5f8 34%,#dce8ef 100%);
+    color:var(--wt-ink);
+}
+
+.wt-container{
+    background:linear-gradient(180deg,var(--wt-panel),#1f2d3c);
+    border:1px solid rgba(143,179,197,.65);
+    border-radius:14px;
+    box-shadow:0 18px 50px rgba(15,23,42,.22);
+}
+
+.wt-header{
+    border-bottom:1px solid rgba(203,213,225,.85);
+}
+
+.wt-title,
+.wt-screen{
+    color:#ffffff;
+}
+
+.wt-subtitle,
+.wt-info label,
+.wt-field label{
+    color:#dff7fb;
+}
+
+.wt-info input,
+.wt-field input,
+.wt-field textarea{
+    background:var(--wt-field);
+    color:var(--wt-field-text);
+    border:1px solid #b6cad6;
+    border-radius:4px;
+}
+
+.wt-info input[readonly],
+.wt-field input[readonly],
+.wt-field textarea[readonly]{
+    background:#eaf2f6;
+    color:#1e293b;
+}
+
+.wt-field input:focus,
+.wt-field textarea:focus,
+.wt-info input:focus{
+    border-color:var(--wt-accent);
+    box-shadow:0 0 0 3px rgba(56,189,248,.22);
+}
+
+.wt-footer{
+    border-top:1px solid rgba(203,213,225,.85);
+}
+
+.wt-footer button,
+.wt-contents-button{
+    background:#0f766e;
+    color:#ffffff;
+    border:1px solid #5eead4;
+    border-radius:4px;
+}
+
+.wt-footer button:hover,
+.wt-contents-button:hover{
+    background:#ccfbf1;
+    color:#134e4a;
+}

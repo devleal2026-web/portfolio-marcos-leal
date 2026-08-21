@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Bagagem Danificada - DPR Damage">
+    <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#d97706"/>
+            <stop offset=".55" stop-color="#7c2d12"/>
+            <stop offset="1" stop-color="#0f172a"/>
+        </linearGradient>
+        <radialGradient id="light" cx=".25" cy=".2" r=".8">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+    <rect width="900" height="520" fill="url(#g)"/>
+    <rect width="900" height="520" fill="url(#light)"/>
+    <path d="M0 404c150-82 270-36 398-86 122-48 210-174 502-110v312H0z" fill="#f97316" opacity=".26"/>
+    <g transform="translate(44 34) scale(.84)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        
+            <path d="M196 54l34 98 103-30-66 84 72 88-111-34-68 92 5-110-104-42 107-28z" fill="#f8fafc" opacity=".95"/>
+            <path d="M198 88l-20 70 44 36-38 88" fill="none" stroke="#0f172a" stroke-width="12" opacity=".25"/>
+        
+    </g>
+    <text x="440" y="252" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="800">Bagagem Danificada</text>
+    <text x="442" y="306" fill="#dbeafe" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">DPR Damage</text>
+    <text x="442" y="360" fill="#f8fafc" opacity=".82" font-family="Segoe UI, Arial, sans-serif" font-size="18">Treinamento operacional de bagagem</text>
+</svg>

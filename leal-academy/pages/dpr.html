@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPR - Damage and Pilferage Report</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="bg-dark text-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary px-2">
+    <a class="navbar-brand fw-bold" href="../index.html">Airport Baggage Simulator</a>
+
+    <div class="ms-auto d-flex gap-3 small">
+        <a class="text-light text-decoration-none" href="../index.html">Dashboard</a>
+        <a class="text-info text-decoration-none fw-bold" href="academy-access.html">Cursos</a>
+        <a class="text-light text-decoration-none" href="checkin.html">Check-In</a>
+        <a class="text-light text-decoration-none" href="bhs.html">BHS</a>
+        <a class="text-light text-decoration-none" href="makeup.html">Make-Up</a>
+        <a class="text-light text-decoration-none" href="loading.html">Loading</a>
+        <a class="text-light text-decoration-none" href="ohd.html">OHD</a>
+        <a class="text-light text-decoration-none" href="ahl.html">AHL</a>
+        <a class="text-warning text-decoration-none fw-bold" href="dpr.html">DPR</a>
+    </div>
+</nav>
+
+<div class="container-fluid py-3">
+
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h2 class="fw-bold mb-1">DPR - Damage and Pilferage Report</h2>
+            <div class="text-secondary">Airport Baggage Simulator</div>
+        </div>
+
+        <div class="text-end">
+            <label class="form-label small fw-bold">Reference Number</label>
+            <input id="reference_number" class="form-control form-control-sm" readonly>
+        </div>
+    </div>
+
+    <div class="bg-secondary-subtle text-dark p-3 rounded mb-3">
+
+        <div class="d-flex justify-content-between align-items-center gap-3">
+
+            <input
+                    id="txtPesquisaDpr"
+                    class="form-control form-control-sm w-50"
+                    placeholder="Pesquisar por DPR, Tag, Nome ou Referência">
+
+            <div class="d-flex gap-2">
+
+                <button
+                        type="button"
+                        class="btn btn-light btn-sm">
+
+                    Interface Web
+
+                </button>
+
+                <button
+                        type="button"
+                        id="btnWorldTracer"
+                        class="btn btn-warning btn-sm">
+
+                    Máscara WorldTracer
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+                id="resultadoPesquisaDpr"
+                class="list-group mt-2"
+                style="display:none;">
+        </div>
+
+    </div>
+
+    <div class="accordion" id="dprAccordion">
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosBase">
+                    Dados Base
+                </button>
+            </h2>
+
+            <div id="dadosBase" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Station *</label>
+                            <select id="station" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Airline *</label>
+                            <select id="airline" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Status</label>
+                            <input id="status" class="form-control form-control-sm" value="ABERTO" readonly>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosBagagem">
+                    Dados da Bagagem
+                </button>
+            </h2>
+
+            <div id="dadosBagagem" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">TN *</label>
+                            <div class="text-secondary small">Tag Number</div>
+                            <input id="tn" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">CT</label>
+                            <div class="text-secondary small">Color/Type</div>
+                            <input id="ct" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">BI</label>
+                            <div class="text-secondary small">Brand</div>
+                            <input id="bi" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">BW</label>
+                            <div class="text-secondary small">Baggage Weight</div>
+                            <input id="bw" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#dadosOcorrencia">
+                    Dados da Ocorrência
+                </button>
+            </h2>
+
+            <div id="dadosOcorrencia" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">FD *</label>
+                            <input id="fd" class="form-control form-control-sm" placeholder="Ex.: LA1234/30JUN">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">RT *</label>
+                            <input id="rt" class="form-control form-control-sm" placeholder="Ex.: REC/GRU">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">RL *</label>
+                            <input id="rl" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">FS *</label>
+                            <input id="fs" class="form-control form-control-sm">
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">AG *</label>
+                            <input id="ag" class="form-control form-control-sm">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#passageiro">
+                    Passageiro
+                </button>
+            </h2>
+
+            <div id="passageiro" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label text-warning fw-bold">NM *</label>
+                            <input id="nm" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">IT</label>
+                            <input id="it" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">PP</label>
+                            <input id="pp" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">PS</label>
+                            <input id="ps" class="form-control form-control-sm">
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#contatos">
+                    Contatos
+                </button>
+            </h2>
+
+            <div id="contatos" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">CP *</label>
+                            <div class="text-secondary small">Celular</div>
+                            <input id="cp" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">PN</label>
+                            <div class="text-secondary small">Telefone</div>
+                            <input id="pn" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">TP</label>
+                            <div class="text-secondary small">Telefone Temporário</div>
+                            <input id="tp" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">EA *</label>
+                            <div class="text-secondary small">E-mail</div>
+                            <input id="ea" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#enderecoPermanente">
+                    Endereço Permanente
+                </button>
+            </h2>
+
+            <div id="enderecoPermanente" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label text-warning fw-bold">PA *</label>
+                            <input id="pa" class="form-control form-control-sm">
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">PZ</label>
+                            <input id="pz" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">CO *</label>
+                            <input id="co" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#enderecoTemporario">
+                    Endereço Temporário
+                </button>
+            </h2>
+
+            <div id="enderecoTemporario" class="accordion-collapse collapse">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label text-warning fw-bold">TA</label>
+                            <input id="ta" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">DV</label>
+                            <input id="dv" class="form-control form-control-sm">
+                        </div>
+
+                        
+
+
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">TZ</label>
+                            <input id="tz" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">TC</label>
+                            <input id="tco" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosDano">
+                    Dano / Violação
+                </button>
+            </h2>
+
+            <div id="dadosDano" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Elemento</label>
+                            <select id="damage_element" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Localização</label>
+                            <select id="damage_location" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Extensão do Dano</label>
+                            <select id="damage_extent" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">LP</label>
+                            <input id="lp" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">BD</label>
+                            <input id="bd" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">CD</label>
+                            <input id="cd" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">TD</label>
+                            <input id="td" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">RB</label>
+                            <input id="rb" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">CA</label>
+                            <input id="ca" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-warning fw-bold">FF</label>
+                            <input id="ff" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-warning fw-bold">Descrição do Dano</label>
+                            <textarea id="damage_description" rows="4" class="form-control form-control-sm"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-light rounded p-2 mt-3">
+        <button type="button" id="btnSalvar" class="btn btn-success w-100 fw-bold">
+            Criar DPR
+        </button>
+    </div>
+
+    <section class="bg-dark border border-secondary rounded mt-3 p-3">
+        <h5 class="fw-bold mb-3">Processos DPR</h5>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-sm table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>File Reference</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+
+                <tbody id="listaDpr"></tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="../js/supabase.js"></script>
+<script src="../js/dpr-codes.js"></script>
+<script src="../js/dpr.js"></script>
+
+</body>
+</html>
+
+
+

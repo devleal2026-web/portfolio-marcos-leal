@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AHL WorldTracer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="../../css/worldtracer.css">
+
+</head>
+
+<body>
+
+<div class="wt-container">
+
+    <!-- ===================================================== -->
+
+    <header class="wt-header">
+
+        <div class="wt-title">
+
+            AIRPORT BAGGAGE SIMULATOR
+
+        </div>
+
+        <div class="wt-subtitle">
+
+            WORLDTRACER MODE
+
+        </div>
+
+        <div class="wt-screen">
+
+            AHL
+
+        </div>
+
+    </header>
+
+    <!-- ===================================================== -->
+
+    <section class="wt-info">
+
+        <div>
+
+            <label>REFERENCE</label>
+
+            <input
+                    id="reference_number"
+                    readonly>
+
+        </div>
+
+        <div>
+
+            <label>STATUS</label>
+
+            <input
+                    id="status">
+
+        </div>
+
+        <div>
+
+            <label>DATE</label>
+
+            <input
+                    id="created_at"
+                    readonly>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================================== -->
+
+    <div class="wt-form">
+
+        <!-- LINHA 01 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field small">
+
+                <label>TN</label>
+
+                <input id="tn">
+
+            </div>
+
+            <div class="wt-field medium">
+
+                <label>CT</label>
+
+                <input id="ct">
+
+            </div>
+
+            <div class="wt-field medium">
+
+                <label>BI</label>
+
+                <input id="bi">
+
+            </div>
+
+            <div class="wt-field tiny">
+
+                <label>BW</label>
+
+                <input id="bw">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 02 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field">
+
+                <label>FD</label>
+
+                <input id="fd">
+
+            </div>
+
+            <div class="wt-field xl">
+
+                <label>RT</label>
+
+                <input id="rt">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>TK</label>
+
+                <input id="tk">
+
+            </div>
+
+            <div class="wt-field tiny">
+
+                <label>LA</label>
+
+                <input id="la">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 03 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field xl">
+
+                <label>FL</label>
+
+                <input id="fl">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 04 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field full">
+
+                <label>NM</label>
+
+                <input id="nm">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 05 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field tiny">
+
+                <label>IT</label>
+
+                <input id="it">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>PP</label>
+
+                <input id="pp">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>PS</label>
+
+                <input id="ps">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>DV</label>
+
+                <input id="dv">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 06 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field">
+
+                <label>CP</label>
+
+                <input id="cp">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>PN</label>
+
+                <input id="pn">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>TP</label>
+
+                <input id="tp">
+
+            </div>
+
+            <div class="wt-field xl">
+
+                <label>EA</label>
+
+                <input id="ea">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 07 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field full">
+
+                <label>PA</label>
+
+                <input id="pa">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 08 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field">
+
+                <label>PC</label>
+
+                <input id="pc">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>PS</label>
+
+                <input id="ps">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>PZ</label>
+
+                <input id="pz">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>CO</label>
+
+                <input id="co">
+
+            </div>
+
+        </div>
+        <!-- LINHA 09 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field full">
+
+                <label>TA</label>
+
+                <input id="ta">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 10 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field">
+
+                <label>TC</label>
+
+                <input id="tc">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>TS</label>
+
+                <input id="ts">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>TZ</label>
+
+                <input id="tz">
+
+            </div>
+
+            <div class="wt-field">
+
+                <label>TC</label>
+
+                <input id="tc">
+
+            </div>
+
+        </div>
+
+        <!-- LINHA 11 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field small">
+
+                <label>RL</label>
+
+                <input id="rl">
+
+            </div>
+
+            <div class="wt-field small">
+
+                <label>FS</label>
+
+                <input id="fs">
+
+            </div>
+
+            <div class="wt-field medium">
+
+                <label>AG</label>
+
+                <input id="ag">
+
+            </div>
+
+            <div class="wt-field medium">
+
+                <label>PR</label>
+
+                <input id="pr">
+
+            </div>
+
+        </div>
+
+        <div class="wt-row">
+
+            <div class="wt-field full">
+                <label>CC</label>
+
+                <div class="wt-contents-line">
+                    <textarea id="cc" rows="4"></textarea>
+
+                    <button
+                            type="button"
+                            id="btnContents"
+                            class="wt-contents-button">
+
+                        CONTENTS
+
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LINHA 12 -->
+
+        <div class="wt-row">
+
+            <div class="wt-field full">
+
+                <label>DESCRIPTION</label>
+
+                <textarea
+
+                        id="description"
+
+                        rows="4">
+
+                </textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+
+    <footer class="wt-footer">
+
+        <button
+                id="btnSave">
+
+            F1 SAVE
+
+        </button>
+
+        <button
+                id="btnClear">
+
+            F2 CLEAR
+
+        </button>
+
+        <button
+                id="btnPrint">
+
+            F3 PRINT
+
+        </button>
+
+        <button
+                id="btnHistory">
+
+            F4 HISTORY
+
+        </button>
+
+        <button
+                id="btnClose">
+
+            F10 EXIT
+
+        </button>
+
+    </footer>
+
+</div>
+
+<div class="modal fade"
+     id="modalContents"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+
+        <div class="modal-content bg-dark text-light border-secondary">
+
+            <div class="modal-header border-secondary">
+
+                <h5 class="modal-title">
+                    Contents Categories
+                </h5>
+
+                <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div id="contadorCategorias"
+                     class="alert alert-secondary">
+
+                    Categorias selecionadas: 0 / 12
+
+                </div>
+
+                <div id="listaCategorias"
+                     class="row g-3">
+                </div>
+
+            </div>
+
+            <div class="modal-footer border-secondary">
+
+                <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                        type="button"
+                        id="btnAplicarCategorias"
+                        class="btn btn-warning">
+
+                    Aplicar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="../../js/supabase.js"></script>
+
+<script src="../../js/contents.js"></script>
+
+<script src="../../js/match-engine.js"></script>
+
+<script src="../../js/worldtracer.js"></script>
+
+</body>
+
+</html>

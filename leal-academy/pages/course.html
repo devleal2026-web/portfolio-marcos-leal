@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso - Airport Baggage Academy</title>
+    <link rel="stylesheet" href="../css/academy.css">
+</head>
+<body data-academy-protected="true">
+
+<div class="course-page-shell">
+    <header class="course-page-header">
+        <a class="back-link" href="academy.html">Voltar aos cursos</a>
+        <img class="course-header-logo" src="../assets/brand/leal-academy-logo.png" alt="Leal Academy">
+        <div>
+            <p id="courseEyebrow" class="academy-kicker"></p>
+            <h1 id="courseTitle"></h1>
+            <p id="courseSummary"></p>
+        </div>
+        <div class="course-meta-row">
+            <span id="courseDuration"></span>
+            <span id="courseLevel"></span>
+            <span id="courseProgress"></span>
+        </div>
+    </header>
+
+    <section id="courseIntroVideo"></section>
+
+    <section>
+        <h2 class="section-title">Trilhas do curso</h2>
+        <div id="trackGrid" class="track-grid"></div>
+    </section>
+
+    <section class="course-content-layout">
+        <article class="course-content-panel">
+            <div id="lessonPanel"></div>
+        </article>
+
+        <aside class="course-side-panel">
+            <h3>Laboratórios</h3>
+            <div id="labLinks" class="lab-links"></div>
+
+            <h3>Avaliação</h3>
+            <div id="assessmentPanel"></div>
+        </aside>
+    </section>
+
+    <section class="panel full-material-panel">
+        <h3>Material completo do curso</h3>
+        <div id="fullMaterialPanel"></div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/academy-auth.js"></script>
+<script src="../js/academy-materials.js"></script>
+<script src="../js/academy-data.js"></script>
+<script src="../js/academy-supabase.js"></script>
+<script src="../js/academy.js"></script>
+
+</body>
+</html>
+
+
+
+
+

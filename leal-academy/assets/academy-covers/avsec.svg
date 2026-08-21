@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Seguranca da Aviacao Civil - AVSEC">
+    <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#1d4ed8"/>
+            <stop offset=".55" stop-color="#172554"/>
+            <stop offset="1" stop-color="#0f172a"/>
+        </linearGradient>
+        <radialGradient id="light" cx=".25" cy=".2" r=".8">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+    </defs>
+    <rect width="900" height="520" fill="url(#g)"/>
+    <rect width="900" height="520" fill="url(#light)"/>
+    <path d="M0 404c150-82 270-36 398-86 122-48 210-174 502-110v312H0z" fill="#60a5fa" opacity=".26"/>
+    <g transform="translate(44 34) scale(.84)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        
+            <path d="M190 62l128 44v90c0 92-49 158-128 202C111 354 62 288 62 196v-90z" fill="#f8fafc" opacity=".96"/>
+            <path d="M124 214l44 44 94-110" fill="none" stroke="#0f172a" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity=".28"/>
+        
+    </g>
+    <text x="440" y="252" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="800">Seguranca da Aviacao Civil</text>
+    <text x="442" y="306" fill="#dbeafe" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">AVSEC</text>
+    <text x="442" y="360" fill="#f8fafc" opacity=".82" font-family="Segoe UI, Arial, sans-serif" font-size="18">Treinamento operacional de bagagem</text>
+</svg>
