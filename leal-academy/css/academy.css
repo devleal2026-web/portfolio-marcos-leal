@@ -111,6 +111,37 @@ body{
     font-size:24px;
 }
 
+.academy-filter-panel{
+    max-width:980px;
+    margin:0 auto 26px;
+    display:grid;
+    gap:8px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:0 10px 26px rgba(15,23,42,.07);
+    padding:18px;
+}
+
+.academy-filter-panel label{
+    color:#166534;
+    font-weight:900;
+}
+
+.academy-filter-panel input{
+    width:100%;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    color:var(--ink);
+    font:inherit;
+    padding:13px 14px;
+}
+
+.academy-filter-panel input:focus{
+    outline:3px solid rgba(37,99,235,.15);
+    border-color:#2563eb;
+}
+
 .academy-counts{
     min-width:150px;
     text-align:center;
@@ -130,6 +161,23 @@ body{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
     gap:24px;
+}
+
+.academy-empty-state{
+    grid-column:1/-1;
+    background:#fff;
+    border:1px dashed #cbd5e1;
+    border-radius:14px;
+    color:var(--muted);
+    padding:28px;
+    text-align:center;
+}
+
+.academy-empty-state strong{
+    display:block;
+    color:var(--ink);
+    font-size:20px;
+    margin-bottom:6px;
 }
 
 .academy-course-card{
@@ -319,6 +367,46 @@ body{
     font-weight:800;
 }
 
+.course-guide{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:0 10px 26px rgba(15,23,42,.07);
+    margin-bottom:22px;
+    padding:18px;
+}
+
+.course-guide span{
+    color:#166534;
+    display:block;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.08em;
+    margin-bottom:5px;
+    text-transform:uppercase;
+}
+
+.course-guide strong{
+    display:block;
+    font-size:20px;
+}
+
+.course-guide p{
+    color:var(--muted);
+    margin:6px 0 0;
+}
+
+.course-guide-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
 .section-title{
     margin:8px 0 16px;
     font-size:24px;
@@ -395,6 +483,8 @@ body{
 .course-side-panel{
     display:grid;
     gap:14px;
+    position:sticky;
+    top:18px;
 }
 
 .course-side-panel h3,
@@ -465,6 +555,74 @@ body{
 .secondary-action{
     background:#e8eff3;
     color:#0f172a;
+}
+
+.primary-action:disabled,
+.secondary-action:disabled{
+    cursor:not-allowed;
+    opacity:.52;
+}
+
+.course-progress-bar{
+    height:10px;
+    background:#e2e8f0;
+    border-radius:999px;
+    overflow:hidden;
+}
+
+.course-progress-bar span{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,#16803d,#22c55e);
+    border-radius:999px;
+}
+
+.course-mini-tracks{
+    display:grid;
+    gap:8px;
+}
+
+.course-mini-tracks button{
+    display:grid;
+    grid-template-columns:34px minmax(0,1fr);
+    gap:9px;
+    align-items:center;
+    width:100%;
+    border:1px solid #dbe6ee;
+    border-radius:10px;
+    background:#f8fafc;
+    color:var(--ink);
+    cursor:pointer;
+    padding:10px;
+    text-align:left;
+}
+
+.course-mini-tracks button:hover,
+.course-mini-tracks button.active{
+    border-color:#15803d;
+    background:#f0fdf4;
+}
+
+.course-mini-tracks button.completed span{
+    background:#16803d;
+    color:#fff;
+}
+
+.course-mini-tracks span{
+    display:grid;
+    place-items:center;
+    width:34px;
+    height:34px;
+    background:#e2e8f0;
+    border-radius:999px;
+    color:#166534;
+    font-size:12px;
+    font-weight:900;
+}
+
+.course-mini-tracks strong{
+    font-size:13px;
+    line-height:1.25;
 }
 
 .lab-links{
@@ -622,6 +780,10 @@ body{
     .course-content-layout{
         grid-template-columns:1fr;
     }
+
+    .course-side-panel{
+        position:static;
+    }
 }
 
 @media(max-width:720px){
@@ -632,8 +794,21 @@ body{
 
     .academy-home-header,
     .course-page-header,
-    .academy-welcome-card{
+    .academy-welcome-card,
+    .course-guide{
         flex-direction:column;
+    }
+
+    .course-guide{
+        align-items:stretch;
+    }
+
+    .course-guide-actions{
+        justify-content:stretch;
+    }
+
+    .course-guide-actions button{
+        flex:1;
     }
 
     .academy-counts{

@@ -23,7 +23,8 @@ const state = {
     selectedCourseId: (academyCourses[0] || {}).id || "",
     selectedModuleIndex: 0,
     quizAnswers: {},
-    assessmentOpen: {}
+    assessmentOpen: {},
+    courseSearch: ""
 };
 
 const storageKey = "airportBaggageAcademyProgress";
@@ -90,6 +91,14 @@ function courseProgress(course){
     const progress = readProgress();
     const done = progress[course.id] || [];
     return Math.round((done.length / modules.length) * 100);
+}
+
+function normalizeSearch(value){
+    return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
 }
 
 function selectedCourse(){
@@ -565,6 +574,7 @@ function renderHome(){
     const grid = document.getElementById("courseGrid");
     const count = document.getElementById("homeCourseCount");
     const welcomeTitle = document.getElementById("academyWelcomeTitle");
+    const search = document.getElementById("courseSearch");
 
     if(!grid){
         return;
@@ -574,9 +584,28 @@ function renderHome(){
         welcomeTitle.textContent = `Olá, ${academyCurrentUserName()}. Escolha seu curso.`;
     }
 
-    count.textContent = academyCourses.length;
+    if(search && search.value !== state.courseSearch){
+        search.value = state.courseSearch;
+    }
 
-    grid.innerHTML = academyCourses.map(course => {
+    const query = normalizeSearch(state.courseSearch);
+    const visibleCourses = query
+        ? academyCourses.filter(course => {
+            const haystack = normalizeSearch([
+                course.title,
+                course.eyebrow,
+                course.summary,
+                course.level,
+                ...courseModules(course).map(module => module.title)
+            ].join(" "));
+
+            return haystack.includes(query);
+        })
+        : academyCourses;
+
+    count.textContent = visibleCourses.length;
+
+    grid.innerHTML = visibleCourses.map(course => {
         const visual = courseVisual(course);
         const percent = courseProgress(course);
 
@@ -600,7 +629,19 @@ function renderHome(){
                 </div>
             </a>
         `;
-    }).join("");
+    }).join("") || `
+        <article class="academy-empty-state">
+            <strong>Nenhum curso encontrado.</strong>
+            <p>Confira o termo digitado ou pesquise por uma sigla operacional, como AHL, OHD, DPR, RFP, RL ou AVSEC.</p>
+        </article>
+    `;
+
+    if(search){
+        search.oninput = () => {
+            state.courseSearch = search.value;
+            renderHome();
+        };
+    }
 }
 
 function initializeCourseFromUrl(){
@@ -689,6 +730,87 @@ function renderTracks(course){
     });
 }
 
+function renderCourseGuide(course){
+    const guide = document.getElementById("courseGuide");
+
+    if(!guide){
+        return;
+    }
+
+    const modules = courseModules(course);
+    const progress = readProgress();
+    const done = progress[course.id] || [];
+    const current = state.selectedModuleIndex + 1;
+    const nextPending = modules.findIndex((_, index) => !done.includes(index));
+
+    guide.innerHTML = `
+        <div>
+            <span>Voce esta na trilha ${current} de ${modules.length}</span>
+            <strong>${escapeHtml(currentModule(course).title)}</strong>
+            <p>${done.length} de ${modules.length} trilhas concluidas.</p>
+        </div>
+
+        <div class="course-guide-actions">
+            <button class="secondary-action" id="goFirstPending" type="button">
+                ${nextPending >= 0 ? "Continuar pendente" : "Revisar curso"}
+            </button>
+            <button class="primary-action" id="goAssessment" type="button">
+                Ir para avaliacao
+            </button>
+        </div>
+    `;
+
+    document.getElementById("goFirstPending")?.addEventListener("click", () => {
+        state.selectedModuleIndex = nextPending >= 0 ? nextPending : 0;
+        renderCoursePage();
+        document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
+    });
+
+    document.getElementById("goAssessment")?.addEventListener("click", () => {
+        document.getElementById("assessmentPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
+    });
+}
+
+function renderCourseNavigator(course){
+    const navigator = document.getElementById("courseNavigator");
+
+    if(!navigator){
+        return;
+    }
+
+    const modules = courseModules(course);
+    const progress = readProgress();
+    const done = progress[course.id] || [];
+
+    navigator.innerHTML = `
+        <h3>Navegacao do curso</h3>
+        <div class="course-progress-bar" aria-label="Progresso do curso">
+            <span style="width:${courseProgress(course)}%"></span>
+        </div>
+        <div class="course-mini-tracks">
+            ${modules.map((module, index) => {
+                const active = index === state.selectedModuleIndex ? "active" : "";
+                const completed = done.includes(index) ? "completed" : "";
+
+                return `
+                    <button class="${active} ${completed}" type="button" data-side-module="${index}">
+                        <span>${String(index + 1).padStart(2, "0")}</span>
+                        <strong>${escapeHtml(module.title)}</strong>
+                    </button>
+                `;
+            }).join("")}
+        </div>
+    `;
+
+    navigator.querySelectorAll("[data-side-module]").forEach(button => {
+        button.addEventListener("click", () => {
+            state.selectedModuleIndex = Number(button.dataset.sideModule);
+            renderCoursePage();
+            document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
+        });
+    });
+}
+
 function fullLessonContent(course, moduleIndex){
     const contentSource = window.academyCourseContent || {};
     const courseContent = contentSource[course.id];
@@ -704,6 +826,9 @@ function renderLesson(course){
     const panel = document.getElementById("lessonPanel");
     const lessonContent = fullLessonContent(course, state.selectedModuleIndex);
     const contentLabel = "Conteudo da trilha";
+    const modules = courseModules(course);
+    const hasPrevious = state.selectedModuleIndex > 0;
+    const hasNext = state.selectedModuleIndex < modules.length - 1;
 
     panel.innerHTML = `
         <div class="lesson-topline">
@@ -715,10 +840,22 @@ function renderLesson(course){
         <div class="lesson-content-label">${contentLabel}</div>
         <article class="lesson-full-content">${formatLessonContent(lessonContent)}</article>
         <div class="lesson-actions">
+            <button class="secondary-action" id="previousLesson" type="button" ${hasPrevious ? "" : "disabled"}>Trilha anterior</button>
             <button class="primary-action" id="completeLesson" type="button">Marcar como concluida</button>
+            <button class="primary-action" id="nextLesson" type="button" ${hasNext ? "" : "disabled"}>Proxima trilha</button>
             <button class="secondary-action" id="resetCourse" type="button">Reiniciar progresso</button>
         </div>
     `;
+
+    document.getElementById("previousLesson")?.addEventListener("click", () => {
+        if(!hasPrevious){
+            return;
+        }
+
+        state.selectedModuleIndex -= 1;
+        renderCoursePage();
+        document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
+    });
 
     document.getElementById("completeLesson").addEventListener("click", () => {
         const progress = readProgress();
@@ -726,7 +863,23 @@ function renderLesson(course){
         done.add(state.selectedModuleIndex);
         progress[course.id] = [...done].sort((a, b) => a - b);
         saveProgress(progress);
+
+        if(hasNext){
+            state.selectedModuleIndex += 1;
+        }
+
         renderCoursePage();
+        document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
+    });
+
+    document.getElementById("nextLesson")?.addEventListener("click", () => {
+        if(!hasNext){
+            return;
+        }
+
+        state.selectedModuleIndex += 1;
+        renderCoursePage();
+        document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
     });
 
     document.getElementById("resetCourse").addEventListener("click", () => {
@@ -932,8 +1085,10 @@ function renderCoursePage(){
         return;
     }
     renderCourseHeader(course);
+    renderCourseGuide(course);
     renderTracks(course);
     renderLesson(course);
+    renderCourseNavigator(course);
     renderLabs(course);
     renderAssessment(course);
 }
