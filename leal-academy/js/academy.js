@@ -30,10 +30,15 @@ const storageKey = "airportBaggageAcademyProgress";
 const quizStorageKey = "airportBaggageAcademyQuiz";
 
 const courseVisuals = {
+    "fundamentos": { image: "linear-gradient(135deg, rgba(21,94,117,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "bagagem-extraviada": { image: "linear-gradient(135deg, rgba(16,185,129,.92), rgba(14,116,144,.88)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "objetos-esquecidos": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(8,145,178,.84)), url('https://images.unsplash.com/photo-1517404215738-15263e9f9178?auto=format&fit=crop&w=900&q=80')", icon: "tag" },
     "avsec": { image: "linear-gradient(135deg, rgba(30,64,175,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
     "manuseio-bagagem": { image: "linear-gradient(135deg, rgba(249,115,22,.9), rgba(127,29,29,.82)), url('https://images.unsplash.com/photo-1529074963764-98f45c47344b?auto=format&fit=crop&w=900&q=80')", icon: "vest" },
+    "ahl": { image: "linear-gradient(135deg, rgba(16,185,129,.92), rgba(14,116,144,.88)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "case" },
+    "ohd": { image: "linear-gradient(135deg, rgba(14,165,233,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "tag" },
+    "matches": { image: "linear-gradient(135deg, rgba(6,95,70,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80')", icon: "route" },
+    "dpr": { image: "linear-gradient(135deg, rgba(245,158,11,.94), rgba(127,29,29,.86)), url('https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?auto=format&fit=crop&w=900&q=80')", icon: "damage" },
     "worldtracer-completo": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(88,28,135,.84)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
     "atendimento-cliente-aviacao": { image: "linear-gradient(135deg, rgba(20,184,166,.9), rgba(21,94,117,.84)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')", icon: "person" },
     "boas-praticas-atendimento": { image: "linear-gradient(135deg, rgba(34,197,94,.9), rgba(21,128,61,.84)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80')", icon: "check" },
@@ -114,10 +119,7 @@ function courseVisual(course){
         icon: "case"
     };
 
-    return {
-        ...visual,
-        image: `linear-gradient(135deg, rgba(7,20,33,.10), rgba(7,20,33,.18)), url('../assets/academy-covers/${course.id}.svg')`
-    };
+    return visual;
 }
 
 function iconSvg(type){
@@ -461,9 +463,11 @@ function currentModule(course){
 }
 
 function lessonMedia(course, module, moduleIndex){
+    const visual = courseVisual(course);
+
     return `
         <section class="lesson-media-card">
-            <div class="lesson-media-image lesson-media-image-local" style="background-image:linear-gradient(135deg, rgba(7,20,33,.12), rgba(7,20,33,.26)), url('../assets/academy-covers/${course.id}.svg')">
+            <div class="lesson-media-image" style="background-image:${visual.image}">
                 <div>
                     <span>Trilha ${String(moduleIndex + 1).padStart(2, "0")}</span>
                     <strong>${escapeHtml(module.title)}</strong>
