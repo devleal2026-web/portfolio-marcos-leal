@@ -685,10 +685,20 @@ function renderTracks(course){
     });
 }
 
+function fullLessonContent(course, moduleIndex){
+    const contentSource = window.academyCourseContent || {};
+    const courseContent = contentSource[course.id];
+    const lessonContent = Array.isArray(courseContent)
+        ? courseContent[moduleIndex]
+        : "";
+
+    return lessonContent || currentModule(course).content;
+}
+
 function renderLesson(course){
     const module = currentModule(course);
     const panel = document.getElementById("lessonPanel");
-    const lessonContent = module.content;
+    const lessonContent = fullLessonContent(course, state.selectedModuleIndex);
     const contentLabel = "Conteudo da trilha";
 
     panel.innerHTML = `
