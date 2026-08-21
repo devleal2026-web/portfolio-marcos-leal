@@ -48,7 +48,8 @@ const courseVisuals = {
     "tratativa-rl-mct": { image: "linear-gradient(135deg, rgba(124,58,237,.9), rgba(49,46,129,.84)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80')", icon: "route" },
     "bagagem-sem-etiqueta-ohd": { image: "linear-gradient(135deg, rgba(202,138,4,.92), rgba(113,63,18,.84)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "tag" },
     "lideranca-bagagem-extraviada": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(12,74,110,.84)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" },
-    "atendimento-pcd": { image: "linear-gradient(135deg, rgba(8,145,178,.92), rgba(30,64,175,.84)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80')", icon: "access" }
+    "atendimento-pcd": { image: "linear-gradient(135deg, rgba(8,145,178,.92), rgba(30,64,175,.84)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80')", icon: "access" },
+    "interpretacao-etiqueta-bagagem": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "barcode" }
 };
 const lessonMediaProfiles = {};
 const courseIntroVideos = {};
@@ -144,7 +145,8 @@ function iconSvg(type){
         damage: '<svg viewBox="0 0 64 64"><path d="M32 8 38 25 56 20 43 34 53 50 34 43 22 56 24 38 8 31 26 26z"/></svg>',
         route: '<svg viewBox="0 0 64 64"><circle cx="16" cy="48" r="6"/><circle cx="48" cy="16" r="6"/><path d="M20 44c12-18 24 0 28-22"/></svg>',
         leader: '<svg viewBox="0 0 64 64"><circle cx="32" cy="16" r="7"/><circle cx="16" cy="30" r="6"/><circle cx="48" cy="30" r="6"/><path d="M22 54c2-11 7-17 10-17s8 6 10 17M6 54c1-9 5-14 10-14M58 54c-1-9-5-14-10-14"/></svg>',
-        access: '<svg viewBox="0 0 64 64"><circle cx="32" cy="12" r="5"/><path d="M18 24h28M32 18v18l12 18M32 36 20 54"/><circle cx="32" cy="44" r="14"/></svg>'
+        access: '<svg viewBox="0 0 64 64"><circle cx="32" cy="12" r="5"/><path d="M18 24h28M32 18v18l12 18M32 36 20 54"/><circle cx="32" cy="44" r="14"/></svg>',
+        barcode: '<svg viewBox="0 0 64 64"><rect x="10" y="14" width="44" height="36" rx="4"/><path d="M17 22v20M23 22v20M30 22v20M39 22v20M46 22v20M34 22v20"/></svg>'
     };
 
     return icons[type] || icons.case;

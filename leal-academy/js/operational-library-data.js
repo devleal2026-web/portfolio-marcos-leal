@@ -1,4 +1,4 @@
-const manualWfsData = [
+const operationalLibraryData = [
     {
         categoria:"Atendimento",
         titulo:"Postura no atendimento",

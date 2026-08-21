@@ -5,7 +5,7 @@ const search = document.getElementById("manualSearch");
 let categoriaAtual = "Todos";
 
 function categoriasDisponiveis(){
-    return ["Todos", ...new Set(manualWfsData.map(item => item.categoria))];
+    return ["Todos", ...new Set(operationalLibraryData.map(item => item.categoria))];
 }
 
 function criarMenu(){
@@ -41,7 +41,7 @@ function normalizar(texto){
 function filtrarDados(){
     const termo = normalizar(search.value.trim());
 
-    return manualWfsData.filter(item => {
+    return operationalLibraryData.filter(item => {
         const dentroCategoria =
             categoriaAtual === "Todos" ||
             item.categoria === categoriaAtual;
