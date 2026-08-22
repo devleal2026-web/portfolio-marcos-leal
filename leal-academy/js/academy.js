@@ -1588,6 +1588,11 @@ function certificateHtml(certificate, course){
     });
     const certificatePercent = certificatePercentValue(certificate);
     const certificateGrade = certificateGradeValue(certificate);
+    const studentName = applyPortugueseAccents(certificate.studentName || "Aluno Leal Academy");
+    const courseTitle = applyPortugueseAccents(certificate.courseTitle || course?.title || "Curso Leal Academy");
+    const issuedDateText = applyPortugueseAccents(issuedDate);
+    const certificateCode = applyPortugueseAccents(certificate.id || "");
+    const studentEmail = certificate.studentEmail || "E-mail não informado";
 
     return `
         <article class="certificate-document">
@@ -1601,11 +1606,11 @@ function certificateHtml(certificate, course){
                 </header>
 
                 <section class="certificate-body">
-                    <span class="certificate-kicker">Treinamento operacional em aviação civil</span>
-                    <h1>${escapeHtml(certificate.studentName)}</h1>
+                    <span class="certificate-kicker">Treinamento Operacional em Aviação Civil</span>
+                    <h1>${escapeHtml(studentName)}</h1>
                     <p>
                         concluiu com aproveitamento o curso
-                        <strong>${escapeHtml(certificate.courseTitle || course?.title || "Curso Leal Academy")}</strong>,
+                        <strong>${escapeHtml(courseTitle)}</strong>,
                         obtendo nota final <strong>${escapeHtml(certificateGrade)}</strong>
                         (${certificatePercent}% - ${certificate.correct}/${certificate.total} acertos).
                     </p>
@@ -1614,17 +1619,17 @@ function certificateHtml(certificate, course){
                 <footer class="certificate-footer">
                     <div>
                         <span>Emitido em</span>
-                        <strong>${issuedDate}</strong>
+                        <strong>${escapeHtml(issuedDateText)}</strong>
                     </div>
 
                     <div>
                         <span>Código</span>
-                        <strong>${escapeHtml(certificate.id)}</strong>
+                        <strong>${escapeHtml(certificateCode)}</strong>
                     </div>
 
                     <div>
                         <span>Aluno</span>
-                        <strong>${escapeHtml(certificate.studentEmail || "E-mail não informado")}</strong>
+                        <strong>${escapeHtml(studentEmail)}</strong>
                     </div>
                 </footer>
 
@@ -1642,13 +1647,14 @@ function certificateDownloadHtml(certificate, course){
     const logoUrl = new URL("../assets/brand/leal-academy-logo.png", window.location.href).href;
     const documentHtml = certificateHtml(certificate, course)
         .replace("../assets/brand/leal-academy-logo.png", logoUrl);
+    const pageTitle = applyPortugueseAccents(certificate.courseTitle || course?.title || "Certificado");
 
     return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${escapeHtml(certificate.courseTitle)} - Certificado Leal Academy</title>
+    <title>${escapeHtml(pageTitle)} - Certificado Leal Academy</title>
     <style>
         *{box-sizing:border-box}
         body{margin:0;padding:28px;background:#e6eef4;color:#0f172a;font-family:Arial,Helvetica,sans-serif}
