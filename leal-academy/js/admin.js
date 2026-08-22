@@ -8,6 +8,26 @@ Private access, metrics and dashboards
 const AcademyAdmin = (() => {
     let dashboardRows = [];
 
+    function byId(id){
+        return document.getElementById(id);
+    }
+
+    function setHtml(id, html){
+        const element = byId(id);
+
+        if(element){
+            element.innerHTML = html;
+        }
+    }
+
+    function setText(id, text){
+        const element = byId(id);
+
+        if(element){
+            element.textContent = text;
+        }
+    }
+
     function clean(value){
         return String(value ?? "").trim();
     }
@@ -320,31 +340,25 @@ const AcademyAdmin = (() => {
         const completedCourses = data.progress.filter(item => Number(item.progress_percent) >= 100).length;
         const approvedAttempts = data.attempts.filter(item => item.approved).length;
 
-        document.getElementById("adminMetrics").innerHTML = `
+        setHtml("adminMetrics", `
             ${metricCard("Usuários", activeUsers, "contas registradas")}
             ${metricCard("Acessos", accessTotal || data.events.length, "entradas na plataforma")}
             ${metricCard("Cursos iniciados", startedCourses, "participações")}
             ${metricCard("Cursos concluídos", completedCourses, "100% das trilhas")}
             ${metricCard("Aprovações", approvedAttempts, "avaliações aprovadas")}
             ${metricCard("Certificados", data.certificates.length, "emitidos")}
-        `;
+        `);
 
-        const accountsCount = document.getElementById("adminAccountsCount");
-        const accountsPanel = document.getElementById("adminAccountsPanel");
+        setHtml("adminAccessByAccountTable", renderAccessByAccountTable(userRows, data.events));
+        setHtml("adminAccountCourseTable", renderAccountCourseTable(userRows));
 
-        if(accountsCount){
-            accountsCount.textContent = `${userRows.length} contas`;
-        }
-
-        if(accountsPanel){
-            accountsPanel.innerHTML = renderAccountCards(userRows);
-        }
-
-        document.getElementById("adminUsersCount").textContent = `${userRows.length} registros`;
-        document.getElementById("adminUsersTable").innerHTML = renderUsersSummaryTable(userRows);
-        document.getElementById("adminCoursesTable").innerHTML = renderCoursesTable(data);
-        document.getElementById("adminAttemptsTable").innerHTML = renderAttemptsTable(data.attempts);
-        document.getElementById("adminCertificatesTable").innerHTML = renderCertificatesTable(data.certificates);
+        setText("adminAccountsCount", `${userRows.length} contas`);
+        setHtml("adminAccountsPanel", renderAccountCards(userRows));
+        setText("adminUsersCount", `${userRows.length} registros`);
+        setHtml("adminUsersTable", renderUsersSummaryTable(userRows));
+        setHtml("adminCoursesTable", renderCoursesTable(data));
+        setHtml("adminAttemptsTable", renderAttemptsTable(data.attempts));
+        setHtml("adminCertificatesTable", renderCertificatesTable(data.certificates));
     }
 
     function metricCard(label, value, hint){
@@ -395,6 +409,91 @@ const AcademyAdmin = (() => {
                 `).join("")}
             </div>
         `;
+    }
+
+    function renderAccessByAccountTable(rows, events){
+        if(rows.length === 0){
+            return `<div class="academy-admin-empty">Nenhum acesso registrado ainda.</div>`;
+        }
+
+        const eventCounts = new Map();
+        events.forEach(event => {
+            const email = normalizeEmail(event.email);
+
+            if(email){
+                eventCounts.set(email, (eventCounts.get(email) || 0) + 1);
+            }
+        });
+
+        return table([
+            "Conta de e-mail",
+            "Nome",
+            "Total de acessos",
+            "Eventos registrados",
+            "Último acesso"
+        ], rows.map(row => [
+            row.email,
+            row.name,
+            row.accessCount,
+            eventCounts.get(row.email) || 0,
+            formatDate(row.lastAccess)
+        ]));
+    }
+
+    function renderAccountCourseTable(rows){
+        const courseRows = [];
+
+        rows.forEach(user => {
+            if(!user.courseList || user.courseList.length === 0){
+                courseRows.push([
+                    user.email,
+                    user.name,
+                    "Nenhum curso iniciado",
+                    "Não iniciado",
+                    "Sem prova",
+                    "-",
+                    "0",
+                    "-",
+                    formatDate(user.lastAccess)
+                ]);
+                return;
+            }
+
+            user.courseList.forEach(course => {
+                const courseStatus = course.completed
+                    ? "Concluído"
+                    : "Começou e não concluiu";
+                const assessmentStatus = course.approved
+                    ? "Aprovado"
+                    : course.failed
+                        ? "Não aprovado"
+                        : "Sem prova";
+
+                courseRows.push([
+                    user.email,
+                    user.name,
+                    course.title,
+                    courseStatus,
+                    assessmentStatus,
+                    course.bestScore === null ? "-" : `${course.bestGrade} (${course.bestScore}%)`,
+                    course.attempts,
+                    course.certificateCode || "-",
+                    formatDate(course.lastActivity || course.certificateIssuedAt || user.lastAccess)
+                ]);
+            });
+        });
+
+        return table([
+            "Conta de e-mail",
+            "Aluno",
+            "Curso",
+            "Status do curso",
+            "Status da avaliação",
+            "Nota",
+            "Tentativas",
+            "Certificado",
+            "Última atividade"
+        ], courseRows);
     }
 
     function renderUsersSummaryTable(rows){
