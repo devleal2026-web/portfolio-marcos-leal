@@ -88,10 +88,12 @@ body{
 }
 
 .academy-home-actions{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(112px,1fr));
+    display:flex;
+    flex-wrap:wrap;
     gap:10px;
-    align-items:stretch;
+    align-items:center;
+    justify-content:flex-end;
+    min-width:360px;
 }
 
 .academy-home-actions a,
@@ -101,6 +103,7 @@ body{
     align-items:center;
     justify-content:center;
     min-height:42px;
+    min-width:112px;
     color:var(--ink);
     background:var(--panel);
     border:1px solid var(--line);
@@ -618,6 +621,10 @@ body{
 .academy-theme-toggle{
     min-width:112px;
     white-space:nowrap;
+}
+
+.academy-home-actions .secure-logout-button{
+    margin:0;
 }
 
 .academy-floating-top{
@@ -1172,6 +1179,17 @@ html[data-theme="dark"] .certificate-document{
 
     .course-guide-actions button{
         flex:1;
+    }
+
+    .academy-home-actions{
+        justify-content:flex-start;
+        min-width:0;
+        width:100%;
+    }
+
+    .academy-home-actions a,
+    .academy-home-actions button{
+        flex:1 1 140px;
     }
 
     .academy-counts{
