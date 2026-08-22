@@ -67,6 +67,35 @@ const AcademyAdmin = (() => {
         return data?.session || null;
     }
 
+    function readJson(key){
+        try{
+            return JSON.parse(localStorage.getItem(key)) || {};
+        }catch{
+            return {};
+        }
+    }
+
+    function saveJson(key, value){
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function userNameFromSession(session){
+        return clean(
+            session?.user?.user_metadata?.full_name ||
+            session?.user?.user_metadata?.name ||
+            session?.user?.email?.split("@")[0] ||
+            "Aluno Leal Academy"
+        );
+    }
+
+    function courseById(courseId){
+        if(typeof academyCourses === "undefined" || !Array.isArray(academyCourses)){
+            return null;
+        }
+
+        return academyCourses.find(course => course.id === courseId) || null;
+    }
+
     async function isAdmin(email){
         const normalizedEmail = normalizeEmail(email);
 
@@ -137,7 +166,126 @@ const AcademyAdmin = (() => {
             return;
         }
 
+        setStatus("Acesso administrativo confirmado. Sincronizando dados locais...");
+        await syncLocalDataForCurrentUser(session);
         await loadDashboard();
+    }
+
+    async function syncLocalDataForCurrentUser(session){
+        if(!session){
+            return;
+        }
+
+        const progress = readJson("airportBaggageAcademyProgress");
+        const quizResults = readJson("airportBaggageAcademyQuiz");
+        const certificates = readJson("airportBaggageAcademyCertificates");
+        const syncedAttempts = readJson("airportBaggageAcademyAdminSyncedAttempts");
+        const email = normalizeEmail(session.user.email);
+        const fullName = userNameFromSession(session);
+
+        for(const courseId of Object.keys(progress)){
+            const course = courseById(courseId);
+            const completedLessons = Array.isArray(progress[courseId])
+                ? progress[courseId]
+                : [];
+
+            if(!course || completedLessons.length === 0){
+                continue;
+            }
+
+            const totalLessons = Array.isArray(course.modules) ? course.modules.length : 0;
+            const progressPercent = totalLessons > 0
+                ? Math.round((completedLessons.length / totalLessons) * 100)
+                : 0;
+
+            await supabaseClient
+                .from("academy_course_progress")
+                .upsert([{
+                    user_id: session.user.id,
+                    email,
+                    full_name: fullName,
+                    course_id: course.id,
+                    course_title: course.title,
+                    total_lessons: totalLessons,
+                    completed_lessons: completedLessons,
+                    completed_count: completedLessons.length,
+                    progress_percent: progressPercent,
+                    last_activity_at: new Date().toISOString(),
+                    completed_at: progressPercent >= 100 ? new Date().toISOString() : null
+                }], { onConflict:"user_id,course_id" });
+        }
+
+        for(const courseId of Object.keys(certificates)){
+            const certificate = certificates[courseId];
+            const course = courseById(courseId);
+
+            if(!certificate || !certificate.id){
+                continue;
+            }
+
+            await supabaseClient
+                .from("academy_certificates")
+                .upsert([{
+                    certificate_code: certificate.id,
+                    user_id: session.user.id,
+                    email,
+                    full_name: fullName,
+                    student_name: certificate.studentName || fullName,
+                    student_email: certificate.studentEmail || email,
+                    course_id: certificate.courseId || courseId,
+                    course_title: certificate.courseTitle || course?.title || courseId,
+                    grade: Number(certificate.grade || certificate.score) || gradeFromPercent(certificate.percent),
+                    score_percent: Number(certificate.percent) || 0,
+                    correct_count: Number(certificate.correct) || 0,
+                    total_questions: Number(certificate.total) || 0,
+                    issued_at: certificate.issuedAt || new Date().toISOString()
+                }], { onConflict:"certificate_code" });
+        }
+
+        for(const courseId of Object.keys(quizResults)){
+            const result = quizResults[courseId];
+            const course = courseById(courseId);
+
+            if(!result || !course){
+                continue;
+            }
+
+            const attemptKey = [
+                courseId,
+                result.finishedAt || "",
+                result.percent ?? "",
+                result.correct ?? "",
+                result.total ?? ""
+            ].join("|");
+
+            if(syncedAttempts[attemptKey]){
+                continue;
+            }
+
+            const { error } = await supabaseClient
+                .from("academy_quiz_attempts")
+                .insert([{
+                    user_id: session.user.id,
+                    email,
+                    full_name: fullName,
+                    course_id: course.id,
+                    course_title: course.title,
+                    score_percent: Number(result.percent) || 0,
+                    grade: Number(gradeFromPercent(result.percent)) || 0,
+                    correct_count: Number(result.correct) || 0,
+                    total_questions: Number(result.total) || 0,
+                    approved: Boolean(result.approved),
+                    review: result.review || []
+                }]);
+
+            if(error){
+                console.warn("Academy local quiz sync fallback:", error.message);
+            }else{
+                syncedAttempts[attemptKey] = true;
+            }
+        }
+
+        saveJson("airportBaggageAcademyAdminSyncedAttempts", syncedAttempts);
     }
 
     async function selectTable(table, columns = "*", orderColumn = "created_at"){

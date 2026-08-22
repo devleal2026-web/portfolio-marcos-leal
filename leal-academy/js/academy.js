@@ -1545,6 +1545,10 @@ function ensureCertificate(course, savedResult){
     const certificates = readCertificates();
 
     if(certificates[course.id]){
+        if(window.AccessControl && typeof AccessControl.recordCertificate === "function"){
+            AccessControl.recordCertificate(certificates[course.id]);
+        }
+
         return certificates[course.id];
     }
 
@@ -1561,6 +1565,60 @@ function ensureCertificate(course, savedResult){
         },
         savedResult.finishedAt || new Date().toISOString()
     );
+}
+
+async function syncLocalAcademyDataToSupabase(){
+    if(!window.AccessControl){
+        return;
+    }
+
+    const progress = readProgress();
+    const certificates = readCertificates();
+    const quizResults = readQuizResults();
+    const syncedAttempts = readJson("airportBaggageAcademySyncedAttempts");
+
+    for(const course of academyCourses){
+        const completedLessons = Array.isArray(progress[course.id])
+            ? progress[course.id]
+            : [];
+
+        if(completedLessons.length > 0 && typeof AccessControl.syncCourseProgress === "function"){
+            await AccessControl.syncCourseProgress(course, completedLessons);
+        }
+
+        const certificate = certificates[course.id];
+
+        if(certificate && typeof AccessControl.recordCertificate === "function"){
+            await AccessControl.recordCertificate(certificate);
+        }
+
+        const result = quizResults[course.id];
+
+        if(result && typeof AccessControl.recordQuizAttempt === "function"){
+            const attemptKey = [
+                course.id,
+                result.finishedAt || "",
+                result.percent ?? "",
+                result.correct ?? "",
+                result.total ?? ""
+            ].join("|");
+
+            if(!syncedAttempts[attemptKey]){
+                await AccessControl.recordQuizAttempt(course, {
+                    correct: result.correct,
+                    total: result.total,
+                    percent: result.percent,
+                    grade: formatGrade(result.percent),
+                    approved: result.approved,
+                    review: result.review || []
+                });
+
+                syncedAttempts[attemptKey] = true;
+            }
+        }
+    }
+
+    saveJson("airportBaggageAcademySyncedAttempts", syncedAttempts);
 }
 
 function certificatePageUrl(courseId){
@@ -2112,6 +2170,8 @@ function renderCertificatePage(){
 }
 
 async function bootAcademy(){
+    await syncLocalAcademyDataToSupabase();
+
     if(document.getElementById("courseGrid")){
         renderHome();
         return;
