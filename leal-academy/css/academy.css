@@ -88,16 +88,19 @@ body{
 }
 
 .academy-home-actions{
-    display:flex;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(112px,1fr));
     gap:10px;
-    flex-wrap:wrap;
+    align-items:stretch;
 }
 
 .academy-home-actions a,
+.academy-home-actions button,
 .back-link{
     display:inline-flex;
     align-items:center;
     justify-content:center;
+    min-height:42px;
     color:var(--ink);
     background:var(--panel);
     border:1px solid var(--line);
@@ -108,6 +111,7 @@ body{
 }
 
 .academy-home-actions a:hover,
+.academy-home-actions button:hover,
 .back-link:hover{
     border-color:var(--green-2);
     color:var(--green);
@@ -612,7 +616,50 @@ body{
 }
 
 .academy-theme-toggle{
+    min-width:112px;
     white-space:nowrap;
+}
+
+.academy-floating-top{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    z-index:80;
+    display:grid;
+    place-items:center;
+    width:54px;
+    height:54px;
+    border:1px solid rgba(22,128,61,.38);
+    border-radius:16px;
+    background:#16803d;
+    color:#ffffff;
+    box-shadow:0 18px 35px rgba(15,23,42,.24);
+    cursor:pointer;
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.academy-floating-top:hover{
+    transform:translateY(-2px);
+    background:#126c34;
+    box-shadow:0 22px 42px rgba(15,23,42,.3);
+}
+
+.academy-floating-top:focus-visible{
+    outline:3px solid rgba(34,197,94,.34);
+    outline-offset:3px;
+}
+
+.academy-floating-top svg{
+    width:27px;
+    height:27px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
 html[data-theme="dark"] body,
@@ -667,20 +714,35 @@ html[data-theme="dark"] .academy-admin-table small{
 }
 
 html[data-theme="dark"] .academy-home-actions a,
+html[data-theme="dark"] .academy-home-actions button,
 html[data-theme="dark"] .back-link,
 html[data-theme="dark"] .secondary-action,
-html[data-theme="dark"] .academy-auth-secondary{
+html[data-theme="dark"] .academy-auth-secondary,
+html[data-theme="dark"] .secure-logout-button{
     background:var(--button-soft) !important;
     border-color:var(--line) !important;
     color:var(--button-soft-text) !important;
 }
 
 html[data-theme="dark"] .academy-home-actions a:hover,
+html[data-theme="dark"] .academy-home-actions button:hover,
 html[data-theme="dark"] .back-link:hover,
 html[data-theme="dark"] .secondary-action:hover,
-html[data-theme="dark"] .academy-theme-toggle:hover{
+html[data-theme="dark"] .academy-theme-toggle:hover,
+html[data-theme="dark"] .secure-logout-button:hover{
     border-color:var(--green-2) !important;
     color:#b7f7ce !important;
+}
+
+html[data-theme="dark"] .academy-floating-top{
+    border-color:#43c776;
+    background:#22a15d;
+    color:#06120c;
+    box-shadow:0 18px 35px rgba(0,0,0,.42);
+}
+
+html[data-theme="dark"] .academy-floating-top:hover{
+    background:#43c776;
 }
 
 html[data-theme="dark"] input,
@@ -1125,6 +1187,14 @@ html[data-theme="dark"] .certificate-document{
 
     .course-page-header h1{
         font-size:30px;
+    }
+
+    .academy-floating-top{
+        right:16px;
+        bottom:16px;
+        width:50px;
+        height:50px;
+        border-radius:14px;
     }
 }
 
@@ -2643,6 +2713,8 @@ LEAL ACADEMY BRAND
     display:inline-flex;
     align-items:center;
     justify-content:center;
+    min-width:112px;
+    min-height:42px;
     border:1px solid #cbd5e1;
     border-radius:10px;
     background:#ffffff;

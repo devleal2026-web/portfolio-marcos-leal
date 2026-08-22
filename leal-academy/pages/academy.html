@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airport Baggage Academy</title>
-    <link rel="stylesheet" href="../css/academy.css?v=20260822-dark-mode">
-    <script src="../js/academy-theme.js?v=20260822-dark-mode"></script>
+    <link rel="stylesheet" href="../css/academy.css?v=20260822-floating-top">
+    <script src="../js/academy-theme.js?v=20260822-floating-top"></script>
 </head>
 <body data-academy-protected="true">
 
@@ -48,16 +48,31 @@
     </section>
 
     <section id="courseGrid" class="course-grid-cards"></section>
+
+    <button
+        id="academyFloatingTop"
+        class="academy-floating-top"
+        type="button"
+        aria-label="Voltar ao topo"
+        title="Voltar ao topo">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 11.5L12 4l9 7.5"></path>
+            <path d="M5.5 10.5V20h13v-9.5"></path>
+            <path d="M9.5 20v-6h5v6"></path>
+        </svg>
+    </button>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="../js/supabase.js"></script>
 <script src="../js/access-control.js" data-access="protected"></script>
-<script src="../js/academy-data.js?v=20260822-dark-mode"></script>
-<script src="../js/academy.js?v=20260822-dark-mode"></script>
+<script src="../js/academy-data.js?v=20260822-floating-top"></script>
+<script src="../js/academy.js?v=20260822-floating-top"></script>
 
 </body>
 </html>
+
+
 
 
 

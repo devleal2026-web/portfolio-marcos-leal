@@ -33,6 +33,220 @@ const quizStorageKey = "airportBaggageAcademyQuiz";
 const certificateStorageKey = "airportBaggageAcademyCertificates";
 const minimumApprovalPercent = 80;
 
+const supplementalCourseQuizzes = {
+    "fundamentos": [
+        q("Qual é a principal função do atendimento aeroportuário?", ["Orientar o passageiro com segurança, clareza e cordialidade", "Apenas vender serviços adicionais", "Substituir todos os sistemas", "Atender somente passageiros frequentes"]),
+        q("Uma comunicação eficiente no aeroporto deve ser:", ["Clara, objetiva e adaptada ao perfil do passageiro", "Sempre técnica e longa", "Rápida mesmo sem confirmação", "Feita somente por escrito"]),
+        q("Passageiros com prioridade devem ser tratados com:", ["Respeito, atenção e suporte compatível com a necessidade", "Atendimento apenas se solicitarem por escrito", "Menor atenção para evitar atraso", "Preferência somente se houver supervisor"]),
+        q("O que significa manter postura profissional?", ["Agir com respeito, controle emocional e foco em solução", "Falar de forma autoritária", "Evitar contato com passageiros", "Transferir todos os problemas"]),
+        q("Escuta ativa é importante porque:", ["Ajuda a entender a necessidade real antes de orientar", "Elimina a necessidade de procedimento", "Permite responder antes do passageiro terminar", "Serve apenas para reclamações formais"]),
+        q("Quando não souber uma informação, o agente deve:", ["Verificar em fonte confiável antes de orientar", "Informar qualquer previsão", "Ignorar a pergunta", "Pedir ao passageiro para pesquisar"]),
+        q("Um atendimento seguro depende de:", ["Procedimento, registro e comunicação adequada", "Improviso constante", "Ausência de registros", "Apenas simpatia"]),
+        q("Em caso de conflito com passageiro, a conduta recomendada é:", ["Manter calma, ouvir, orientar e escalar se houver risco", "Responder no mesmo tom", "Encerrar sem explicação", "Expor o passageiro"]),
+        q("Por que registrar informações relevantes?", ["Para garantir rastreabilidade e continuidade do atendimento", "Para aumentar burocracia sem motivo", "Para substituir comunicação", "Para evitar responsabilidade"]),
+        q("O atendimento aeroportuário começa:", ["Antes do embarque e segue por toda a jornada do passageiro", "Somente no portão", "Apenas após reclamação", "Depois do voo"]),
+        q("Um passageiro estrangeiro deve receber:", ["Informação clara e apoio compatível com barreira de idioma", "Atendimento somente se falar português", "Menos prioridade sempre", "Orientação sem confirmação"]),
+        q("A prioridade operacional nunca deve eliminar:", ["Segurança e respeito ao procedimento", "A pressa", "A fila", "A comunicação interna"]),
+        q("Qual atitude melhora a experiência do passageiro?", ["Explicar próximos passos de forma simples", "Usar siglas sem explicar", "Evitar atualizar informações", "Prometer solução não confirmada"]),
+        q("O agente representa:", ["A operação aeroportuária perante o passageiro", "Apenas seu próprio setor", "Somente o sistema usado", "Nenhuma área"]),
+        q("Boa experiência no aeroporto depende de:", ["Clareza, empatia, segurança e execução correta", "Somente rapidez", "Apenas tecnologia", "Ausência de procedimentos"])
+    ],
+    "ahl": [
+        q("AHL é utilizado para registrar:", ["Bagagem extraviada ou não localizada pelo passageiro", "Bagagem encontrada sem dono", "Objeto esquecido a bordo", "Dano sem passageiro"]),
+        q("Qual campo identifica a etiqueta da bagagem?", ["TN", "NM", "FF", "AG"]),
+        q("O campo NM representa:", ["Nome do passageiro", "Número da mala", "Natureza do dano", "Nome da estação"]),
+        q("Por que o contato do passageiro é essencial no AHL?", ["Para atualizar localização, entrega e tratativa", "Para substituir a etiqueta", "Para gerar peso da bagagem", "Para cancelar o voo"]),
+        q("O campo RT deve indicar:", ["Rota relacionada ao passageiro ou bagagem", "Somente telefone", "Descrição do dano", "Número do assento"]),
+        q("O campo FD é usado para:", ["Voo e data", "Endereço permanente", "Marca da mala", "País de emissão"]),
+        q("Reason for Loss ajuda a:", ["Classificar a causa operacional provável", "Escolher idioma do sistema", "Definir cor da mala", "Gerar etiqueta"]),
+        q("Fault Station indica:", ["Base ou ponto associado à falha operacional", "Cidade do passageiro", "Tipo de documento", "Peso da bagagem"]),
+        q("A descrição da bagagem deve ser:", ["Clara, detalhada e compatível com a busca", "Vazia para evitar erro", "Sempre igual para todos", "Apenas cor genérica"]),
+        q("Histórico do AHL deve registrar:", ["Contatos, atualizações, buscas e decisões", "Apenas o primeiro atendimento", "Somente o nome do agente", "Nenhuma alteração"]),
+        q("Ao localizar a bagagem, o processo deve:", ["Ser atualizado até entrega ou encerramento correto", "Ser apagado", "Permanecer sem histórico", "Virar OHD automaticamente sem análise"]),
+        q("Dados incompletos no AHL podem causar:", ["Dificuldade de busca e contato com passageiro", "Melhoria do match", "Entrega automática", "Redução de responsabilidade"]),
+        q("O botão WT serve para:", ["Visualizar a máscara WorldTracer do processo", "Excluir o processo", "Encerrar sem confirmação", "Gerar certificado"]),
+        q("AHL permanece aberto até:", ["Solução, entrega, encerramento ou tratativa final aplicável", "Sempre 24 horas", "Somente imprimir", "Nunca"]),
+        q("Uma boa abertura de AHL exige:", ["Dados corretos, escuta e registro completo", "Apenas referência", "Somente foto da mala", "Nenhuma validação"])
+    ],
+    "ohd": [
+        q("OHD é usado para registrar:", ["Bagagem localizada/sobrante sem passageiro associado no momento", "Reclamação de dano", "Curso concluído", "Controle de escala"]),
+        q("O campo CC deve conter:", ["Conteúdo da bagagem descrito com detalhe", "Somente número do voo", "Apenas nome do agente", "Senha do usuário"]),
+        q("Por que a descrição do conteúdo é importante?", ["Ajuda no match com AHL e na identificação do dono", "Substitui todos os campos", "Impede consulta", "Fecha o processo automaticamente"]),
+        q("OHD deve ter status atualizado quando:", ["For enviado, entregue ou encerrado conforme fluxo", "Sempre que abrir a página", "Somente por estética", "Nunca"]),
+        q("Quando há solicitação ROH ativa, o OHD deve:", ["Mostrar histórico para o agente avaliar envio", "Apagar a solicitação", "Virar AHL", "Ser ignorado"]),
+        q("FOH representa:", ["Envio do OHD para a base solicitante", "Abertura de reclamação de dano", "Cancelamento de etiqueta", "Cadastro de passageiro"]),
+        q("Ao enviar FOH, o OHD deve:", ["Registrar mensagem e ser encerrado automaticamente quando aplicável", "Continuar sem histórico", "Excluir match", "Abrir nova prova"]),
+        q("O campo CT registra:", ["Cor e tipo da bagagem", "Telefone", "Rota", "Nota final"]),
+        q("O campo BI registra:", ["Marca ou informação da bagagem", "Base de origem", "Email", "Motivo de perda"]),
+        q("A geração da referência OHD deve considerar:", ["Rota/voo quando válidos ou base/cia escolhidas", "Somente conteúdo", "Sempre YY", "A data do computador apenas"]),
+        q("OHD sem etiqueta exige:", ["Descrição cuidadosa e armazenamento rastreável", "Encerramento imediato", "Ausência de registro", "Entrega a qualquer passageiro"]),
+        q("Match entre OHD e AHL deve indicar:", ["Percentual e processo correspondente", "Somente cor da tela", "Senha do usuário", "Apenas status"]),
+        q("OHD não deve solicitar ROH de AHL porque:", ["ROH parte da AHL para pedir envio de um OHD", "AHL nunca tem passageiro", "OHD não tem histórico", "FOH é prova"]),
+        q("O histórico do OHD deve registrar:", ["ROH recebido, FOH enviado e mensagens completas", "Apenas número da referência", "Somente data de criação", "Nada após encerramento"]),
+        q("Um OHD bem preenchido melhora:", ["Busca, match, envio e rastreabilidade", "Apenas aparência da página", "Tempo de login", "Número de cursos"])
+    ],
+    "matches": [
+        q("O match AHL x OHD compara:", ["Dados dos processos para sugerir relação entre extravio e bagagem localizada", "Somente nomes de agentes", "Apenas cor das telas", "Certificados emitidos"]),
+        q("A partir de qual percentual os matches devem aparecer?", ["50%", "10%", "25%", "Todos sem limite"]),
+        q("Qual campo tende a ter maior peso no match?", ["Tag da bagagem", "Cor do botão", "Nome do curso", "Senha do usuário"]),
+        q("Além da tag, o sistema deve comparar:", ["Nome, rota, voo, conteúdo, contato, endereço e demais campos úteis", "Somente data do login", "Apenas status", "Nada mais"]),
+        q("O maior match deve ficar:", ["Sempre visível na lista", "Oculto em outra página", "Apagado após ver", "Sem percentual"]),
+        q("O card expansivo de matches serve para:", ["Mostrar todos os processos correspondentes sem poluir a tela", "Excluir processos", "Criar usuários", "Substituir histórico"]),
+        q("Quando o AHL solicita um OHD, a transação é:", ["ROH", "FOH", "DPR", "RFP"]),
+        q("Quando o OHD é enviado para a base solicitante, a transação é:", ["FOH", "ROH", "AHL", "MCT"]),
+        q("A mensagem ROH deve ficar salva:", ["No histórico do AHL e do OHD", "Somente no navegador", "Apenas no botão", "Em nenhum lugar"]),
+        q("A mensagem FOH deve ficar salva:", ["No histórico do OHD e do AHL", "Somente na lista de cursos", "Apenas no alerta", "Sem referência"]),
+        q("O objetivo do alerta de match é:", ["Informar o usuário sobre possível relação entre processos", "Bloquear o sistema", "Encerrar todos os casos", "Alterar senha"]),
+        q("Depois de visualizado, o alerta pode:", ["Ser fechado, mantendo o match salvo", "Apagar o processo", "Zerar a prova", "Remover o curso"]),
+        q("Um match de baixa qualidade pode ocorrer quando:", ["Há poucos campos preenchidos ou dados genéricos", "Todos os dados são completos", "A tag é idêntica", "A rota é confirmada"]),
+        q("O agente deve tratar match como:", ["Indício para análise, não confirmação automática", "Entrega automática obrigatória", "Erro do sistema", "Prova concluída"]),
+        q("A rastreabilidade do match depende de:", ["Histórico, mensagens e dados dos processos", "Apenas cor do badge", "Somente quantidade de cursos", "Nenhum registro"])
+    ],
+    "dpr": [
+        q("DPR é usado para registrar:", ["Dano ou violação de bagagem", "Bagagem extraviada sem dano", "Objeto esquecido", "Controle de aula"]),
+        q("O campo TD relaciona-se a:", ["Tipo/localização/extensão do dano", "Nome do passageiro", "Telefone", "Base administrativa"]),
+        q("TOP indica qual localização?", ["Parte superior", "Parte inferior", "Lateral", "Área do zíper"]),
+        q("SIDE significa:", ["Lateral", "Superior", "Inferior", "Fecho"]),
+        q("BOTT indica:", ["Parte inferior", "Alça", "Documento", "Rota"]),
+        q("MI representa:", ["Desgaste por uso ou dano menor conforme tabela", "Dano total", "Base de origem", "Objeto proibido"]),
+        q("MA representa:", ["Grande extensão de dano", "Apenas mancha pequena", "Nome do agente", "Mensagem SITA"]),
+        q("TL indica:", ["Dano total", "Telefone local", "Tempo limite", "Trecho longo"]),
+        q("Uma boa descrição DPR deve:", ["Detalhar dano, localização, extensão e evidências", "Ser sempre vazia", "Usar só uma palavra", "Excluir fotos"]),
+        q("Fotos e documentos ajudam a:", ["Comprovar a condição da bagagem e sustentar a análise", "Substituir todos os campos obrigatórios", "Eliminar prazo", "Gerar OHD"]),
+        q("Quando houver violação, o registro deve indicar:", ["Sinais de abertura, lacre, conteúdo e relato", "Somente peso", "Apenas portão", "Somente horário UTC"]),
+        q("Dano pré-existente deve ser:", ["Registrado de forma clara quando identificado", "Ignorado", "Compensado sempre", "Apagado do histórico"]),
+        q("O DPR deve preservar:", ["Rastreabilidade, evidência e decisão operacional", "Somente aparência", "Acesso irrestrito", "Dados incompletos"]),
+        q("Campo AG registra:", ["Agente responsável", "Altura da mala", "Aeroporto de destino", "Aprovação da prova"]),
+        q("Encerramento de DPR exige:", ["Tratativa compatível com evidências e regra aplicável", "Excluir processo", "Ignorar passageiro", "Remover histórico"])
+    ],
+    "lideranca-bagagem-extraviada": [
+        q("O papel da liderança em bagagem extraviada é:", ["Coordenar equipe, priorizar casos e garantir qualidade da tratativa", "Executar tudo sozinho", "Evitar registros", "Atender somente casos fáceis"]),
+        q("Um briefing de equipe deve alinhar:", ["Prioridades, riscos, pendências, metas e responsabilidades", "Apenas horários de pausa", "Somente reclamações", "Nenhum dado operacional"]),
+        q("Indicadores ajudam o líder a:", ["Identificar tendências, desvios e oportunidades de melhoria", "Substituir atendimento", "Punir sem análise", "Apagar histórico"]),
+        q("Passagem de turno eficiente deve conter:", ["Pendências, responsáveis, prazos e última ação registrada", "Somente nomes da equipe", "Apenas elogios", "Nada por escrito"]),
+        q("Em caso crítico, o líder deve:", ["Escalonar, orientar equipe e acompanhar solução", "Desaparecer da operação", "Prometer sem confirmação", "Ignorar passageiro"]),
+        q("Cultura justa significa:", ["Analisar falhas para aprender e melhorar, sem busca automática por culpa", "Não registrar erros", "Aceitar qualquer desvio", "Evitar treinamento"]),
+        q("Qualidade na liderança depende de:", ["Dados, comunicação, acompanhamento e consistência", "Improviso", "Silêncio", "Ausência de metas"]),
+        q("Um bom líder operacional deve:", ["Dar direção clara e apoiar a equipe sob pressão", "Criar confusão", "Evitar feedback", "Centralizar informação sem compartilhar"]),
+        q("Conflitos com passageiros devem ser tratados com:", ["Calma, escuta, orientação e escalonamento quando necessário", "Irritação", "Exposição pública", "Resposta defensiva"]),
+        q("A análise de causa serve para:", ["Evitar repetição de falhas e corrigir processo", "Encontrar culpado sem evidência", "Encerrar sem solução", "Eliminar indicadores"]),
+        q("Casos de maior impacto devem ser:", ["Priorizados conforme risco, prazo e vulnerabilidade", "Deixados para depois sempre", "Apagados", "Tratados sem registro"]),
+        q("Treinamento da equipe deve focar em:", ["Procedimento, atendimento, sistema, comunicação e decisão", "Somente teoria genérica", "Apenas aparência", "Nada após contratação"]),
+        q("Feedback operacional deve ser:", ["Objetivo, respeitoso e conectado a comportamento observável", "Humilhante", "Sem exemplo", "Sempre público"]),
+        q("O líder deve acompanhar certificados e cursos porque:", ["Capacitação sustenta qualidade e padronização", "Serve para bloquear usuários", "Substitui supervisão", "Não tem valor"]),
+        q("Liderança eficaz em LL busca:", ["Reduzir reincidência, melhorar resposta e proteger passageiro e operação", "Aumentar reclamações", "Evitar comunicação", "Trabalhar sem metas"])
+    ],
+    "avsec": [
+        q("O controle de acesso em área restrita existe para:", ["Impedir entrada não autorizada e reduzir risco de interferência ilícita", "Facilitar circulação livre", "Substituir inspeção", "Aumentar fila"]),
+        q("Uma cultura AVSEC eficiente depende de:", ["Atenção, reporte, cumprimento de regras e atuação preventiva", "Apenas tecnologia", "Improviso", "Ausência de treinamento"]),
+        q("Ao identificar comportamento suspeito, o colaborador deve:", ["Acionar o canal responsável conforme procedimento", "Abordar agressivamente", "Ignorar", "Publicar em rede social"]),
+        q("Itens e bagagens suspeitas devem ser tratados com:", ["Isolamento, comunicação e acionamento autorizado", "Abertura imediata pelo agente", "Entrega a qualquer pessoa", "Descarte sem registro"]),
+        q("Normas de segurança operacional e AVSEC devem ser:", ["Conhecidas e cumpridas por todos os envolvidos", "Opcionais", "Aplicadas só em auditoria", "Substituídas por opinião"])
+    ],
+    "atendimento-cliente-aviacao": [
+        q("Uma experiência positiva no aeroporto depende de:", ["Clareza, empatia, previsibilidade e solução possível", "Somente preço da passagem", "Falta de contato", "Informação incompleta"]),
+        q("Ao lidar com passageiro irritado, o agente deve:", ["Manter controle emocional e buscar solução dentro das regras", "Elevar o tom", "Ignorar", "Responder com ironia"]),
+        q("A diferença entre atendimento e suporte é que:", ["Atendimento é amplo e suporte resolve demanda específica", "São sempre a mesma coisa", "Suporte é apenas venda", "Atendimento não exige escuta"]),
+        q("Comunicação positiva evita:", ["Ruído, insegurança e conflito desnecessário", "Solução", "Registro", "Cordialidade"]),
+        q("O feedback do cliente deve ser usado para:", ["Melhorar processos e reforçar boas práticas", "Punir sem análise", "Apagar reclamações", "Ignorar recorrências"])
+    ],
+    "boas-praticas-atendimento": [
+        q("Atendimento de excelência exige:", ["Empatia, postura, clareza, agilidade e cumprimento de procedimento", "Apenas simpatia", "Somente rapidez", "Ausência de regras"]),
+        q("Conhecer perfis de passageiros ajuda a:", ["Adaptar a comunicação e o suporte necessário", "Separar pessoas sem critério", "Evitar perguntas", "Eliminar prioridade"]),
+        q("Diante de overbooking, cancelamento ou atraso, a equipe deve:", ["Explicar a situação e orientar alternativas possíveis", "Culpar o passageiro", "Esconder informação", "Encerrar a fila"]),
+        q("Uma má prática de atendimento é:", ["Tratar passageiro com frieza por dificuldade de comunicação", "Oferecer ajuda", "Explicar procedimentos", "Registrar contato"]),
+        q("Ao fim do atendimento, é importante:", ["Confirmar se o passageiro entendeu o próximo passo", "Sair sem explicar", "Usar apenas siglas", "Evitar registro"])
+    ],
+    "bagagem-violada": [
+        q("Violação de bagagem envolve:", ["Indício de abertura indevida ou subtração de conteúdo", "Somente atraso de voo", "Excesso de peso", "Alteração de portão"]),
+        q("Em suspeita de violação, o registro deve conter:", ["Relato, fotos, lacre, conteúdo informado e evidências", "Apenas cor da mala", "Somente nome do agente", "Nada por escrito"]),
+        q("Itens de valor exigem análise cuidadosa porque:", ["Podem ter regra específica de responsabilidade e comprovação", "Sempre são compensados sem prova", "Nunca importam", "Substituem processo"]),
+        q("O campo FF pode ser usado para:", ["Registrar tratativas, contatos e informações adicionais", "Gerar etiqueta", "Cadastrar curso", "Alterar senha"]),
+        q("Quando houver prazo aplicável, ele deve ser:", ["Verificado antes da decisão", "Ignorado", "Inventado", "Apagado"]),
+        q("Resposta ao passageiro em violação deve ser:", ["Clara, respeitosa e baseada em evidências", "Genérica e agressiva", "Sem explicação", "Somente verbal"])
+    ],
+    "bagagem-danificada": [
+        q("Dano funcional é aquele que:", ["Compromete o uso normal da bagagem", "É apenas sujeira leve", "Acontece antes do check-in sempre", "Não precisa registro"]),
+        q("Limited Release serve para:", ["Registrar condição pré-existente ou limitação aplicável", "Garantir compensação automática", "Criar OHD", "Excluir fotos"]),
+        q("O local do dano deve ser descrito porque:", ["Ajuda a identificar a ocorrência e avaliar responsabilidade", "É irrelevante", "Substitui o passageiro", "Serve para login"]),
+        q("Arranhões leves podem exigir:", ["Avaliação conforme regra e evidência disponível", "Compensação total automática", "Apagar processo", "FOH"]),
+        q("Dano total deve ser avaliado com:", ["Critério, fotos, descrição e regra aplicável", "Apenas opinião", "Sem contato", "Somente peso"])
+    ],
+    "tratativa-rl-mct": [
+        q("RL deve refletir:", ["Causa operacional mais compatível com os fatos", "Preferência do agente", "Cor da mala", "Nome do curso"]),
+        q("MCT abaixo do mínimo aumenta risco de:", ["Bagagem não conectar a tempo", "Melhor SLA", "Certificado automático", "Dano total"])
+    ],
+    "bagagem-sem-etiqueta-ohd": [
+        q("Bagagem sem etiqueta exige atenção a:", ["Identificação por características, conteúdo e histórico", "Apenas peso", "Somente cor da tela", "Nenhum dado"]),
+        q("Após prazo definido, bagagem não reclamada pode seguir:", ["Fluxo de guarda, envio ou destinação conforme procedimento", "Entrega aleatória", "Exclusão do sistema", "Sem registro"]),
+        q("Itens perecíveis em bagagem localizada devem ser:", ["Tratados conforme orientação local e registrados", "Sempre guardados indefinidamente", "Ignorados", "Enviados sem avaliação"]),
+        q("Descrição genérica no OHD prejudica:", ["Busca, match e identificação do proprietário", "A cor do botão", "O login", "A nota da prova"]),
+        q("Antes de enviar OHD ao depósito, deve-se verificar:", ["Solicitações ativas e histórico do processo", "Somente imagem do curso", "Senha do usuário", "Nada"])
+    ],
+    "atendimento-pcd": [
+        q("Atendimento inclusivo exige perguntar antes de ajudar porque:", ["Respeita autonomia e preferência do passageiro", "Atrasa sempre", "Elimina procedimento", "Evita comunicação"]),
+        q("A linguagem adequada deve ser:", ["Respeitosa, direta e sem infantilização", "Paternalista", "Agressiva", "Cheia de jargões"]),
+        q("Recursos de acessibilidade devem ser:", ["Oferecidos conforme necessidade e disponibilidade operacional", "Negados por padrão", "Usados sem perguntar", "Apenas decorativos"]),
+        q("Falar apenas com acompanhante é inadequado porque:", ["Retira autonomia da pessoa atendida", "Acelera sempre", "É obrigatório", "Substitui escuta"]),
+        q("O atendimento PcD deve equilibrar:", ["Segurança, autonomia, respeito e eficiência", "Pressa e silêncio", "Padronização sem adaptação", "Ausência de registro"])
+    ],
+    "interpretacao-etiqueta-bagagem": [
+        q("O código de barras da etiqueta permite:", ["Leitura e rastreabilidade do volume", "Identificar humor do passageiro", "Substituir voo", "Gerar certificado"]),
+        q("Destino final na etiqueta ajuda a:", ["Direcionar carregamento, conexão e restituição", "Definir valor da passagem", "Escolher assento", "Excluir bagagem"]),
+        q("Etiqueta ilegível deve gerar:", ["Atenção, reemissão/verificação e registro conforme fluxo", "Ignorar e carregar", "Entrega a qualquer voo", "Fechamento automático"])
+    ],
+    "gestao-pessoas-rampa": [
+        q("Comportamento assertivo na rampa significa:", ["Comunicar riscos com clareza e respeito", "Gritar sempre", "Ficar calado", "Ignorar desvios"]),
+        q("Liderança na rampa deve reforçar:", ["Segurança, disciplina e coordenação", "Pressa sem controle", "Atalhos", "Ausência de EPI"]),
+        q("Feedback em equipe operacional deve:", ["Ser específico, respeitoso e orientado à melhoria", "Expor para humilhar", "Ser vago", "Nunca acontecer"]),
+        q("Conflitos entre áreas devem ser tratados com:", ["Fato, procedimento e foco na solução", "Culpa imediata", "Silêncio", "Competição"]),
+        q("Uma equipe madura reporta quase falhas para:", ["Prevenir acidentes e melhorar o processo", "Criar punição automática", "Evitar aprendizagem", "Ocultar risco"])
+    ]
+};
+
+function q(question, options, correct = 0){
+    return { question, options, correct };
+}
+
+function ensureCourseQuizzes(){
+    if(!Array.isArray(academyCourses)){
+        return;
+    }
+
+    academyCourses.forEach(course => {
+        const supplement = supplementalCourseQuizzes[course.id];
+
+        if(!Array.isArray(supplement) || supplement.length === 0){
+            return;
+        }
+
+        if(!Array.isArray(course.quiz)){
+            course.quiz = [];
+        }
+
+        const existingQuestions = new Set(
+            course.quiz.map(item => normalizeSearch(item.question || ""))
+        );
+
+        for(const item of supplement){
+            if(course.quiz.length >= 15){
+                break;
+            }
+
+            const key = normalizeSearch(item.question || "");
+
+            if(existingQuestions.has(key)){
+                continue;
+            }
+
+            course.quiz.push(item);
+            existingQuestions.add(key);
+        }
+    });
+}
+
+ensureCourseQuizzes();
+
 const courseVisuals = {
     "fundamentos": { image: "linear-gradient(135deg, rgba(21,94,117,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "bagagem-extraviada": { image: "linear-gradient(135deg, rgba(16,185,129,.92), rgba(14,116,144,.88)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "case" },

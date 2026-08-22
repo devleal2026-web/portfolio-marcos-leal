@@ -77,9 +77,27 @@
         updateButton(document.documentElement.dataset.theme);
     }
 
+    function bindFloatingTopButton(){
+        const button = document.getElementById("academyFloatingTop");
+
+        if(!button){
+            return;
+        }
+
+        button.addEventListener("click", () => {
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        });
+    }
+
     applyTheme(savedTheme());
 
-    document.addEventListener("DOMContentLoaded", createButton);
+    document.addEventListener("DOMContentLoaded", () => {
+        createButton();
+        bindFloatingTopButton();
+    });
 
     window.LealAcademyTheme = {
         apply: applyTheme,
