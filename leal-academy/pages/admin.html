@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Leal Academy</title>
+    <link rel="stylesheet" href="../css/academy.css?v=20260822-admin">
+</head>
+<body class="academy-admin-page" data-academy-protected="true">
+
+<main class="academy-admin-shell">
+    <header class="academy-admin-header">
+        <div class="academy-brand-lockup">
+            <img src="../assets/brand/leal-academy-logo.png" alt="Leal Academy">
+            <div>
+                <p class="academy-kicker">Área administrativa</p>
+                <h1>Leal Academy Admin</h1>
+                <p>Painel privado de acessos, participação, conclusão e certificados.</p>
+            </div>
+        </div>
+
+        <div class="academy-admin-actions">
+            <button id="refreshAdmin" type="button" class="primary-action">Atualizar</button>
+            <button id="exportAdminCsv" type="button" class="secondary-action">Exportar CSV</button>
+            <a href="academy.html" class="secondary-action">Voltar</a>
+        </div>
+    </header>
+
+    <section id="adminStatus" class="academy-admin-status">
+        Carregando métricas administrativas...
+    </section>
+
+    <section id="adminMetrics" class="academy-admin-metrics"></section>
+
+    <section class="academy-admin-layout">
+        <article class="academy-admin-panel">
+            <div class="academy-admin-panel-title">
+                <h2>Usuários e progresso</h2>
+                <span id="adminUsersCount">0 registros</span>
+            </div>
+            <div id="adminUsersTable" class="academy-admin-table-wrap"></div>
+        </article>
+
+        <article class="academy-admin-panel">
+            <div class="academy-admin-panel-title">
+                <h2>Cursos</h2>
+                <span>Participação por curso</span>
+            </div>
+            <div id="adminCoursesTable" class="academy-admin-table-wrap"></div>
+        </article>
+    </section>
+
+    <section class="academy-admin-layout">
+        <article class="academy-admin-panel">
+            <div class="academy-admin-panel-title">
+                <h2>Últimas avaliações</h2>
+                <span>Notas e aprovação</span>
+            </div>
+            <div id="adminAttemptsTable" class="academy-admin-table-wrap"></div>
+        </article>
+
+        <article class="academy-admin-panel">
+            <div class="academy-admin-panel-title">
+                <h2>Certificados</h2>
+                <span>Emissões realizadas</span>
+            </div>
+            <div id="adminCertificatesTable" class="academy-admin-table-wrap"></div>
+        </article>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/access-control.js" data-access="protected"></script>
+<script src="../js/academy-data.js"></script>
+<script src="../js/admin.js?v=20260822-admin"></script>
+
+</body>
+</html>

@@ -2554,3 +2554,212 @@ LEAL ACADEMY BRAND
         border-color:#0f766e;
     }
 }
+
+/*==========================================================
+ADMIN DASHBOARD
+==========================================================*/
+
+.academy-admin-page{
+    background:#e8f0f5;
+    color:#0f172a;
+}
+
+.academy-admin-shell{
+    min-height:100vh;
+    padding:28px;
+}
+
+.academy-admin-header{
+    display:flex;
+    justify-content:space-between;
+    gap:22px;
+    align-items:flex-start;
+    background:#ffffff;
+    border:1px solid #d6e2eb;
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 18px 44px rgba(15,23,42,.08);
+}
+
+.academy-admin-header h1{
+    margin:0;
+    font-size:32px;
+    letter-spacing:0;
+}
+
+.academy-admin-header p{
+    margin:8px 0 0;
+    color:#52657a;
+}
+
+.academy-admin-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:flex-end;
+}
+
+.academy-admin-status{
+    margin:18px 0;
+    border:1px solid #bfdbfe;
+    border-radius:14px;
+    background:#eff6ff;
+    color:#1d4ed8;
+    padding:14px 16px;
+    font-weight:800;
+}
+
+.academy-admin-status.success{
+    border-color:#bbf7d0;
+    background:#f0fdf4;
+    color:#15803d;
+}
+
+.academy-admin-status.danger{
+    border-color:#fecaca;
+    background:#fef2f2;
+    color:#b91c1c;
+}
+
+.academy-admin-metrics{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.academy-admin-metric{
+    background:#ffffff;
+    border:1px solid #d6e2eb;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 12px 28px rgba(15,23,42,.07);
+}
+
+.academy-admin-metric span{
+    display:block;
+    color:#047857;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.academy-admin-metric strong{
+    display:block;
+    margin-top:8px;
+    color:#082f49;
+    font-size:36px;
+    line-height:1;
+}
+
+.academy-admin-metric small{
+    display:block;
+    margin-top:8px;
+    color:#64748b;
+    font-weight:700;
+}
+
+.academy-admin-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.4fr) minmax(360px,.8fr);
+    gap:18px;
+    margin-bottom:18px;
+}
+
+.academy-admin-panel{
+    background:#ffffff;
+    border:1px solid #d6e2eb;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 14px 34px rgba(15,23,42,.07);
+}
+
+.academy-admin-panel-title{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.academy-admin-panel-title h2{
+    margin:0;
+    font-size:20px;
+}
+
+.academy-admin-panel-title span{
+    color:#64748b;
+    font-weight:800;
+}
+
+.academy-admin-table-wrap{
+    width:100%;
+    overflow:auto;
+}
+
+.academy-admin-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+
+.academy-admin-table th,
+.academy-admin-table td{
+    border-bottom:1px solid #e2e8f0;
+    padding:11px 10px;
+    text-align:left;
+    vertical-align:top;
+}
+
+.academy-admin-table th{
+    color:#0f766e;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+}
+
+.academy-admin-table td{
+    color:#203247;
+    font-weight:650;
+}
+
+.academy-admin-empty{
+    border:1px dashed #cbd5e1;
+    border-radius:14px;
+    color:#64748b;
+    padding:18px;
+    font-weight:800;
+}
+
+@media(max-width:1180px){
+    .academy-admin-metrics{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .academy-admin-layout{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:720px){
+    .academy-admin-shell{
+        padding:14px;
+    }
+
+    .academy-admin-header,
+    .academy-admin-panel-title{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .academy-admin-actions{
+        width:100%;
+        justify-content:flex-start;
+    }
+
+    .academy-admin-metrics{
+        grid-template-columns:1fr;
+    }
+}

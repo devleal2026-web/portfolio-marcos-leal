@@ -129,10 +129,25 @@ const AccessControl = (() => {
             return;
         }
 
+        let accessCount = 1;
+
+        try{
+            const { data } = await supabaseClient
+                .from("access_profiles")
+                .select("access_count")
+                .eq("id", profile.id)
+                .maybeSingle();
+
+            accessCount = Number(data?.access_count || 0) + 1;
+        }catch{
+            accessCount = 1;
+        }
+
         const payload = {
             id: profile.id,
             full_name: profile.name,
             email: profile.email,
+            access_count: accessCount,
             last_access_at: new Date().toISOString()
         };
 
@@ -142,6 +157,140 @@ const AccessControl = (() => {
 
         if(error){
             console.warn("Access profile fallback:", error.message);
+        }
+    }
+
+    async function recordEvent(eventType, details = {}){
+        const currentSession = await session();
+
+        if(!currentSession || typeof supabaseClient === "undefined"){
+            return;
+        }
+
+        const profile = profileForUser(currentSession.user);
+
+        const payload = {
+            user_id: currentSession.user.id,
+            email: normalizeEmail(currentSession.user.email || profile.email),
+            full_name: clean(profile.name),
+            event_type: clean(eventType) || "page_view",
+            page_title: document.title || "",
+            page_path: window.location.pathname + window.location.search,
+            course_id: details.courseId || null,
+            course_title: details.courseTitle || null,
+            metadata: details.metadata || {}
+        };
+
+        const { error } = await supabaseClient
+            .from("academy_access_events")
+            .insert([payload]);
+
+        if(error){
+            console.warn("Academy analytics event fallback:", error.message);
+        }
+    }
+
+    async function syncCourseProgress(course, completedLessons = []){
+        const currentSession = await session();
+
+        if(!currentSession || typeof supabaseClient === "undefined" || !course){
+            return;
+        }
+
+        const profile = profileForUser(currentSession.user);
+        const totalLessons = Array.isArray(course.modules) ? course.modules.length : 0;
+        const completedCount = completedLessons.length;
+        const progressPercent = totalLessons > 0
+            ? Math.round((completedCount / totalLessons) * 100)
+            : 0;
+        const now = new Date().toISOString();
+
+        const payload = {
+            user_id: currentSession.user.id,
+            email: normalizeEmail(currentSession.user.email || profile.email),
+            full_name: clean(profile.name),
+            course_id: course.id,
+            course_title: course.title,
+            total_lessons: totalLessons,
+            completed_lessons: completedLessons,
+            completed_count: completedCount,
+            progress_percent: progressPercent,
+            last_activity_at: now,
+            completed_at: progressPercent >= 100 ? now : null
+        };
+
+        const { error } = await supabaseClient
+            .from("academy_course_progress")
+            .upsert([payload], { onConflict:"user_id,course_id" });
+
+        if(error){
+            console.warn("Academy progress sync fallback:", error.message);
+        }
+    }
+
+    async function recordQuizAttempt(course, result){
+        const currentSession = await session();
+
+        if(!currentSession || typeof supabaseClient === "undefined" || !course || !result){
+            return;
+        }
+
+        const profile = profileForUser(currentSession.user);
+
+        const payload = {
+            user_id: currentSession.user.id,
+            email: normalizeEmail(currentSession.user.email || profile.email),
+            full_name: clean(profile.name),
+            course_id: course.id,
+            course_title: course.title,
+            score_percent: Number(result.percent) || 0,
+            grade: Number(result.grade) || 0,
+            correct_count: Number(result.correct) || 0,
+            total_questions: Number(result.total) || 0,
+            approved: Boolean(result.approved),
+            review: result.review || []
+        };
+
+        const { error } = await supabaseClient
+            .from("academy_quiz_attempts")
+            .insert([payload]);
+
+        if(error){
+            console.warn("Academy quiz sync fallback:", error.message);
+        }
+    }
+
+    async function recordCertificate(certificate){
+        const currentSession = await session();
+
+        if(!currentSession || typeof supabaseClient === "undefined" || !certificate){
+            return;
+        }
+
+        const profile = profileForUser(currentSession.user);
+
+        const payload = {
+            certificate_code: certificate.id,
+            user_id: currentSession.user.id,
+            email: normalizeEmail(currentSession.user.email || profile.email),
+            full_name: clean(profile.name),
+            student_name: certificate.studentName || profile.name,
+            student_email: certificate.studentEmail || currentSession.user.email || profile.email,
+            course_id: certificate.courseId,
+            course_title: certificate.courseTitle,
+            grade: Number(certificate.grade || certificate.score) || 0,
+            score_percent: Number(certificate.percent) || 0,
+            correct_count: Number(certificate.correct) || 0,
+            total_questions: Number(certificate.total) || 0,
+            issued_at: certificate.issuedAt || new Date().toISOString()
+        };
+
+        const { error } = await supabaseClient
+            .from("academy_certificates")
+            .upsert([payload], { onConflict:"certificate_code" });
+
+        if(error){
+            console.warn("Academy certificate sync fallback:", error.message);
         }
     }
 
@@ -212,6 +361,8 @@ const AccessControl = (() => {
         const profile = profileForUser(currentSession.user);
         saveLocalProfile(profile);
         updateIdentity(profile);
+        await upsertProfile(profile);
+        recordEvent("page_view");
         return true;
     }
 
@@ -313,7 +464,11 @@ const AccessControl = (() => {
         signInWithGoogle,
         signOut,
         readLocalProfile,
-        profileForUser
+        profileForUser,
+        recordEvent,
+        syncCourseProgress,
+        recordQuizAttempt,
+        recordCertificate
     };
 })();
 

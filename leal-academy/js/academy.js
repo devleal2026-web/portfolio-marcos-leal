@@ -24,7 +24,8 @@ const state = {
     selectedModuleIndex: 0,
     quizAnswers: {},
     assessmentOpen: {},
-    courseSearch: ""
+    courseSearch: "",
+    trackedCourses: {}
 };
 
 const storageKey = "airportBaggageAcademyProgress";
@@ -1326,6 +1327,10 @@ function renderLesson(course){
         progress[course.id] = [...done].sort((a, b) => a - b);
         saveProgress(progress);
 
+        if(window.AccessControl && typeof AccessControl.syncCourseProgress === "function"){
+            AccessControl.syncCourseProgress(course, progress[course.id]);
+        }
+
         if(hasNext){
             state.selectedModuleIndex += 1;
         }
@@ -1348,6 +1353,11 @@ function renderLesson(course){
         const progress = readProgress();
         progress[course.id] = [];
         saveProgress(progress);
+
+        if(window.AccessControl && typeof AccessControl.syncCourseProgress === "function"){
+            AccessControl.syncCourseProgress(course, []);
+        }
+
         renderCoursePage();
     });
 }
@@ -1523,6 +1533,11 @@ function issueCertificate(course, score, issuedAt = new Date().toISOString()){
     const certificates = readCertificates();
     certificates[course.id] = certificate;
     saveCertificates(certificates);
+
+    if(window.AccessControl && typeof AccessControl.recordCertificate === "function"){
+        AccessControl.recordCertificate(certificate);
+    }
+
     return certificate;
 }
 
@@ -1954,6 +1969,18 @@ function renderAssessment(course){
             review
         };
         saveQuizResults(results);
+
+        if(window.AccessControl && typeof AccessControl.recordQuizAttempt === "function"){
+            AccessControl.recordQuizAttempt(course, {
+                correct: score.correct,
+                total: score.total,
+                percent: score.percent,
+                grade: formatGrade(score.percent),
+                approved,
+                review
+            });
+        }
+
         const emailStatus = certificate
             ? await sendCertificateEmail(certificate)
             : null;
@@ -2004,6 +2031,18 @@ function renderCoursePage(){
         }
         return;
     }
+
+    if(!state.trackedCourses[course.id] && window.AccessControl && typeof AccessControl.recordEvent === "function"){
+        state.trackedCourses[course.id] = true;
+        AccessControl.recordEvent("course_view", {
+            courseId: course.id,
+            courseTitle: course.title,
+            metadata:{
+                progress: courseProgress(course)
+            }
+        });
+    }
+
     renderCourseHeader(course);
     renderCourseGuide(course);
     renderTracks(course);
