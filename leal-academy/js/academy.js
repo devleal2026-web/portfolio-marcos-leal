@@ -1431,7 +1431,6 @@ function renderLesson(course){
         </div>
         <nav class="lesson-quick-nav" aria-label="Navegação rápida da trilha">
             <a class="secondary-action" href="academy.html">Voltar aos cursos</a>
-            <a class="secondary-action" href="../index.html">Página inicial</a>
             <button class="secondary-action" id="lessonBackToTracks" type="button">Ver trilhas</button>
             <button class="primary-action" id="lessonBackToTop" type="button">Voltar ao topo</button>
         </nav>
@@ -1490,7 +1489,6 @@ function renderLesson(course){
 
     const lessonBackToTracks = document.getElementById("lessonBackToTracks");
     const lessonBackToTop = document.getElementById("lessonBackToTop");
-    const bottomBackToTop = document.getElementById("bottomBackToTop");
 
     if(lessonBackToTracks){
         lessonBackToTracks.onclick = () => {
@@ -1504,11 +1502,6 @@ function renderLesson(course){
         };
     }
 
-    if(bottomBackToTop){
-        bottomBackToTop.onclick = () => {
-            window.scrollTo({ top:0, behavior:"smooth" });
-        };
-    }
 }
 
 
