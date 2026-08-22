@@ -288,6 +288,110 @@ const AcademyAdmin = (() => {
         saveJson("airportBaggageAcademyAdminSyncedAttempts", syncedAttempts);
     }
 
+    function localDashboardData(session){
+        if(!session){
+            return {
+                progress:[],
+                attempts:[],
+                certificates:[]
+            };
+        }
+
+        const progress = readJson("airportBaggageAcademyProgress");
+        const quizResults = readJson("airportBaggageAcademyQuiz");
+        const certificates = readJson("airportBaggageAcademyCertificates");
+        const email = normalizeEmail(session.user.email);
+        const fullName = userNameFromSession(session);
+        const now = new Date().toISOString();
+
+        return {
+            progress:Object.keys(progress).map(courseId => {
+                const course = courseById(courseId);
+                const completedLessons = Array.isArray(progress[courseId])
+                    ? progress[courseId]
+                    : [];
+                const totalLessons = course && Array.isArray(course.modules)
+                    ? course.modules.length
+                    : completedLessons.length;
+                const progressPercent = totalLessons > 0
+                    ? Math.round((completedLessons.length / totalLessons) * 100)
+                    : 0;
+
+                return {
+                    user_id:session.user.id,
+                    email,
+                    full_name:fullName,
+                    course_id:course?.id || courseId,
+                    course_title:course?.title || courseId,
+                    total_lessons:totalLessons,
+                    completed_lessons:completedLessons,
+                    completed_count:completedLessons.length,
+                    progress_percent:progressPercent,
+                    last_activity_at:now,
+                    completed_at:progressPercent >= 100 ? now : null,
+                    source:"local"
+                };
+            }).filter(item => item.completed_count > 0),
+
+            attempts:Object.keys(quizResults).map(courseId => {
+                const result = quizResults[courseId];
+                const course = courseById(courseId);
+
+                return {
+                    user_id:session.user.id,
+                    email,
+                    full_name:fullName,
+                    course_id:course?.id || courseId,
+                    course_title:course?.title || courseId,
+                    score_percent:Number(result?.percent) || 0,
+                    grade:Number(gradeFromPercent(result?.percent)) || 0,
+                    correct_count:Number(result?.correct) || 0,
+                    total_questions:Number(result?.total) || 0,
+                    approved:Boolean(result?.approved),
+                    review:result?.review || [],
+                    created_at:result?.finishedAt || now,
+                    source:"local"
+                };
+            }).filter(item => item.total_questions > 0 || item.score_percent > 0),
+
+            certificates:Object.keys(certificates).map(courseId => {
+                const certificate = certificates[courseId];
+                const course = courseById(courseId);
+
+                return {
+                    certificate_code:certificate?.id || `LOCAL-${courseId}`,
+                    user_id:session.user.id,
+                    email,
+                    full_name:fullName,
+                    student_name:certificate?.studentName || fullName,
+                    student_email:certificate?.studentEmail || email,
+                    course_id:certificate?.courseId || course?.id || courseId,
+                    course_title:certificate?.courseTitle || course?.title || courseId,
+                    grade:Number(certificate?.grade || certificate?.score) || gradeFromPercent(certificate?.percent),
+                    score_percent:Number(certificate?.percent) || 0,
+                    correct_count:Number(certificate?.correct) || 0,
+                    total_questions:Number(certificate?.total) || 0,
+                    issued_at:certificate?.issuedAt || now,
+                    source:"local"
+                };
+            }).filter(item => item.course_id)
+        };
+    }
+
+    function mergeByKey(remoteRows, localRows, keyBuilder){
+        const map = new Map();
+
+        remoteRows.forEach(row => {
+            map.set(keyBuilder(row), row);
+        });
+
+        localRows.forEach(row => {
+            map.set(keyBuilder(row), row);
+        });
+
+        return [...map.values()];
+    }
+
     async function selectTable(table, columns = "*", orderColumn = "created_at"){
         let query = supabaseClient
             .from(table)
@@ -310,6 +414,7 @@ const AcademyAdmin = (() => {
         setStatus("Atualizando dados administrativos...");
 
         try{
+            const session = await currentSession();
             const [
                 profiles,
                 progress,
@@ -323,16 +428,26 @@ const AcademyAdmin = (() => {
                 selectTable("academy_certificates", "*", "issued_at"),
                 selectTable("academy_access_events", "*", "created_at")
             ]);
+            const localData = localDashboardData(session);
+            const mergedProgress = mergeByKey(progress, localData.progress, row => `${row.user_id}|${row.course_id}`);
+            const mergedAttempts = mergeByKey(attempts, localData.attempts, row => `${row.user_id}|${row.course_id}|${row.created_at || row.score_percent}`);
+            const mergedCertificates = mergeByKey(certificates, localData.certificates, row => `${row.certificate_code}`);
+            const hasLocalData = localData.progress.length > 0 || localData.attempts.length > 0 || localData.certificates.length > 0;
 
             renderDashboard({
                 profiles,
-                progress,
-                attempts,
-                certificates,
+                progress:mergedProgress,
+                attempts:mergedAttempts,
+                certificates:mergedCertificates,
                 events
             });
 
-            setStatus("Métricas atualizadas com sucesso.", "success");
+            setStatus(
+                hasLocalData
+                    ? "Métricas atualizadas com sucesso. Dados locais desta conta também foram considerados."
+                    : "Métricas atualizadas com sucesso.",
+                "success"
+            );
         }catch(error){
             console.error(error);
             setStatus("Erro ao carregar métricas. Confira se as tabelas e políticas SQL foram criadas no Supabase.", "danger");
