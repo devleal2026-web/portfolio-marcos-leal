@@ -62,7 +62,8 @@ const courseVisuals = {
     "conexoes-mct": { image: "linear-gradient(135deg, rgba(8,145,178,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
     "bagagens-especiais": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "mercadorias-perigosas-atendimento": { image: "linear-gradient(135deg, rgba(180,83,9,.92), rgba(15,23,42,.88)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
-    "comunicacao-operacional-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
+    "comunicacao-operacional-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
+    "contestacao-operacional-aviacao": { image: "linear-gradient(135deg, rgba(14,116,144,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80')", icon: "form" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -273,6 +274,14 @@ const lessonMediaProfiles = {
         { kind:"route", labels:["Voo", "Local", "Impacto", "Ação"], caption:"Mensagens em tempo real precisam indicar referência, impacto e ação solicitada." },
         { kind:"check", labels:["Fato", "Hora", "Decisão", "Histórico"], caption:"Registros transformam comunicação verbal em evidência operacional." },
         { kind:"security", labels:["Fonte", "Atualiza", "Escala", "Debrief"], caption:"Contingências exigem fonte única, atualização periódica e escalonamento." }
+    ],
+    "contestacao-operacional-aviacao": [
+        { kind:"form", labels:["Fato", "Evidência", "Regra", "Decisão"], caption:"Contestação separa alegação, evidência, regra aplicável e conclusão técnica." },
+        { kind:"check", labels:["Foto", "Etiqueta", "Histórico", "Recibo"], caption:"Evidências organizadas sustentam análise e reduzem retrabalho." },
+        { kind:"flow", labels:["Prazo", "Vínculo", "Documento", "Canal"], caption:"Admissibilidade verifica prazo, legitimidade, duplicidade e documentos mínimos." },
+        { kind:"match", labels:["Fato", "Nexo", "Causa", "Responsável"], caption:"Procedência depende de nexo causal, registros e responsabilidade operacional." },
+        { kind:"service", labels:["Clareza", "Respeito", "Pontos", "Solução"], caption:"Resposta técnica deve ser objetiva, respeitosa e abordar toda a demanda." },
+        { kind:"route", labels:["Indicador", "Causa", "Ação", "Prevenção"], caption:"Contestações revelam falhas recorrentes e oportunidades de melhoria." }
     ]
 };
 const courseIntroVideos = {};

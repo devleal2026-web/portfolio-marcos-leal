@@ -4547,6 +4547,219 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "contestacao-operacional-aviacao",
+        "title": "Contestação Operacional na Aviação",
+        "eyebrow": "Análise e defesa técnica",
+        "duration": "1h 20min",
+        "level": "Intermediário",
+        "summary": "Análise de reclamações, evidências, prazos, procedência, resposta técnica, contestação de responsabilidade, custos, registros e melhoria operacional.",
+        "color": "#0e7490",
+        "modules": [
+            {
+                "title": "Conceito de contestação",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Contestação é a análise técnica e documental de uma reclamação, cobrança ou responsabilização, avaliando se ela procede total, parcialmente ou não procede."
+            },
+            {
+                "title": "Coleta de evidências",
+                "type": "Checklist",
+                "duration": "14 min",
+                "content": "Uma contestação forte depende de fotos, histórico, etiqueta, recibos, horários, mensagens, registros de sistema, relatos objetivos e documentos vinculados ao processo."
+            },
+            {
+                "title": "Prazos e admissibilidade",
+                "type": "Procedimento",
+                "duration": "13 min",
+                "content": "Antes de analisar mérito, o agente deve verificar prazo, legitimidade, duplicidade, vínculo com o transporte, documentos mínimos e canal utilizado."
+            },
+            {
+                "title": "Procedência e responsabilidade",
+                "type": "Prática guiada",
+                "duration": "14 min",
+                "content": "A análise deve separar fato comprovado, alegação, responsabilidade operacional, dano pré-existente, limitação registrada, nexo causal e decisão final."
+            },
+            {
+                "title": "Resposta técnica ao passageiro",
+                "type": "Simulação",
+                "duration": "14 min",
+                "content": "A resposta deve ser clara, respeitosa, objetiva e abordar todos os pontos da demanda, explicando evidências, decisão e próximos passos."
+            },
+            {
+                "title": "Indicadores e prevenção",
+                "type": "Checklist",
+                "duration": "13 min",
+                "content": "Contestações devem gerar aprendizado: causas recorrentes, bases críticas, falhas de registro, inconsistências de atendimento e ações preventivas."
+            }
+        ],
+        "labs": [
+            {
+                "label": "DPR do Simulador",
+                "href": "dpr.html"
+            },
+            {
+                "label": "AHL do Simulador",
+                "href": "ahl.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "O que é contestação operacional?",
+                "options": [
+                    "Análise técnica e documental de uma reclamação, cobrança ou responsabilização",
+                    "Negativa automática de qualquer reclamação",
+                    "Substituição do atendimento ao passageiro",
+                    "Exclusão de registros do processo"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual é o primeiro cuidado em uma contestação?",
+                "options": [
+                    "Entender o fato reclamado e verificar documentos, prazos e vínculo com a operação",
+                    "Responder rapidamente sem analisar",
+                    "Culpar outro setor",
+                    "Ignorar a reclamação se houver fila"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma evidência forte pode ser:",
+                "options": [
+                    "Foto, etiqueta, recibo, histórico de sistema, horário e mensagem operacional",
+                    "Comentário informal sem data",
+                    "Opinião pessoal do agente",
+                    "Suposição sem registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O que significa procedência parcial?",
+                "options": [
+                    "Parte da reclamação é confirmada e parte não é comprovada ou não é atribuível",
+                    "Toda reclamação deve ser recusada",
+                    "Toda reclamação deve ser aceita",
+                    "O caso não precisa de resposta"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Antes de responsabilizar uma base ou setor, deve-se confirmar:",
+                "options": [
+                    "Nexo causal, registros, horários, rota, evidências e regra aplicável",
+                    "Apenas quem estava no turno",
+                    "Somente a opinião do passageiro",
+                    "A cor da bagagem"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Dano pré-existente deve ser tratado com:",
+                "options": [
+                    "Registro claro, evidência e análise de limitação quando aplicável",
+                    "Compensação automática",
+                    "Remoção do histórico",
+                    "Resposta agressiva ao passageiro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A resposta ao passageiro deve:",
+                "options": [
+                    "Ser clara, objetiva, respeitosa e abordar todos os pontos da demanda",
+                    "Usar termos ofensivos",
+                    "Evitar explicar a decisão",
+                    "Responder apenas com frases genéricas"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando faltam informações essenciais, a conduta correta é:",
+                "options": [
+                    "Solicitar complementação de forma objetiva e registrar a pendência",
+                    "Encerrar sem avisar",
+                    "Inventar dados para completar",
+                    "Aprovar a contestação automaticamente"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A duplicidade de reclamação ocorre quando:",
+                "options": [
+                    "Há mais de uma demanda sobre o mesmo fato sem novo elemento relevante",
+                    "O passageiro apresenta um documento",
+                    "O agente faz nova análise",
+                    "A reclamação tem mais de uma página"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em contestação de custo, o analista deve verificar:",
+                "options": [
+                    "Origem do custo, autorização, comprovante, responsabilidade e registro no processo",
+                    "Apenas o valor final",
+                    "Somente quem pagou",
+                    "Nenhum documento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O histórico do processo é importante porque:",
+                "options": [
+                    "Mostra ações tomadas, contatos, decisões, prazos e evidências",
+                    "Serve para apagar dados sensíveis",
+                    "Substitui fotos e documentos",
+                    "Impede nova análise"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma contestação bem feita deve evitar:",
+                "options": [
+                    "Negativas sem evidência, linguagem defensiva e conclusões sem base documental",
+                    "Organização de provas",
+                    "Resposta respeitosa",
+                    "Análise de prazos"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O que é nexo causal?",
+                "options": [
+                    "Relação comprovável entre o fato ocorrido e o dano ou cobrança reclamada",
+                    "Número da etiqueta da bagagem",
+                    "Nome do passageiro",
+                    "Prazo de embarque"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando a reclamação é procedente, a contestação deve:",
+                "options": [
+                    "Reconhecer o ponto confirmado, indicar solução e registrar ação corretiva quando aplicável",
+                    "Negar mesmo com evidência",
+                    "Apagar a ocorrência",
+                    "Transferir sem análise"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O aprendizado gerado por contestações ajuda a:",
+                "options": [
+                    "Identificar falhas recorrentes de processo, registro e atendimento",
+                    "Aumentar conflitos",
+                    "Diminuir transparência",
+                    "Eliminar treinamentos"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 
