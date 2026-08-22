@@ -40,6 +40,20 @@ const AccessControl = (() => {
         return "pages/access.html";
     }
 
+    function adminPagePath(){
+        const path = window.location.pathname;
+
+        if(path.includes("/pages/worldtracer/")){
+            return "../admin.html";
+        }
+
+        if(path.includes("/pages/")){
+            return "admin.html";
+        }
+
+        return "pages/admin.html";
+    }
+
     function loginReturnUrl(){
         const params = new URLSearchParams(window.location.search);
         const target = params.get("return");
@@ -350,6 +364,65 @@ const AccessControl = (() => {
         }
     }
 
+    async function isAdminProfile(profile){
+        const email = normalizeEmail(profile?.email);
+
+        if(!email || typeof supabaseClient === "undefined"){
+            return false;
+        }
+
+        try{
+            const { data, error } = await supabaseClient
+                .from("academy_admins")
+                .select("email")
+                .eq("email", email)
+                .maybeSingle();
+
+            if(error){
+                console.warn("Academy admin check fallback:", error.message);
+                return email === "devleal2026@gmail.com";
+            }
+
+            return Boolean(data);
+        }catch(error){
+            console.warn("Academy admin check fallback:", error.message);
+            return email === "devleal2026@gmail.com";
+        }
+    }
+
+    async function showAdminAccess(profile){
+        if(document.getElementById("btnAcademyAdmin")){
+            return;
+        }
+
+        const allowed = await isAdminProfile(profile);
+
+        if(!allowed){
+            return;
+        }
+
+        const host =
+            document.querySelector(".academy-home-actions") ||
+            document.querySelector(".sidebar nav") ||
+            document.querySelector(".topbar") ||
+            document.querySelector(".navbar .ms-auto");
+
+        if(!host){
+            return;
+        }
+
+        const link = document.createElement("a");
+        link.id = "btnAcademyAdmin";
+        link.href = adminPagePath();
+        link.textContent = "Admin";
+
+        if(host.matches(".topbar")){
+            link.className = "secure-logout-button";
+        }
+
+        host.appendChild(link);
+    }
+
     async function requireAuth(){
         const currentSession = await session();
 
@@ -362,6 +435,7 @@ const AccessControl = (() => {
         saveLocalProfile(profile);
         updateIdentity(profile);
         await upsertProfile(profile);
+        await showAdminAccess(profile);
         recordEvent("page_view");
         return true;
     }
