@@ -259,8 +259,102 @@ function stripEmoji(value){
         .replace(/[\u2600-\u27BF]/g, "")
         .replace(/[\uFE0F]/g, "");
 }
+
+const portugueseAccentMap = [
+    ["Avaliacao", "Avaliação"], ["avaliacao", "avaliação"],
+    ["Conclusao", "Conclusão"], ["conclusao", "conclusão"],
+    ["Codigo", "Código"], ["codigo", "código"], ["Codigos", "Códigos"], ["codigos", "códigos"],
+    ["Conteudo", "Conteúdo"], ["conteudo", "conteúdo"],
+    ["Endereco", "Endereço"], ["endereco", "endereço"],
+    ["Obrigatorios", "Obrigatórios"], ["obrigatorios", "obrigatórios"],
+    ["Caracteristicas", "Características"], ["caracteristicas", "características"],
+    ["Identificacao", "Identificação"], ["identificacao", "identificação"],
+    ["Solicitacao", "Solicitação"], ["solicitacao", "solicitação"],
+    ["Historico", "Histórico"], ["historico", "histórico"],
+    ["Localizacao", "Localização"], ["localizacao", "localização"],
+    ["Danificacao", "Danificação"], ["danificacao", "danificação"],
+    ["Aviacao", "Aviação"], ["aviacao", "aviação"],
+    ["Seguranca", "Segurança"], ["seguranca", "segurança"],
+    ["Aeroportuaria", "Aeroportuária"], ["aeroportuaria", "aeroportuária"],
+    ["Operacao", "Operação"], ["operacao", "operação"],
+    ["Operacional", "Operacional"], ["operacional", "operacional"],
+    ["Pratica", "Prática"], ["pratica", "prática"], ["Praticas", "Práticas"], ["praticas", "práticas"],
+    ["Simulacao", "Simulação"], ["simulacao", "simulação"],
+    ["Introducao", "Introdução"], ["introducao", "introdução"],
+    ["Preparacao", "Preparação"], ["preparacao", "preparação"],
+    ["Protecao", "Proteção"], ["protecao", "proteção"],
+    ["Prevencao", "Prevenção"], ["prevencao", "prevenção"],
+    ["Inspecao", "Inspeção"], ["inspecao", "inspeção"],
+    ["Reclamacoes", "Reclamações"], ["reclamacoes", "reclamações"],
+    ["Excecao", "Exceção"], ["excecao", "exceção"],
+    ["Conexao", "Conexão"], ["conexao", "conexão"], ["Conexoes", "Conexões"], ["conexoes", "conexões"],
+    ["Alfandega", "Alfândega"], ["alfandega", "alfândega"],
+    ["Analise", "Análise"], ["analise", "análise"],
+    ["Restricoes", "Restrições"], ["restricoes", "restrições"],
+    ["Aplicavel", "Aplicável"], ["aplicavel", "aplicável"],
+    ["Ameaca", "Ameaça"], ["ameaca", "ameaça"],
+    ["Area", "Área"], ["area", "área"],
+    ["Instalacoes", "Instalações"], ["instalacoes", "instalações"],
+    ["Ilicita", "Ilícita"], ["ilicita", "ilícita"],
+    ["Responsaveis", "Responsáveis"], ["responsaveis", "responsáveis"],
+    ["Solucao", "Solução"], ["solucao", "solução"],
+    ["Experiencia", "Experiência"], ["experiencia", "experiência"],
+    ["Satisfatoria", "Satisfatória"], ["satisfatoria", "satisfatória"],
+    ["Padrao", "Padrão"], ["padrao", "padrão"], ["Padroes", "Padrões"], ["padroes", "padrões"],
+    ["Eficiencia", "Eficiência"], ["eficiencia", "eficiência"],
+    ["Agilidade", "Agilidade"], ["agilidade", "agilidade"],
+    ["Formulario", "Formulário"], ["formulario", "formulário"],
+    ["Compensacao", "Compensação"], ["compensacao", "compensação"],
+    ["Decisao", "Decisão"], ["decisao", "decisão"],
+    ["Continuo", "Contínuo"], ["continuo", "contínuo"], ["Continua", "Contínua"], ["continua", "contínua"],
+    ["Disponiveis", "Disponíveis"], ["disponiveis", "disponíveis"],
+    ["Condicao", "Condição"], ["condicao", "condição"],
+    ["Lideranca", "Liderança"], ["lideranca", "liderança"],
+    ["Lider", "Líder"], ["lider", "líder"],
+    ["Escritorio", "Escritório"], ["escritorio", "escritório"],
+    ["Criterio", "Critério"], ["criterio", "critério"],
+    ["Sugestoes", "Sugestões"], ["sugestoes", "sugestões"],
+    ["Orientacao", "Orientação"], ["orientacao", "orientação"],
+    ["Comunicacao", "Comunicação"], ["comunicacao", "comunicação"],
+    ["Patio", "Pátio"], ["patio", "pátio"],
+    ["Pressao", "Pressão"], ["pressao", "pressão"],
+    ["Radio", "Rádio"], ["radio", "rádio"],
+    ["Rapida", "Rápida"], ["rapida", "rápida"], ["Rapido", "Rápido"], ["rapido", "rápido"],
+    ["Concisao", "Concisão"], ["concisao", "concisão"],
+    ["Confirmacao", "Confirmação"], ["confirmacao", "confirmação"],
+    ["Posicao", "Posição"], ["posicao", "posição"],
+    ["Possivel", "Possível"], ["possivel", "possível"],
+    ["Pagina", "Página"], ["pagina", "página"],
+    ["Opcao", "Opção"], ["opcao", "opção"],
+    ["Botao", "Botão"], ["botao", "botão"],
+    ["Funcao", "Função"], ["funcao", "função"],
+    ["Automatica", "Automática"], ["automatica", "automática"], ["Automatico", "Automático"], ["automatico", "automático"],
+    ["Minimo", "Mínimo"], ["minimo", "mínimo"],
+    ["Proxima", "Próxima"], ["proxima", "próxima"], ["Proximo", "Próximo"], ["proximo", "próximo"],
+    ["Concluido", "Concluído"], ["concluido", "concluído"],
+    ["Concluida", "Concluída"], ["concluida", "concluída"],
+    ["Voce", "Você"], ["voce", "você"],
+    ["Nao", "Não"], ["nao", "não"],
+    ["Esta", "Está"], ["esta", "está"],
+    ["Ja", "Já"], ["ja", "já"],
+    ["Duvida", "Dúvida"], ["duvida", "dúvida"],
+    ["Verificacao", "Verificação"], ["verificacao", "verificação"],
+    ["Exercicio", "Exercício"], ["exercicio", "exercício"],
+    ["Aplicacao", "Aplicação"], ["aplicacao", "aplicação"]
+];
+
+function applyPortugueseAccents(value){
+    let text = String(value ?? "");
+
+    portugueseAccentMap.forEach(([plain, accented]) => {
+        text = text.replace(new RegExp(`\\b${plain}\\b`, "g"), accented);
+    });
+
+    return text;
+}
+
 function escapeHtml(value){
-    return String(value ?? "")
+    return applyPortugueseAccents(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -576,7 +670,7 @@ function autoModulesForCourse(course){
             title: course.title || "Introducao",
             type: "Trilha",
             duration: course.duration || "Livre",
-            content: course.summary || "Conteudo em preparacao."
+            content: course.summary || "Conteúdo em preparação."
         }];
     }
 
@@ -682,7 +776,7 @@ function lessonVisualFallbackLabels(kind){
         service: ["Ouvir", "Orientar", "Apoiar", "Resolver"],
         form: ["Dados", "Campos", "Historico", "Salvar"],
         found: ["Local", "Objeto", "Registro", "Guarda"],
-        flow: ["Entrada", "Analise", "Acao", "Conclusao"]
+        flow: ["Entrada", "Análise", "Ação", "Conclusão"]
     };
 
     return presets[kind] || presets.flow;
@@ -985,13 +1079,13 @@ function renderHome(){
                     <span class="course-card-icon">${iconSvg(visual.icon)}</span>
                 </div>
                 <div class="course-card-body">
-                    <span>${course.eyebrow}</span>
-                    <h2>${course.title}</h2>
-                    <p>${course.summary}</p>
+                    <span>${escapeHtml(course.eyebrow)}</span>
+                    <h2>${escapeHtml(course.title)}</h2>
+                    <p>${escapeHtml(course.summary)}</p>
                     <div class="course-card-footer">
                         <strong>${courseModules(course).length} trilhas</strong>
-                        <small>${percent}% concluido</small>
-                        <small>Conteudo curado</small>
+                        <small>${percent}% concluído</small>
+                        <small>Conteúdo curado</small>
                     </div>
                 </div>
             </a>
@@ -1028,12 +1122,12 @@ function renderCourseHeader(course){
         header.style.backgroundImage = visual.image;
     }
 
-    document.getElementById("courseEyebrow").textContent = course.eyebrow;
-    document.getElementById("courseTitle").textContent = course.title;
-    document.getElementById("courseSummary").textContent = course.summary;
-    document.getElementById("courseDuration").textContent = course.duration;
-    document.getElementById("courseLevel").textContent = course.level;
-    document.getElementById("courseProgress").textContent = `${courseProgress(course)}% concluido`;
+    document.getElementById("courseEyebrow").textContent = applyPortugueseAccents(course.eyebrow);
+    document.getElementById("courseTitle").textContent = applyPortugueseAccents(course.title);
+    document.getElementById("courseSummary").textContent = applyPortugueseAccents(course.summary);
+    document.getElementById("courseDuration").textContent = applyPortugueseAccents(course.duration);
+    document.getElementById("courseLevel").textContent = applyPortugueseAccents(course.level);
+    document.getElementById("courseProgress").textContent = `${courseProgress(course)}% concluído`;
 }
 
 function renderCourseIntroVideo(course){
@@ -1077,7 +1171,7 @@ function renderTracks(course){
 
     grid.innerHTML = modules.map((module, index) => {
         const active = index === state.selectedModuleIndex ? "active" : "";
-        const checked = done.includes(index) ? "Concluida" : "Pendente";
+        const checked = done.includes(index) ? "Concluída" : "Pendente";
 
         return `
             <button class="track-card ${active}" type="button" data-module="${index}">
@@ -1112,9 +1206,9 @@ function renderCourseGuide(course){
 
     guide.innerHTML = `
         <div>
-            <span>Voce esta na trilha ${current} de ${modules.length}</span>
+            <span>Você está na trilha ${current} de ${modules.length}</span>
             <strong>${escapeHtml(currentModule(course).title)}</strong>
-            <p>${done.length} de ${modules.length} trilhas concluidas.</p>
+            <p>${done.length} de ${modules.length} trilhas concluídas.</p>
         </div>
 
         <div class="course-guide-actions">
@@ -1122,7 +1216,7 @@ function renderCourseGuide(course){
                 ${nextPending >= 0 ? "Continuar pendente" : "Revisar curso"}
             </button>
             <button class="primary-action" id="goAssessment" type="button">
-                Ir para avaliacao
+                Ir para avaliação
             </button>
         </div>
     `;
@@ -1190,7 +1284,7 @@ function renderLesson(course){
     const module = currentModule(course);
     const panel = document.getElementById("lessonPanel");
     const lessonContent = fullLessonContent(course, state.selectedModuleIndex);
-    const contentLabel = "Conteudo da trilha";
+    const contentLabel = "Conteúdo da trilha";
     const modules = courseModules(course);
     const hasPrevious = state.selectedModuleIndex > 0;
     const hasNext = state.selectedModuleIndex < modules.length - 1;
@@ -1209,8 +1303,8 @@ function renderLesson(course){
         )}</article>
         <div class="lesson-actions">
             <button class="secondary-action" id="previousLesson" type="button" ${hasPrevious ? "" : "disabled"}>Trilha anterior</button>
-            <button class="primary-action" id="completeLesson" type="button">Marcar como concluida</button>
-            <button class="primary-action" id="nextLesson" type="button" ${hasNext ? "" : "disabled"}>Proxima trilha</button>
+            <button class="primary-action" id="completeLesson" type="button">Marcar como concluída</button>
+            <button class="primary-action" id="nextLesson" type="button" ${hasNext ? "" : "disabled"}>Próxima trilha</button>
             <button class="secondary-action" id="resetCourse" type="button">Reiniciar progresso</button>
         </div>
     `;
@@ -1396,7 +1490,7 @@ function quizReview(course, questions, answers){
             selectedIndex,
             selectedAnswer: question.options[selectedIndex] || "Sem resposta",
             correctIndex,
-            correctAnswer: question.options[correctIndex] || "Resposta nao cadastrada",
+            correctAnswer: question.options[correctIndex] || "Resposta não cadastrada",
             correct: selectedIndex === correctIndex
         };
     });
@@ -1502,12 +1596,12 @@ function certificateHtml(certificate, course){
                     <img src="../assets/brand/leal-academy-logo.png" alt="Leal Academy">
                     <div>
                         <span>Leal Academy</span>
-                        <strong>Certificado de Conclusao</strong>
+                        <strong>Certificado de Conclusão</strong>
                     </div>
                 </header>
 
                 <section class="certificate-body">
-                    <span class="certificate-kicker">Treinamento operacional em aviacao civil</span>
+                    <span class="certificate-kicker">Treinamento operacional em aviação civil</span>
                     <h1>${escapeHtml(certificate.studentName)}</h1>
                     <p>
                         concluiu com aproveitamento o curso
@@ -1524,13 +1618,13 @@ function certificateHtml(certificate, course){
                     </div>
 
                     <div>
-                        <span>Codigo</span>
+                        <span>Código</span>
                         <strong>${escapeHtml(certificate.id)}</strong>
                     </div>
 
                     <div>
                         <span>Aluno</span>
-                        <strong>${escapeHtml(certificate.studentEmail || "E-mail nao informado")}</strong>
+                        <strong>${escapeHtml(certificate.studentEmail || "E-mail não informado")}</strong>
                     </div>
                 </footer>
 
@@ -1614,7 +1708,7 @@ function downloadCertificate(certificate, course){
 
 function openMailClient(certificate){
     if(!certificate.studentEmail){
-        alert("Nao existe e-mail cadastrado para este aluno.");
+        alert("Não existe e-mail cadastrado para este aluno.");
         return;
     }
 
@@ -1626,9 +1720,9 @@ function openMailClient(certificate){
         "",
         `Seu certificado do curso ${certificate.courseTitle} foi emitido.`,
         `Nota: ${certificateGrade} (${certificatePercent}% - ${certificate.correct}/${certificate.total} acertos).`,
-        `Codigo do certificado: ${certificate.id}`,
+        `Código do certificado: ${certificate.id}`,
         "",
-        "Abra a pagina do certificado na plataforma e use a opcao Imprimir / Salvar em PDF para anexar ao e-mail."
+        "Abra a página do certificado na plataforma e use a opção Imprimir / Salvar em PDF para anexar ao e-mail."
     ].join("\n"));
 
     window.location.href = `mailto:${encodeURIComponent(certificate.studentEmail)}?subject=${subject}&body=${body}`;
@@ -1655,13 +1749,13 @@ async function sendCertificateEmail(certificate){
                 };
             }
         }catch(error){
-            console.warn("Envio automatico de certificado indisponivel:", error);
+            console.warn("Envio automático de certificado indisponível:", error);
         }
     }
 
     return {
         sent:false,
-        message:`Certificado emitido para ${certificate.studentEmail}. Use o botao de e-mail enquanto a funcao automatica nao estiver configurada.`
+        message:`Certificado emitido para ${certificate.studentEmail}. Use o botão de e-mail enquanto a função automática não estiver configurada.`
     };
 }
 
@@ -1678,7 +1772,7 @@ function renderAssessmentResult(course, score, review, certificate, emailStatus)
                         Aluno: ${escapeHtml(certificate.studentName)}
                         ${certificate.studentEmail ? ` | ${escapeHtml(certificate.studentEmail)}` : ""}
                     </p>
-                    <small>${escapeHtml(emailStatus || "Envio automatico preparado. Use o botao de e-mail se a funcao de envio nao estiver configurada.")}</small>
+                    <small>${escapeHtml(emailStatus || "Envio automático preparado. Use o botão de e-mail se a função de envio não estiver configurada.")}</small>
                 </div>
 
                 <div class="certificate-actions">
@@ -1699,9 +1793,9 @@ function renderAssessmentResult(course, score, review, certificate, emailStatus)
     return `
         <section class="assessment-result ${approved ? "approved" : "failed"}">
             <div>
-                <span>${approved ? "Aprovado" : "Nao aprovado"}</span>
+                <span>${approved ? "Aprovado" : "Não aprovado"}</span>
                 <strong>Nota: ${grade} | Resultado: ${score.correct}/${score.total} - ${score.percent}%</strong>
-                <p>${approved ? "Parabens. O certificado foi liberado para este curso." : "Revise as trilhas e refaca a avaliacao para atingir nota minima 8.0."}</p>
+                <p>${approved ? "Parabéns. O certificado foi liberado para este curso." : "Revise as trilhas e refaça a avaliação para atingir nota mínima 8.0."}</p>
             </div>
         </section>
 
@@ -1714,7 +1808,7 @@ function openAssessmentWindow(course){
     const questions = normalizeQuiz(course);
 
     if(questions.length === 0){
-        alert("Este curso ainda nao possui avaliacao cadastrada.");
+        alert("Este curso ainda não possui avaliação cadastrada.");
         return;
     }
 
@@ -1741,7 +1835,7 @@ function renderAssessment(course){
     const questions = normalizeQuiz(course);
 
     if(questions.length === 0){
-        container.innerHTML = `<div class="assessment-empty">Este curso ainda nao possui avaliacao cadastrada.</div>`;
+        container.innerHTML = `<div class="assessment-empty">Este curso ainda não possui avaliação cadastrada.</div>`;
         return;
     }
 
@@ -1755,9 +1849,9 @@ function renderAssessment(course){
         container.innerHTML = `
             <article class="assessment-start-card">
                 <div>
-                    <span>Avaliacao</span>
+                    <span>Avaliação</span>
                     <strong>${questions.length} perguntas</strong>
-                    <p>${saved ? `Ultimo resultado: nota ${formatGrade(saved.percent)} (${saved.percent}%)` : "A prova ainda nao foi iniciada neste curso."}</p>
+                    <p>${saved ? `Último resultado: nota ${formatGrade(saved.percent)} (${saved.percent}%)` : "A prova ainda não foi iniciada neste curso."}</p>
                 </div>
 
                 <div class="assessment-start-actions">
@@ -1794,9 +1888,9 @@ function renderAssessment(course){
     container.innerHTML = `
         <details class="assessment-expander ${isStandalone ? "assessment-fullscreen-card" : ""}" open>
             <summary>
-                <span>${isStandalone ? "Prova em tela cheia" : "Avaliacao em andamento"}</span>
+                <span>${isStandalone ? "Prova em tela cheia" : "Avaliação em andamento"}</span>
                 <strong>${questions.length} perguntas</strong>
-                <small id="assessmentScore">${saved ? `Ultimo: ${saved.percent}%` : "Nao finalizada"}</small>
+                <small id="assessmentScore">${saved ? `Último: ${saved.percent}%` : "Não finalizada"}</small>
             </summary>
 
             <div class="quiz-list compact">
@@ -1814,7 +1908,7 @@ function renderAssessment(course){
             </div>
 
             <div class="lesson-actions assessment-actions">
-                <button class="primary-action" id="finishQuiz" type="button">Finalizar avaliacao</button>
+                <button class="primary-action" id="finishQuiz" type="button">Finalizar avaliação</button>
                 <button class="secondary-action" id="clearQuiz" type="button">Limpar respostas</button>
                 <button class="secondary-action" id="closeAssessment" type="button">${isStandalone ? "Fechar aba" : "Fechar prova"}</button>
             </div>
@@ -1925,7 +2019,7 @@ function renderCertificatePage(){
     }
 
     if(!course){
-        container.innerHTML = `<div class="assessment-empty">Curso nao encontrado.</div>`;
+        container.innerHTML = `<div class="assessment-empty">Curso não encontrado.</div>`;
         return;
     }
 
@@ -1936,13 +2030,13 @@ function renderCertificatePage(){
     }
 
     if(meta){
-        meta.textContent = course.title;
+        meta.textContent = applyPortugueseAccents(course.title);
     }
 
     if(!certificate){
         container.innerHTML = `
             <div class="assessment-empty">
-                Nenhum certificado emitido para este curso. Conclua a avaliacao com aproveitamento minimo de 80% (nota 8.0).
+                Nenhum certificado emitido para este curso. Conclua a avaliação com aproveitamento mínimo de 80% (nota 8.0).
             </div>
         `;
         return;
@@ -1985,7 +2079,7 @@ async function bootAcademy(){
         const meta = document.getElementById("assessmentCourseMeta");
 
         if(title){
-            title.textContent = course ? course.title : "Avaliacao";
+            title.textContent = course ? applyPortugueseAccents(course.title) : "Avaliação";
         }
 
         if(meta && course){
