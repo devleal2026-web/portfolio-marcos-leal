@@ -15,6 +15,27 @@ insert into public.academy_admins (email)
 values ('devleal2026@gmail.com')
 on conflict (email) do nothing;
 
+create or replace function public.is_academy_admin()
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+    current_email text;
+begin
+    current_email := lower(coalesce(auth.jwt() ->> 'email', ''));
+
+    return exists (
+        select 1
+        from public.academy_admins admins
+        where lower(admins.email) = current_email
+    );
+end;
+$$;
+
+grant execute on function public.is_academy_admin() to authenticated;
+
 create table if not exists public.access_profiles (
     id uuid primary key references auth.users(id) on delete cascade,
     full_name text,
@@ -123,7 +144,7 @@ create policy "Admins can read own admin row"
 on public.academy_admins
 for select
 to authenticated
-using (lower(email) = lower(auth.jwt() ->> 'email'));
+using (public.is_academy_admin() or lower(email) = lower(auth.jwt() ->> 'email'));
 
 drop policy if exists "Users can read own profile" on public.access_profiles;
 create policy "Users can read own profile"
@@ -132,11 +153,7 @@ for select
 to authenticated
 using (
     id = auth.uid()
-    or exists (
-        select 1
-        from public.academy_admins admins
-        where lower(admins.email) = lower(auth.jwt() ->> 'email')
-    )
+    or public.is_academy_admin()
 );
 
 drop policy if exists "Users can insert own profile" on public.access_profiles;
@@ -168,11 +185,7 @@ for select
 to authenticated
 using (
     user_id = auth.uid()
-    or exists (
-        select 1
-        from public.academy_admins admins
-        where lower(admins.email) = lower(auth.jwt() ->> 'email')
-    )
+    or public.is_academy_admin()
 );
 
 drop policy if exists "Users can upsert own course progress" on public.academy_course_progress;
@@ -197,11 +210,7 @@ for select
 to authenticated
 using (
     user_id = auth.uid()
-    or exists (
-        select 1
-        from public.academy_admins admins
-        where lower(admins.email) = lower(auth.jwt() ->> 'email')
-    )
+    or public.is_academy_admin()
 );
 
 drop policy if exists "Users can insert own quiz attempts" on public.academy_quiz_attempts;
@@ -218,11 +227,7 @@ for select
 to authenticated
 using (
     user_id = auth.uid()
-    or exists (
-        select 1
-        from public.academy_admins admins
-        where lower(admins.email) = lower(auth.jwt() ->> 'email')
-    )
+    or public.is_academy_admin()
 );
 
 drop policy if exists "Users can insert own certificates" on public.academy_certificates;
@@ -247,9 +252,5 @@ for select
 to authenticated
 using (
     user_id = auth.uid()
-    or exists (
-        select 1
-        from public.academy_admins admins
-        where lower(admins.email) = lower(auth.jwt() ->> 'email')
-    )
+    or public.is_academy_admin()
 );

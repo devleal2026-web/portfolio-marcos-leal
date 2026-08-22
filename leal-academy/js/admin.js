@@ -70,6 +70,18 @@ const AcademyAdmin = (() => {
     async function isAdmin(email){
         const normalizedEmail = normalizeEmail(email);
 
+        try{
+            const { data, error } = await supabaseClient.rpc("is_academy_admin");
+
+            if(!error){
+                return Boolean(data);
+            }
+
+            console.warn("Academy admin RPC fallback:", error.message);
+        }catch(error){
+            console.warn("Academy admin RPC fallback:", error.message);
+        }
+
         const { data, error } = await supabaseClient
             .from("academy_admins")
             .select("email")
@@ -109,9 +121,14 @@ const AcademyAdmin = (() => {
 
             if(!allowed){
                 setStatus("Acesso negado. Este e-mail não está cadastrado como administrador.", "danger");
-                document.querySelectorAll(".academy-admin-panel, .academy-admin-metrics").forEach(item => {
-                    item.hidden = true;
-                });
+                setHtml("adminMetrics", "");
+                setHtml("adminAccessByAccountTable", "");
+                setHtml("adminAccountCourseTable", "");
+                setHtml("adminAccountsPanel", "");
+                setHtml("adminUsersTable", "");
+                setHtml("adminCoursesTable", "");
+                setHtml("adminAttemptsTable", "");
+                setHtml("adminCertificatesTable", "");
                 return;
             }
         }catch(error){

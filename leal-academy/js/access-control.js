@@ -376,6 +376,15 @@ const AccessControl = (() => {
         }
 
         try{
+            const { data: adminStatus, error: rpcError } = await supabaseClient
+                .rpc("is_academy_admin");
+
+            if(!rpcError){
+                return Boolean(adminStatus);
+            }
+
+            console.warn("Academy admin RPC fallback:", rpcError.message);
+
             const { data, error } = await supabaseClient
                 .from("academy_admins")
                 .select("email")
