@@ -59,7 +59,8 @@ const courseVisuals = {
     "checkin-operacional": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "embarque-controle-portao": { image: "linear-gradient(135deg, rgba(29,78,216,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
     "irregularidades-voo": { image: "linear-gradient(135deg, rgba(124,58,237,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
-    "conexoes-mct": { image: "linear-gradient(135deg, rgba(8,145,178,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
+    "conexoes-mct": { image: "linear-gradient(135deg, rgba(8,145,178,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
+    "bagagens-especiais": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "case" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -246,6 +247,14 @@ const lessonMediaProfiles = {
         { kind:"flow", labels:["Identificar", "Priorizar", "Comunicar", "Acompanhar"], caption:"Conexões críticas precisam de ação antecipada e comunicação entre áreas." },
         { kind:"service", labels:["Misconnect", "Reacomodar", "Rastrear", "Orientar"], caption:"Perda de conexão exige continuidade da viagem e controle do destino da bagagem." },
         { kind:"check", labels:["Causa", "Rota", "Turno", "Melhoria"], caption:"Indicadores de conexão ajudam a reduzir reincidência e orientar planos de melhoria." }
+    ],
+    "bagagens-especiais": [
+        { kind:"case", labels:["Peso", "Dimensão", "Fragilidade", "Regra"], caption:"Bagagem especial exige análise de peso, dimensão, embalagem, conteúdo e regra de transporte." },
+        { kind:"service", labels:["Cadeira", "Muleta", "Prótese", "Autonomia"], caption:"Equipamentos assistivos devem preservar mobilidade, autonomia e dignidade do passageiro." },
+        { kind:"case", labels:["Esporte", "Instrumento", "Estojo", "Etiqueta"], caption:"Itens esportivos e instrumentos precisam de embalagem adequada, etiqueta e manuseio diferenciado." },
+        { kind:"service", labels:["Animal", "Documento", "Recipiente", "Cão-guia"], caption:"Animais exigem regra específica; cão-guia é recurso de acessibilidade vinculado ao passageiro." },
+        { kind:"security", labels:["Frágil", "Valor", "Restrição", "Registro"], caption:"Itens frágeis, de valor ou restritos exigem orientação e registro quando aplicável." },
+        { kind:"flow", labels:["Aceite", "Rampa", "Chegada", "Entrega"], caption:"Rastreabilidade acompanha o volume especial do aceite até a devolução correta." }
     ]
 };
 const courseIntroVideos = {};

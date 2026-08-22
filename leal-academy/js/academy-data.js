@@ -3908,6 +3908,219 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "bagagens-especiais",
+        "title": "Bagagens Especiais",
+        "eyebrow": "Itens fora do padrão",
+        "duration": "1h 20min",
+        "level": "Intermediário",
+        "summary": "Atendimento, aceitação, identificação, manuseio e rastreabilidade de bagagens especiais, equipamentos assistivos, itens esportivos, instrumentos, animais e volumes frágeis.",
+        "color": "#0f766e",
+        "modules": [
+            {
+                "title": "Conceito e classificação",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Bagagens especiais são volumes que exigem análise adicional por peso, dimensão, fragilidade, valor, forma, necessidade assistiva, conteúdo ou condição de transporte."
+            },
+            {
+                "title": "Equipamentos assistivos",
+                "type": "Procedimento",
+                "duration": "14 min",
+                "content": "Cadeiras de rodas, andadores, muletas, próteses e outros recursos de mobilidade devem ser tratados com prioridade, identificação clara, cuidado físico e devolução controlada."
+            },
+            {
+                "title": "Itens esportivos e instrumentos",
+                "type": "Prática guiada",
+                "duration": "13 min",
+                "content": "Equipamentos esportivos e instrumentos musicais precisam de conferência de embalagem, dimensões, aceite operacional, etiqueta correta e orientação objetiva ao passageiro."
+            },
+            {
+                "title": "Animais e cão-guia",
+                "type": "Aula",
+                "duration": "14 min",
+                "content": "Animais em transporte aéreo exigem regras específicas de aceitação, documentação e acomodação; cão-guia possui tratamento diferenciado por ser recurso de acessibilidade."
+            },
+            {
+                "title": "Frágeis, valor e restrições",
+                "type": "Checklist",
+                "duration": "13 min",
+                "content": "Volumes frágeis, itens de valor e conteúdos restritos exigem orientação prévia, análise de aceite, registro de limitação quando aplicável e cuidado no manuseio."
+            },
+            {
+                "title": "Rastreabilidade e entrega",
+                "type": "Simulação",
+                "duration": "14 min",
+                "content": "Toda bagagem especial deve manter vínculo com passageiro, etiqueta, voo e histórico de manuseio, reduzindo risco de dano, extravio e falha de devolução."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Check-in do Simulador",
+                "href": "checkin.html"
+            },
+            {
+                "label": "BHS do Simulador",
+                "href": "bhs.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "O que caracteriza uma bagagem especial?",
+                "options": [
+                    "Volume que exige análise adicional por dimensão, fragilidade, conteúdo, valor ou necessidade assistiva",
+                    "Qualquer mala pequena levada na cabine",
+                    "Somente bagagem despachada em voo internacional",
+                    "Apenas bagagem com excesso de peso"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Antes de aceitar uma bagagem especial, o agente deve verificar:",
+                "options": [
+                    "Regra aplicável, embalagem, identificação, peso, dimensão e restrições operacionais",
+                    "Somente a cor do volume",
+                    "Apenas se o passageiro está com pressa",
+                    "Somente o destino final"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Equipamentos assistivos devem ser tratados com atenção porque:",
+                "options": [
+                    "Podem ser essenciais para autonomia, segurança e mobilidade do passageiro",
+                    "São sempre bagagens comuns sem prioridade",
+                    "Devem ser recusados em todos os voos",
+                    "Não precisam de identificação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Ao receber uma cadeira de rodas, é importante:",
+                "options": [
+                    "Identificar, registrar condição aparente e garantir devolução adequada",
+                    "Enviar sem etiqueta para agilizar",
+                    "Dobrar qualquer parte sem perguntar",
+                    "Misturar com volumes frágeis sem separação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Itens esportivos e instrumentos musicais exigem:",
+                "options": [
+                    "Conferência de embalagem, dimensões e aceite operacional",
+                    "Aceitação automática sem análise",
+                    "Transporte sempre gratuito",
+                    "Dispensa de etiqueta"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Cão-guia deve ser entendido como:",
+                "options": [
+                    "Recurso de acessibilidade vinculado ao passageiro",
+                    "Bagagem comum",
+                    "Carga desacompanhada",
+                    "Animal sem regra específica"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em transporte de animais, o agente deve observar:",
+                "options": [
+                    "Documentação, recipiente, regra de aceite, destino e condição do animal",
+                    "Apenas a raça do animal",
+                    "Somente a preferência do passageiro",
+                    "Apenas o valor pago"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Itens frágeis devem receber orientação clara porque:",
+                "options": [
+                    "Podem exigir embalagem adequada, aceite condicionado e cuidado no manuseio",
+                    "Nunca sofrem dano",
+                    "Devem ser sempre aceitos sem registro",
+                    "Não precisam ser identificados"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O registro de limitação de responsabilidade é útil quando:",
+                "options": [
+                    "Existe condição prévia, embalagem inadequada ou risco informado ao passageiro",
+                    "O agente não quer atender",
+                    "A bagagem está perfeita e sem qualquer restrição",
+                    "O passageiro não despachou volume"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A rastreabilidade de bagagem especial depende de:",
+                "options": [
+                    "Etiqueta correta, vínculo com passageiro, voo, destino e registros de manuseio",
+                    "Memória verbal da equipe",
+                    "Cor da mala apenas",
+                    "Ausência de comprovante"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Se uma bagagem especial não puder ser aceita, o agente deve:",
+                "options": [
+                    "Explicar o motivo, registrar quando necessário e orientar alternativa permitida",
+                    "Apenas dizer não e encerrar",
+                    "Enviar escondida no porão",
+                    "Prometer transporte no próximo voo sem confirmação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O manuseio de volumes especiais deve priorizar:",
+                "options": [
+                    "Integridade do item, segurança operacional e comunicação entre áreas",
+                    "Rapidez sem cuidado",
+                    "Empilhamento pesado sobre frágil",
+                    "Ausência de conferência"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Na devolução de bagagem especial, é recomendável:",
+                "options": [
+                    "Conferir item, condição aparente, passageiro correto e registro de entrega",
+                    "Entregar ao primeiro passageiro que reclamar",
+                    "Deixar no saguão sem controle",
+                    "Remover etiquetas antes da conferência"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Por que bagagens especiais exigem comunicação entre check-in, rampa e restituição?",
+                "options": [
+                    "Porque o risco acompanha o volume em todo o fluxo operacional",
+                    "Porque apenas o check-in é responsável",
+                    "Porque a restituição não precisa saber",
+                    "Porque rampa não participa do processo"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O objetivo do atendimento de bagagens especiais é:",
+                "options": [
+                    "Garantir aceite correto, transporte seguro, rastreabilidade e devolução adequada",
+                    "Aumentar recusas sem justificativa",
+                    "Evitar registro de itens sensíveis",
+                    "Tratar todo volume como bagagem comum"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 
