@@ -68,10 +68,12 @@ const AcademyAdmin = (() => {
     }
 
     async function isAdmin(email){
+        const normalizedEmail = normalizeEmail(email);
+
         const { data, error } = await supabaseClient
             .from("academy_admins")
             .select("email")
-            .eq("email", normalizeEmail(email))
+            .eq("email", normalizedEmail)
             .maybeSingle();
 
         if(error){

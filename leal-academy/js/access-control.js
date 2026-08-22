@@ -367,7 +367,11 @@ const AccessControl = (() => {
     async function isAdminProfile(profile){
         const email = normalizeEmail(profile?.email);
 
-        if(!email || typeof supabaseClient === "undefined"){
+        if(!email){
+            return false;
+        }
+
+        if(typeof supabaseClient === "undefined"){
             return false;
         }
 
@@ -380,13 +384,13 @@ const AccessControl = (() => {
 
             if(error){
                 console.warn("Academy admin check fallback:", error.message);
-                return email === "devleal2026@gmail.com";
+                return false;
             }
 
             return Boolean(data);
         }catch(error){
             console.warn("Academy admin check fallback:", error.message);
-            return email === "devleal2026@gmail.com";
+            return false;
         }
     }
 
