@@ -1429,6 +1429,12 @@ function renderLesson(course){
             <button class="primary-action" id="nextLesson" type="button" ${hasNext ? "" : "disabled"}>Próxima trilha</button>
             <button class="secondary-action" id="resetCourse" type="button">Reiniciar progresso</button>
         </div>
+        <nav class="lesson-quick-nav" aria-label="Navegação rápida da trilha">
+            <a class="secondary-action" href="academy.html">Voltar aos cursos</a>
+            <a class="secondary-action" href="../index.html">Página inicial</a>
+            <button class="secondary-action" id="lessonBackToTracks" type="button">Ver trilhas</button>
+            <button class="primary-action" id="lessonBackToTop" type="button">Voltar ao topo</button>
+        </nav>
     `;
 
     document.getElementById("previousLesson")?.addEventListener("click", () => {
@@ -1481,6 +1487,28 @@ function renderLesson(course){
 
         renderCoursePage();
     });
+
+    const lessonBackToTracks = document.getElementById("lessonBackToTracks");
+    const lessonBackToTop = document.getElementById("lessonBackToTop");
+    const bottomBackToTop = document.getElementById("bottomBackToTop");
+
+    if(lessonBackToTracks){
+        lessonBackToTracks.onclick = () => {
+            document.getElementById("trackGrid")?.scrollIntoView({ behavior:"smooth", block:"start" });
+        };
+    }
+
+    if(lessonBackToTop){
+        lessonBackToTop.onclick = () => {
+            window.scrollTo({ top:0, behavior:"smooth" });
+        };
+    }
+
+    if(bottomBackToTop){
+        bottomBackToTop.onclick = () => {
+            window.scrollTo({ top:0, behavior:"smooth" });
+        };
+    }
 }
 
 
