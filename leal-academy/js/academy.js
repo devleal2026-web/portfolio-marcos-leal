@@ -1487,6 +1487,74 @@ function certificateHtml(certificate, course){
     `;
 }
 
+function certificateDownloadHtml(certificate, course){
+    const logoUrl = new URL("../assets/brand/leal-academy-logo.png", window.location.href).href;
+    const documentHtml = certificateHtml(certificate, course)
+        .replace("../assets/brand/leal-academy-logo.png", logoUrl);
+
+    return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${escapeHtml(certificate.courseTitle)} - Certificado Leal Academy</title>
+    <style>
+        *{box-sizing:border-box}
+        body{margin:0;padding:28px;background:#e6eef4;color:#0f172a;font-family:Arial,Helvetica,sans-serif}
+        .certificate-document{max-width:1120px;margin:0 auto;background:#fff;border:1px solid #cbd5e1;border-radius:24px;padding:18px;box-shadow:0 24px 60px rgba(15,23,42,.14)}
+        .certificate-border{position:relative;overflow:hidden;min-height:640px;border:3px solid #0f766e;border-radius:18px;padding:42px;background:linear-gradient(135deg,rgba(15,118,110,.08),rgba(255,255,255,.95) 42%,rgba(14,165,233,.1)),radial-gradient(circle at 88% 16%,rgba(14,116,144,.16),transparent 32%),#fff}
+        .certificate-border:before{content:"";position:absolute;inset:22px;border:1px solid rgba(15,118,110,.25);border-radius:12px;pointer-events:none}
+        .certificate-top{position:relative;z-index:1;display:flex;align-items:center;gap:18px}
+        .certificate-top img{width:92px;height:92px;object-fit:contain;border-radius:18px;background:#fff;box-shadow:0 12px 30px rgba(15,23,42,.12)}
+        .certificate-top span{display:block;color:#0f766e;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+        .certificate-top strong{display:block;margin-top:5px;color:#0f172a;font-size:48px;line-height:1.05}
+        .certificate-body{position:relative;z-index:1;max-width:860px;margin:70px auto 60px;text-align:center}
+        .certificate-kicker{display:inline-flex;border:1px solid #99f6e4;border-radius:999px;background:#ecfdf5;color:#047857;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px}
+        .certificate-body h1{margin:28px 0 18px;color:#082f49;font-size:72px;line-height:1;font-family:Georgia,"Times New Roman",serif}
+        .certificate-body p{margin:0 auto;max-width:760px;color:#334155;font-size:24px;line-height:1.55}
+        .certificate-body p strong{color:#0f766e}
+        .certificate-footer{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:52px}
+        .certificate-footer div{border-top:2px solid #0f766e;padding-top:12px}
+        .certificate-footer span{display:block;color:#64748b;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+        .certificate-footer strong{display:block;margin-top:4px;color:#0f172a;overflow-wrap:anywhere}
+        .certificate-runway{position:absolute;right:-80px;bottom:-90px;width:420px;height:260px;border-radius:50%;background:linear-gradient(135deg,rgba(8,47,73,.95),rgba(15,118,110,.88));transform:rotate(-12deg);opacity:.95}
+        .certificate-runway span{position:absolute;left:86px;right:86px;height:5px;background:rgba(255,255,255,.84);border-radius:999px}
+        .certificate-runway span:nth-child(1){top:82px}.certificate-runway span:nth-child(2){top:128px}.certificate-runway span:nth-child(3){top:174px}
+        .download-note{max-width:1120px;margin:18px auto 0;color:#475569;font-weight:700;text-align:center}
+        @media print{body{background:#fff;padding:0}.certificate-document{box-shadow:none;border:0;border-radius:0;padding:0}.download-note{display:none}.certificate-border{min-height:92vh}}
+    </style>
+</head>
+<body>
+    ${documentHtml}
+    <p class="download-note">Certificado baixado da Leal Academy. Para gerar PDF, use Ctrl+P e selecione Salvar como PDF.</p>
+</body>
+</html>`;
+}
+
+function downloadCertificate(certificate, course){
+    if(!certificate){
+        alert("Nenhum certificado emitido para baixar.");
+        return;
+    }
+
+    const safeName = String(certificate.courseTitle || "certificado")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]+/g, "-")
+        .replace(/^-|-$/g, "")
+        .toLowerCase();
+    const fileName = `certificado-leal-academy-${safeName || "curso"}-${certificate.id}.html`;
+    const blob = new Blob([certificateDownloadHtml(certificate, course)], { type:"text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+}
+
 function openMailClient(certificate){
     if(!certificate.studentEmail){
         alert("Nao existe e-mail cadastrado para este aluno.");
@@ -1557,6 +1625,9 @@ function renderAssessmentResult(course, score, review, certificate, emailStatus)
                     <a class="primary-action" href="${certificatePageUrl(course.id)}" target="_blank" rel="noopener">
                         Abrir certificado
                     </a>
+                    <button class="secondary-action" type="button" id="downloadCertificate">
+                        Baixar certificado
+                    </button>
                     <button class="secondary-action" type="button" id="emailCertificate">
                         Enviar por e-mail
                     </button>
@@ -1716,6 +1787,10 @@ function renderAssessment(course){
         document.getElementById("emailCertificate")?.addEventListener("click", () => {
             openMailClient(certificate);
         });
+
+        document.getElementById("downloadCertificate")?.addEventListener("click", () => {
+            downloadCertificate(certificate, course);
+        });
     });
 
     document.getElementById("clearQuiz")?.addEventListener("click", () => {
@@ -1793,6 +1868,9 @@ function renderCertificatePage(){
 
     container.innerHTML = `
         <div class="certificate-page-actions">
+            <button class="primary-action" id="downloadCertificatePage" type="button">
+                Baixar certificado
+            </button>
             <button class="primary-action" id="printCertificate" type="button">
                 Imprimir / Salvar PDF
             </button>
@@ -1808,6 +1886,7 @@ function renderCertificatePage(){
     `;
 
     document.getElementById("printCertificate")?.addEventListener("click", () => window.print());
+    document.getElementById("downloadCertificatePage")?.addEventListener("click", () => downloadCertificate(certificate, course));
     document.getElementById("emailCertificatePage")?.addEventListener("click", () => openMailClient(certificate));
 }
 
