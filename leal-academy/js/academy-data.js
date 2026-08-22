@@ -4334,6 +4334,219 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "comunicacao-operacional-aeroportuaria",
+        "title": "Comunicação Operacional Aeroportuária",
+        "eyebrow": "Coordenação e registro",
+        "duration": "1h 15min",
+        "level": "Intermediário",
+        "summary": "Comunicação clara entre áreas aeroportuárias, briefing, passagem de turno, mensagens críticas, registro operacional, escalonamento e resposta a contingências.",
+        "color": "#2563eb",
+        "modules": [
+            {
+                "title": "Princípios da comunicação operacional",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Comunicação operacional deve ser clara, objetiva, confirmada, rastreável e orientada à segurança, reduzindo erro entre atendimento, gate, rampa, BHS, restituição e coordenação."
+            },
+            {
+                "title": "Briefing e alinhamento do turno",
+                "type": "Procedimento",
+                "duration": "12 min",
+                "content": "O briefing organiza prioridades do turno, voos críticos, recursos, mudanças de procedimento, riscos, pendências, indicadores e responsabilidades de cada área."
+            },
+            {
+                "title": "Passagem de turno e continuidade",
+                "type": "Checklist",
+                "duration": "12 min",
+                "content": "A passagem de turno deve transferir pendências, decisões, alertas, ocorrências abertas, passageiros sensíveis, bagagens críticas e próximos prazos sem perda de contexto."
+            },
+            {
+                "title": "Mensagens em tempo real",
+                "type": "Prática guiada",
+                "duration": "13 min",
+                "content": "Mensagens operacionais precisam indicar quem informa, o que ocorreu, voo, local, horário, impacto, ação solicitada e confirmação de recebimento."
+            },
+            {
+                "title": "Registro e rastreabilidade",
+                "type": "Procedimento",
+                "duration": "13 min",
+                "content": "O registro transforma comunicação verbal em histórico verificável, apoiando continuidade do atendimento, investigação de falhas e melhoria operacional."
+            },
+            {
+                "title": "Comunicação em contingência",
+                "type": "Simulação",
+                "duration": "13 min",
+                "content": "Durante contingências, a operação precisa de fonte única de informação, linguagem padronizada, escalonamento claro, atualização periódica e controle de boatos."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Dashboard do Simulador",
+                "href": "../index.html"
+            },
+            {
+                "label": "Loading do Simulador",
+                "href": "loading.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual é a principal função da comunicação operacional no aeroporto?",
+                "options": [
+                    "Garantir alinhamento seguro, claro e rastreável entre áreas",
+                    "Aumentar a quantidade de mensagens sem critério",
+                    "Substituir procedimentos formais",
+                    "Evitar que supervisores sejam acionados"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma mensagem operacional eficaz deve conter:",
+                "options": [
+                    "Quem informa, o que ocorreu, voo, local, horário, impacto, ação e confirmação",
+                    "Apenas uma opinião geral",
+                    "Somente o nome do passageiro",
+                    "Texto longo sem ação definida"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O briefing de turno deve abordar:",
+                "options": [
+                    "Prioridades, riscos, voos críticos, recursos, pendências e responsabilidades",
+                    "Somente assuntos pessoais da equipe",
+                    "Apenas previsão do tempo sem relação operacional",
+                    "Somente número de passageiros do mês"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A passagem de turno é importante porque:",
+                "options": [
+                    "Evita perda de contexto sobre pendências, ocorrências e prazos",
+                    "Dispensa registro no sistema",
+                    "Elimina necessidade de comunicação com outras áreas",
+                    "Serve apenas para troca de escala"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando uma mensagem crítica é enviada, o receptor deve:",
+                "options": [
+                    "Confirmar recebimento e informar ação quando aplicável",
+                    "Ignorar se estiver ocupado",
+                    "Responder apenas no fim do turno",
+                    "Encaminhar sem ler"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O que deve ser evitado em comunicação operacional?",
+                "options": [
+                    "Mensagens vagas, boatos, informações sem fonte e promessas sem confirmação",
+                    "Objetividade",
+                    "Registro formal",
+                    "Confirmação de recebimento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em contingência, a operação deve trabalhar com:",
+                "options": [
+                    "Fonte única de informação e atualizações padronizadas",
+                    "Cada agente criando sua própria versão",
+                    "Silêncio até o fim do evento",
+                    "Apenas mensagens informais"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O escalonamento deve ocorrer quando:",
+                "options": [
+                    "A decisão excede a autonomia, envolve segurança, conflito, risco ou impacto operacional relevante",
+                    "O agente quer evitar qualquer atendimento",
+                    "O passageiro faz uma pergunta simples",
+                    "Não existe pendência"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Por que registros operacionais são essenciais?",
+                "options": [
+                    "Criam histórico verificável para continuidade, auditoria e melhoria",
+                    "Substituem o atendimento ao passageiro",
+                    "Servem para ocultar falhas",
+                    "Eliminam a necessidade de ação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A comunicação entre gate e rampa deve ser precisa porque:",
+                "options": [
+                    "Impacta embarque, bagagens, carregamento, pontualidade e segurança",
+                    "Não interfere na operação",
+                    "Serve apenas para cordialidade",
+                    "É opcional em voos domésticos"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma boa comunicação de pendência deve informar:",
+                "options": [
+                    "O que falta, responsável, prazo, impacto e próxima ação",
+                    "Apenas que existe problema",
+                    "Somente o nome do setor",
+                    "Nenhum prazo"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O uso de linguagem padronizada ajuda a:",
+                "options": [
+                    "Reduzir ambiguidade, retrabalho e erro operacional",
+                    "Criar mensagens mais confusas",
+                    "Aumentar improviso",
+                    "Evitar confirmação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando houver informação ainda não confirmada, o agente deve:",
+                "options": [
+                    "Informar que está em verificação e atualizar quando houver fonte confiável",
+                    "Inventar uma previsão",
+                    "Repassar boato para ganhar tempo",
+                    "Prometer solução imediata"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A cultura de reporte contribui para:",
+                "options": [
+                    "Identificar perigos, aprender com eventos e melhorar a segurança operacional",
+                    "Punir automaticamente todos os envolvidos",
+                    "Reduzir transparência",
+                    "Evitar comunicação com liderança"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O objetivo final da comunicação operacional é:",
+                "options": [
+                    "Manter a operação segura, coordenada, eficiente e rastreável",
+                    "Aumentar o volume de conversas paralelas",
+                    "Evitar registros",
+                    "Centralizar tudo em uma pessoa sem backup"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 

@@ -61,7 +61,8 @@ const courseVisuals = {
     "irregularidades-voo": { image: "linear-gradient(135deg, rgba(124,58,237,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
     "conexoes-mct": { image: "linear-gradient(135deg, rgba(8,145,178,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
     "bagagens-especiais": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "case" },
-    "mercadorias-perigosas-atendimento": { image: "linear-gradient(135deg, rgba(180,83,9,.92), rgba(15,23,42,.88)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80')", icon: "shield" }
+    "mercadorias-perigosas-atendimento": { image: "linear-gradient(135deg, rgba(180,83,9,.92), rgba(15,23,42,.88)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
+    "comunicacao-operacional-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -264,6 +265,14 @@ const lessonMediaProfiles = {
         { kind:"form", labels:["Aerossol", "Químico", "Gás", "Vazamento"], caption:"Produtos pressurizados, inflamáveis, corrosivos ou tóxicos exigem avaliação antes do aceite." },
         { kind:"service", labels:["Explicar", "Recusar", "Orientar", "Registrar"], caption:"A recusa deve ser firme, respeitosa, baseada em segurança e registrada quando aplicável." },
         { kind:"flow", labels:["Isolar", "Comunicar", "Conter", "Histórico"], caption:"Incidente com DGR exige isolamento, comunicação imediata, ação coordenada e registro." }
+    ],
+    "comunicacao-operacional-aeroportuaria": [
+        { kind:"flow", labels:["Clareza", "Precisão", "Confirma", "Registro"], caption:"Comunicação operacional precisa ser clara, confirmada e rastreável." },
+        { kind:"service", labels:["Briefing", "Riscos", "Recursos", "Funções"], caption:"O briefing alinha equipe, prioridades, riscos e responsabilidades do turno." },
+        { kind:"form", labels:["Pendência", "Prazo", "Ação", "Responsável"], caption:"Passagem de turno preserva contexto e evita perda de informação crítica." },
+        { kind:"route", labels:["Voo", "Local", "Impacto", "Ação"], caption:"Mensagens em tempo real precisam indicar referência, impacto e ação solicitada." },
+        { kind:"check", labels:["Fato", "Hora", "Decisão", "Histórico"], caption:"Registros transformam comunicação verbal em evidência operacional." },
+        { kind:"security", labels:["Fonte", "Atualiza", "Escala", "Debrief"], caption:"Contingências exigem fonte única, atualização periódica e escalonamento." }
     ]
 };
 const courseIntroVideos = {};
