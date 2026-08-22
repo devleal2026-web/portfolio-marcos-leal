@@ -63,7 +63,10 @@ const courseVisuals = {
     "bagagens-especiais": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1553531889-e6cf4d692b1b?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "mercadorias-perigosas-atendimento": { image: "linear-gradient(135deg, rgba(180,83,9,.92), rgba(15,23,42,.88)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
     "comunicacao-operacional-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
-    "contestacao-operacional-aviacao": { image: "linear-gradient(135deg, rgba(14,116,144,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80')", icon: "form" }
+    "contestacao-operacional-aviacao": { image: "linear-gradient(135deg, rgba(14,116,144,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80')", icon: "form" },
+    "gestao-crise-aeroporto": { image: "linear-gradient(135deg, rgba(3,105,161,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
+    "qualidade-indicadores-operacionais": { image: "linear-gradient(135deg, rgba(4,120,87,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80')", icon: "check" },
+    "introducao-operacao-rampa": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1529074963764-98f45c47344b?auto=format&fit=crop&w=900&q=80')", icon: "vest" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -282,6 +285,30 @@ const lessonMediaProfiles = {
         { kind:"match", labels:["Fato", "Nexo", "Causa", "Responsável"], caption:"Procedência depende de nexo causal, registros e responsabilidade operacional." },
         { kind:"service", labels:["Clareza", "Respeito", "Pontos", "Solução"], caption:"Resposta técnica deve ser objetiva, respeitosa e abordar toda a demanda." },
         { kind:"route", labels:["Indicador", "Causa", "Ação", "Prevenção"], caption:"Contestações revelam falhas recorrentes e oportunidades de melhoria." }
+    ],
+    "gestao-crise-aeroporto": [
+        { kind:"security", labels:["Risco", "Impacto", "Controle", "Ação"], caption:"Crise aeroportuária exige recuperar controle, proteger pessoas e estabilizar a operação." },
+        { kind:"flow", labels:["Líder", "Área", "Ação", "Registro"], caption:"Papéis claros evitam decisões isoladas e mensagens contraditórias." },
+        { kind:"service", labels:["Fonte", "Equipe", "Pax", "Update"], caption:"Comunicação de crise precisa de fonte oficial, frequência e linguagem compreensível." },
+        { kind:"service", labels:["Escuta", "Apoio", "Prioridade", "Respeito"], caption:"Atendimento humanizado reduz tensão e protege passageiros vulneráveis." },
+        { kind:"route", labels:["Essencial", "Recurso", "Fluxo", "Retorno"], caption:"Continuidade operacional mantém serviços críticos e organiza a retomada." },
+        { kind:"check", labels:["Treino", "Teste", "Lição", "Melhoria"], caption:"Simulações e debriefings transformam crise em aprendizado operacional." }
+    ],
+    "qualidade-indicadores-operacionais": [
+        { kind:"check", labels:["Padrão", "SLA", "Registro", "Melhoria"], caption:"Qualidade operacional une serviço, segurança, rastreabilidade e melhoria contínua." },
+        { kind:"form", labels:["Nome", "Meta", "Fonte", "Fórmula"], caption:"Indicadores precisam de definição clara para gerar decisão confiável." },
+        { kind:"flow", labels:["Coleta", "Valida", "Padroniza", "Rastreia"], caption:"A confiabilidade do painel começa na qualidade do dado registrado." },
+        { kind:"match", labels:["Desvio", "Causa", "Tendência", "Risco"], caption:"Análise identifica padrões, causa raiz e risco emergente." },
+        { kind:"route", labels:["Painel", "Meta", "Alerta", "Decisão"], caption:"Dashboard bom mostra prioridade e orienta a ação do gestor." },
+        { kind:"check", labels:["Ação", "Dono", "Prazo", "Eficácia"], caption:"Melhoria contínua exige plano de ação e verificação de resultado." }
+    ],
+    "introducao-operacao-rampa": [
+        { kind:"route", labels:["Pátio", "Equipe", "Veículo", "Aeronave"], caption:"A rampa reúne pessoas, equipamentos e aeronaves em ambiente de risco elevado." },
+        { kind:"security", labels:["EPI", "Motor", "Área", "Velocidade"], caption:"Segurança no pátio depende de distância, EPI, circulação correta e atenção." },
+        { kind:"service", labels:["GSE", "Freio", "Calço", "Inspeção"], caption:"Equipamentos de solo devem ser inspecionados, posicionados e operados com autorização." },
+        { kind:"flow", labels:["Chegada", "Serviço", "Embarque", "Saída"], caption:"Turnaround coordena várias etapas entre chegada e próxima partida da aeronave." },
+        { kind:"case", labels:["Etiqueta", "Porão", "Conexão", "Carga"], caption:"Bagagem e carga exigem leitura, segregação, carregamento correto e reconciliação." },
+        { kind:"check", labels:["FOD", "Clima", "Quase", "Reporte"], caption:"FOD, clima adverso e quase falhas devem ser prevenidos, comunicados e registrados." }
     ]
 };
 const courseIntroVideos = {};

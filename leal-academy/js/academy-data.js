@@ -4760,6 +4760,621 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "gestao-crise-aeroporto",
+        "title": "Gestão de Crise no Aeroporto",
+        "eyebrow": "Resposta e continuidade",
+        "category": "gestão operacional",
+        "level": "Avançado",
+        "duration": "1h 25min",
+        "color": "#0369a1",
+        "summary": "Preparação, comando, comunicação, atendimento humanizado, continuidade operacional, exercícios e lições aprendidas em eventos críticos aeroportuários.",
+        "modules": [
+            {
+                "title": "Conceito de crise aeroportuária",
+                "type": "Aula",
+                "duration": "13 min",
+                "content": "Uma crise aeroportuária é uma situação fora da normalidade que exige resposta coordenada, comunicação controlada e tomada de decisão rápida. Pode envolver falha sistêmica, evento de segurança, cancelamento massivo, restrição meteorológica, acidente, ameaça, interrupção de terminal, indisponibilidade de esteiras, conflito operacional ou impacto severo ao passageiro."
+            },
+            {
+                "title": "Comando e papéis",
+                "type": "Procedimento",
+                "duration": "14 min",
+                "content": "Em crise, cada pessoa precisa saber seu papel. A liderança define prioridades, coordena áreas, valida informações e evita decisões isoladas. O agente executa ações dentro de sua responsabilidade, registra ocorrências, informa desvios e aciona supervisão quando a situação ultrapassa seu nível de decisão."
+            },
+            {
+                "title": "Comunicação de crise",
+                "type": "Prática guiada",
+                "duration": "14 min",
+                "content": "A comunicação de crise deve ser única, objetiva e atualizada. Mensagens diferentes entre balcão, portão, restituição e supervisão aumentam tensão e reduzem confiança. O ideal é ter fonte oficial, intervalo de atualização, registro de decisões e linguagem adequada para equipe e passageiros."
+            },
+            {
+                "title": "Atendimento humanizado",
+                "type": "Aula",
+                "duration": "15 min",
+                "content": "Eventos críticos afetam pessoas. O atendimento deve priorizar escuta, respeito, clareza e suporte a passageiros vulneráveis. Informar com honestidade, evitar promessas sem confirmação e orientar próximos passos ajuda a reduzir ansiedade e protege a relação com o usuário."
+            },
+            {
+                "title": "Continuidade operacional",
+                "type": "Simulação",
+                "duration": "15 min",
+                "content": "Continuidade operacional é manter serviços essenciais funcionando ou retomá-los em ordem de prioridade. A equipe deve identificar recursos críticos, gargalos, alternativas de fluxo, necessidade de reforço, impacto em voos e comunicação com áreas de apoio."
+            },
+            {
+                "title": "Exercícios e lições aprendidas",
+                "type": "Checklist",
+                "duration": "14 min",
+                "content": "Treinamentos, simulações e debriefings transformam experiência em melhoria. Depois de uma crise, a equipe deve revisar linha do tempo, decisões, falhas de comunicação, tempos de resposta, registros e ações corretivas para fortalecer o plano."
+            }
+        ],
+        "labs": [
+            "Simulação de sala de crise",
+            "Checklist de comunicação",
+            "Plano de ação pós-evento"
+        ],
+        "quiz": [
+            {
+                "question": "O que caracteriza uma crise aeroportuária?",
+                "options": [
+                    "Evento fora da normalidade que exige resposta coordenada e rápida",
+                    "Qualquer atendimento comum no balcão",
+                    "Somente atraso de cinco minutos",
+                    "Apenas problema comercial"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em uma crise, a fonte oficial de informação serve para:",
+                "options": [
+                    "Evitar mensagens conflitantes e orientar decisões",
+                    "Substituir todos os registros",
+                    "Impedir comunicação entre áreas",
+                    "Criar boatos mais rápidos"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual conduta é adequada diante de passageiros afetados por uma crise?",
+                "options": [
+                    "Escutar, informar com clareza e evitar promessas sem confirmação",
+                    "Ignorar perguntas até haver solução final",
+                    "Transferir todos sem orientação",
+                    "Usar linguagem agressiva para encerrar filas"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O papel da liderança durante crise é:",
+                "options": [
+                    "Coordenar prioridades, validar informações e distribuir responsabilidades",
+                    "Executar todas as tarefas sozinha",
+                    "Evitar qualquer registro",
+                    "Deixar cada área decidir isoladamente"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Continuidade operacional significa:",
+                "options": [
+                    "Manter ou retomar serviços essenciais com prioridade definida",
+                    "Parar todos os serviços sem análise",
+                    "Atender apenas passageiros frequentes",
+                    "Aguardar fim da crise sem plano"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Por que registrar decisões críticas?",
+                "options": [
+                    "Para rastreabilidade, passagem de turno e aprendizado",
+                    "Para aumentar retrabalho",
+                    "Para substituir atendimento",
+                    "Para dificultar auditoria"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um bom comunicado em contingência deve ser:",
+                "options": [
+                    "Objetivo, confirmado, atualizado e compreensível",
+                    "Longo, confuso e sem responsável",
+                    "Baseado em suposição",
+                    "Diferente em cada área"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Exercícios simulados servem para:",
+                "options": [
+                    "Treinar resposta, testar plano e identificar melhorias",
+                    "Substituir plano real",
+                    "Eliminar necessidade de liderança",
+                    "Criar registros fictícios"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O atendimento a passageiros vulneráveis em crise deve priorizar:",
+                "options": [
+                    "Segurança, respeito, acessibilidade e orientação clara",
+                    "Rapidez sem escuta",
+                    "Atendimento somente após todos os demais",
+                    "Informação técnica sem acolhimento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando a informação ainda não está confirmada, o agente deve:",
+                "options": [
+                    "Informar que está verificando e atualizar no prazo combinado",
+                    "Inventar uma previsão",
+                    "Culpar outra área",
+                    "Encerrar a conversa"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um debriefing pós-crise deve analisar:",
+                "options": [
+                    "Linha do tempo, decisões, comunicação, registros e ações corretivas",
+                    "Somente quem errou",
+                    "Apenas elogios",
+                    "Nenhum dado operacional"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em crise, escalonamento é necessário quando:",
+                "options": [
+                    "Há risco, exceção, impacto amplo ou decisão fora da alçada",
+                    "O passageiro faz pergunta simples",
+                    "A operação está normal",
+                    "O agente quer evitar registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O plano de emergência deve ser conhecido por:",
+                "options": [
+                    "Equipes envolvidas e responsáveis por execução e comunicação",
+                    "Somente pela direção",
+                    "Apenas pelo passageiro",
+                    "Ninguém, por segurança"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma crise mal comunicada tende a gerar:",
+                "options": [
+                    "Boatos, tensão, retrabalho e perda de confiança",
+                    "Mais clareza operacional",
+                    "Menos necessidade de supervisão",
+                    "Ausência de filas"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A cultura de melhoria após crise depende de:",
+                "options": [
+                    "Registrar fatos, aprender com desvios e executar ações corretivas",
+                    "Apagar evidências",
+                    "Evitar treinamento",
+                    "Responsabilizar sem análise"
+                ],
+                "correct": 0
+            }
+        ]
+    },
+    {
+        "id": "qualidade-indicadores-operacionais",
+        "title": "Qualidade e Indicadores Operacionais",
+        "eyebrow": "Métricas e melhoria",
+        "category": "gestão operacional",
+        "level": "Intermediário",
+        "duration": "1h 20min",
+        "color": "#047857",
+        "summary": "Construção de indicadores, coleta de dados, dashboards, SLA, análise de causa, planos de ação e melhoria contínua na operação aeroportuária.",
+        "modules": [
+            {
+                "title": "Conceito de qualidade operacional",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Qualidade operacional é a capacidade de entregar o serviço combinado com segurança, regularidade, rastreabilidade e melhoria contínua. Na aviação, qualidade não é apenas satisfação do passageiro; também envolve cumprimento de padrões, redução de desvios, confiabilidade de dados e resposta rápida a falhas."
+            },
+            {
+                "title": "Construção de indicadores",
+                "type": "Procedimento",
+                "duration": "14 min",
+                "content": "Um indicador precisa ter nome, objetivo, meta, unidade de medida, fonte de dados, fórmula, periodicidade de medição e responsável. Indicadores mal definidos criam interpretações diferentes e dificultam a tomada de decisão."
+            },
+            {
+                "title": "Coleta e confiabilidade dos dados",
+                "type": "Prática guiada",
+                "duration": "13 min",
+                "content": "Dados operacionais precisam ser coletados, limpos, validados, integrados e padronizados. A confiabilidade depende de registro no momento certo, fonte conhecida, critérios claros e rastreabilidade para explicar como o número foi calculado."
+            },
+            {
+                "title": "Análise de causa e tendência",
+                "type": "Aula",
+                "duration": "14 min",
+                "content": "A análise de indicadores deve procurar padrões, tendência, causa provável e risco emergente. Um número isolado informa pouco; a comparação por turno, voo, área, estação, processo e período mostra onde agir."
+            },
+            {
+                "title": "Dashboards e tomada de decisão",
+                "type": "Simulação",
+                "duration": "13 min",
+                "content": "Dashboards devem transformar dados em decisão. Um bom painel mostra prioridade, meta, status, tendência, responsável e ação necessária. Visual bonito sem leitura operacional não melhora a qualidade."
+            },
+            {
+                "title": "Plano de ação e melhoria contínua",
+                "type": "Checklist",
+                "duration": "14 min",
+                "content": "Quando um indicador mostra desvio, a equipe deve definir causa, ação, responsável, prazo e forma de verificação. A melhoria contínua fecha o ciclo entre medir, analisar, agir e revisar."
+            }
+        ],
+        "labs": [
+            "Montagem de KPI operacional",
+            "Análise de SLA",
+            "Plano de ação por causa raiz"
+        ],
+        "quiz": [
+            {
+                "question": "Um indicador operacional bem definido deve conter:",
+                "options": [
+                    "Nome, objetivo, meta, fonte, fórmula, periodicidade e responsável",
+                    "Apenas um gráfico colorido",
+                    "Somente opinião da equipe",
+                    "Nenhuma meta"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual é a finalidade de um SLA?",
+                "options": [
+                    "Definir nível de serviço esperado e medir cumprimento",
+                    "Eliminar registros",
+                    "Substituir procedimentos",
+                    "Criar metas sem acompanhamento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Dados confiáveis dependem principalmente de:",
+                "options": [
+                    "Fonte clara, critério padronizado e rastreabilidade",
+                    "Memória do turno",
+                    "Estimativa sem registro",
+                    "Planilha sem data"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando um indicador piora, a equipe deve:",
+                "options": [
+                    "Analisar causa, definir ação e acompanhar resultado",
+                    "Esconder o dado",
+                    "Trocar o nome do indicador",
+                    "Ignorar até o mês seguinte"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Dashboard operacional deve ajudar a:",
+                "options": [
+                    "Priorizar decisões e acompanhar desvios",
+                    "Decorar a tela",
+                    "Substituir supervisores",
+                    "Evitar análise"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A fórmula de um indicador é importante porque:",
+                "options": [
+                    "Garante cálculo consistente entre períodos e áreas",
+                    "Permite cada pessoa calcular de um jeito",
+                    "Não influencia o resultado",
+                    "Serve apenas para auditoria financeira"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Análise de tendência compara:",
+                "options": [
+                    "Resultados ao longo do tempo para identificar padrão ou mudança",
+                    "Apenas um voo isolado",
+                    "Somente nomes de passageiros",
+                    "A cor das malas"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um plano de ação eficaz precisa definir:",
+                "options": [
+                    "Ação, responsável, prazo e forma de verificação",
+                    "Somente intenção",
+                    "Frase genérica sem dono",
+                    "Apenas uma reunião"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A qualidade dos dados inclui:",
+                "options": [
+                    "Coleta, validação, padronização, integridade e disponibilidade",
+                    "Apenas digitação rápida",
+                    "Dados sem origem",
+                    "Exclusão de registros ruins"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Indicadores de segurança operacional podem apoiar:",
+                "options": [
+                    "Identificação de perigos, tendências e riscos emergentes",
+                    "Apenas cobrança comercial",
+                    "Somente decoração de relatórios",
+                    "Eliminação de treinamento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Meta operacional deve ser:",
+                "options": [
+                    "Clara, mensurável e compatível com o processo",
+                    "Secreta e indefinida",
+                    "Alterada após cada erro para parecer boa",
+                    "Sempre impossível"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A causa raiz é:",
+                "options": [
+                    "Fator que originou ou contribuiu para o desvio",
+                    "O primeiro nome citado",
+                    "A última pessoa do processo",
+                    "Uma desculpa operacional"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Periodicidade de medição indica:",
+                "options": [
+                    "Com que frequência o indicador será apurado",
+                    "Quem será punido",
+                    "Qual cor usar no painel",
+                    "O nome da planilha"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Melhoria contínua significa:",
+                "options": [
+                    "Medir, analisar, agir, verificar e ajustar o processo",
+                    "Criar relatório sem ação",
+                    "Trocar equipe a cada desvio",
+                    "Aceitar erros repetidos"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um indicador sem responsável tende a:",
+                "options": [
+                    "Não gerar ação prática quando houver desvio",
+                    "Melhorar automaticamente",
+                    "Eliminar risco",
+                    "Ser mais confiável"
+                ],
+                "correct": 0
+            }
+        ]
+    },
+    {
+        "id": "introducao-operacao-rampa",
+        "title": "Introdução à Operação de Rampa",
+        "eyebrow": "Airside e turnaround",
+        "category": "operação aeroportuária",
+        "level": "Básico",
+        "duration": "1h 30min",
+        "color": "#0f766e",
+        "summary": "Fundamentos de pátio, segurança no airside, GSE, zonas de risco, turnaround, comunicação, FOD, clima adverso e interface com bagagem.",
+        "modules": [
+            {
+                "title": "Ambiente de rampa",
+                "type": "Aula",
+                "duration": "14 min",
+                "content": "A rampa é a área operacional onde aeronaves, veículos, equipamentos, equipes e cargas se encontram em movimento. É um ambiente de risco elevado que exige atenção permanente, comunicação clara e cumprimento rigoroso de procedimentos."
+            },
+            {
+                "title": "Segurança no pátio",
+                "type": "Procedimento",
+                "duration": "16 min",
+                "content": "Segurança no pátio envolve controle de velocidade, uso correto de EPIs, respeito às áreas demarcadas, distância segura da aeronave, atenção a motores, hélices, jato de exaustão, ingestão, sinalização e circulação autorizada."
+            },
+            {
+                "title": "GSE e equipamentos",
+                "type": "Prática guiada",
+                "duration": "14 min",
+                "content": "Equipamentos de apoio em solo devem ser inspecionados, posicionados e operados por pessoas autorizadas. Carrinhos, tratores, esteiras, escadas, GPUs e dollies podem causar danos se usados sem checklist, calço, freio, distância e comunicação adequados."
+            },
+            {
+                "title": "Turnaround da aeronave",
+                "type": "Simulação",
+                "duration": "16 min",
+                "content": "Turnaround é o conjunto de atividades entre chegada e próxima partida da aeronave. Inclui estacionamento, desembarque, descarregamento, abastecimento quando aplicável, limpeza, catering, carregamento, embarque e despacho, sempre com coordenação entre áreas."
+            },
+            {
+                "title": "Bagagem, carga e reconciliação",
+                "type": "Aula",
+                "duration": "15 min",
+                "content": "A interface com bagagem exige leitura correta, segregação, carregamento conforme instrução, atenção a conexões, itens especiais e reconciliação. Uma falha de etiqueta, porão, destino ou prioridade pode gerar extravio ou atraso."
+            },
+            {
+                "title": "FOD, clima e reporte",
+                "type": "Checklist",
+                "duration": "15 min",
+                "content": "FOD, chuva, vento, raios, baixa visibilidade e falhas de equipamento exigem prevenção e reporte. Qualquer quase falha, dano, objeto solto ou condição insegura deve ser comunicado e registrado para proteger pessoas, aeronaves e operação."
+            }
+        ],
+        "labs": [
+            "Checklist de segurança de rampa",
+            "Fluxo de turnaround",
+            "Reporte de FOD e quase falha"
+        ],
+        "quiz": [
+            {
+                "question": "A operação de rampa ocorre principalmente:",
+                "options": [
+                    "No pátio, próximo a aeronaves, veículos e equipamentos",
+                    "Somente dentro da loja do aeroporto",
+                    "Apenas na sala de embarque",
+                    "Exclusivamente no escritório"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Por que a rampa é considerada área de alto risco?",
+                "options": [
+                    "Porque há aeronaves, veículos, equipamentos e pessoas em movimento",
+                    "Porque não possui regras",
+                    "Porque não existe supervisão",
+                    "Porque passageiros circulam livremente"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "GSE significa:",
+                "options": [
+                    "Equipamentos de apoio em solo",
+                    "Grupo de serviço externo",
+                    "Gestão simples de embarque",
+                    "Guia de segurança eletrônica"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Antes de operar equipamento de solo, o colaborador deve:",
+                "options": [
+                    "Estar autorizado e realizar verificações aplicáveis",
+                    "Usar sem treinamento se estiver com pressa",
+                    "Pedir ao passageiro para ajudar",
+                    "Ignorar freios e calços"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Turnaround é:",
+                "options": [
+                    "Conjunto de atividades entre chegada e próxima partida da aeronave",
+                    "Somente carregamento de bagagem",
+                    "Apenas embarque de passageiros",
+                    "Tempo de voo em cruzeiro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "FOD é perigoso porque:",
+                "options": [
+                    "Objetos soltos podem danificar aeronaves, motores, pneus ou equipamentos",
+                    "Aumenta conforto do passageiro",
+                    "Substitui inspeção de rampa",
+                    "É apenas sujeira comum sem risco"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma condição insegura na rampa deve ser:",
+                "options": [
+                    "Comunicada e registrada conforme procedimento",
+                    "Ignorada até causar dano",
+                    "Ocultada para evitar atraso",
+                    "Resolvida apenas por mensagem informal"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Na interface com bagagem, erro de porão ou destino pode gerar:",
+                "options": [
+                    "Extravio, atraso ou necessidade de correção operacional",
+                    "Melhoria automática do SLA",
+                    "Nenhum impacto",
+                    "Apenas mudança estética"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Distância segura da aeronave é importante para:",
+                "options": [
+                    "Evitar colisão, ingestão, jato de exaustão e acidentes pessoais",
+                    "Permitir trânsito livre sem controle",
+                    "Reduzir necessidade de EPI",
+                    "Aumentar velocidade no pátio"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Durante clima adverso, a equipe deve:",
+                "options": [
+                    "Seguir orientação operacional, reduzir exposição e reportar riscos",
+                    "Manter tudo igual independentemente do risco",
+                    "Correr no pátio",
+                    "Ignorar raios e baixa visibilidade"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A comunicação no turnaround deve ser:",
+                "options": [
+                    "Clara, confirmada e coordenada entre áreas",
+                    "Feita apenas por suposição",
+                    "Desnecessária se todos têm experiência",
+                    "Reservada ao fim do voo"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "EPI na rampa serve para:",
+                "options": [
+                    "Reduzir exposição a riscos e aumentar visibilidade e proteção",
+                    "Substituir treinamento",
+                    "Permitir entrada em qualquer área sem autorização",
+                    "Apenas identificar uniforme"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quase falha deve ser reportada porque:",
+                "options": [
+                    "Permite prevenir acidente antes que ocorra dano",
+                    "Só importa se houver lesão",
+                    "Não tem valor operacional",
+                    "Serve para ocultar erro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A reconciliação de bagagem ajuda a garantir:",
+                "options": [
+                    "Que volumes carregados correspondam ao voo e às autorizações aplicáveis",
+                    "Que qualquer mala possa ser carregada",
+                    "Que etiquetas sejam ignoradas",
+                    "Que a carga seja decidida no portão"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O melhor comportamento na rampa é:",
+                "options": [
+                    "Atenção situacional, disciplina de procedimento e reporte de risco",
+                    "Pressa sem checagem",
+                    "Improvisação constante",
+                    "Uso de atalhos sem autorização"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 
