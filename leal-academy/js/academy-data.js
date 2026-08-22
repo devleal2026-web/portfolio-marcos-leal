@@ -3699,6 +3699,215 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "conexoes-mct",
+        "title": "Conexões e MCT",
+        "eyebrow": "Conectividade operacional",
+        "duration": "1h 15min",
+        "level": "Intermediário",
+        "summary": "Interpretação de conexões, tempo mínimo operacional, riscos para passageiros e bagagens, perda de conexão, priorização e indicadores.",
+        "color": "#0891b2",
+        "modules": [
+            {
+                "title": "Conceito de conexão e MCT",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "MCT é o tempo mínimo de conexão necessário para que passageiro e bagagem sejam transferidos com segurança entre voos dentro das condições previstas."
+            },
+            {
+                "title": "Leitura de itinerário",
+                "type": "Prática guiada",
+                "duration": "12 min",
+                "content": "A leitura do itinerário deve considerar origem, conexão, destino final, tipo de voo, mudança de terminal, controle migratório, retirada de bagagem e tempo disponível."
+            },
+            {
+                "title": "Risco para passageiro e bagagem",
+                "type": "Aula",
+                "duration": "13 min",
+                "content": "Conexões curtas aumentam risco de passageiro embarcar sem a bagagem, bagagem perder o trecho, falha de reconciliação e abertura de processo no destino."
+            },
+            {
+                "title": "Priorização operacional",
+                "type": "Procedimento",
+                "duration": "13 min",
+                "content": "Conexões críticas exigem identificação antecipada, comunicação entre áreas, prioridade de bagagem, orientação ao passageiro e acompanhamento até o embarque."
+            },
+            {
+                "title": "Perda de conexão",
+                "type": "Simulação",
+                "duration": "13 min",
+                "content": "Quando há perda de conexão, o atendimento deve verificar causa, reacomodação, assistência, tratamento da bagagem e registros necessários para continuidade."
+            },
+            {
+                "title": "Indicadores e melhoria",
+                "type": "Checklist",
+                "duration": "12 min",
+                "content": "A gestão de conexões deve acompanhar misconnection, bagagens não conectadas, tempo de transferência, causas recorrentes, turnos críticos e ações corretivas."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Dashboard do Simulador",
+                "href": "../index.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "O que significa MCT?",
+                "options": [
+                    "Tempo mínimo de conexão",
+                    "Controle máximo de tarifa",
+                    "Mensagem comercial de transporte",
+                    "Manual de carga temporária"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O MCT existe para avaliar se há tempo mínimo para:",
+                "options": [
+                    "Transferência segura de passageiro e bagagem entre voos",
+                    "Escolha de assento",
+                    "Compra de bagagem extra",
+                    "Troca de uniforme da equipe"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Na leitura de um itinerário com conexão, o agente deve observar:",
+                "options": [
+                    "Origem, conexão, destino, terminais, controles e tempo disponível",
+                    "Apenas o número do primeiro voo",
+                    "Somente a classe tarifária",
+                    "Apenas a cor da etiqueta"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma conexão curta aumenta o risco de:",
+                "options": [
+                    "Passageiro ou bagagem não seguirem no próximo trecho",
+                    "Melhorar automaticamente a pontualidade",
+                    "Eliminar necessidade de comunicação",
+                    "Dispensar triagem de bagagem"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual fator pode tornar uma conexão mais crítica?",
+                "options": [
+                    "Mudança de terminal, controle migratório ou atraso do voo de chegada",
+                    "Passageiro sentado na janela",
+                    "Bagagem sem cor informada",
+                    "Cartão de embarque impresso em papel"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Conexões críticas devem ser tratadas com:",
+                "options": [
+                    "Identificação antecipada, prioridade e comunicação entre áreas",
+                    "Espera passiva",
+                    "Apenas anúncio genérico",
+                    "Nenhum acompanhamento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando a bagagem perde a conexão, uma consequência possível é:",
+                "options": [
+                    "Abertura de processo de bagagem no destino",
+                    "Cancelamento automático do passageiro",
+                    "Eliminação do comprovante de bagagem",
+                    "Embarque sem necessidade de etiqueta"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em perda de conexão do passageiro, o atendimento deve verificar:",
+                "options": [
+                    "Causa, alternativa de viagem, assistência e bagagem",
+                    "Apenas o assento preferido",
+                    "Somente a esteira de restituição",
+                    "Apenas o nome da aeronave"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A bagagem em conexão precisa ser acompanhada porque:",
+                "options": [
+                    "Pode exigir transferência, reconciliação, prioridade ou reetiquetagem",
+                    "Nunca depende do voo do passageiro",
+                    "Sempre fica no aeroporto de conexão",
+                    "Não possui relação com MCT"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um bom indicador para gestão de conexões é:",
+                "options": [
+                    "Quantidade de passageiros e bagagens que perderam conexão por causa recorrente",
+                    "Quantidade de cafés servidos",
+                    "Cor das malas por voo",
+                    "Número de poltronas vazias sem análise"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando há conexão internacional, pode ser necessário considerar:",
+                "options": [
+                    "Imigração, alfândega, segurança, terminal e retirada/redespacho de bagagem",
+                    "Apenas a distância até a loja mais próxima",
+                    "Somente o idioma do passageiro",
+                    "Nenhum controle adicional"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A priorização de bagagem em conexão deve ser comunicada a:",
+                "options": [
+                    "Áreas envolvidas no fluxo, como rampa, BHS, gate e coordenação",
+                    "Apenas passageiros que perguntarem",
+                    "Somente setor financeiro",
+                    "Ninguém"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Se o tempo de conexão está abaixo do mínimo aplicável, o agente deve:",
+                "options": [
+                    "Tratar como risco, orientar e acionar fluxo adequado",
+                    "Garantir que tudo dará certo",
+                    "Ignorar por ser responsabilidade do passageiro",
+                    "Apagar o registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A análise de causa em conexões ajuda a:",
+                "options": [
+                    "Reduzir reincidência de misconnection e bagagem não conectada",
+                    "Aumentar filas",
+                    "Remover prioridade",
+                    "Evitar qualquer registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O objetivo da gestão de MCT é:",
+                "options": [
+                    "Proteger a continuidade da viagem e reduzir falhas de conexão",
+                    "Criar atraso proposital",
+                    "Substituir o check-in",
+                    "Eliminar acompanhamento de bagagens"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 

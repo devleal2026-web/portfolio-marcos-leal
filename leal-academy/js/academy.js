@@ -58,7 +58,8 @@ const courseVisuals = {
     "siga-gestao-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
     "checkin-operacional": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "case" },
     "embarque-controle-portao": { image: "linear-gradient(135deg, rgba(29,78,216,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
-    "irregularidades-voo": { image: "linear-gradient(135deg, rgba(124,58,237,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=900&q=80')", icon: "shield" }
+    "irregularidades-voo": { image: "linear-gradient(135deg, rgba(124,58,237,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=900&q=80')", icon: "shield" },
+    "conexoes-mct": { image: "linear-gradient(135deg, rgba(8,145,178,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -237,6 +238,14 @@ const lessonMediaProfiles = {
         { kind:"flow", labels:["Reacomodar", "Reembolsar", "Bagagem", "Registrar"], caption:"Alternativas precisam considerar disponibilidade, escolha do passageiro e bagagem." },
         { kind:"form", labels:["Voluntário", "Assento", "Compensação", "Registro"], caption:"Preterição exige transparência, alternativa, compensação quando cabível e histórico." },
         { kind:"security", labels:["Calma", "Prioridade", "Liderança", "Histórico"], caption:"Em crise, método e registro protegem passageiros, equipe e operação." }
+    ],
+    "conexoes-mct": [
+        { kind:"route", labels:["Origem", "Conexão", "Destino", "MCT"], caption:"MCT indica o tempo mínimo para passageiro e bagagem seguirem entre voos." },
+        { kind:"form", labels:["Voo 1", "Terminal", "Controle", "Voo 2"], caption:"A leitura do itinerário considera horários, terminais, controles e destino final." },
+        { kind:"case", labels:["Passageiro", "Bagagem", "BHS", "Gate"], caption:"Conexões curtas aumentam risco de passageiro ou bagagem perderem o próximo trecho." },
+        { kind:"flow", labels:["Identificar", "Priorizar", "Comunicar", "Acompanhar"], caption:"Conexões críticas precisam de ação antecipada e comunicação entre áreas." },
+        { kind:"service", labels:["Misconnect", "Reacomodar", "Rastrear", "Orientar"], caption:"Perda de conexão exige continuidade da viagem e controle do destino da bagagem." },
+        { kind:"check", labels:["Causa", "Rota", "Turno", "Melhoria"], caption:"Indicadores de conexão ajudam a reduzir reincidência e orientar planos de melhoria." }
     ]
 };
 const courseIntroVideos = {};
