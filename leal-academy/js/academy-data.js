@@ -4121,6 +4121,219 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "mercadorias-perigosas-atendimento",
+        "title": "Mercadorias Perigosas no Atendimento",
+        "eyebrow": "Segurança e aceite",
+        "duration": "1h 25min",
+        "level": "Intermediário",
+        "summary": "Reconhecimento de artigos perigosos no atendimento ao passageiro, perguntas de segurança, baterias de lítio, aerossóis, líquidos, itens proibidos e comunicação de risco.",
+        "color": "#b45309",
+        "modules": [
+            {
+                "title": "Fundamentos de DGR",
+                "type": "Aula",
+                "duration": "13 min",
+                "content": "Mercadorias perigosas são artigos ou substâncias capazes de oferecer risco à saúde, segurança, aeronave, pessoas, bens ou meio ambiente durante o transporte aéreo."
+            },
+            {
+                "title": "Reconhecimento no atendimento",
+                "type": "Prática guiada",
+                "duration": "14 min",
+                "content": "O agente deve reconhecer sinais de itens perigosos em bagagens por descrição, embalagem, etiquetas, odor, vazamento, aquecimento, comportamento do passageiro ou respostas às perguntas de segurança."
+            },
+            {
+                "title": "Baterias, power banks e smart bags",
+                "type": "Procedimento",
+                "duration": "15 min",
+                "content": "Baterias de lítio, baterias de íon de sódio, power banks, smart bags, vapes, drones e eletrônicos exigem consulta à lista vigente, proteção contra curto-circuito, análise de dano físico e local correto de transporte."
+            },
+            {
+                "title": "Aerossóis, líquidos e químicos",
+                "type": "Checklist",
+                "duration": "14 min",
+                "content": "Aerossóis, produtos inflamáveis, corrosivos, oxidantes, tintas, solventes, combustíveis, cilindros e substâncias químicas devem ser avaliados conforme regra aplicável e podem ser proibidos."
+            },
+            {
+                "title": "Recusa e orientação ao passageiro",
+                "type": "Simulação",
+                "duration": "14 min",
+                "content": "Quando um item não pode ser transportado, o agente deve recusar com clareza, explicar o motivo de segurança, acionar supervisão quando necessário e registrar a ocorrência conforme procedimento."
+            },
+            {
+                "title": "Incidente e comunicação",
+                "type": "Procedimento",
+                "duration": "15 min",
+                "content": "Suspeita, vazamento, fumaça, aquecimento, dano de bateria ou artigo perigoso não declarado exigem isolamento, comunicação imediata, preservação da segurança e registro formal."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Check-in do Simulador",
+                "href": "checkin.html"
+            },
+            {
+                "label": "Loading do Simulador",
+                "href": "loading.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "O que são mercadorias perigosas no transporte aéreo?",
+                "options": [
+                    "Artigos ou substâncias que podem oferecer risco à saúde, segurança, aeronave, pessoas, bens ou meio ambiente",
+                    "Apenas bagagens acima do peso",
+                    "Somente produtos importados",
+                    "Qualquer item comprado no aeroporto"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual é o papel do agente de atendimento em DGR?",
+                "options": [
+                    "Reconhecer sinais de risco, orientar, recusar quando aplicável e acionar o procedimento correto",
+                    "Classificar tecnicamente toda carga perigosa",
+                    "Autorizar qualquer item solicitado pelo passageiro",
+                    "Ignorar itens dentro da mala"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um indício de artigo perigoso não declarado pode ser:",
+                "options": [
+                    "Odor forte, vazamento, embalagem com símbolo de risco ou resposta inconsistente",
+                    "Mala com rodinhas",
+                    "Passageiro com cartão de embarque impresso",
+                    "Etiqueta comum de bagagem"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Power banks e baterias sobressalentes exigem cuidado porque:",
+                "options": [
+                    "Podem apresentar risco de curto-circuito, aquecimento ou incêndio se transportados incorretamente e devem seguir a lista vigente",
+                    "São sempre proibidos em qualquer circunstância",
+                    "Não têm relação com segurança",
+                    "Devem ser sempre colocados na bagagem despachada"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Se uma bagagem de mão for despachada no gate, o agente deve lembrar o passageiro de:",
+                "options": [
+                    "Remover power banks, baterias sobressalentes e dispositivos sensíveis quando a regra exigir transporte na cabine",
+                    "Retirar todas as roupas",
+                    "Remover apenas etiquetas antigas",
+                    "Deixar eletrônicos ligados dentro da mala"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Cigarros eletrônicos e dispositivos semelhantes merecem atenção porque:",
+                "options": [
+                    "Contêm bateria e podem ter restrição de uso, recarga e transporte",
+                    "São equivalentes a roupas comuns",
+                    "Devem ser despachados sempre",
+                    "Não precisam ser informados"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual item pode indicar risco em aerossóis ou químicos?",
+                "options": [
+                    "Inflamável, corrosivo, oxidante, tóxico, gás comprimido ou vazamento",
+                    "Etiqueta de prioridade",
+                    "Cadeado TSA",
+                    "Mala rígida"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando um item não pode ser transportado, o agente deve:",
+                "options": [
+                    "Explicar a razão de segurança, orientar alternativa permitida e registrar ou acionar supervisão quando necessário",
+                    "Esconder o item na mala",
+                    "Aceitar para evitar reclamação",
+                    "Ignorar se o passageiro insistir"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em caso de vazamento, fumaça ou aquecimento de item na bagagem, a prioridade é:",
+                "options": [
+                    "Segurança das pessoas, isolamento e comunicação imediata",
+                    "Continuar o embarque sem informar",
+                    "Colocar a bagagem junto das demais",
+                    "Pedir ao passageiro para levar para casa sem registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "As perguntas de segurança no atendimento servem para:",
+                "options": [
+                    "Prevenir embarque de artigos perigosos não permitidos ou não declarados",
+                    "Aumentar o tempo de fila sem motivo",
+                    "Substituir toda inspeção de segurança",
+                    "Escolher assentos"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Produtos aparentemente comuns podem ser DGR quando:",
+                "options": [
+                    "Contêm gás, bateria, power bank, inflamável, corrosivo, oxidante, tóxico ou pressão interna",
+                    "Possuem cor escura",
+                    "São comprados no exterior",
+                    "Estão em mala nova"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Smart luggage com bateria não removível deve ser tratada como:",
+                "options": [
+                    "Item que exige consulta à regra vigente e pode ser proibido se a bateria não atender às condições permitidas",
+                    "Mala comum sem necessidade de análise",
+                    "Bagagem que sempre deve ir despachada",
+                    "Item sem relação com mercadorias perigosas"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O registro de ocorrência com item perigoso é importante porque:",
+                "options": [
+                    "Garante rastreabilidade, aprendizado operacional e evidência da ação tomada",
+                    "Serve para culpar automaticamente o passageiro",
+                    "Substitui a comunicação imediata",
+                    "Permite apagar o histórico"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em caso de dúvida sobre aceite de item potencialmente perigoso, a melhor conduta é:",
+                "options": [
+                    "Consultar procedimento, supervisor ou área responsável antes de aceitar",
+                    "Aceitar e resolver depois",
+                    "Perguntar a outro passageiro",
+                    "Despachar sem etiqueta"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O objetivo do treinamento de DGR no atendimento é:",
+                "options": [
+                    "Prevenir transporte indevido, proteger a operação e orientar corretamente o passageiro",
+                    "Transformar todo agente em expedidor de carga",
+                    "Eliminar a inspeção de segurança",
+                    "Permitir transporte de qualquer item"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 
