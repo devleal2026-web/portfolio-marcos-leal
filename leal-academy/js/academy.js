@@ -1379,9 +1379,8 @@ function certificateId(course, issuedAt){
     return `LA-${prefix}-${new Date(issuedAt).getTime().toString(36).toUpperCase()}`;
 }
 
-function issueCertificate(course, score){
+function issueCertificate(course, score, issuedAt = new Date().toISOString()){
     const profile = academyCurrentUserProfile();
-    const issuedAt = new Date().toISOString();
     const certificate = {
         id: certificateId(course, issuedAt),
         courseId: course.id,
@@ -1397,6 +1396,28 @@ function issueCertificate(course, score){
     certificates[course.id] = certificate;
     saveCertificates(certificates);
     return certificate;
+}
+
+function ensureCertificate(course, savedResult){
+    const certificates = readCertificates();
+
+    if(certificates[course.id]){
+        return certificates[course.id];
+    }
+
+    if(!savedResult || Number(savedResult.percent) < 70){
+        return null;
+    }
+
+    return issueCertificate(
+        course,
+        {
+            percent:Number(savedResult.percent) || 0,
+            correct:Number(savedResult.correct) || 0,
+            total:Number(savedResult.total) || normalizeQuiz(course).length
+        },
+        savedResult.finishedAt || new Date().toISOString()
+    );
 }
 
 function certificatePageUrl(courseId){
@@ -1688,6 +1709,8 @@ function renderAssessment(course){
     const saved = readQuizResults()[course.id];
     const isStandalone = document.body.classList.contains("assessment-page");
     const isOpen = Boolean(state.assessmentOpen[course.id]);
+    const savedCertificate = ensureCertificate(course, saved);
+    const savedApproved = Boolean(savedCertificate);
 
     if(!isStandalone && !isOpen){
         container.innerHTML = `
@@ -1698,13 +1721,33 @@ function renderAssessment(course){
                     <p>${saved ? `Ultimo resultado: ${saved.percent}%` : "A prova ainda nao foi iniciada neste curso."}</p>
                 </div>
 
-                <button class="primary-action" id="startAssessment" type="button">
-                    Iniciar prova
-                </button>
+                <div class="assessment-start-actions">
+                    <button class="primary-action" id="startAssessment" type="button">
+                        ${savedApproved ? "Refazer prova" : "Iniciar prova"}
+                    </button>
+
+                    ${savedApproved ? `
+                        <a class="secondary-action" href="${certificatePageUrl(course.id)}" target="_blank" rel="noopener">
+                            Abrir certificado
+                        </a>
+                        <button class="secondary-action" id="downloadSavedCertificate" type="button">
+                            Baixar certificado
+                        </button>
+                        <button class="secondary-action" id="emailSavedCertificate" type="button">
+                            Enviar por e-mail
+                        </button>
+                    ` : ""}
+                </div>
             </article>
         `;
 
         document.getElementById("startAssessment")?.addEventListener("click", () => openAssessmentWindow(course));
+        document.getElementById("downloadSavedCertificate")?.addEventListener("click", () => {
+            downloadCertificate(savedCertificate, course);
+        });
+        document.getElementById("emailSavedCertificate")?.addEventListener("click", () => {
+            openMailClient(savedCertificate);
+        });
 
         return;
     }
