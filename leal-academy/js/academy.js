@@ -56,7 +56,8 @@ const courseVisuals = {
     "gestao-pessoas-rampa": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" },
     "restituicao-bagagem-sla": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(12,74,110,.86)), url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80')", icon: "route" },
     "siga-gestao-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
-    "checkin-operacional": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "case" }
+    "checkin-operacional": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "case" },
+    "embarque-controle-portao": { image: "linear-gradient(135deg, rgba(29,78,216,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -219,6 +220,14 @@ const lessonMediaProfiles = {
         { kind:"service", labels:["PNAE", "UMNR", "Gestante", "Animal"], caption:"Serviços especiais devem ser registrados e comunicados às áreas envolvidas." },
         { kind:"flow", labels:["Aceito", "No-show", "Gate", "Rampa"], caption:"O fechamento do check-in organiza a transição para embarque, rampa e coordenação." },
         { kind:"check", labels:["Horário", "Evidência", "Responsável", "Histórico"], caption:"Registros claros garantem rastreabilidade, continuidade e conformidade operacional." }
+    ],
+    "embarque-controle-portao": [
+        { kind:"route", labels:["Voo", "Portão", "Equipe", "Recursos"], caption:"A preparação do portão antecipa informações, equipe, recursos e riscos antes da chamada." },
+        { kind:"flow", labels:["Prioridade", "Grupo", "Fila", "Fluxo"], caption:"A sequência de embarque organiza prioridades, grupos e deslocamento seguro até a aeronave." },
+        { kind:"check", labels:["Cartão", "Documento", "Status", "Conciliação"], caption:"A conferência no gate confirma passageiro, voo, trecho e status antes da entrada na aeronave." },
+        { kind:"case", labels:["Cabine", "Gate bag", "Etiqueta", "Rampa"], caption:"Bagagem no portão precisa de orientação, etiqueta e comunicação clara com a rampa." },
+        { kind:"service", labels:["Late show", "Mudança", "Conflito", "Supervisão"], caption:"Irregularidades no gate exigem calma, método, comunicação e registro." },
+        { kind:"form", labels:["Embarcados", "Ausentes", "Bagagem", "Fechar"], caption:"O fechamento do voo confirma passageiros, bagagens, pendências e liberação operacional." }
     ]
 };
 const courseIntroVideos = {};

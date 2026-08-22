@@ -3281,6 +3281,215 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "embarque-controle-portao",
+        "title": "Embarque e Controle de Portão",
+        "eyebrow": "Operação de gate",
+        "duration": "1h 05min",
+        "level": "Básico",
+        "summary": "Rotina operacional do portão de embarque, conferência de passageiros, prioridades, bagagem de mão, irregularidades e fechamento do voo.",
+        "color": "#1d4ed8",
+        "modules": [
+            {
+                "title": "Preparação do portão",
+                "type": "Aula",
+                "duration": "10 min",
+                "content": "A preparação do portão começa antes da chamada de embarque, com conferência de voo, horário, aeronave, posição, documentação operacional, equipe e recursos de atendimento."
+            },
+            {
+                "title": "Sequência de embarque",
+                "type": "Procedimento",
+                "duration": "10 min",
+                "content": "A sequência de embarque organiza prioridades, grupos, passageiros com assistência, famílias, conexões e fluxo geral para reduzir filas, conflito e atraso."
+            },
+            {
+                "title": "Conferência e conciliação",
+                "type": "Prática guiada",
+                "duration": "12 min",
+                "content": "O controle de portão exige conferência do cartão de embarque, documento quando aplicável, status do passageiro e conciliação entre aceitos, embarcados e pendentes."
+            },
+            {
+                "title": "Bagagem no portão",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Bagagem de mão, volumes fora do padrão e bagagem despachada no portão precisam ser tratados com etiqueta, orientação, segurança e comunicação com rampa."
+            },
+            {
+                "title": "Irregularidades no gate",
+                "type": "Simulação",
+                "duration": "11 min",
+                "content": "Atraso de passageiro, troca de assento, impedimento de embarque, overbooking, assistência especial não prevista e conflito exigem calma, registro e acionamento correto."
+            },
+            {
+                "title": "Fechamento do voo",
+                "type": "Checklist",
+                "duration": "10 min",
+                "content": "O fechamento do voo confirma passageiros embarcados, ausentes, bagagens reconciliadas, informações à tripulação, documentação final e liberação operacional."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Simulador Loading",
+                "href": "../pages/loading.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual é a finalidade da preparação do portão antes do embarque?",
+                "options": [
+                    "Iniciar chamada sem conferir dados",
+                    "Garantir voo, horário, equipe, recursos e informações operacionais corretas",
+                    "Substituir a atuação da rampa",
+                    "Eliminar a conferência de passageiros"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "A sequência de embarque deve considerar:",
+                "options": [
+                    "Prioridades, assistências, grupos e fluxo seguro",
+                    "Apenas passageiros sem bagagem de mão",
+                    "Somente ordem de chegada",
+                    "Apenas passageiros frequentes"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O controle de portão exige conciliar:",
+                "options": [
+                    "Aceitos, embarcados, pendentes e ausentes",
+                    "Somente passageiros na fila",
+                    "Apenas bagagens pesadas",
+                    "Somente assentos de janela"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando houver passageiro com assistência especial, o portão deve:",
+                "options": [
+                    "Aguardar o passageiro pedir novamente",
+                    "Confirmar registro, apoio necessário e comunicação com áreas envolvidas",
+                    "Ignorar se o voo estiver no horário",
+                    "Encaminhar sem registro"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Bagagem de mão fora do padrão no portão deve ser tratada com:",
+                "options": [
+                    "Orientação, etiqueta quando aplicável e comunicação com rampa",
+                    "Aceitação automática na cabine",
+                    "Entrega direta na esteira de restituição",
+                    "Nenhuma ação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A conferência do cartão de embarque no gate serve para:",
+                "options": [
+                    "Confirmar passageiro, voo, trecho e status de embarque",
+                    "Definir franquia de bagagem",
+                    "Alterar destino do passageiro",
+                    "Substituir documentação internacional"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Se um passageiro chega após encerramento do embarque, o agente deve:",
+                "options": [
+                    "Abrir a porta da aeronave sem consulta",
+                    "Seguir procedimento, explicar com clareza e acionar supervisão quando necessário",
+                    "Prometer embarque no mesmo voo",
+                    "Ignorar o passageiro"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Overbooking ou preterição deve ser tratado com:",
+                "options": [
+                    "Comunicação transparente, registro, alternativas e regras aplicáveis",
+                    "Silêncio até o passageiro perceber",
+                    "Remoção de passageiros sem explicação",
+                    "Apenas orientação para comprar nova passagem"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "No fechamento do voo, é essencial confirmar:",
+                "options": [
+                    "Passageiros embarcados, ausentes e bagagens reconciliadas",
+                    "Apenas o horário local",
+                    "Somente a quantidade de assentos vazios",
+                    "Apenas a fila encerrada"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma comunicação eficiente entre portão e rampa evita:",
+                "options": [
+                    "Bagagens sem reconciliação, atraso e informação conflitante",
+                    "Uso de cartão de embarque",
+                    "Atendimento prioritário",
+                    "Leitura de documentos"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em situação de conflito no gate, a postura recomendada é:",
+                "options": [
+                    "Manter calma, escutar, explicar limites e registrar a ocorrência",
+                    "Responder no mesmo tom do passageiro",
+                    "Evitar qualquer explicação",
+                    "Abandonar a posição"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A chamada de embarque deve ser:",
+                "options": [
+                    "Clara, audível, objetiva e coerente com o fluxo definido",
+                    "Improvisada e sem sequência",
+                    "Feita apenas uma vez",
+                    "Sempre em linguagem técnica"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando há mudança de portão, a equipe deve:",
+                "options": [
+                    "Atualizar informação, orientar passageiros e comunicar áreas impactadas",
+                    "Esperar que os passageiros descubram",
+                    "Alterar sem registro",
+                    "Informar somente após encerramento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual informação deve chegar à tripulação quando aplicável?",
+                "options": [
+                    "Passageiros com assistência, casos especiais e pendências relevantes",
+                    "Opiniões pessoais do agente",
+                    "Apenas quantidade de malas grandes",
+                    "Informações sem relação com o voo"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O resultado de um embarque bem controlado é:",
+                "options": [
+                    "Voo fechado com passageiros, bagagens e áreas alinhadas",
+                    "Mais filas sem orientação",
+                    "Menos rastreabilidade",
+                    "Aumento de conflitos no portão"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 
