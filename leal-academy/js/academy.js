@@ -30,6 +30,7 @@ const state = {
 const storageKey = "airportBaggageAcademyProgress";
 const quizStorageKey = "airportBaggageAcademyQuiz";
 const certificateStorageKey = "airportBaggageAcademyCertificates";
+const minimumApprovalPercent = 80;
 
 const courseVisuals = {
     "fundamentos": { image: "linear-gradient(135deg, rgba(21,94,117,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')", icon: "case" },
@@ -1324,6 +1325,37 @@ function quizScore(course){
     return { correct, total: questions.length, percent: Math.round((correct / questions.length) * 100) };
 }
 
+function gradeFromPercent(percent){
+    return Math.round((Number(percent) || 0)) / 10;
+}
+
+function formatGrade(percent){
+    const grade = gradeFromPercent(percent);
+    return Number.isInteger(grade) ? String(grade) : grade.toFixed(1);
+}
+
+function isApprovedPercent(percent){
+    return Number(percent) >= minimumApprovalPercent;
+}
+
+function certificatePercentValue(certificate){
+    if(certificate.percent !== undefined){
+        return Number(certificate.percent) || 0;
+    }
+
+    const storedScore = Number(certificate.score) || 0;
+    return storedScore > 10 ? storedScore : Math.round(storedScore * 10);
+}
+
+function certificateGradeValue(certificate){
+    if(certificate.grade !== undefined){
+        return String(certificate.grade);
+    }
+
+    const storedScore = Number(certificate.score) || 0;
+    return storedScore > 10 ? formatGrade(storedScore) : formatGrade(storedScore * 10);
+}
+
 function academyCurrentUserProfile(){
     if(window.AccessControl && typeof AccessControl.readLocalProfile === "function"){
         const profile = AccessControl.readLocalProfile();
@@ -1387,7 +1419,9 @@ function issueCertificate(course, score, issuedAt = new Date().toISOString()){
         courseTitle: course.title,
         studentName: profile.name,
         studentEmail: profile.email,
-        score: score.percent,
+        score: formatGrade(score.percent),
+        grade: formatGrade(score.percent),
+        percent: score.percent,
         correct: score.correct,
         total: score.total,
         issuedAt
@@ -1405,7 +1439,7 @@ function ensureCertificate(course, savedResult){
         return certificates[course.id];
     }
 
-    if(!savedResult || Number(savedResult.percent) < 70){
+    if(!savedResult || !isApprovedPercent(savedResult.percent)){
         return null;
     }
 
@@ -1458,6 +1492,8 @@ function certificateHtml(certificate, course){
         month:"long",
         year:"numeric"
     });
+    const certificatePercent = certificatePercentValue(certificate);
+    const certificateGrade = certificateGradeValue(certificate);
 
     return `
         <article class="certificate-document">
@@ -1476,8 +1512,8 @@ function certificateHtml(certificate, course){
                     <p>
                         concluiu com aproveitamento o curso
                         <strong>${escapeHtml(certificate.courseTitle || course?.title || "Curso Leal Academy")}</strong>,
-                        obtendo nota final de <strong>${certificate.score}%</strong>
-                        (${certificate.correct}/${certificate.total} acertos).
+                        obtendo nota final <strong>${escapeHtml(certificateGrade)}</strong>
+                        (${certificatePercent}% - ${certificate.correct}/${certificate.total} acertos).
                     </p>
                 </section>
 
@@ -1583,11 +1619,13 @@ function openMailClient(certificate){
     }
 
     const subject = encodeURIComponent(`Certificado Leal Academy - ${certificate.courseTitle}`);
+    const certificatePercent = certificatePercentValue(certificate);
+    const certificateGrade = certificateGradeValue(certificate);
     const body = encodeURIComponent([
         `Ola, ${certificate.studentName}.`,
         "",
         `Seu certificado do curso ${certificate.courseTitle} foi emitido.`,
-        `Nota: ${certificate.score}% (${certificate.correct}/${certificate.total} acertos).`,
+        `Nota: ${certificateGrade} (${certificatePercent}% - ${certificate.correct}/${certificate.total} acertos).`,
         `Codigo do certificado: ${certificate.id}`,
         "",
         "Abra a pagina do certificado na plataforma e use a opcao Imprimir / Salvar em PDF para anexar ao e-mail."
@@ -1628,7 +1666,8 @@ async function sendCertificateEmail(certificate){
 }
 
 function renderAssessmentResult(course, score, review, certificate, emailStatus){
-    const approved = score.percent >= 70;
+    const approved = isApprovedPercent(score.percent);
+    const grade = formatGrade(score.percent);
     const certificateBlock = approved && certificate
         ? `
             <section class="certificate-result-card">
@@ -1661,8 +1700,8 @@ function renderAssessmentResult(course, score, review, certificate, emailStatus)
         <section class="assessment-result ${approved ? "approved" : "failed"}">
             <div>
                 <span>${approved ? "Aprovado" : "Nao aprovado"}</span>
-                <strong>Resultado: ${score.correct}/${score.total} - ${score.percent}%</strong>
-                <p>${approved ? "Parabens. O certificado foi liberado para este curso." : "Revise as trilhas e refaca a avaliacao para atingir 70%."}</p>
+                <strong>Nota: ${grade} | Resultado: ${score.correct}/${score.total} - ${score.percent}%</strong>
+                <p>${approved ? "Parabens. O certificado foi liberado para este curso." : "Revise as trilhas e refaca a avaliacao para atingir nota minima 8.0."}</p>
             </div>
         </section>
 
@@ -1718,7 +1757,7 @@ function renderAssessment(course){
                 <div>
                     <span>Avaliacao</span>
                     <strong>${questions.length} perguntas</strong>
-                    <p>${saved ? `Ultimo resultado: ${saved.percent}%` : "A prova ainda nao foi iniciada neste curso."}</p>
+                    <p>${saved ? `Ultimo resultado: nota ${formatGrade(saved.percent)} (${saved.percent}%)` : "A prova ainda nao foi iniciada neste curso."}</p>
                 </div>
 
                 <div class="assessment-start-actions">
@@ -1803,7 +1842,7 @@ function renderAssessment(course){
 
         const score = quizScore(course);
         const review = quizReview(course, questions, answers);
-        const approved = score.percent >= 70;
+        const approved = isApprovedPercent(score.percent);
         const certificate = approved ? issueCertificate(course, score) : null;
         const results = readQuizResults();
         results[course.id] = {
@@ -1818,7 +1857,7 @@ function renderAssessment(course){
         const emailStatus = certificate
             ? await sendCertificateEmail(certificate)
             : null;
-        document.getElementById("assessmentScore").textContent = `Resultado: ${score.correct}/${score.total} - ${score.percent}%`;
+        document.getElementById("assessmentScore").textContent = `Nota: ${formatGrade(score.percent)} | Resultado: ${score.correct}/${score.total} - ${score.percent}%`;
         document.getElementById("assessmentFeedback").innerHTML = renderAssessmentResult(
             course,
             score,
@@ -1903,7 +1942,7 @@ function renderCertificatePage(){
     if(!certificate){
         container.innerHTML = `
             <div class="assessment-empty">
-                Nenhum certificado emitido para este curso. Conclua a avaliacao com aproveitamento minimo de 70%.
+                Nenhum certificado emitido para este curso. Conclua a avaliacao com aproveitamento minimo de 80% (nota 8.0).
             </div>
         `;
         return;
