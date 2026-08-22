@@ -2630,6 +2630,227 @@ const academyCourses = [
                 "correct": 2
             }
         ]
+    },
+    {
+        "id": "restituicao-bagagem-sla",
+        "title": "Restituição de Bagagem - SLA e Fluxo Operacional",
+        "eyebrow": "Operação de chegada",
+        "duration": "1h 50min",
+        "level": "Intermediário",
+        "summary": "Controle de restituição de bagagem, tempos de percurso, risco por posição, SLA de esteira, análise por turno e plano de ação.",
+        "color": "#0f766e",
+        "modules": [
+            {
+                "title": "Objetivo da restituição",
+                "type": "Aula",
+                "duration": "14 min",
+                "content": "A restituição de bagagem é o fluxo que leva os volumes descarregados da aeronave até a esteira de entrega ao passageiro. O objetivo é cumprir o SLA definido, reduzir espera, evitar acúmulo de volumes e manter comunicação operacional clara."
+            },
+            {
+                "title": "Distância, percurso e risco",
+                "type": "Procedimento",
+                "duration": "16 min",
+                "content": "A distância entre a posição da aeronave, o pátio, o BHS e a área de restituição influencia diretamente o tempo de entrega. Posições próximas têm baixo risco; posições afastadas exigem mais planejamento, equipamentos e acompanhamento."
+            },
+            {
+                "title": "Classificação operacional",
+                "type": "Consulta",
+                "duration": "16 min",
+                "content": "O risco pode ser classificado como baixo, moderado, crescente, alto ou crítico. A classificação considera distância, tempo médio de deslocamento, congestionamento interno, pico operacional, tipo de voo e disponibilidade de equipe."
+            },
+            {
+                "title": "Composição do SLA",
+                "type": "Prática guiada",
+                "duration": "18 min",
+                "content": "O SLA de restituição deve ser analisado pela soma de descarga, transporte, entrada no BHS e disponibilização na esteira. Quando a soma se aproxima do limite, qualquer atraso pequeno pode gerar não conformidade."
+            },
+            {
+                "title": "Monitoramento por turno",
+                "type": "Análise",
+                "duration": "18 min",
+                "content": "A análise por turno identifica onde estão as maiores violações de SLA. Turnos com alto volume, voos internacionais, congestionamento de esteiras ou longas janelas sem restituição exigem prioridade de gestão."
+            },
+            {
+                "title": "Pareto e priorização",
+                "type": "Gestão",
+                "duration": "16 min",
+                "content": "A leitura de Pareto ajuda a priorizar ações. Se dois turnos concentram a maior parte das violações, atuar primeiro nesses turnos pode reduzir rapidamente o impacto total."
+            },
+            {
+                "title": "Plano de ação operacional",
+                "type": "Simulação",
+                "duration": "17 min",
+                "content": "O plano de ação deve prever equipe, tratores, carretas, prioridade para voos críticos, comunicação pré-chegada, início imediato do transporte e supervisão dedicada quando o risco for alto."
+            },
+            {
+                "title": "Governança e registros",
+                "type": "Procedimento",
+                "duration": "15 min",
+                "content": "Todo atraso relevante deve ser registrado com horário, causa, turno, voo, posição, início da descarga, chegada ao BHS e início da restituição. O histórico permite corrigir processo, dimensionamento e comunicação."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            },
+            {
+                "label": "Dashboard do Simulador",
+                "href": "../index.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual é o principal objetivo da restituição de bagagem?",
+                "options": [
+                    "Guardar bagagens não retiradas por tempo indeterminado",
+                    "Levar as bagagens descarregadas até a esteira dentro do SLA definido",
+                    "Substituir o processo de triagem do aeroporto",
+                    "Evitar o uso de registros operacionais"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Qual fator aumenta diretamente o risco de descumprimento do SLA?",
+                "options": [
+                    "Posição da aeronave muito próxima ao BHS",
+                    "Baixo volume de voos no turno",
+                    "Grande distância entre aeronave, BHS e esteira",
+                    "Equipe pronta antes da chegada"
+                ],
+                "correct": 2
+            },
+            {
+                "question": "Em uma operação com posição distante, qual ação é recomendada?",
+                "options": [
+                    "Aguardar o fim da descarga para planejar o transporte",
+                    "Reduzir equipamentos para liberar espaço",
+                    "Iniciar o transporte rapidamente e acompanhar o fluxo",
+                    "Priorizar apenas voos com menor quantidade de bagagens"
+                ],
+                "correct": 2
+            },
+            {
+                "question": "O SLA de restituição deve considerar:",
+                "options": [
+                    "Somente o horário de pouso",
+                    "Somente o horário de abertura da porta da aeronave",
+                    "Descarga, percurso, entrada no BHS e início da entrega na esteira",
+                    "Apenas o número de passageiros no voo"
+                ],
+                "correct": 2
+            },
+            {
+                "question": "Quando a soma descarga + percurso + BHS chega ao limite do SLA, o que ocorre?",
+                "options": [
+                    "A operação fica sem risco",
+                    "Qualquer pequeno desvio pode gerar não conformidade",
+                    "O turno deixa de precisar de supervisão",
+                    "A esteira pode ser aberta sem bagagem"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "A classificação de risco operacional serve para:",
+                "options": [
+                    "Eliminar a necessidade de medição",
+                    "Definir quais voos podem ser ignorados",
+                    "Apoiar planejamento, priorização e dimensionamento",
+                    "Registrar apenas atrasos de passageiros"
+                ],
+                "correct": 2
+            },
+            {
+                "question": "Qual cenário representa risco crítico?",
+                "options": [
+                    "Percurso curto, equipe disponível e baixa demanda",
+                    "Percurso muito longo, pico operacional e esteiras saturadas",
+                    "Voo doméstico com poucas bagagens e esteira livre",
+                    "Transporte iniciado antes do fim da descarga"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "A análise por turno ajuda a identificar:",
+                "options": [
+                    "Somente o nome do passageiro",
+                    "Onde ocorrem mais violações e qual turno exige ação",
+                    "A quantidade de assentos disponíveis no voo",
+                    "O valor de indenização por bagagem"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Na lógica de Pareto, a gestão deve priorizar:",
+                "options": [
+                    "Os eventos que concentram maior parte do impacto",
+                    "Somente os eventos mais simples",
+                    "Apenas turnos com baixo volume",
+                    "Casos sem registro operacional"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual prática melhora a previsibilidade da restituição?",
+                "options": [
+                    "Planejamento pré-chegada dos voos críticos",
+                    "Uso de comunicação informal sem confirmação",
+                    "Registro apenas quando há reclamação",
+                    "Atrasar a saída das carretas para juntar mais volumes"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O que deve ser registrado em uma violação de SLA?",
+                "options": [
+                    "Apenas o nome do supervisor",
+                    "Horários, causa, turno, posição e etapa afetada",
+                    "Somente o número total de malas",
+                    "Apenas o portão de embarque do passageiro"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Em turnos com longas janelas sem restituição, a prioridade deve ser:",
+                "options": [
+                    "Governança, controle e priorização operacional",
+                    "Redução de registros",
+                    "Fechar esteiras sem comunicação",
+                    "Aguardar demanda do passageiro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual item faz parte de um plano de ação para voo crítico?",
+                "options": [
+                    "Supervisão dedicada e equipamentos dimensionados",
+                    "Ausência de briefing",
+                    "Nenhuma medição de tempo",
+                    "Comunicação somente após reclamações"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Por que o histórico operacional é importante?",
+                "options": [
+                    "Porque substitui a operação em tempo real",
+                    "Porque permite identificar causa, reincidência e melhoria de processo",
+                    "Porque elimina necessidade de equipe",
+                    "Porque serve apenas para arquivamento"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Qual é uma boa conclusão gerencial quando poucos turnos concentram a maioria das violações?",
+                "options": [
+                    "Não existe problema operacional",
+                    "A ação deve começar pelos turnos de maior impacto",
+                    "Todos os turnos devem receber exatamente a mesma ação",
+                    "O SLA deve deixar de ser acompanhado"
+                ],
+                "correct": 1
+            }
+        ]
     }
 ];
 
