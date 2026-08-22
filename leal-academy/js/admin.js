@@ -172,12 +172,39 @@ const AcademyAdmin = (() => {
                     completed:0,
                     pending:0,
                     approved:0,
+                    failed:0,
                     certificates:0,
-                    lastCourse:"-"
+                    lastCourse:"-",
+                    courses:new Map()
                 });
             }
 
             return users.get(key);
+        }
+
+        function courseFor(user, item){
+            const courseId = item.course_id || "curso-nao-identificado";
+
+            if(!user.courses.has(courseId)){
+                user.courses.set(courseId, {
+                    id:courseId,
+                    title:item.course_title || courseId,
+                    progress:0,
+                    completed:false,
+                    approved:false,
+                    failed:false,
+                    bestScore:null,
+                    bestGrade:null,
+                    attempts:0,
+                    certificateCode:"",
+                    certificateIssuedAt:null,
+                    lastActivity:null
+                });
+            }
+
+            const course = user.courses.get(courseId);
+            course.title = item.course_title || course.title;
+            return course;
         }
 
         data.profiles.forEach(profile => {
@@ -202,6 +229,11 @@ const AcademyAdmin = (() => {
             user.started += 1;
             user.lastCourse = item.course_title || user.lastCourse;
 
+            const course = courseFor(user, item);
+            course.progress = Number(item.progress_percent) || 0;
+            course.completed = course.progress >= 100;
+            course.lastActivity = item.last_activity_at || course.lastActivity;
+
             if(Number(item.progress_percent) >= 100){
                 user.completed += 1;
             }else{
@@ -220,8 +252,23 @@ const AcademyAdmin = (() => {
                 return;
             }
 
+            const course = courseFor(user, item);
+            const score = Number(item.score_percent) || 0;
+            course.attempts += 1;
+            course.lastActivity = item.created_at || course.lastActivity;
+
+            if(course.bestScore === null || score > course.bestScore){
+                course.bestScore = score;
+                course.bestGrade = gradeFromPercent(score);
+            }
+
             if(item.approved){
                 user.approved += 1;
+                course.approved = true;
+                course.failed = false;
+            }else if(!course.approved){
+                user.failed += 1;
+                course.failed = true;
             }
         });
 
@@ -233,6 +280,11 @@ const AcademyAdmin = (() => {
             }
 
             user.certificates += 1;
+            const course = courseFor(user, item);
+            course.certificateCode = item.certificate_code || course.certificateCode;
+            course.certificateIssuedAt = item.issued_at || course.certificateIssuedAt;
+            course.approved = true;
+            course.completed = true;
         });
 
         data.events.forEach(item => {
@@ -247,7 +299,13 @@ const AcademyAdmin = (() => {
             }
         });
 
-        return [...users.values()].sort((a, b) => {
+        return [...users.values()].map(user => {
+            user.courseList = [...user.courses.values()].sort((a, b) => {
+                return new Date(b.lastActivity || b.certificateIssuedAt || 0) - new Date(a.lastActivity || a.certificateIssuedAt || 0);
+            });
+            delete user.courses;
+            return user;
+        }).sort((a, b) => {
             return new Date(b.lastAccess || 0) - new Date(a.lastAccess || 0);
         });
     }
@@ -289,25 +347,89 @@ const AcademyAdmin = (() => {
     }
 
     function renderUsersTable(rows){
+        if(rows.length === 0){
+            return `<div class="academy-admin-empty">Nenhuma conta acessou a plataforma ainda.</div>`;
+        }
+
+        return `
+            <div class="academy-admin-user-list">
+                ${rows.map((row, index) => `
+                    <details class="academy-admin-user-card" ${index === 0 ? "open" : ""}>
+                        <summary>
+                            <div>
+                                <strong>${escapeHtml(row.name)}</strong>
+                                <span>${escapeHtml(row.email)}</span>
+                            </div>
+
+                            <div class="academy-admin-user-metrics">
+                                ${smallMetric("Acessos", row.accessCount)}
+                                ${smallMetric("Cursos", row.started)}
+                                ${smallMetric("Concluídos", row.completed)}
+                                ${smallMetric("Pendentes", row.pending)}
+                                ${smallMetric("Aprovados", row.approved)}
+                                ${smallMetric("Reprovados", row.failed)}
+                                ${smallMetric("Certificados", row.certificates)}
+                            </div>
+                        </summary>
+
+                        <div class="academy-admin-user-detail">
+                            <p>
+                                <strong>Último acesso:</strong>
+                                ${escapeHtml(formatDate(row.lastAccess))}
+                            </p>
+
+                            ${renderUserCourseDetails(row)}
+                        </div>
+                    </details>
+                `).join("")}
+            </div>
+        `;
+    }
+
+    function smallMetric(label, value){
+        return `
+            <span>
+                <b>${escapeHtml(value)}</b>
+                ${escapeHtml(label)}
+            </span>
+        `;
+    }
+
+    function renderUserCourseDetails(user){
+        if(!user.courseList || user.courseList.length === 0){
+            return `<div class="academy-admin-empty">Esta conta acessou a plataforma, mas ainda não iniciou cursos.</div>`;
+        }
+
         return table([
-            "Aluno",
-            "E-mail",
-            "Acessos",
-            "Cursos",
-            "Concluídos",
-            "Pendentes",
-            "Certificados",
-            "Último acesso"
-        ], rows.map(row => [
-            row.name,
-            row.email,
-            row.accessCount,
-            row.started,
-            row.completed,
-            row.pending,
-            row.certificates,
-            formatDate(row.lastAccess)
-        ]));
+            "Curso",
+            "Progresso",
+            "Curso",
+            "Avaliação",
+            "Nota",
+            "Tentativas",
+            "Certificado",
+            "Última atividade"
+        ], user.courseList.map(course => {
+            const courseStatus = course.completed
+                ? "Concluído"
+                : "Em andamento";
+            const assessmentStatus = course.approved
+                ? "Aprovado"
+                : course.failed
+                    ? "Não aprovado"
+                    : "Sem prova";
+
+            return [
+                course.title,
+                `${course.progress}%`,
+                courseStatus,
+                assessmentStatus,
+                course.bestScore === null ? "-" : `${course.bestGrade} (${course.bestScore}%)`,
+                course.attempts,
+                course.certificateCode || "-",
+                formatDate(course.lastActivity || course.certificateIssuedAt)
+            ];
+        }));
     }
 
     function renderCoursesTable(data){
@@ -437,19 +559,28 @@ const AcademyAdmin = (() => {
             return;
         }
 
-        const headers = ["Aluno", "E-mail", "Acessos", "Cursos iniciados", "Concluídos", "Pendentes", "Certificados", "Último acesso"];
+        const headers = ["Aluno", "E-mail", "Acessos", "Curso", "Progresso", "Status do curso", "Status da avaliação", "Nota", "Tentativas", "Certificado", "Último acesso"];
         const lines = [
             headers.join(";"),
-            ...dashboardRows.map(row => [
-                row.name,
-                row.email,
-                row.accessCount,
-                row.started,
-                row.completed,
-                row.pending,
-                row.certificates,
-                formatDate(row.lastAccess)
-            ].map(value => `"${String(value ?? "").replace(/"/g, '""')}"`).join(";"))
+            ...dashboardRows.flatMap(row => {
+                const courses = row.courseList && row.courseList.length > 0
+                    ? row.courseList
+                    : [{ title:"-", progress:"-", completed:false, approved:false, failed:false, bestScore:null, bestGrade:null, attempts:0, certificateCode:"-" }];
+
+                return courses.map(course => [
+                    row.name,
+                    row.email,
+                    row.accessCount,
+                    course.title,
+                    course.progress === "-" ? "-" : `${course.progress}%`,
+                    course.completed ? "Concluído" : course.title === "-" ? "-" : "Em andamento",
+                    course.approved ? "Aprovado" : course.failed ? "Não aprovado" : "Sem prova",
+                    course.bestScore === null ? "-" : `${course.bestGrade} (${course.bestScore}%)`,
+                    course.attempts,
+                    course.certificateCode || "-",
+                    formatDate(row.lastAccess)
+                ].map(value => `"${String(value ?? "").replace(/"/g, '""')}"`).join(";"));
+            })
         ];
 
         const blob = new Blob([lines.join("\n")], {
