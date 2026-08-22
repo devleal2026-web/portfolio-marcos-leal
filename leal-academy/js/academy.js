@@ -54,7 +54,8 @@ const courseVisuals = {
     "atendimento-pcd": { image: "linear-gradient(135deg, rgba(8,145,178,.92), rgba(30,64,175,.84)), url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80')", icon: "access" },
     "interpretacao-etiqueta-bagagem": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "barcode" },
     "gestao-pessoas-rampa": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" },
-    "restituicao-bagagem-sla": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(12,74,110,.86)), url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80')", icon: "route" }
+    "restituicao-bagagem-sla": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(12,74,110,.86)), url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80')", icon: "route" },
+    "siga-gestao-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -199,6 +200,16 @@ const lessonMediaProfiles = {
         { kind:"match", labels:["Pareto", "Impacto", "Prioridade", "Ação"], caption:"Pareto ajuda a atacar primeiro os turnos, posições ou causas de maior impacto." },
         { kind:"route", labels:["Equipe", "Carreta", "Esteira", "Plano"], caption:"Voos críticos exigem plano pré-chegada, recursos definidos e supervisão dedicada." },
         { kind:"form", labels:["Horário", "Causa", "SLA", "Melhoria"], caption:"Registros consistentes transformam atrasos em aprendizado e melhoria de processo." }
+    ],
+    "siga-gestao-aeroportuaria": [
+        { kind:"globe", labels:["Voos", "Alertas", "Equipes", "Tempo real"], caption:"Um sistema integrado centraliza dados operacionais para diferentes áreas do aeroporto." },
+        { kind:"security", labels:["Login", "Senha", "2FA", "Perfil"], caption:"Acesso seguro exige credencial individual, senha forte e proteção dos dados operacionais." },
+        { kind:"form", labels:["UTC", "Avisos", "Menu", "Dashboard"], caption:"O dashboard organiza avisos, atualizações, horário e atalhos de navegação." },
+        { kind:"route", labels:["Voo", "Gate", "Status", "Atraso"], caption:"Controle de voos acompanha status, mudanças e impactos nos serviços de solo." },
+        { kind:"flow", labels:["Atualizar", "Aplicar", "Comunicar", "Registrar"], caption:"Atualizações operacionais precisam ser lidas, aplicadas e registradas no turno." },
+        { kind:"security", labels:["Alerta", "Ação", "Etapa", "Follow-up"], caption:"Alertas e incidentes exigem ação registrada e acompanhamento até conclusão." },
+        { kind:"service", labels:["Erro", "Feedback", "Suporte", "Melhoria"], caption:"Colaboração estruturada transforma erros reportados em melhoria operacional." },
+        { kind:"check", labels:["Confirmar", "Registrar", "Evitar duplicidade", "Encerrar"], caption:"Boas práticas mantêm a plataforma confiável como fonte única da operação." }
     ]
 };
 const courseIntroVideos = {};

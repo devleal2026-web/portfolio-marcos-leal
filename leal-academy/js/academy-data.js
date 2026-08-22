@@ -2851,6 +2851,227 @@ const academyCourses = [
                 "correct": 1
             }
         ]
+    },
+    {
+        "id": "siga-gestao-aeroportuaria",
+        "title": "Sistema Integrado de Gestão Aeroportuária - SIGA",
+        "eyebrow": "Gestão operacional",
+        "duration": "1h 20min",
+        "level": "Básico",
+        "summary": "Uso de plataforma integrada para acompanhamento de voos, atualizações operacionais, alertas, incidentes e colaboração em tempo real.",
+        "color": "#2563eb",
+        "modules": [
+            {
+                "title": "Conceito e finalidade",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Um sistema integrado de gestão aeroportuária centraliza informações operacionais em tempo real para apoiar equipes de aeroporto, rampa, atendimento, coordenação e gestão."
+            },
+            {
+                "title": "Acesso seguro",
+                "type": "Procedimento",
+                "duration": "10 min",
+                "content": "O acesso deve ocorrer por canal autorizado, com usuário individual, senha forte e, quando disponível, autenticação em dois fatores. Credenciais não devem ser compartilhadas."
+            },
+            {
+                "title": "Dashboard operacional",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "O dashboard apresenta data, hora local e UTC, boas-vindas ao usuário, menu de navegação, publicações recentes, atualizações e avisos críticos."
+            },
+            {
+                "title": "Controle de voos",
+                "type": "Prática guiada",
+                "duration": "14 min",
+                "content": "O controle de voos permite buscar voos por número e data, acompanhar chegada, partida, embarque, atraso, mudança de portão e impactos nos serviços de solo."
+            },
+            {
+                "title": "Atualizações operacionais",
+                "type": "Consulta",
+                "duration": "12 min",
+                "content": "Atualizações de capacidade, mudanças de voo, alterações de gate, retenção de equipe e ajustes de processo devem ser lidos, aplicados e registrados."
+            },
+            {
+                "title": "Avisos, alertas e incidentes",
+                "type": "Procedimento",
+                "duration": "14 min",
+                "content": "Alertas operacionais, avisos gerais, ocorrências com passageiros especiais, leitura de etapas e incidentes devem ser tratados com registro, ação e acompanhamento."
+            },
+            {
+                "title": "Colaboração e feedback",
+                "type": "Simulação",
+                "duration": "12 min",
+                "content": "A colaboração permite reportar erros, comunicar incidências, enviar feedback e manter diferentes áreas alinhadas em uma mesma fonte de informação."
+            },
+            {
+                "title": "Boas práticas de uso",
+                "type": "Checklist",
+                "duration": "14 min",
+                "content": "Boas práticas incluem atualizar dados em tempo real, evitar duplicidade, confirmar informações antes de publicar, registrar cada etapa e comunicar desvios com clareza."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Dashboard do Simulador",
+                "href": "../index.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual é a finalidade principal de um sistema integrado de gestão aeroportuária?",
+                "options": [
+                    "Substituir todos os procedimentos operacionais",
+                    "Centralizar informações operacionais em tempo real",
+                    "Servir apenas como mural de notícias",
+                    "Controlar somente dados financeiros"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Qual prática é recomendada no acesso ao sistema?",
+                "options": [
+                    "Compartilhar login com a equipe",
+                    "Usar senha simples para agilizar",
+                    "Utilizar usuário individual e autenticação segura",
+                    "Salvar senha em computadores públicos"
+                ],
+                "correct": 2
+            },
+            {
+                "question": "O dashboard operacional normalmente apresenta:",
+                "options": [
+                    "Apenas fotos dos colaboradores",
+                    "Data, hora, avisos, atualizações e menu de navegação",
+                    "Somente dados de vendas",
+                    "Informações sem relação com a operação"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "No controle de voos, é importante acompanhar:",
+                "options": [
+                    "Somente o número do assento",
+                    "Chegada, partida, atraso, embarque e mudança de portão",
+                    "Apenas o nome do comandante",
+                    "Somente o tipo de aeronave"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Uma mudança de gate deve ser:",
+                "options": [
+                    "Ignorada se o voo ainda não pousou",
+                    "Registrada e comunicada às áreas impactadas",
+                    "Tratada apenas pelo passageiro",
+                    "Publicada sem confirmação"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Atualizações operacionais servem para:",
+                "options": [
+                    "Orientar mudanças de processo, capacidade e fluxo",
+                    "Eliminar a necessidade de supervisão",
+                    "Substituir o atendimento ao passageiro",
+                    "Remover registros anteriores"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Ao receber um alerta operacional, o usuário deve:",
+                "options": [
+                    "Fechar sem ler",
+                    "Registrar ação, acompanhar e evitar duplicidades",
+                    "Criar novo alerta igual",
+                    "Enviar mensagem informal sem registro"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "O registro de cada etapa é importante porque:",
+                "options": [
+                    "Aumenta burocracia sem utilidade",
+                    "Garante rastreabilidade e continuidade entre equipes",
+                    "Dispensa comunicação com outras áreas",
+                    "Serve apenas para auditoria anual"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Em incidentes operacionais, a colaboração deve ocorrer por:",
+                "options": [
+                    "Fonte única de informação e feedback estruturado",
+                    "Mensagens soltas sem histórico",
+                    "Apenas comunicação verbal",
+                    "Decisão isolada de uma área"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual é uma boa prática antes de publicar informação operacional?",
+                "options": [
+                    "Confirmar a informação",
+                    "Publicar primeiro e verificar depois",
+                    "Usar abreviações não padronizadas",
+                    "Apagar dados anteriores sem critério"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O campo de feedback ou incidências deve ser usado para:",
+                "options": [
+                    "Reportar erros, desvios e oportunidades de melhoria",
+                    "Substituir o login individual",
+                    "Registrar informações pessoais sem necessidade",
+                    "Evitar comunicação com suporte"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual conduta reduz duplicidade de follow-up?",
+                "options": [
+                    "Registrar a etapa concluída e verificar histórico antes de nova ação",
+                    "Criar várias mensagens iguais",
+                    "Usar canais paralelos sem atualização",
+                    "Ignorar ações anteriores"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O uso de hora local e UTC ajuda principalmente em:",
+                "options": [
+                    "Padronização de eventos e comunicação entre áreas",
+                    "Definição de preço da passagem",
+                    "Escolha de assento",
+                    "Troca de uniforme"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando uma informação do sistema parece incorreta, o usuário deve:",
+                "options": [
+                    "Corrigir sem registrar",
+                    "Reportar pelo canal de incidência ou suporte",
+                    "Ignorar a informação",
+                    "Divulgar em canal informal"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Qual é o resultado esperado do uso correto do sistema?",
+                "options": [
+                    "Mais previsibilidade, menos erros e melhor coordenação",
+                    "Menos comunicação entre equipes",
+                    "Menos registros operacionais",
+                    "Mais decisões sem evidência"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 
