@@ -720,6 +720,15 @@ html[data-theme="dark"] .academy-admin-table small{
     color:var(--muted) !important;
 }
 
+html[data-theme="dark"] .academy-auth-copy h1{
+    color:#f8fbff !important;
+    text-shadow:0 2px 18px rgba(0,0,0,.28);
+}
+
+html[data-theme="dark"] .academy-auth-copy .academy-kicker{
+    color:#d7e6f5 !important;
+}
+
 html[data-theme="dark"] .academy-home-actions a,
 html[data-theme="dark"] .academy-home-actions button,
 html[data-theme="dark"] .back-link,
