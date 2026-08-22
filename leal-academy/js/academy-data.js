@@ -3490,6 +3490,215 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "irregularidades-voo",
+        "title": "Atendimento em Irregularidades de Voo",
+        "eyebrow": "Direitos e contingência",
+        "duration": "1h 25min",
+        "level": "Intermediário",
+        "summary": "Atendimento em atrasos, cancelamentos, interrupções, preterição, assistência material, reacomodação, reembolso e registro de ocorrências.",
+        "color": "#7c3aed",
+        "modules": [
+            {
+                "title": "Tipos de irregularidade",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Irregularidades de voo incluem atraso, cancelamento, interrupção, alteração programada, perda de conexão, preterição de embarque e mudanças operacionais que impactam a jornada."
+            },
+            {
+                "title": "Informação ao passageiro",
+                "type": "Procedimento",
+                "duration": "12 min",
+                "content": "O passageiro deve receber informação clara, tempestiva e atualizada sobre situação do voo, previsão, motivo quando disponível, alternativas e próximos passos."
+            },
+            {
+                "title": "Assistência material",
+                "type": "Consulta",
+                "duration": "14 min",
+                "content": "A assistência material deve observar tempo de espera e necessidade do passageiro, podendo envolver comunicação, alimentação, acomodação e transporte conforme regra aplicável."
+            },
+            {
+                "title": "Reacomodação e reembolso",
+                "type": "Prática guiada",
+                "duration": "16 min",
+                "content": "Em cancelamento, atraso relevante ou interrupção, o atendimento deve apresentar alternativas permitidas, como reacomodação, execução por outra modalidade ou reembolso, conforme cenário."
+            },
+            {
+                "title": "Preterição de embarque",
+                "type": "Simulação",
+                "duration": "15 min",
+                "content": "Preterição ocorre quando o passageiro apto não embarca por motivo operacional. O tratamento exige transparência, busca de voluntários quando aplicável, compensação e registro."
+            },
+            {
+                "title": "Registro e postura em crise",
+                "type": "Checklist",
+                "duration": "16 min",
+                "content": "Em contingência, o agente deve manter calma, registrar decisões, orientar com consistência, acionar liderança e evitar promessas sem confirmação operacional."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Dashboard do Simulador",
+                "href": "../index.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual situação é considerada irregularidade de voo?",
+                "options": [
+                    "Atraso, cancelamento, interrupção, preterição ou alteração que impacta a jornada",
+                    "Somente troca voluntária de assento",
+                    "Apenas despacho de bagagem comum",
+                    "Somente compra de passagem"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Durante atraso ou cancelamento, a comunicação ao passageiro deve ser:",
+                "options": [
+                    "Clara, atualizada e coerente com as informações disponíveis",
+                    "Feita apenas após o embarque",
+                    "Ocultada até haver solução definitiva",
+                    "Sempre informal e sem registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A assistência material deve considerar:",
+                "options": [
+                    "Tempo de espera e necessidade do passageiro",
+                    "Apenas o preço pago pela passagem",
+                    "Somente o número do assento",
+                    "Apenas a classe tarifária"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em regra operacional brasileira, a assistência após 1 hora de espera envolve:",
+                "options": [
+                    "Facilidades de comunicação",
+                    "Hospedagem obrigatória imediata",
+                    "Reembolso automático integral sem análise",
+                    "Encerramento do atendimento"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Após 2 horas de espera, a assistência material tende a incluir:",
+                "options": [
+                    "Alimentação conforme meios disponíveis",
+                    "Apenas nova etiqueta de bagagem",
+                    "Cancelamento do documento",
+                    "Nenhuma obrigação adicional"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Após 4 horas de espera, conforme cenário, pode ser necessária assistência com:",
+                "options": [
+                    "Acomodação ou hospedagem e transporte quando aplicável",
+                    "Somente aviso verbal",
+                    "Troca de uniforme",
+                    "Nada além de comunicação"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Reacomodação significa:",
+                "options": [
+                    "Oferecer alternativa de transporte ao passageiro conforme regra e disponibilidade",
+                    "Cancelar o passageiro sem aviso",
+                    "Alterar bagagem para outro aeroporto sem passageiro",
+                    "Trocar somente o portão"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando o passageiro tem direito a alternativas, o agente deve:",
+                "options": [
+                    "Explicar opções disponíveis, prazos, impactos e registrar a escolha",
+                    "Escolher por ele sem informar",
+                    "Oferecer apenas a alternativa mais barata",
+                    "Evitar qualquer registro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Preterição de embarque ocorre quando:",
+                "options": [
+                    "Passageiro apto deixa de embarcar por motivo operacional",
+                    "Passageiro decide não viajar espontaneamente",
+                    "Passageiro perde documento antes do check-in",
+                    "A mala fica danificada"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Em caso de preterição, uma prática correta é:",
+                "options": [
+                    "Buscar voluntários quando aplicável, explicar alternativas e registrar",
+                    "Remover passageiro sem justificativa",
+                    "Negar qualquer informação",
+                    "Encerrar voo sem controle"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A postura do agente em contingência deve ser:",
+                "options": [
+                    "Calma, empática, objetiva e baseada em procedimento",
+                    "Irritada e defensiva",
+                    "Silenciosa para evitar perguntas",
+                    "Improvisada a cada passageiro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Por que registros são importantes em irregularidades?",
+                "options": [
+                    "Garantem rastreabilidade de informação, orientação e decisão tomada",
+                    "Substituem a necessidade de atender",
+                    "Servem apenas para estatística sem uso operacional",
+                    "Permitem apagar evidências"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Se ainda não há previsão confiável de partida, o agente deve:",
+                "options": [
+                    "Informar a situação real e atualizar quando houver nova previsão",
+                    "Inventar um horário para acalmar a fila",
+                    "Prometer embarque imediato",
+                    "Evitar contato visual"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Passageiros com assistência especial em contingência exigem:",
+                "options": [
+                    "Acompanhamento, prioridade adequada e cuidado com necessidades específicas",
+                    "Atendimento somente no fim da fila",
+                    "Nenhum tratamento diferenciado",
+                    "Apenas informação por alto-falante"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O objetivo de um bom atendimento em irregularidade é:",
+                "options": [
+                    "Reduzir incerteza, aplicar direitos, oferecer alternativas e preservar segurança",
+                    "Evitar que o passageiro saiba o que ocorreu",
+                    "Encerrar a conversa o mais rápido possível",
+                    "Transferir toda responsabilidade para outra área"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 

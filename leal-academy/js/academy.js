@@ -57,7 +57,8 @@ const courseVisuals = {
     "restituicao-bagagem-sla": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(12,74,110,.86)), url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80')", icon: "route" },
     "siga-gestao-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
     "checkin-operacional": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "case" },
-    "embarque-controle-portao": { image: "linear-gradient(135deg, rgba(29,78,216,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
+    "embarque-controle-portao": { image: "linear-gradient(135deg, rgba(29,78,216,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
+    "irregularidades-voo": { image: "linear-gradient(135deg, rgba(124,58,237,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1513267048331-5611cad62e41?auto=format&fit=crop&w=900&q=80')", icon: "shield" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -228,6 +229,14 @@ const lessonMediaProfiles = {
         { kind:"case", labels:["Cabine", "Gate bag", "Etiqueta", "Rampa"], caption:"Bagagem no portão precisa de orientação, etiqueta e comunicação clara com a rampa." },
         { kind:"service", labels:["Late show", "Mudança", "Conflito", "Supervisão"], caption:"Irregularidades no gate exigem calma, método, comunicação e registro." },
         { kind:"form", labels:["Embarcados", "Ausentes", "Bagagem", "Fechar"], caption:"O fechamento do voo confirma passageiros, bagagens, pendências e liberação operacional." }
+    ],
+    "irregularidades-voo": [
+        { kind:"route", labels:["Atraso", "Cancelamento", "Conexão", "Preterição"], caption:"Irregularidades alteram a jornada e exigem leitura correta do cenário operacional." },
+        { kind:"service", labels:["Status", "Previsão", "Alternativas", "Atualização"], caption:"Informação clara reduz incerteza e melhora o atendimento durante contingências." },
+        { kind:"check", labels:["1h", "2h", "4h", "Assistência"], caption:"A assistência material deve acompanhar tempo de espera e necessidade do passageiro." },
+        { kind:"flow", labels:["Reacomodar", "Reembolsar", "Bagagem", "Registrar"], caption:"Alternativas precisam considerar disponibilidade, escolha do passageiro e bagagem." },
+        { kind:"form", labels:["Voluntário", "Assento", "Compensação", "Registro"], caption:"Preterição exige transparência, alternativa, compensação quando cabível e histórico." },
+        { kind:"security", labels:["Calma", "Prioridade", "Liderança", "Histórico"], caption:"Em crise, método e registro protegem passageiros, equipe e operação." }
     ]
 };
 const courseIntroVideos = {};
