@@ -2675,6 +2675,10 @@ ADMIN DASHBOARD
     box-shadow:0 14px 34px rgba(15,23,42,.07);
 }
 
+.academy-admin-wide-panel{
+    margin-bottom:18px;
+}
+
 .academy-admin-panel-title{
     display:flex;
     justify-content:space-between;

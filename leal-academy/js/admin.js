@@ -329,8 +329,19 @@ const AcademyAdmin = (() => {
             ${metricCard("Certificados", data.certificates.length, "emitidos")}
         `;
 
+        const accountsCount = document.getElementById("adminAccountsCount");
+        const accountsPanel = document.getElementById("adminAccountsPanel");
+
+        if(accountsCount){
+            accountsCount.textContent = `${userRows.length} contas`;
+        }
+
+        if(accountsPanel){
+            accountsPanel.innerHTML = renderAccountCards(userRows);
+        }
+
         document.getElementById("adminUsersCount").textContent = `${userRows.length} registros`;
-        document.getElementById("adminUsersTable").innerHTML = renderUsersTable(userRows);
+        document.getElementById("adminUsersTable").innerHTML = renderUsersSummaryTable(userRows);
         document.getElementById("adminCoursesTable").innerHTML = renderCoursesTable(data);
         document.getElementById("adminAttemptsTable").innerHTML = renderAttemptsTable(data.attempts);
         document.getElementById("adminCertificatesTable").innerHTML = renderCertificatesTable(data.certificates);
@@ -346,7 +357,7 @@ const AcademyAdmin = (() => {
         `;
     }
 
-    function renderUsersTable(rows){
+    function renderAccountCards(rows){
         if(rows.length === 0){
             return `<div class="academy-admin-empty">Nenhuma conta acessou a plataforma ainda.</div>`;
         }
@@ -384,6 +395,32 @@ const AcademyAdmin = (() => {
                 `).join("")}
             </div>
         `;
+    }
+
+    function renderUsersSummaryTable(rows){
+        return table([
+            "Aluno",
+            "E-mail",
+            "Acessos",
+            "Cursos",
+            "Concluídos",
+            "Pendentes",
+            "Aprovados",
+            "Não aprovados",
+            "Certificados",
+            "Último acesso"
+        ], rows.map(row => [
+            row.name,
+            row.email,
+            row.accessCount,
+            row.started,
+            row.completed,
+            row.pending,
+            row.approved,
+            row.failed,
+            row.certificates,
+            formatDate(row.lastAccess)
+        ]));
     }
 
     function smallMetric(label, value){

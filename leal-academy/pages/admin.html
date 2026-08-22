@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administração - Leal Academy</title>
-    <link rel="stylesheet" href="../css/academy.css?v=20260822-admin-contas">
+    <link rel="stylesheet" href="../css/academy.css?v=20260822-admin-detalhes">
 </head>
 <body class="academy-admin-page" data-academy-protected="true">
 
@@ -32,10 +32,18 @@
 
     <section id="adminMetrics" class="academy-admin-metrics"></section>
 
+    <section class="academy-admin-panel academy-admin-wide-panel">
+        <div class="academy-admin-panel-title">
+            <h2>Contas que acessaram</h2>
+            <span id="adminAccountsCount">0 registros</span>
+        </div>
+        <div id="adminAccountsPanel"></div>
+    </section>
+
     <section class="academy-admin-layout">
         <article class="academy-admin-panel">
             <div class="academy-admin-panel-title">
-                <h2>Usuários e progresso</h2>
+                <h2>Resumo por usuário</h2>
                 <span id="adminUsersCount">0 registros</span>
             </div>
             <div id="adminUsersTable" class="academy-admin-table-wrap"></div>
@@ -73,7 +81,7 @@
 <script src="../js/supabase.js"></script>
 <script src="../js/access-control.js" data-access="protected"></script>
 <script src="../js/academy-data.js"></script>
-<script src="../js/admin.js?v=20260822-admin-contas"></script>
+<script src="../js/admin.js?v=20260822-admin-detalhes"></script>
 
 </body>
 </html>
