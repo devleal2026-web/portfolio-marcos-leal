@@ -3072,6 +3072,215 @@ const academyCourses = [
                 "correct": 0
             }
         ]
+    },
+    {
+        "id": "checkin-operacional",
+        "title": "Check-in Operacional Aeroportuário",
+        "eyebrow": "Atendimento e aceitação",
+        "duration": "1h 10min",
+        "level": "Básico",
+        "summary": "Procedimentos essenciais de check-in, documentação, aceitação de bagagem, passageiros especiais, encerramento de voo e registros operacionais.",
+        "color": "#0f766e",
+        "modules": [
+            {
+                "title": "Função do check-in",
+                "type": "Aula",
+                "duration": "10 min",
+                "content": "O check-in confirma a elegibilidade do passageiro para viajar, valida dados do voo, documentos, serviços, assentos, bagagens e necessidades especiais antes do embarque."
+            },
+            {
+                "title": "Documentos e identificação",
+                "type": "Procedimento",
+                "duration": "12 min",
+                "content": "A identificação deve ser conferida conforme rota, tipo de passageiro, exigência nacional ou internacional, autorização de menor e compatibilidade entre documento, reserva e cartão de embarque."
+            },
+            {
+                "title": "Aceitação de bagagem",
+                "type": "Prática guiada",
+                "duration": "14 min",
+                "content": "A bagagem deve ser aceita com conferência de peso, dimensão, franquia, restrições, itens proibidos, condição física, etiqueta, comprovante e orientações claras ao passageiro."
+            },
+            {
+                "title": "Passageiros especiais e SSR",
+                "type": "Aula",
+                "duration": "12 min",
+                "content": "Passageiros com necessidades especiais, menores desacompanhados, gestantes, idosos, animais, equipamentos de mobilidade e serviços adicionais exigem registro correto e comunicação entre áreas."
+            },
+            {
+                "title": "Fechamento e no-show",
+                "type": "Simulação",
+                "duration": "10 min",
+                "content": "O fechamento do check-in precisa respeitar prazos operacionais, reconciliação de passageiros, status de embarque, bagagens aceitas e comunicação com portão, rampa e coordenação."
+            },
+            {
+                "title": "Conformidade e registros",
+                "type": "Checklist",
+                "duration": "12 min",
+                "content": "Registros corretos protegem passageiro, empresa e operação. Toda exceção deve ser documentada com clareza, evidência, horário, responsável e encaminhamento adequado."
+            }
+        ],
+        "labs": [
+            {
+                "label": "Simulador Check-In",
+                "href": "../pages/checkin.html"
+            },
+            {
+                "label": "Biblioteca Operacional",
+                "href": "operational-library.html"
+            }
+        ],
+        "quiz": [
+            {
+                "question": "Qual é a principal finalidade do check-in operacional?",
+                "options": [
+                    "Apenas imprimir cartão de embarque",
+                    "Confirmar elegibilidade do passageiro, documentos, serviços e bagagens para o voo",
+                    "Substituir a inspeção de segurança",
+                    "Definir a rota da aeronave"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Antes de aceitar o passageiro, o agente deve conferir:",
+                "options": [
+                    "Apenas o primeiro nome",
+                    "Documento, reserva, voo, rota e requisitos aplicáveis",
+                    "Somente o número do assento",
+                    "Apenas a quantidade de malas"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Em voos internacionais, a conferência documental deve considerar:",
+                "options": [
+                    "Apenas documento com foto nacional",
+                    "Passaporte, visto, autorização, validade e regras do destino quando aplicáveis",
+                    "Somente cartão de embarque",
+                    "Apenas autorização verbal do passageiro"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Na aceitação de bagagem despachada, é correto verificar:",
+                "options": [
+                    "Peso, dimensão, franquia, condição externa, restrições e etiqueta",
+                    "Apenas a cor da mala",
+                    "Somente o destino final",
+                    "Apenas se o passageiro está com pressa"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando a bagagem apresenta dano pré-existente, o agente deve:",
+                "options": [
+                    "Ignorar o dano",
+                    "Registrar conforme procedimento aplicável e orientar o passageiro",
+                    "Trocar a etiqueta por outra companhia",
+                    "Despachar sem qualquer observação"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Códigos SSR e assistências servem para:",
+                "options": [
+                    "Registrar necessidades especiais e comunicar áreas envolvidas",
+                    "Cancelar automaticamente o passageiro",
+                    "Substituir documento de identificação",
+                    "Definir preço da passagem"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Um passageiro com mobilidade reduzida deve receber:",
+                "options": [
+                    "Atendimento padronizado, sem perguntar nada",
+                    "Apoio adequado, respeito à autonomia e comunicação com as áreas necessárias",
+                    "Apenas orientação verbal",
+                    "Atendimento somente se estiver acompanhado"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "O menor desacompanhado exige atenção porque:",
+                "options": [
+                    "Depende de regra, documentação, responsáveis e acompanhamento operacional",
+                    "Pode viajar sem qualquer registro",
+                    "Não precisa de conferência documental",
+                    "É tratado como passageiro adulto"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "O fechamento do check-in deve ser alinhado com:",
+                "options": [
+                    "Portão, rampa, coordenação e status dos passageiros/bagagens",
+                    "Apenas o passageiro que chegou primeiro",
+                    "Somente o setor comercial",
+                    "Nenhuma outra área"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Quando o passageiro chega após o prazo operacional de aceitação, o agente deve:",
+                "options": [
+                    "Prometer embarque mesmo sem confirmação",
+                    "Seguir o procedimento, explicar com clareza e buscar alternativas permitidas",
+                    "Liberar a bagagem sem passageiro",
+                    "Encerrar atendimento sem orientação"
+                ],
+                "correct": 1
+            },
+            {
+                "question": "Qual conduta protege a rastreabilidade do atendimento?",
+                "options": [
+                    "Registrar exceções, horários, evidências e encaminhamentos",
+                    "Resolver tudo apenas verbalmente",
+                    "Usar conta de outro colaborador",
+                    "Apagar histórico após o voo"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Itens restritos ou perigosos na bagagem devem ser tratados:",
+                "options": [
+                    "Com orientação e aplicação das regras de segurança e transporte",
+                    "Como bagagem comum",
+                    "Somente no destino",
+                    "Sem comunicação ao passageiro"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "A etiqueta de bagagem deve refletir:",
+                "options": [
+                    "Rota/destino correto conforme aceitação e regras do itinerário",
+                    "Apenas a origem",
+                    "O aeroporto preferido do passageiro",
+                    "Um destino genérico"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Uma boa comunicação no check-in deve ser:",
+                "options": [
+                    "Clara, objetiva, respeitosa e orientada à solução",
+                    "Técnica e difícil para mostrar autoridade",
+                    "Rápida sem confirmação",
+                    "Sempre informal"
+                ],
+                "correct": 0
+            },
+            {
+                "question": "Qual é o resultado esperado de um check-in bem executado?",
+                "options": [
+                    "Passageiro, bagagem e áreas operacionais alinhados antes do embarque",
+                    "Mais dúvidas no portão",
+                    "Menos registros operacionais",
+                    "Bagagens aceitas sem controle"
+                ],
+                "correct": 0
+            }
+        ]
     }
 ];
 

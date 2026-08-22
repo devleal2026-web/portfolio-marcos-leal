@@ -55,7 +55,8 @@ const courseVisuals = {
     "interpretacao-etiqueta-bagagem": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "barcode" },
     "gestao-pessoas-rampa": { image: "linear-gradient(135deg, rgba(15,118,110,.92), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80')", icon: "leader" },
     "restituicao-bagagem-sla": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(12,74,110,.86)), url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80')", icon: "route" },
-    "siga-gestao-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" }
+    "siga-gestao-aeroportuaria": { image: "linear-gradient(135deg, rgba(37,99,235,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80')", icon: "globe" },
+    "checkin-operacional": { image: "linear-gradient(135deg, rgba(15,118,110,.9), rgba(15,23,42,.86)), url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=900&q=80')", icon: "case" }
 };
 const lessonMediaProfiles = {
     "fundamentos": [
@@ -210,6 +211,14 @@ const lessonMediaProfiles = {
         { kind:"security", labels:["Alerta", "Ação", "Etapa", "Follow-up"], caption:"Alertas e incidentes exigem ação registrada e acompanhamento até conclusão." },
         { kind:"service", labels:["Erro", "Feedback", "Suporte", "Melhoria"], caption:"Colaboração estruturada transforma erros reportados em melhoria operacional." },
         { kind:"check", labels:["Confirmar", "Registrar", "Evitar duplicidade", "Encerrar"], caption:"Boas práticas mantêm a plataforma confiável como fonte única da operação." }
+    ],
+    "checkin-operacional": [
+        { kind:"service", labels:["Reserva", "Documento", "Serviço", "Bagagem"], caption:"O check-in valida passageiro, voo, documentos, serviços e bagagem antes do embarque." },
+        { kind:"form", labels:["Nome", "Foto", "Validade", "Rota"], caption:"A conferência documental precisa considerar tipo de viagem, perfil do passageiro e exigências da rota." },
+        { kind:"case", labels:["Peso", "Franquia", "Etiqueta", "Restrição"], caption:"A aceitação de bagagem exige conferência de peso, condição, rota, itens restritos e comprovante." },
+        { kind:"service", labels:["PNAE", "UMNR", "Gestante", "Animal"], caption:"Serviços especiais devem ser registrados e comunicados às áreas envolvidas." },
+        { kind:"flow", labels:["Aceito", "No-show", "Gate", "Rampa"], caption:"O fechamento do check-in organiza a transição para embarque, rampa e coordenação." },
+        { kind:"check", labels:["Horário", "Evidência", "Responsável", "Histórico"], caption:"Registros claros garantem rastreabilidade, continuidade e conformidade operacional." }
     ]
 };
 const courseIntroVideos = {};
