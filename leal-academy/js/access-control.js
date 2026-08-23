@@ -208,7 +208,7 @@ const AccessControl = (() => {
         const currentSession = await session();
 
         if(!currentSession || typeof supabaseClient === "undefined" || !course){
-            return;
+            return false;
         }
 
         const profile = profileForUser(currentSession.user);
@@ -237,9 +237,34 @@ const AccessControl = (() => {
             .from("academy_course_progress")
             .upsert([payload], { onConflict:"user_id,course_id" });
 
-        if(error){
-            console.warn("Academy progress sync fallback:", error.message);
+        if(!error){
+            return true;
         }
+
+        console.warn("Academy progress upsert fallback:", error.message);
+
+        const { data: existing } = await supabaseClient
+            .from("academy_course_progress")
+            .select("id")
+            .eq("user_id", currentSession.user.id)
+            .eq("course_id", course.id)
+            .maybeSingle();
+
+        const fallback = existing?.id
+            ? await supabaseClient
+                .from("academy_course_progress")
+                .update(payload)
+                .eq("id", existing.id)
+            : await supabaseClient
+                .from("academy_course_progress")
+                .insert([payload]);
+
+        if(fallback.error){
+            console.warn("Academy progress sync fallback:", fallback.error.message);
+            return false;
+        }
+
+        return true;
     }
 
     async function loadAcademyCloudData(){
@@ -254,6 +279,7 @@ const AccessControl = (() => {
         }
 
         const userId = currentSession.user.id;
+        const userEmail = normalizeEmail(currentSession.user.email || "");
         const cloudData = {
             progress:{},
             quizResults:{},
@@ -261,14 +287,22 @@ const AccessControl = (() => {
         };
 
         const [
-            progressResponse,
-            quizResponse,
-            certificateResponse
+            progressById,
+            progressByEmail,
+            quizById,
+            quizByEmail,
+            certificateById,
+            certificateByEmail
         ] = await Promise.all([
             supabaseClient
                 .from("academy_course_progress")
                 .select("*")
                 .eq("user_id", userId),
+
+            supabaseClient
+                .from("academy_course_progress")
+                .select("*")
+                .eq("email", userEmail),
 
             supabaseClient
                 .from("academy_quiz_attempts")
@@ -277,30 +311,60 @@ const AccessControl = (() => {
                 .order("created_at", { ascending:false }),
 
             supabaseClient
+                .from("academy_quiz_attempts")
+                .select("*")
+                .eq("email", userEmail)
+                .order("created_at", { ascending:false }),
+
+            supabaseClient
                 .from("academy_certificates")
                 .select("*")
                 .eq("user_id", userId)
+                .order("issued_at", { ascending:false }),
+
+            supabaseClient
+                .from("academy_certificates")
+                .select("*")
+                .eq("email", userEmail)
                 .order("issued_at", { ascending:false })
         ]);
 
-        if(progressResponse.error){
-            console.warn("Academy progress load fallback:", progressResponse.error.message);
+        const progressError = progressById.error || progressByEmail.error;
+
+        if(progressError){
+            console.warn("Academy progress load fallback:", progressError.message);
         }
         else{
-            (progressResponse.data || []).forEach(item => {
+            [
+                ...(progressById.data || []),
+                ...(progressByEmail.data || [])
+            ].forEach(item => {
                 if(item.course_id){
-                    cloudData.progress[item.course_id] = Array.isArray(item.completed_lessons)
+                    const existing = Array.isArray(cloudData.progress[item.course_id])
+                        ? cloudData.progress[item.course_id]
+                        : [];
+                    const lessons = Array.isArray(item.completed_lessons)
                         ? item.completed_lessons
                         : [];
+                    cloudData.progress[item.course_id] = [
+                        ...new Set([...existing, ...lessons].map(Number))
+                    ].filter(index => Number.isInteger(index)).sort((a, b) => a - b);
                 }
             });
         }
 
-        if(quizResponse.error){
-            console.warn("Academy quiz load fallback:", quizResponse.error.message);
+        const quizError = quizById.error || quizByEmail.error;
+
+        if(quizError){
+            console.warn("Academy quiz load fallback:", quizError.message);
         }
         else{
-            (quizResponse.data || []).forEach(item => {
+            [
+                ...(quizById.data || []),
+                ...(quizByEmail.data || [])
+            ]
+                .sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))
+                .forEach(item => {
                 if(!item.course_id || cloudData.quizResults[item.course_id]){
                     return;
                 }
@@ -317,11 +381,18 @@ const AccessControl = (() => {
             });
         }
 
-        if(certificateResponse.error){
-            console.warn("Academy certificate load fallback:", certificateResponse.error.message);
+        const certificateError = certificateById.error || certificateByEmail.error;
+
+        if(certificateError){
+            console.warn("Academy certificate load fallback:", certificateError.message);
         }
         else{
-            (certificateResponse.data || []).forEach(item => {
+            [
+                ...(certificateById.data || []),
+                ...(certificateByEmail.data || [])
+            ]
+                .sort((a, b) => new Date(b.issued_at || 0) - new Date(a.issued_at || 0))
+                .forEach(item => {
                 if(!item.course_id || cloudData.certificates[item.course_id]){
                     return;
                 }
