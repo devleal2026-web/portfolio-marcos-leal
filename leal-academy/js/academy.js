@@ -1700,15 +1700,25 @@ function renderLesson(course){
         document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
     });
 
-    document.getElementById("completeLesson").addEventListener("click", () => {
+    document.getElementById("completeLesson").addEventListener("click", async () => {
         const progress = readProgress();
         const done = new Set(progress[course.id] || []);
         done.add(state.selectedModuleIndex);
-        progress[course.id] = [...done].sort((a, b) => a - b);
-        saveProgress(progress);
+        const completedLessons = [...done].sort((a, b) => a - b);
 
         if(window.AccessControl && typeof AccessControl.syncCourseProgress === "function"){
-            AccessControl.syncCourseProgress(course, progress[course.id]);
+            const saved = await AccessControl.syncCourseProgress(course, completedLessons);
+
+            if(!saved){
+                alert("Não foi possível salvar o progresso no Supabase. Tente novamente.");
+                return;
+            }
+
+            await syncCloudAcademyDataFromSupabase();
+        }
+        else{
+            progress[course.id] = completedLessons;
+            saveProgress(progress);
         }
 
         if(hasNext){
@@ -1729,13 +1739,22 @@ function renderLesson(course){
         document.getElementById("lessonPanel")?.scrollIntoView({ behavior:"smooth", block:"start" });
     });
 
-    document.getElementById("resetCourse").addEventListener("click", () => {
+    document.getElementById("resetCourse").addEventListener("click", async () => {
         const progress = readProgress();
-        progress[course.id] = [];
-        saveProgress(progress);
 
         if(window.AccessControl && typeof AccessControl.syncCourseProgress === "function"){
-            AccessControl.syncCourseProgress(course, []);
+            const saved = await AccessControl.syncCourseProgress(course, []);
+
+            if(!saved){
+                alert("Não foi possível reiniciar o progresso no Supabase. Tente novamente.");
+                return;
+            }
+
+            await syncCloudAcademyDataFromSupabase();
+        }
+        else{
+            progress[course.id] = [];
+            saveProgress(progress);
         }
 
         renderCoursePage();
@@ -1992,97 +2011,6 @@ async function syncCloudAcademyDataFromSupabase(){
     state.pendingQuizCloudSync = {};
     state.useCloudData = true;
     state.cloudReady = true;
-}
-
-async function migrateLocalAcademyDataToSupabase(){
-    if(
-        !window.AccessControl ||
-        typeof AccessControl.session !== "function"
-    ){
-        return false;
-    }
-
-    const currentSession = await AccessControl.session();
-
-    if(!currentSession){
-        return false;
-    }
-
-    const localProgress = readJson(storageKey);
-    const localQuizResults = readJson(quizStorageKey);
-    const localCertificates = readJson(certificateStorageKey);
-    const syncedAttempts = readJson("airportBaggageAcademySyncedAttempts");
-    let migrated = false;
-    const pendingWrites = [];
-
-    Object.entries(localProgress || {}).forEach(([courseId, completedLessons]) => {
-        const course = academyCourses.find(item => item.id === courseId);
-        const lessons = Array.isArray(completedLessons)
-            ? completedLessons
-            : [];
-
-        if(
-            course &&
-            lessons.length > 0 &&
-            typeof AccessControl.syncCourseProgress === "function"
-        ){
-            pendingWrites.push(AccessControl.syncCourseProgress(course, lessons));
-            migrated = true;
-        }
-    });
-
-    Object.entries(localCertificates || {}).forEach(([, certificate]) => {
-        if(certificate && typeof AccessControl.recordCertificate === "function"){
-            pendingWrites.push(AccessControl.recordCertificate(certificate));
-            migrated = true;
-        }
-    });
-
-    Object.entries(localQuizResults || {}).forEach(([courseId, result]) => {
-        const course = academyCourses.find(item => item.id === courseId);
-
-        if(
-            !course ||
-            !result ||
-            typeof AccessControl.recordQuizAttempt !== "function"
-        ){
-            return;
-        }
-
-        const attemptKey = [
-            course.id,
-            result.finishedAt || "",
-            result.percent ?? "",
-            result.correct ?? "",
-            result.total ?? ""
-        ].join("|");
-
-        if(syncedAttempts[attemptKey]){
-            return;
-        }
-
-        pendingWrites.push(
-            AccessControl.recordQuizAttempt(course, {
-                correct: result.correct,
-                total: result.total,
-                percent: result.percent,
-                grade: formatGrade(result.percent),
-                approved: result.approved,
-                review: result.review || []
-            })
-        );
-
-        syncedAttempts[attemptKey] = true;
-        migrated = true;
-    });
-
-    saveJson("airportBaggageAcademySyncedAttempts", syncedAttempts);
-
-    if(migrated){
-        await Promise.allSettled(pendingWrites);
-    }
-
-    return migrated;
 }
 
 async function syncSessionAcademyDataToSupabase(){
@@ -2550,7 +2478,7 @@ function renderAssessment(course){
         saveQuizResults(results);
 
         if(window.AccessControl && typeof AccessControl.recordQuizAttempt === "function"){
-            AccessControl.recordQuizAttempt(course, {
+            await AccessControl.recordQuizAttempt(course, {
                 correct: score.correct,
                 total: score.total,
                 percent: score.percent,
@@ -2558,6 +2486,15 @@ function renderAssessment(course){
                 approved,
                 review
             });
+        }
+
+        if(
+            certificate &&
+            window.AccessControl &&
+            typeof AccessControl.recordCertificate === "function"
+        ){
+            await AccessControl.recordCertificate(certificate);
+            await syncCloudAcademyDataFromSupabase();
         }
 
         const emailStatus = certificate
@@ -2692,10 +2629,6 @@ function renderCertificatePage(){
 
 async function bootAcademy(){
     await syncCloudAcademyDataFromSupabase();
-
-    if(await migrateLocalAcademyDataToSupabase()){
-        await syncCloudAcademyDataFromSupabase();
-    }
 
     if(document.getElementById("courseGrid")){
         renderHome();
