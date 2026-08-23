@@ -41,11 +41,11 @@ const academyCourses = [
         "eyebrow": "Curso operacional",
         "duration": "2h 20min",
         "level": "Intermediario",
-        "summary": "Definicao de extravio, abertura de PIR/AHL, atendimento no desembarque, busca, entrega, custos e encerramento.",
+        "summary": "Definição de extravio, abertura de PIR/AHL, atendimento no desembarque, busca, entrega, custos e encerramento.",
         "color": "#16a34a",
         "modules": [
             {
-                "title": "Definicao e registro",
+                "title": "Definição e registro",
                 "type": "Aula",
                 "duration": "18 min",
                 "content": "Bagagem extraviada e a bagagem despachada que nao chegou no mesmo voo do passageiro. O registro AHL deve ocorrer no ato do desembarque, seguindo o nome que consta na etiqueta da bagagem."
@@ -248,7 +248,7 @@ const academyCourses = [
         "color": "#0ea5e9",
         "modules": [
             {
-                "title": "Definicao e responsabilidade",
+                "title": "Definição e responsabilidade",
                 "type": "Aula",
                 "duration": "16 min",
                 "content": "Objetos esquecidos sao itens pessoais encontrados em aeronaves ou instalacoes da companhia. Devem ser registrados, armazenados e gerenciados pelo Servico de Bagagem."
@@ -1464,7 +1464,7 @@ const academyCourses = [
         "color": "#dc2626",
         "modules": [
             {
-                "title": "Definicao e prazo",
+                "title": "Definição e prazo",
                 "type": "Aula",
                 "duration": "16 min",
                 "content": "Violacao e falta de conteudo ou indicio de abertura indevida. Prazo normal: 7 dias da chegada. Se decorrente de extravio: 21 dias apos recebimento."
@@ -1601,7 +1601,7 @@ const academyCourses = [
         "color": "#f59e0b",
         "modules": [
             {
-                "title": "Definicao e aceite",
+                "title": "Definição e aceite",
                 "type": "Aula",
                 "duration": "18 min",
                 "content": "Dano na bagagem despachada deve ser avaliado no desembarque ou dentro do prazo aplicavel. Se vier de extravio, o prazo e 21 dias apos recebimento."
@@ -1937,7 +1937,7 @@ const academyCourses = [
         "color": "#ca8a04",
         "modules": [
             {
-                "title": "Definicao de OHD",
+                "title": "Definição de OHD",
                 "type": "Aula",
                 "duration": "14 min",
                 "content": "OHD e usado para bagagens nao retiradas na esteira ou localizadas sem etiqueta. Bagagens com destino indicado seguem por FWD."
@@ -5377,4 +5377,5 @@ const academyCourses = [
         ]
     }
 ];
+
 
