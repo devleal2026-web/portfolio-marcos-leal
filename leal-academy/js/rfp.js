@@ -117,6 +117,7 @@ function objetoRfp(){
         aircraft_registration: valor("aircraft_registration"),
 
         category: valor("category"),
+        item_type: valor("item_type"),
         item_count: valor("item_count") === "" ? 1 : Number(valor("item_count")),
         item_brand: valor("item_brand"),
         item_color: valor("item_color"),
@@ -152,6 +153,7 @@ function validarRfp(){
         ["found_date", "Data em que o objeto foi encontrado"],
         ["found_location", "Local onde o objeto foi encontrado"],
         ["category", "Categoria"],
+        ["item_type", "Objeto"],
         ["detailed_description", "Descrição detalhada"],
         ["storage_location", "Local de armazenamento"]
     ];
@@ -285,6 +287,7 @@ async function carregarRfp(){
             <tr>
                 <td>${reg.reference_number || "-"}</td>
                 <td>${reg.category || "-"}</td>
+                <td>${reg.item_type || "-"}</td>
                 <td>${reg.found_location || "-"}</td>
                 <td>
                     <span class="badge ${reg.status === "ABERTO" ? "bg-success" : "bg-danger"}">
@@ -404,7 +407,7 @@ async function pesquisarRfp(){
     const { data, error } = await supabaseClient
         .from("rfp_cases")
         .select("*")
-        .or(`reference_number.ilike.%${texto}%,category.ilike.%${texto}%,detailed_description.ilike.%${texto}%,passenger_name.ilike.%${texto}%,flight_number.ilike.%${texto}%`)
+        .or(`reference_number.ilike.%${texto}%,category.ilike.%${texto}%,item_type.ilike.%${texto}%,detailed_description.ilike.%${texto}%,passenger_name.ilike.%${texto}%,flight_number.ilike.%${texto}%`)
         .order("created_at", { ascending:false })
         .limit(10);
 
@@ -433,7 +436,8 @@ async function pesquisarRfp(){
 
         card.innerHTML = `
             <div class="fw-bold text-warning">${reg.reference_number || "-"}</div>
-            <div>${reg.category || ""} - ${reg.detailed_description || ""}</div>
+            <div>${reg.category || ""} - ${reg.item_type || ""}</div>
+            <div>${reg.detailed_description || ""}</div>
             <div>${reg.passenger_name || ""}</div>
             <span class="badge ${reg.status === "ABERTO" ? "bg-success" : "bg-danger"}">
                 ${reg.status || "-"}

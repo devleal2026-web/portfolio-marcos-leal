@@ -132,6 +132,7 @@ function objetoRfp(){
         aircraft_registration: valor("aircraft_registration"),
 
         category: valor("category"),
+        item_type: valor("item_type"),
         item_count: valor("item_count") === "" ? 1 : Number(valor("item_count")),
         item_brand: valor("item_brand"),
         item_color: valor("item_color"),
@@ -167,6 +168,7 @@ function validarRfp(){
         ["found_date", "FD"],
         ["found_location", "FP"],
         ["category", "CA"],
+        ["item_type", "OBJ"],
         ["detailed_description", "DD"],
         ["storage_location", "SL"]
     ];
