@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>RFP - Lost and Found Property</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="../index.html">
+            Airport Baggage Simulator
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link text-info fw-bold" href="academy-access.html">Cursos</a></li>
+                <li class="nav-item"><a class="nav-link" href="checkin.html">Check-In</a></li>
+                <li class="nav-item"><a class="nav-link" href="bhs.html">BHS</a></li>
+                <li class="nav-item"><a class="nav-link" href="makeup.html">Make-Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="loading.html">Loading</a></li>
+                <li class="nav-item"><a class="nav-link" href="ohd.html">OHD</a></li>
+                <li class="nav-item"><a class="nav-link" href="ahl.html">AHL</a></li>
+                <li class="nav-item"><a class="nav-link" href="dpr.html">DPR</a></li>
+                <li class="nav-item"><a class="nav-link active text-warning fw-bold" href="rfp.html">RFP</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid py-3">
+
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h2 class="fw-bold mb-1">RFP - Lost and Found Property</h2>
+            <div class="text-secondary">Registro de objetos esquecidos a bordo ou em áreas operacionais</div>
+        </div>
+
+        <div class="text-end">
+            <label class="form-label small fw-bold">Reference Number</label>
+            <input id="reference_number" class="form-control form-control-sm" readonly>
+        </div>
+    </div>
+
+    <div class="bg-secondary-subtle text-dark p-3 rounded mb-3">
+        <div class="d-flex justify-content-between align-items-center gap-3">
+            <input
+                    id="txtPesquisaRfp"
+                    class="form-control form-control-sm w-50"
+                    placeholder="Pesquisar por RFP, categoria, descrição, passageiro ou voo">
+
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-light btn-sm">
+                    Interface Web
+                </button>
+
+                <button type="button" id="btnWorldTracer" class="btn btn-warning btn-sm">
+                    Máscara WorldTracer
+                </button>
+            </div>
+        </div>
+
+        <div id="resultadoPesquisaRfp" class="list-group mt-2" style="display:none;"></div>
+    </div>
+
+    <div class="accordion" id="rfpAccordion">
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosBase">
+                    Dados Base
+                </button>
+            </h2>
+
+            <div id="dadosBase" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Station *</label>
+                            <select id="station" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Airline *</label>
+                            <select id="airline" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Status</label>
+                            <input id="status" class="form-control form-control-sm" value="ABERTO" readonly>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Situação de guarda</label>
+                            <select id="storage_status" class="form-select form-select-sm"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosLocalizacao">
+                    Localização do Objeto
+                </button>
+            </h2>
+
+            <div id="dadosLocalizacao" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Data encontrada *</label>
+                            <input id="found_date" type="date" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Hora encontrada</label>
+                            <input id="found_time" type="time" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Local encontrado *</label>
+                            <input id="found_location" class="form-control form-control-sm" placeholder="Ex.: aeronave, sala de embarque, ônibus remoto">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label text-warning fw-bold">Encontrado por</label>
+                            <input id="found_by" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosVoo">
+                    Voo / Área Operacional
+                </button>
+            </h2>
+
+            <div id="dadosVoo" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Voo</label>
+                            <input id="flight_number" class="form-control form-control-sm" placeholder="Ex.: LA1234">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Data do voo</label>
+                            <input id="flight_date" type="date" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Rota</label>
+                            <input id="route" class="form-control form-control-sm" placeholder="Ex.: GRU/REC">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label class="form-label text-warning fw-bold">Assento</label>
+                            <input id="seat" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label text-warning fw-bold">Aeronave</label>
+                            <input id="aircraft_registration" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosObjeto">
+                    Dados do Objeto
+                </button>
+            </h2>
+
+            <div id="dadosObjeto" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Categoria *</label>
+                            <select id="category" class="form-select form-select-sm"></select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label text-warning fw-bold">Quantidade</label>
+                            <input id="item_count" type="number" min="1" value="1" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Marca</label>
+                            <input id="item_brand" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Cor / Característica</label>
+                            <input id="item_color" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-warning fw-bold">Descrição detalhada *</label>
+                            <textarea id="detailed_description" rows="4" class="form-control form-control-sm"
+                                      placeholder="Descrever preferencialmente em inglês, com características que diferenciem o objeto."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosPassageiro">
+                    Passageiro / Contato
+                </button>
+            </h2>
+
+            <div id="dadosPassageiro" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Nome</label>
+                            <input id="passenger_name" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Telefone</label>
+                            <input id="passenger_phone" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">E-mail</label>
+                            <input id="passenger_email" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label text-warning fw-bold">Documento</label>
+                            <input id="passenger_document" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item bg-dark text-light border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-light fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#dadosGuarda">
+                    Guarda / Transporte / Entrega
+                </button>
+            </h2>
+
+            <div id="dadosGuarda" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">Local de armazenamento *</label>
+                            <input id="storage_location" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label text-warning fw-bold">Guardar até</label>
+                            <input id="storage_until" type="date" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label text-warning fw-bold">Etiqueta Rush</label>
+                            <input id="rush_tag" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-warning fw-bold">AI02 / Transporte</label>
+                            <input id="ai02" class="form-control form-control-sm" placeholder="Voo, data e etiqueta rush">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Enviado para</label>
+                            <input id="forwarded_to" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Voo de envio</label>
+                            <input id="forwarded_flight" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Entregue para</label>
+                            <input id="delivered_to" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Documento entrega</label>
+                            <input id="delivered_document" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label text-warning fw-bold">Data/hora entrega</label>
+                            <input id="delivered_at" type="datetime-local" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-warning fw-bold">Observações</label>
+                            <textarea id="notes" rows="3" class="form-control form-control-sm"></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-warning fw-bold">Histórico</label>
+                            <textarea id="history" rows="5" class="form-control form-control-sm" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-light rounded p-2 mt-3 d-flex gap-2">
+        <button type="button" id="btnSalvar" class="btn btn-success flex-fill fw-bold">
+            Criar RFP
+        </button>
+
+        <button type="button" id="btnLimpar" class="btn btn-outline-secondary">
+            Limpar
+        </button>
+    </div>
+
+    <section class="bg-dark border border-secondary rounded mt-3 p-3">
+        <h5 class="fw-bold mb-3">Processos RFP</h5>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-sm table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>File Reference</th>
+                    <th>Categoria</th>
+                    <th>Local encontrado</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+
+                <tbody id="listaRfp"></tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="../js/supabase.js"></script>
+<script src="../js/access-control.js?v=20260823-accent-v2" data-access="protected"></script>
+<script src="../js/academy-text.js?v=20260823-accent-v2"></script>
+<script src="../js/academy-security.js?v=20260823-accent-v2"></script>
+<script src="../js/rfp.js"></script>
+
+</body>
+</html>

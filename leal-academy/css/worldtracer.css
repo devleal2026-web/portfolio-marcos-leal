@@ -109,7 +109,8 @@ body{
 
 }
 
-.wt-info input{
+.wt-info input,
+.wt-info select{
 
     width:100%;
 
@@ -203,7 +204,8 @@ body{
 
 }
 
-.wt-field input{
+.wt-field input,
+.wt-field select{
 
     background:#0b1726;
 
@@ -396,7 +398,9 @@ body{
 }
 
 .wt-info input,
+.wt-info select,
 .wt-field input,
+.wt-field select,
 .wt-field textarea{
     background:var(--wt-field);
     color:var(--wt-field-text);
@@ -405,15 +409,19 @@ body{
 }
 
 .wt-info input[readonly],
+.wt-info select[disabled],
 .wt-field input[readonly],
+.wt-field select[disabled],
 .wt-field textarea[readonly]{
     background:#dce8f1;
     color:#1e293b;
 }
 
 .wt-field input:focus,
+.wt-field select:focus,
 .wt-field textarea:focus,
-.wt-info input:focus{
+.wt-info input:focus,
+.wt-info select:focus{
     border-color:var(--wt-accent);
     box-shadow:0 0 0 3px rgba(56,189,248,.22);
 }
