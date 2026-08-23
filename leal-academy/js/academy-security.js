@@ -72,6 +72,10 @@ const AcademySecurity = (() => {
         const key = String(event.key || "").toLowerCase();
         const ctrlOrMeta = event.ctrlKey || event.metaKey;
 
+        if(document.body?.classList?.contains("certificate-page") && ctrlOrMeta && key === "p"){
+            return;
+        }
+
         if(ctrlOrMeta && blockedKeys.has(key)){
             blockEvent(event, "shortcut_" + key);
             return;
@@ -109,6 +113,10 @@ const AcademySecurity = (() => {
         document.addEventListener("keydown", blockKeyboard, true);
 
         window.addEventListener("beforeprint", () => {
+            if(document.body?.classList?.contains("certificate-page")){
+                return;
+            }
+
             document.body.classList.add("academy-print-guard");
             recordBlocked("print");
         });

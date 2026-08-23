@@ -732,6 +732,10 @@ const portugueseAccentMap = [
 ];
 
 function applyPortugueseAccents(value){
+    if(window.LealText && typeof LealText.apply === "function"){
+        return LealText.apply(value);
+    }
+
     let text = String(value ?? "");
 
     portugueseAccentMap.forEach(([plain, accented]) => {
