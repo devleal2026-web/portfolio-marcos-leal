@@ -243,24 +243,24 @@ const AccessControl = (() => {
 
         console.warn("Academy progress upsert fallback:", error.message);
 
-        const { data: existing } = await supabaseClient
+        const fallbackUpdate = await supabaseClient
             .from("academy_course_progress")
-            .select("id")
+            .update(payload)
             .eq("user_id", currentSession.user.id)
             .eq("course_id", course.id)
+            .select("course_id")
             .maybeSingle();
 
-        const fallback = existing?.id
-            ? await supabaseClient
-                .from("academy_course_progress")
-                .update(payload)
-                .eq("id", existing.id)
-            : await supabaseClient
-                .from("academy_course_progress")
-                .insert([payload]);
+        if(!fallbackUpdate.error && fallbackUpdate.data){
+            return true;
+        }
 
-        if(fallback.error){
-            console.warn("Academy progress sync fallback:", fallback.error.message);
+        const fallbackInsert = await supabaseClient
+            .from("academy_course_progress")
+            .insert([payload]);
+
+        if(fallbackInsert.error){
+            console.warn("Academy progress sync fallback:", fallbackInsert.error.message);
             return false;
         }
 
