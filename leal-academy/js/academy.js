@@ -1986,60 +1986,106 @@ async function syncCloudAcademyDataFromSupabase(){
         return;
     }
 
-    const progress = { ...(cloudData.progress || {}) };
-    const quizResults = { ...(cloudData.quizResults || {}) };
-    const certificates = { ...(cloudData.certificates || {}) };
-    const localProgress = readJson(storageKey);
-    const localQuizResults = readJson(quizStorageKey);
-    const localCertificates = readJson(certificateStorageKey);
+    state.cloudProgress = { ...(cloudData.progress || {}) };
+    state.cloudQuizResults = { ...(cloudData.quizResults || {}) };
+    state.cloudCertificates = { ...(cloudData.certificates || {}) };
     state.pendingQuizCloudSync = {};
-
-    Object.entries(localProgress || {}).forEach(([courseId, completedLessons]) => {
-        const localLessons = Array.isArray(progress[courseId])
-            ? progress[courseId]
-            : [];
-        const mergedLessons = [
-            ...new Set([
-                ...localLessons,
-                ...(Array.isArray(completedLessons) ? completedLessons : [])
-            ].map(Number).filter(index => Number.isInteger(index)))
-        ].sort((a, b) => a - b);
-
-        progress[courseId] = mergedLessons;
-    });
-
-    Object.entries(localQuizResults || {}).forEach(([courseId, browserResult]) => {
-        const cloudResult = quizResults[courseId];
-        const cloudDate = cloudResult?.finishedAt
-            ? new Date(cloudResult.finishedAt).getTime()
-            : 0;
-        const browserDate = browserResult?.finishedAt
-            ? new Date(browserResult.finishedAt).getTime()
-            : 0;
-
-        if(!quizResults[courseId] || browserDate >= cloudDate){
-            quizResults[courseId] = browserResult;
-
-            if(!cloudResult || browserDate > cloudDate){
-                state.pendingQuizCloudSync[courseId] = browserResult;
-            }
-        }
-    });
-
-    Object.entries(localCertificates || {}).forEach(([courseId, localCertificate]) => {
-        if(!certificates[courseId]){
-            certificates[courseId] = localCertificate;
-        }
-    });
-
-    state.cloudProgress = progress;
-    state.cloudQuizResults = quizResults;
-    state.cloudCertificates = certificates;
     state.useCloudData = true;
     state.cloudReady = true;
 }
 
-async function syncLocalAcademyDataToSupabase(){
+async function migrateLocalAcademyDataToSupabase(){
+    if(
+        !window.AccessControl ||
+        typeof AccessControl.session !== "function"
+    ){
+        return false;
+    }
+
+    const currentSession = await AccessControl.session();
+
+    if(!currentSession){
+        return false;
+    }
+
+    const localProgress = readJson(storageKey);
+    const localQuizResults = readJson(quizStorageKey);
+    const localCertificates = readJson(certificateStorageKey);
+    const syncedAttempts = readJson("airportBaggageAcademySyncedAttempts");
+    let migrated = false;
+    const pendingWrites = [];
+
+    Object.entries(localProgress || {}).forEach(([courseId, completedLessons]) => {
+        const course = academyCourses.find(item => item.id === courseId);
+        const lessons = Array.isArray(completedLessons)
+            ? completedLessons
+            : [];
+
+        if(
+            course &&
+            lessons.length > 0 &&
+            typeof AccessControl.syncCourseProgress === "function"
+        ){
+            pendingWrites.push(AccessControl.syncCourseProgress(course, lessons));
+            migrated = true;
+        }
+    });
+
+    Object.entries(localCertificates || {}).forEach(([, certificate]) => {
+        if(certificate && typeof AccessControl.recordCertificate === "function"){
+            pendingWrites.push(AccessControl.recordCertificate(certificate));
+            migrated = true;
+        }
+    });
+
+    Object.entries(localQuizResults || {}).forEach(([courseId, result]) => {
+        const course = academyCourses.find(item => item.id === courseId);
+
+        if(
+            !course ||
+            !result ||
+            typeof AccessControl.recordQuizAttempt !== "function"
+        ){
+            return;
+        }
+
+        const attemptKey = [
+            course.id,
+            result.finishedAt || "",
+            result.percent ?? "",
+            result.correct ?? "",
+            result.total ?? ""
+        ].join("|");
+
+        if(syncedAttempts[attemptKey]){
+            return;
+        }
+
+        pendingWrites.push(
+            AccessControl.recordQuizAttempt(course, {
+                correct: result.correct,
+                total: result.total,
+                percent: result.percent,
+                grade: formatGrade(result.percent),
+                approved: result.approved,
+                review: result.review || []
+            })
+        );
+
+        syncedAttempts[attemptKey] = true;
+        migrated = true;
+    });
+
+    saveJson("airportBaggageAcademySyncedAttempts", syncedAttempts);
+
+    if(migrated){
+        await Promise.allSettled(pendingWrites);
+    }
+
+    return migrated;
+}
+
+async function syncSessionAcademyDataToSupabase(){
     if(!window.AccessControl){
         return;
     }
@@ -2646,7 +2692,10 @@ function renderCertificatePage(){
 
 async function bootAcademy(){
     await syncCloudAcademyDataFromSupabase();
-    await syncLocalAcademyDataToSupabase();
+
+    if(await migrateLocalAcademyDataToSupabase()){
+        await syncCloudAcademyDataFromSupabase();
+    }
 
     if(document.getElementById("courseGrid")){
         renderHome();
