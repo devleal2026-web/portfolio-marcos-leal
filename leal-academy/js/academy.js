@@ -1198,7 +1198,7 @@ function lessonVisualProfile(course, module, moduleIndex){
 function lessonInlineIllustration(course, module, moduleIndex){
     const profile = lessonVisualProfile(course, module, moduleIndex);
     const kind = profile.kind;
-    const labels = profile.labels.map(escapeHtml);
+    const labels = profile.labels.map(label => escapeHtml(visualLabel(label)));
     const caption = escapeHtml(profile.caption);
     const title = escapeHtml(module.title || course.title || "Trilha");
 
@@ -1316,6 +1316,40 @@ function lessonInlineIllustration(course, module, moduleIndex){
             </figcaption>
         </figure>
     `;
+}
+
+function visualLabel(value){
+    const label = String(value || "").trim();
+    const replacements = {
+        Acao: "Ação",
+        Alca: "Alça",
+        Analise: "Análise",
+        Area: "Área",
+        Aviao: "Avião",
+        Comunicacao: "Comunicação",
+        Conexao: "Conexão",
+        Confirmacao: "Confirmação",
+        Contaminacao: "Contaminação",
+        Definicao: "Definição",
+        Entregue: "Entrega",
+        Etiquetacao: "Etiquetagem",
+        Evidencia: "Evidência",
+        Fragil: "Frágil",
+        Funcao: "Função",
+        Historico: "Histórico",
+        Orientacao: "Orientação",
+        Porao: "Porão",
+        Posicao: "Posição",
+        Prioridade: "Prioridade",
+        Protecao: "Proteção",
+        Recepcao: "Recepção",
+        Reconciliacao: "Reconciliação",
+        Restricao: "Restrição",
+        Seguranca: "Segurança",
+        Solucao: "Solução"
+    };
+
+    return replacements[label] || label;
 }
 
 function formatLessonContent(value, inlineIllustration = ""){

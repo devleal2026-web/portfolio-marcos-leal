@@ -1468,6 +1468,15 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
     box-sizing:border-box;
 }
 
+.lesson-inline-visual-art span,
+.lesson-inline-visual-art li,
+.lesson-inline-visual-art strong,
+.lesson-inline-visual-art b{
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
+}
+
 .lesson-inline-visual figcaption{
     display:grid;
     gap:8px;
@@ -1601,18 +1610,18 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
     align-items:center;
     justify-content:center;
     min-height:52px;
-    padding:10px 8px;
+    padding:10px 12px;
     border-radius:12px;
     background:rgba(255,255,255,.92);
     color:#0f172a;
     font-weight:900;
     text-align:center;
-    word-break:normal;
     overflow-wrap:normal;
+    word-break:normal;
     hyphens:none;
     min-width:0;
     max-width:100%;
-    font-size:clamp(10px,1.25vw,13px);
+    font-size:clamp(10px,1.04vw,13px);
     line-height:1.2;
 }
 
@@ -1670,14 +1679,15 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
 
 .lesson-visual-damage{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
+    grid-template-columns:minmax(118px,.88fr) minmax(112px,1fr);
+    gap:14px;
     align-items:center;
 }
 
 .damage-case{
-    width:150px;
-    height:150px;
+    width:min(150px,100%);
+    height:auto;
+    aspect-ratio:1/1;
     justify-self:center;
     position:relative;
     border-radius:20px;
@@ -1688,11 +1698,12 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
 .damage-case::before{
     content:"";
     position:absolute;
-    left:45px;
-    top:-22px;
-    width:60px;
-    height:34px;
-    border:9px solid #94a3b8;
+    left:50%;
+    top:-14%;
+    width:40%;
+    height:24%;
+    transform:translateX(-50%);
+    border:clamp(6px,1.2vw,9px) solid #94a3b8;
     border-bottom:0;
     border-radius:16px 16px 0 0;
 }
@@ -1737,11 +1748,18 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
 
 .lesson-visual-damage li,
 .lesson-visual-security li{
-    padding:9px 11px;
+    min-height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 10px;
     border-radius:10px;
     background:rgba(255,255,255,.92);
     color:#0f172a;
     font-weight:800;
+    text-align:center;
+    font-size:clamp(10px,1.02vw,12px);
+    line-height:1.16;
 }
 
 .lesson-visual-security{
@@ -1762,7 +1780,7 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
 
 .lesson-visual-service{
     display:grid;
-    grid-template-columns:minmax(88px,.62fr) minmax(0,1.38fr);
+    grid-template-columns:minmax(82px,.54fr) minmax(0,1.46fr);
     gap:14px;
     align-items:center;
 }
@@ -1802,7 +1820,11 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
     min-width:0;
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:8px;
+    gap:9px;
+}
+
+.service-counter span{
+    min-width:0;
 }
 
 .lesson-visual-form,
