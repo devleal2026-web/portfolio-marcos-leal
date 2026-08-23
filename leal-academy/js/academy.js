@@ -610,9 +610,21 @@ function courseProgress(course){
         return 0;
     }
 
+    const quizResult = readQuizResults()[course.id];
+    const certificate = readCertificates()[course.id];
+
+    if(
+        certificate ||
+        (quizResult && isApprovedPercent(quizResult.percent))
+    ){
+        return 100;
+    }
+
     const progress = readProgress();
     const done = progress[course.id] || [];
-    return Math.round((done.length / modules.length) * 100);
+    const lessonPercent = Math.round((done.length / modules.length) * 100);
+
+    return Math.min(lessonPercent, 90);
 }
 
 function normalizeSearch(value){
@@ -2424,11 +2436,14 @@ function renderAssessment(course){
             <div class="quiz-list compact">
                 ${questions.map((question, questionIndex) => `
                     <article class="quiz-card">
-                        <h3>${questionIndex + 1}. ${question.question}</h3>
+                        <h3 class="quiz-question-title">
+                            <span>${questionIndex + 1}</span>
+                            <strong>${escapeHtml(question.question || `Questão ${questionIndex + 1}`)}</strong>
+                        </h3>
                         <div class="quiz-options">
                             ${question.options.map((option, optionIndex) => {
                                 const selected = (state.quizAnswers[course.id] || {})[questionIndex] === optionIndex ? "selected" : "";
-                                return `<button class="quiz-option ${selected}" type="button" data-question="${questionIndex}" data-option="${optionIndex}">${option}</button>`;
+                                return `<button class="quiz-option ${selected}" type="button" data-question="${questionIndex}" data-option="${optionIndex}">${escapeHtml(option)}</button>`;
                             }).join("")}
                         </div>
                     </article>

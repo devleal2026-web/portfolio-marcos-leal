@@ -204,7 +204,7 @@ const AccessControl = (() => {
         }
     }
 
-    async function syncCourseProgress(course, completedLessons = []){
+    async function syncCourseProgress(course, completedLessons = [], options = {}){
         const currentSession = await session();
 
         if(!currentSession || typeof supabaseClient === "undefined" || !course){
@@ -214,9 +214,13 @@ const AccessControl = (() => {
         const profile = profileForUser(currentSession.user);
         const totalLessons = Array.isArray(course.modules) ? course.modules.length : 0;
         const completedCount = completedLessons.length;
-        const progressPercent = totalLessons > 0
+        const lessonProgressPercent = totalLessons > 0
             ? Math.round((completedCount / totalLessons) * 100)
             : 0;
+        const approved = Boolean(options.approved);
+        const progressPercent = approved
+            ? 100
+            : Math.min(lessonProgressPercent, 90);
         const now = new Date().toISOString();
 
         const payload = {
@@ -230,7 +234,7 @@ const AccessControl = (() => {
             completed_count: completedCount,
             progress_percent: progressPercent,
             last_activity_at: now,
-            completed_at: progressPercent >= 100 ? now : null
+            completed_at: approved ? now : null
         };
 
         const { error } = await supabaseClient
@@ -265,6 +269,13 @@ const AccessControl = (() => {
         }
 
         return true;
+    }
+
+    async function markCourseApproved(course){
+        const modules = Array.isArray(course?.modules) ? course.modules : [];
+        const completedLessons = modules.map((_, index) => index);
+
+        return syncCourseProgress(course, completedLessons, { approved:true });
     }
 
     async function loadAcademyCloudData(){
@@ -444,6 +455,10 @@ const AccessControl = (() => {
 
         if(error){
             console.warn("Academy quiz sync fallback:", error.message);
+        }
+
+        if(Boolean(result.approved)){
+            await markCourseApproved(course);
         }
     }
 

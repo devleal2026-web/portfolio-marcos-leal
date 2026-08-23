@@ -818,6 +818,35 @@ html[data-theme="dark"] pre{
     color:#e5f0ff !important;
 }
 
+html[data-theme="dark"] .quiz-card{
+    background:#f8fbff !important;
+    border-color:#cbd5e1 !important;
+    color:#0f172a !important;
+}
+
+html[data-theme="dark"] .quiz-question-title,
+html[data-theme="dark"] .quiz-question-title strong{
+    color:#0f172a !important;
+}
+
+html[data-theme="dark"] .quiz-question-title span{
+    background:#dff8eb !important;
+    color:#047857 !important;
+}
+
+html[data-theme="dark"] .quiz-option{
+    background:#ffffff !important;
+    border-color:#d8e3ea !important;
+    color:#142433 !important;
+}
+
+html[data-theme="dark"] .quiz-option:hover,
+html[data-theme="dark"] .quiz-option.selected{
+    border-color:#22c55e !important;
+    background:#edf8ef !important;
+    color:#0f172a !important;
+}
+
 html[data-theme="dark"] .academy-admin-table th,
 html[data-theme="dark"] .academy-admin-table td{
     border-color:var(--line) !important;
@@ -968,6 +997,35 @@ html[data-theme="dark"] .certificate-document{
     margin:0 0 10px;
 }
 
+.quiz-question-title{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    color:#0f172a !important;
+    opacity:1 !important;
+    visibility:visible !important;
+}
+
+.quiz-question-title span{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:30px;
+    height:30px;
+    border-radius:999px;
+    background:#e6f8ee;
+    color:#047857;
+    font-size:13px;
+    font-weight:900;
+}
+
+.quiz-question-title strong{
+    display:block;
+    color:#0f172a !important;
+    font-weight:900;
+}
+
 .quiz-options{
     display:grid;
     gap:7px;
@@ -977,7 +1035,7 @@ html[data-theme="dark"] .certificate-document{
     width:100%;
     border:1px solid #d8e3ea;
     background:#fff;
-    color:#142433;
+    color:#142433 !important;
     border-radius:8px;
     padding:9px 10px;
     text-align:left;
@@ -989,6 +1047,71 @@ html[data-theme="dark"] .certificate-document{
 .quiz-option.selected{
     border-color:var(--green-2);
     background:#edf8ef;
+}
+
+.academy-copy-protected :where(
+    .academy-shell,
+    .academy-admin-shell,
+    .course-shell,
+    .assessment-shell,
+    .lesson-full-content,
+    .lesson-rich-card,
+    .lesson-screenshot-block,
+    .academy-course-card,
+    .track-card,
+    .quiz-card
+){
+    -webkit-user-select:none;
+    user-select:none;
+}
+
+.academy-copy-protected input,
+.academy-copy-protected textarea,
+.academy-copy-protected select,
+.academy-copy-protected button,
+.academy-copy-protected .certificate-document,
+.academy-copy-protected .certificate-document *{
+    -webkit-user-select:text;
+    user-select:text;
+}
+
+.academy-security-watermark{
+    position:fixed;
+    right:16px;
+    bottom:14px;
+    z-index:9999;
+    pointer-events:none;
+    max-width:min(420px,calc(100vw - 32px));
+    padding:8px 12px;
+    border:1px solid rgba(148,163,184,.35);
+    border-radius:999px;
+    background:rgba(15,23,42,.72);
+    color:rgba(255,255,255,.86);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.02em;
+    box-shadow:0 12px 30px rgba(15,23,42,.18);
+    backdrop-filter:blur(10px);
+}
+
+.academy-print-guard .academy-shell,
+.academy-print-guard .course-shell,
+.academy-print-guard .assessment-shell,
+.academy-print-guard .academy-admin-shell{
+    display:none !important;
+}
+
+.academy-print-guard::before{
+    content:"Impressão bloqueada. Conteúdo protegido da Leal Academy.";
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:80vh;
+    padding:40px;
+    color:#0f172a;
+    font-size:22px;
+    font-weight:900;
+    text-align:center;
 }
 
 .assessment-actions{
