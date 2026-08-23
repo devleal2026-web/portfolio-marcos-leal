@@ -25,7 +25,13 @@ const state = {
     quizAnswers: {},
     assessmentOpen: {},
     courseSearch: "",
-    trackedCourses: {}
+    trackedCourses: {},
+    cloudReady: false,
+    useCloudData: false,
+    cloudProgress: {},
+    cloudQuizResults: {},
+    cloudCertificates: {},
+    pendingQuizCloudSync: {}
 };
 
 const storageKey = "airportBaggageAcademyProgress";
@@ -540,27 +546,61 @@ function saveJson(key, value){
     localStorage.setItem(key, JSON.stringify(value));
 }
 
+function cloudDataActive(){
+    return state.useCloudData && state.cloudReady;
+}
+
 function readProgress(){
+    if(cloudDataActive()){
+        return state.cloudProgress;
+    }
+
     return readJson(storageKey);
 }
 
 function saveProgress(progress){
+    state.cloudProgress = progress || {};
+
+    if(cloudDataActive()){
+        return;
+    }
+
     saveJson(storageKey, progress);
 }
 
 function readQuizResults(){
+    if(cloudDataActive()){
+        return state.cloudQuizResults;
+    }
+
     return readJson(quizStorageKey);
 }
 
 function saveQuizResults(results){
+    state.cloudQuizResults = results || {};
+
+    if(cloudDataActive()){
+        return;
+    }
+
     saveJson(quizStorageKey, results);
 }
 
 function readCertificates(){
+    if(cloudDataActive()){
+        return state.cloudCertificates;
+    }
+
     return readJson(certificateStorageKey);
 }
 
 function saveCertificates(certificates){
+    state.cloudCertificates = certificates || {};
+
+    if(cloudDataActive()){
+        return;
+    }
+
     saveJson(certificateStorageKey, certificates);
 }
 
@@ -1923,6 +1963,82 @@ function ensureCertificate(course, savedResult){
     );
 }
 
+async function syncCloudAcademyDataFromSupabase(){
+    if(
+        !window.AccessControl ||
+        typeof AccessControl.loadAcademyCloudData !== "function" ||
+        typeof AccessControl.session !== "function"
+    ){
+        return;
+    }
+
+    const currentSession = await AccessControl.session();
+
+    if(!currentSession){
+        state.cloudReady = false;
+        state.useCloudData = false;
+        return;
+    }
+
+    const cloudData = await AccessControl.loadAcademyCloudData();
+
+    if(!cloudData){
+        return;
+    }
+
+    const progress = { ...(cloudData.progress || {}) };
+    const quizResults = { ...(cloudData.quizResults || {}) };
+    const certificates = { ...(cloudData.certificates || {}) };
+    const localProgress = readJson(storageKey);
+    const localQuizResults = readJson(quizStorageKey);
+    const localCertificates = readJson(certificateStorageKey);
+    state.pendingQuizCloudSync = {};
+
+    Object.entries(localProgress || {}).forEach(([courseId, completedLessons]) => {
+        const localLessons = Array.isArray(progress[courseId])
+            ? progress[courseId]
+            : [];
+        const mergedLessons = [
+            ...new Set([
+                ...localLessons,
+                ...(Array.isArray(completedLessons) ? completedLessons : [])
+            ].map(Number).filter(index => Number.isInteger(index)))
+        ].sort((a, b) => a - b);
+
+        progress[courseId] = mergedLessons;
+    });
+
+    Object.entries(localQuizResults || {}).forEach(([courseId, browserResult]) => {
+        const cloudResult = quizResults[courseId];
+        const cloudDate = cloudResult?.finishedAt
+            ? new Date(cloudResult.finishedAt).getTime()
+            : 0;
+        const browserDate = browserResult?.finishedAt
+            ? new Date(browserResult.finishedAt).getTime()
+            : 0;
+
+        if(!quizResults[courseId] || browserDate >= cloudDate){
+            quizResults[courseId] = browserResult;
+
+            if(!cloudResult || browserDate > cloudDate){
+                state.pendingQuizCloudSync[courseId] = browserResult;
+            }
+        }
+    });
+
+    Object.entries(localCertificates || {}).forEach(([courseId, localCertificate]) => {
+        if(!certificates[courseId]){
+            certificates[courseId] = localCertificate;
+        }
+    });
+
+    state.cloudProgress = progress;
+    state.cloudQuizResults = quizResults;
+    state.cloudCertificates = certificates;
+    state.useCloudData = true;
+    state.cloudReady = true;
+}
+
 async function syncLocalAcademyDataToSupabase(){
     if(!window.AccessControl){
         return;
@@ -1948,7 +2064,9 @@ async function syncLocalAcademyDataToSupabase(){
             await AccessControl.recordCertificate(certificate);
         }
 
-        const result = quizResults[course.id];
+        const result = cloudDataActive()
+            ? state.pendingQuizCloudSync[course.id]
+            : quizResults[course.id];
 
         if(result && typeof AccessControl.recordQuizAttempt === "function"){
             const attemptKey = [
@@ -1970,6 +2088,7 @@ async function syncLocalAcademyDataToSupabase(){
                 });
 
                 syncedAttempts[attemptKey] = true;
+                delete state.pendingQuizCloudSync[course.id];
             }
         }
     }
@@ -2526,6 +2645,7 @@ function renderCertificatePage(){
 }
 
 async function bootAcademy(){
+    await syncCloudAcademyDataFromSupabase();
     await syncLocalAcademyDataToSupabase();
 
     if(document.getElementById("courseGrid")){

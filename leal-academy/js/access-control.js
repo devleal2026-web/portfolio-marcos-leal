@@ -242,6 +242,108 @@ const AccessControl = (() => {
         }
     }
 
+    async function loadAcademyCloudData(){
+        const currentSession = await session();
+
+        if(!currentSession || typeof supabaseClient === "undefined"){
+            return {
+                progress:{},
+                quizResults:{},
+                certificates:{}
+            };
+        }
+
+        const userId = currentSession.user.id;
+        const cloudData = {
+            progress:{},
+            quizResults:{},
+            certificates:{}
+        };
+
+        const [
+            progressResponse,
+            quizResponse,
+            certificateResponse
+        ] = await Promise.all([
+            supabaseClient
+                .from("academy_course_progress")
+                .select("*")
+                .eq("user_id", userId),
+
+            supabaseClient
+                .from("academy_quiz_attempts")
+                .select("*")
+                .eq("user_id", userId)
+                .order("created_at", { ascending:false }),
+
+            supabaseClient
+                .from("academy_certificates")
+                .select("*")
+                .eq("user_id", userId)
+                .order("issued_at", { ascending:false })
+        ]);
+
+        if(progressResponse.error){
+            console.warn("Academy progress load fallback:", progressResponse.error.message);
+        }
+        else{
+            (progressResponse.data || []).forEach(item => {
+                if(item.course_id){
+                    cloudData.progress[item.course_id] = Array.isArray(item.completed_lessons)
+                        ? item.completed_lessons
+                        : [];
+                }
+            });
+        }
+
+        if(quizResponse.error){
+            console.warn("Academy quiz load fallback:", quizResponse.error.message);
+        }
+        else{
+            (quizResponse.data || []).forEach(item => {
+                if(!item.course_id || cloudData.quizResults[item.course_id]){
+                    return;
+                }
+
+                cloudData.quizResults[item.course_id] = {
+                    correct:Number(item.correct_count) || 0,
+                    total:Number(item.total_questions) || 0,
+                    percent:Number(item.score_percent) || 0,
+                    grade:Number(item.grade) || 0,
+                    approved:Boolean(item.approved),
+                    finishedAt:item.created_at || new Date().toISOString(),
+                    review:item.review || []
+                };
+            });
+        }
+
+        if(certificateResponse.error){
+            console.warn("Academy certificate load fallback:", certificateResponse.error.message);
+        }
+        else{
+            (certificateResponse.data || []).forEach(item => {
+                if(!item.course_id || cloudData.certificates[item.course_id]){
+                    return;
+                }
+
+                cloudData.certificates[item.course_id] = {
+                    id:item.certificate_code,
+                    courseId:item.course_id,
+                    courseTitle:item.course_title,
+                    studentName:item.student_name || item.full_name,
+                    studentEmail:item.student_email || item.email,
+                    grade:item.grade,
+                    percent:item.score_percent,
+                    correct:item.correct_count,
+                    total:item.total_questions,
+                    issuedAt:item.issued_at
+                };
+            });
+        }
+
+        return cloudData;
+    }
+
     async function recordQuizAttempt(course, result){
         const currentSession = await session();
 
@@ -547,6 +649,7 @@ const AccessControl = (() => {
 
     return {
         boot,
+        session,
         requireAuth,
         signInWithGoogle,
         signOut,
@@ -554,6 +657,7 @@ const AccessControl = (() => {
         profileForUser,
         recordEvent,
         syncCourseProgress,
+        loadAcademyCloudData,
         recordQuizAttempt,
         recordCertificate
     };
