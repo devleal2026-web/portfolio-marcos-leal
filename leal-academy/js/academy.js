@@ -1634,7 +1634,7 @@ function renderCourseNavigator(course){
     const done = progress[course.id] || [];
 
     navigator.innerHTML = `
-        <h3>Navegacao do curso</h3>
+        <h3>Navegação do curso</h3>
         <div class="course-progress-bar" aria-label="Progresso do curso">
             <span style="width:${courseProgress(course)}%"></span>
         </div>
