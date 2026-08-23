@@ -89,11 +89,11 @@ body{
 
 .academy-home-actions{
     display:grid;
-    grid-template-columns:repeat(4, minmax(112px, 1fr));
+    grid-template-columns:repeat(5, minmax(112px, 1fr));
     gap:10px;
     align-items:stretch;
     justify-content:end;
-    width:min(100%, 478px);
+    width:min(100%, 600px);
     margin-left:auto;
 }
 
