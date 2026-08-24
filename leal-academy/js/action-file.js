@@ -68,8 +68,8 @@ const ActionFile = (() => {
         {
             code:"DXF",
             category:"ACTION_MESSAGES",
-            title:"Documento ou dado pendente",
-            description:"Solicitação de conferência, ajuste ou complemento de dados do processo."
+            title:"Visualização de mensagem",
+            description:"Leitura, conferência ou tratativa de mensagem recebida no Action File."
         },
         {
             code:"EXF",
@@ -79,15 +79,15 @@ const ActionFile = (() => {
         },
         {
             code:"AP",
-            category:"ACTION_MESSAGES",
-            title:"Ação pendente",
-            description:"Pendência operacional que exige atuação da base ou do agente responsável."
+            category:"ADDITIONAL_PROMPTS",
+            title:"Additional Prompt",
+            description:"Mensagem geral entre bases, comunicados de turno ou orientação operacional."
         },
         {
             code:"FW",
             category:"FORWARD_MESSAGES",
             title:"Encaminhamento",
-            description:"Ação de encaminhamento de mensagem, objeto, bagagem ou processo para outra base."
+            description:"Área de mensagens de envio, incluindo registros de encaminhamento operacional."
         },
         {
             code:"FWD",
@@ -103,9 +103,9 @@ const ActionFile = (() => {
         },
         {
             code:"AA",
-            category:"LOCAL_MANAGER",
-            title:"Ação administrativa",
-            description:"Acompanhamento administrativo, auditoria, revisão ou encerramento operacional."
+            category:"ACTION_MESSAGES",
+            title:"Action Message",
+            description:"Ação que precisa ser tomada em PIRs, solicitações de OHD/QOH, ROH, FOH ou FAH."
         },
         {
             code:"ROH",
@@ -122,14 +122,26 @@ const ActionFile = (() => {
         {
             code:"FAH",
             category:"ACTION_MESSAGES",
-            title:"Forward AHL",
-            description:"Resposta ou encaminhamento relacionado a processo AHL."
+            title:"Forward Delayed Bag",
+            description:"Envio de bagagem localizada vinculada a um AHL para outra base providenciar a entrega."
+        },
+        {
+            code:"WM",
+            category:"SYSTEM_MATCHES",
+            title:"System Match",
+            description:"Mensagem de comparação entre AHL e OHD gerada pelo sistema."
         },
         {
             code:"MATCH",
             category:"SYSTEM_MATCHES",
             title:"Match do sistema",
             description:"Informação comparativa entre AHL e OHD."
+        },
+        {
+            code:"SP",
+            category:"SYSTEM_PROMPTS",
+            title:"System Prompt",
+            description:"Alerta do sistema indicando que alguma ação operacional deve ser tomada."
         },
         {
             code:"EXT",
@@ -139,21 +151,33 @@ const ActionFile = (() => {
         },
         {
             code:"CLM",
+            category:"CLAIM_MATCHES",
+            title:"Claim Match",
+            description:"Notificação comparativa do módulo de investigação e reclamações."
+        },
+        {
+            code:"CLAIM",
             category:"CLAIMS_MESSAGES",
             title:"Mensagem de claim",
             description:"Reclamação recebida pela internet ou autoatendimento."
         },
         {
-            code:"EMAIL",
+            code:"EC",
             category:"EMAIL_CORRESPONDENCE",
             title:"Correspondência por e-mail",
             description:"E-mail enviado pelo passageiro através dos canais digitais."
         },
         {
-            code:"QOH",
+            code:"PR",
             category:"PURGED_RETIRED_ITEMS",
             title:"QOH vencido",
             description:"Item QOH com prazo operacional vencido."
+        },
+        {
+            code:"LM",
+            category:"LOCAL_MANAGER",
+            title:"Local Manager",
+            description:"Mensagem enviada pela central ou gestão operacional para uma base."
         },
         {
             code:"GEN",
@@ -647,6 +671,15 @@ const ActionFile = (() => {
                         <button class="btn btn-info btn-sm" onclick="ActionFile.abrirTratativa('${item.id}')">
                             Tratar
                         </button>
+                        <button class="btn btn-warning btn-sm" onclick="ActionFile.transferir('${item.id}')">
+                            Transferir
+                        </button>
+                        <button class="btn btn-light btn-sm" onclick="ActionFile.copiar('${item.id}')">
+                            Copiar
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="ActionFile.imprimir('${item.id}')">
+                            Imprimir
+                        </button>
                         <button class="btn btn-light btn-sm" onclick="ActionFile.abrirProcesso('${item.case_type}', '${item.case_id || ""}')">
                             Processo
                         </button>
@@ -826,6 +859,130 @@ const ActionFile = (() => {
         await carregarActionFile();
     }
 
+    async function transferir(id){
+        const registro = registros.find(item => item.id === id);
+
+        if(!registro){
+            alertar("warning", "Mensagem não encontrada. Atualize a página e tente novamente.");
+            return;
+        }
+
+        if(!registro.case_id){
+            alertar("warning", "Esta mensagem não está vinculada a um processo existente.");
+            return;
+        }
+
+        const history = Array.isArray(registro.history)
+            ? [...registro.history]
+            : [];
+
+        history.push({
+            at:new Date().toISOString(),
+            status:"EM TRATATIVA",
+            action:"Mensagem transferida para o processo",
+            message:`Mensagem ${registro.action_code} marcada para tratativa no processo ${registro.reference_number}.`
+        });
+
+        const { error } = await supabaseClient
+            .from("action_files")
+            .update({
+                status:"EM TRATATIVA",
+                history,
+                updated_at:new Date().toISOString()
+            })
+            .eq("id", id);
+
+        if(error){
+            console.error(error);
+            alertar("danger", friendlyError(error));
+            return;
+        }
+
+        alertar("success", "Mensagem transferida para tratativa do processo.");
+        await carregarActionFile();
+    }
+
+    async function copiar(id){
+        const registro = registros.find(item => item.id === id);
+
+        if(!registro){
+            alertar("warning", "Mensagem não encontrada. Atualize a página e tente novamente.");
+            return;
+        }
+
+        const texto = mensagemCompleta(registro);
+
+        try{
+            await navigator.clipboard.writeText(texto);
+            alertar("success", "Mensagem copiada para a área de transferência.");
+        }
+        catch(error){
+            console.warn(error);
+            alertar("warning", "Não foi possível copiar automaticamente. Abra a tratativa e copie o texto manualmente.");
+        }
+    }
+
+    function imprimir(id){
+        const registro = registros.find(item => item.id === id);
+
+        if(!registro){
+            alertar("warning", "Mensagem não encontrada. Atualize a página e tente novamente.");
+            return;
+        }
+
+        const janela = window.open("", "_blank", "width=900,height=700");
+
+        if(!janela){
+            alertar("warning", "O navegador bloqueou a janela de impressão.");
+            return;
+        }
+
+        janela.document.write(`
+            <!DOCTYPE html>
+            <html lang="pt-BR">
+            <head>
+                <meta charset="UTF-8">
+                <title>Action File - ${escapeHtml(registro.reference_number)}</title>
+                <style>
+                    body{font-family:Arial,sans-serif;padding:24px;color:#111}
+                    h1{font-size:22px;margin-bottom:8px}
+                    .meta{margin-bottom:16px;color:#444}
+                    pre{border:1px solid #999;padding:16px;white-space:pre-wrap}
+                </style>
+            </head>
+            <body>
+                <h1>Action File - ${escapeHtml(registro.action_code)}</h1>
+                <div class="meta">
+                    Processo: ${escapeHtml(registro.case_type)} ${escapeHtml(registro.reference_number)}
+                    <br>
+                    Campo: ${escapeHtml(categoryInfo(categoriaRegistro(registro)).label)}
+                    <br>
+                    Status: ${escapeHtml(registro.status)}
+                </div>
+                <pre>${escapeHtml(mensagemCompleta(registro))}</pre>
+            </body>
+            </html>
+        `);
+
+        janela.document.close();
+        janela.focus();
+        janela.print();
+    }
+
+    function mensagemCompleta(registro){
+        return [
+            `${registro.action_code || ""} - ${registro.action_title || ""}`,
+            `Processo: ${registro.case_type || ""} ${registro.reference_number || ""}`,
+            `Station: ${registro.station || "-"}`,
+            `Airline: ${registro.airline || "-"}`,
+            `Status: ${registro.status || "-"}`,
+            `Prioridade: ${registro.priority || "-"}`,
+            "",
+            registro.message || "",
+            registro.response ? `\nResposta:\n${registro.response}` : ""
+        ].join("\n");
+    }
+
     function abrirProcesso(caseType, caseId){
         const tipo = text(caseType).toLowerCase();
 
@@ -843,6 +1000,9 @@ const ActionFile = (() => {
         abrirTratativa,
         salvarTratativa,
         encerrar,
+        transferir,
+        copiar,
+        imprimir,
         abrirProcesso,
         carregarActionFile,
         filtrarInbox
