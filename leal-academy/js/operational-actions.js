@@ -216,6 +216,21 @@ const OperationalActions = (() => {
                                     <input id="opRushTag" class="form-control" placeholder="Ex.: LA123456">
                                 </div>
 
+                                <div class="col-md-4 ${currentAction === "FAH" ? "" : "d-none"}">
+                                    <label class="form-label">Bag > Rush Tag Number</label>
+                                    <input id="opFahRushTag" class="form-control" placeholder="Etiqueta RUSH que acompanhará a bagagem">
+                                </div>
+
+                                <div class="col-md-4 ${currentAction === "FAH" ? "" : "d-none"}">
+                                    <label class="form-label">Flight > Origin Address</label>
+                                    <input id="opFahOriginAddress" class="form-control" value="${station}/${airline}">
+                                </div>
+
+                                <div class="col-md-4 ${currentAction === "FAH" ? "" : "d-none"}">
+                                    <label class="form-label">Flight > Rush Routing</label>
+                                    <input id="opFahRushRouting" class="form-control" value="${escapeHtml(fahRushRoutingDefault())}" placeholder="Ex.: LA1234/30JUN GRU/REC">
+                                </div>
+
                                 <div class="col-md-3">
                                     <label class="form-label">Tag original</label>
                                     <input id="opOriginalTag" class="form-control" value="${escapeHtml(tagFrom(currentCase))}">
@@ -322,6 +337,14 @@ const OperationalActions = (() => {
         }
 
         return "";
+    }
+
+    function fahRushRoutingDefault(){
+        return [
+            flightFrom(currentCase),
+            routeFrom(currentCase),
+            destinationDefault()
+        ].filter(Boolean).join(" ");
     }
 
     function originLabel(){
@@ -461,23 +484,25 @@ const OperationalActions = (() => {
     }
 
     function buildFah(reference){
-        const originAddress = [
+        const originAddress = text(value("opFahOriginAddress")) || [
             text(value("opStation")),
             text(value("opAirline"))
         ].filter(Boolean).join("/");
 
-        const rushRouting = [
+        const rushRouting = text(value("opFahRushRouting")) || [
             text(value("opFlight")),
             text(value("opRoute")),
             text(value("opDestination"))
         ].filter(Boolean).join(" ");
+
+        const rushTag = text(value("opFahRushTag")) || text(value("opRushTag"));
 
         return [
             `>WM FAH ${text(reference)}`,
             `AHL ${text(currentCase.reference_number)}`,
             `ON ${originAddress || "-"}`,
             `RT ${rushRouting || "-"}`,
-            `XT ${text(value("opRushTag")) || "-"}`,
+            `XT ${rushTag || "-"}`,
             `OB ${text(value("opOriginalTag")) || "-"}`,
             `CT ${text(currentCase.ct) || "-"}`,
             `BI ${text(currentCase.bi) || "-"}`,
@@ -576,10 +601,12 @@ const OperationalActions = (() => {
             station: text(value("opStation")),
             airline: text(value("opAirline")),
             destination_station: text(value("opDestination")),
-            rush_tag: text(value("opRushTag")),
+            rush_tag: text(value("opFahRushTag")) || text(value("opRushTag")),
             original_tag: text(value("opOriginalTag")),
             flight: text(value("opFlight")),
-            route: text(value("opRoute")),
+            route: currentAction === "FAH"
+                ? text(value("opFahRushRouting"))
+                : text(value("opRoute")),
             weight: text(value("opWeight")),
             seal_number: text(value("opSeal")),
             reason_for_loss: text(value("opReasonLoss")),
