@@ -551,6 +551,12 @@ async function carregarAhl(){
             </button>
 
             <button
+                class="btn btn-primary btn-sm"
+                onclick="OperationalActions.open('FAH', 'AHL', '${caso.id}')">
+                FAH
+            </button>
+
+            <button
                 class="btn btn-warning btn-sm"
                 onclick="BdoFlow.open('AHL', '${caso.id}')">
                 BDO

@@ -62,7 +62,7 @@ create table if not exists public.operational_actions (
     reference_number text not null,
 
     action_reference text not null unique,
-    action_code text not null check (action_code in ('FWD', 'FLZ', 'COH')),
+    action_code text not null check (action_code in ('FWD', 'FAH', 'FLZ', 'COH')),
     action_category text not null default 'ACTION_MESSAGES',
     status text not null default 'REGISTRADO'
         check (status in ('REGISTRADO', 'ENCERRADO', 'CANCELADO')),
@@ -112,7 +112,14 @@ create index if not exists idx_operational_actions_status
     on public.operational_actions(status);
 
 comment on table public.operational_actions is
-    'Ações operacionais do simulador aeroportuário: FWD Forward Bag/Rush, FLZ envio ao depósito e COH fechamento de OHD entregue.';
+    'Ações operacionais do simulador aeroportuário: FWD Forward Bag/Rush, FAH Forward AHL/History, FLZ envio ao depósito e COH fechamento de OHD entregue.';
+
+alter table public.operational_actions
+    drop constraint if exists operational_actions_action_code_check;
+
+alter table public.operational_actions
+    add constraint operational_actions_action_code_check
+    check (action_code in ('FWD', 'FAH', 'FLZ', 'COH'));
 
 alter table public.operational_action_sequences enable row level security;
 alter table public.operational_actions enable row level security;

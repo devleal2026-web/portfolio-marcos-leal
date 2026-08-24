@@ -1,6 +1,6 @@
 /*==========================================================
 OPERATIONAL ACTIONS
-FWD / FLZ / COH
+FWD / FAH / FLZ / COH
 ==========================================================*/
 
 "use strict";
@@ -20,6 +20,13 @@ const OperationalActions = (() => {
             categoryLabel: "Forward Messages",
             actionTitle: "Forward Bag",
             description: "Envio proativo ou operacional de bagagem com etiqueta Rush."
+        },
+        FAH: {
+            title: "FAH - Forward AHL / History",
+            category: "ACTION_MESSAGES",
+            categoryLabel: "Action Messages",
+            actionTitle: "Forward AHL",
+            description: "Registro de histórico, resposta ou encaminhamento operacional relacionado ao AHL."
         },
         FLZ: {
             title: "FLZ - Envio ao depósito",
@@ -118,6 +125,11 @@ const OperationalActions = (() => {
 
         if(currentAction === "FLZ" && currentCaseType !== "OHD"){
             alert("FLZ é uma ação específica para OHD.");
+            return;
+        }
+
+        if(currentAction === "FAH" && currentCaseType !== "AHL"){
+            alert("FAH é uma ação específica para AHL.");
             return;
         }
 
@@ -317,6 +329,10 @@ const OperationalActions = (() => {
             return "BAGAGEM ENVIADA COM ETIQUETA RUSH. INFORMAR AO PASSAGEIRO NO DESEMBARQUE.";
         }
 
+        if(currentAction === "FAH"){
+            return "HISTÓRICO DO AHL ATUALIZADO. REGISTRAR RESPOSTA, ENCAMINHAMENTO OU ACOMPANHAMENTO OPERACIONAL.";
+        }
+
         if(currentAction === "FLZ"){
             return "OHD CONFERIDO, EMBALADO, LACRADO E ENVIADO AO DEPÓSITO COM ETIQUETA RUSH.";
         }
@@ -334,6 +350,15 @@ const OperationalActions = (() => {
                 <div class="alert alert-info">
                     Use FWD para registrar o envio proativo ou operacional de bagagem.
                     Informe Rush Tag, voo/data, destino, RL, FS e companhia responsável.
+                </div>
+            `;
+        }
+
+        if(currentAction === "FAH"){
+            return `
+                <div class="alert alert-info">
+                    Use FAH para registrar no AHL uma resposta, histórico operacional,
+                    acompanhamento de envio, informação de match, contato ou atualização relevante.
                 </div>
             `;
         }
@@ -364,6 +389,10 @@ const OperationalActions = (() => {
             return buildFwd(reference);
         }
 
+        if(currentAction === "FAH"){
+            return buildFah(reference);
+        }
+
         if(currentAction === "FLZ"){
             return buildFlz(reference);
         }
@@ -388,6 +417,23 @@ const OperationalActions = (() => {
             `RL ${text(value("opReasonLoss")) || "-"}`,
             `FS ${text(value("opFaultStation")) || "-"}`,
             `FA ${text(value("opFaultAirline")) || "-"}`,
+            `SI ${text(value("opNotes")) || "-"}`,
+            "-",
+            `AG ${text(value("opStation"))}`
+        ].join("\n");
+    }
+
+    function buildFah(reference){
+        return [
+            `>WM FAH ${text(reference)}`,
+            `AHL ${text(currentCase.reference_number)}`,
+            `NM ${nameFrom(currentCase) || "-"}`,
+            `TN ${text(value("opOriginalTag")) || "-"}`,
+            `RT ${text(value("opRoute")) || "-"}`,
+            `FD ${text(value("opFlight")) || "-"}`,
+            `FW ${text(value("opDestination")) || "-"}`,
+            `RL ${text(value("opReasonLoss")) || "-"}`,
+            `FS ${text(value("opFaultStation")) || "-"}`,
             `SI ${text(value("opNotes")) || "-"}`,
             "-",
             `AG ${text(value("opStation"))}`
