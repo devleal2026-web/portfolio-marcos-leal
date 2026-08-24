@@ -307,6 +307,12 @@ async function carregarDpr(){
                     </button>
 
                     <button
+                        class="btn btn-warning btn-sm"
+                        onclick="BdoFlow.open('DPR', '${reg.id}')">
+                        BDO
+                    </button>
+
+                    <button
                         class="btn btn-info btn-sm"
                         onclick="visualizarDpr('${reg.id}')">
                         Visualizar

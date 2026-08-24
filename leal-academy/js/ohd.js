@@ -603,6 +603,12 @@ async function carregarOhd(){
                 </button>
 
                 <button
+                    class="btn btn-warning btn-sm"
+                    onclick="BdoFlow.open('OHD', '${reg.id}')">
+                    BDO
+                </button>
+
+                <button
                     class="btn btn-info btn-sm"
                     onclick="visualizarOhd('${reg.id}')">
                     Visualizar

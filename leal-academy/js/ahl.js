@@ -537,10 +537,17 @@ async function carregarAhl(){
                 ${MatchEngine.matchPanel("ahl", caso.id, listaMatches)}
             </td>
 
+            <td>
             <button
                 class="btn btn-success btn-sm"
                 onclick="abrirWorldTracer('${caso.id}')">
                 WT
+            </button>
+
+            <button
+                class="btn btn-warning btn-sm"
+                onclick="BdoFlow.open('AHL', '${caso.id}')">
+                BDO
             </button>
 
             <button
@@ -554,6 +561,7 @@ async function carregarAhl(){
                 onclick="encerrar('${caso.id}')">
                 Encerrar
             </button>
+            </td>
         </tr>
         `;
 
