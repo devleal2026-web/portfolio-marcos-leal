@@ -87,7 +87,7 @@ const AccessControl = (() => {
     }
 
     async function session(){
-        if(typeof supabaseClient === "undefined" || !supabaseClient.auth){
+        if(typeof supabaseClient === "undefined" || !supabaseClient || !supabaseClient.auth){
             return null;
         }
 
@@ -139,7 +139,7 @@ const AccessControl = (() => {
     }
 
     async function upsertProfile(profile){
-        if(typeof supabaseClient === "undefined"){
+        if(typeof supabaseClient === "undefined" || !supabaseClient){
             return;
         }
 
@@ -177,7 +177,7 @@ const AccessControl = (() => {
     async function recordEvent(eventType, details = {}){
         const currentSession = await session();
 
-        if(!currentSession || typeof supabaseClient === "undefined"){
+        if(!currentSession || typeof supabaseClient === "undefined" || !supabaseClient){
             return;
         }
 
@@ -207,7 +207,7 @@ const AccessControl = (() => {
     async function syncCourseProgress(course, completedLessons = [], options = {}){
         const currentSession = await session();
 
-        if(!currentSession || typeof supabaseClient === "undefined" || !course){
+        if(!currentSession || typeof supabaseClient === "undefined" || !supabaseClient || !course){
             return false;
         }
 
@@ -281,7 +281,7 @@ const AccessControl = (() => {
     async function loadAcademyCloudData(){
         const currentSession = await session();
 
-        if(!currentSession || typeof supabaseClient === "undefined"){
+        if(!currentSession || typeof supabaseClient === "undefined" || !supabaseClient){
             return {
                 progress:{},
                 quizResults:{},
@@ -429,7 +429,7 @@ const AccessControl = (() => {
     async function recordQuizAttempt(course, result){
         const currentSession = await session();
 
-        if(!currentSession || typeof supabaseClient === "undefined" || !course || !result){
+        if(!currentSession || typeof supabaseClient === "undefined" || !supabaseClient || !course || !result){
             return;
         }
 
@@ -465,7 +465,7 @@ const AccessControl = (() => {
     async function recordCertificate(certificate){
         const currentSession = await session();
 
-        if(!currentSession || typeof supabaseClient === "undefined" || !certificate){
+        if(!currentSession || typeof supabaseClient === "undefined" || !supabaseClient || !certificate){
             return;
         }
 
@@ -497,7 +497,7 @@ const AccessControl = (() => {
     }
 
     async function signInWithGoogle(){
-        if(typeof supabaseClient === "undefined" || !supabaseClient.auth){
+        if(typeof supabaseClient === "undefined" || !supabaseClient || !supabaseClient.auth){
             alert("Supabase Auth não carregado.");
             return;
         }
@@ -518,7 +518,7 @@ const AccessControl = (() => {
     async function signOut(){
         localStorage.removeItem(profileKey);
 
-        if(typeof supabaseClient !== "undefined" && supabaseClient.auth){
+        if(typeof supabaseClient !== "undefined" && supabaseClient && supabaseClient.auth){
             await supabaseClient.auth.signOut();
         }
 
@@ -559,7 +559,7 @@ const AccessControl = (() => {
             return false;
         }
 
-        if(typeof supabaseClient === "undefined"){
+        if(typeof supabaseClient === "undefined" || !supabaseClient){
             return false;
         }
 

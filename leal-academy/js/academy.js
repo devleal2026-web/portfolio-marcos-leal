@@ -34,6 +34,33 @@ const state = {
     pendingQuizCloudSync: {}
 };
 
+async function ensureAcademyCoursesLoaded(){
+    if(Array.isArray(academyCourses) && academyCourses.length > 0){
+        return true;
+    }
+
+    if(typeof loadAcademyFromSupabase === "function"){
+        try{
+            await loadAcademyFromSupabase();
+        }
+        catch(error){
+            console.warn(
+                "Não foi possível carregar os cursos do Supabase neste momento.",
+                error
+            );
+        }
+    }
+
+    restoreLocalAcademyCourses();
+
+    if(Array.isArray(academyCourses) && academyCourses.length > 0){
+        state.selectedCourseId = state.selectedCourseId || academyCourses[0].id;
+        return true;
+    }
+
+    return false;
+}
+
 const storageKey = "airportBaggageAcademyProgress";
 const quizStorageKey = "airportBaggageAcademyQuiz";
 const certificateStorageKey = "airportBaggageAcademyCertificates";
@@ -2681,7 +2708,9 @@ function renderCertificatePage(){
 }
 
 async function bootAcademy(){
+    await ensureAcademyCoursesLoaded();
     await syncCloudAcademyDataFromSupabase();
+    await ensureAcademyCoursesLoaded();
 
     if(document.getElementById("courseGrid")){
         renderHome();

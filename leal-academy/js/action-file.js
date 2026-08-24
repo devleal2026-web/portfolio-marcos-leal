@@ -202,6 +202,8 @@ const ActionFile = (() => {
     function iniciar(){
         carregarCombos();
         configurarEventos();
+        renderInbox();
+        renderTabela();
         carregarActionFile();
     }
 
@@ -431,6 +433,19 @@ const ActionFile = (() => {
     async function carregarActionFile(){
         limparAlerta();
 
+        renderInbox();
+
+        if(typeof supabaseClient === "undefined" || !supabaseClient){
+            registros = [];
+            renderInbox();
+            renderTabela();
+            alertar(
+                "warning",
+                "Não foi possível conectar ao Supabase agora. A estrutura do Action File foi carregada, mas as mensagens salvas serão exibidas quando a conexão voltar."
+            );
+            return;
+        }
+
         const { data, error } = await supabaseClient
             .from("action_files")
             .select("*")
@@ -439,6 +454,7 @@ const ActionFile = (() => {
         if(error){
             console.error(error);
             registros = [];
+            renderInbox();
             renderTabela();
             alertar("danger", friendlyError(error));
             return;

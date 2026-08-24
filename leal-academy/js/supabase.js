@@ -5,13 +5,19 @@ const SUPABASE_KEY =
 'sb_publishable_XvogqlnWLM0l5Cikeb2AsQ_sFuV8RXe'
 
 const supabaseClient =
-supabase.createClient(
+window.supabase && typeof window.supabase.createClient === "function"
+? window.supabase.createClient(
 
     SUPABASE_URL,
 
     SUPABASE_KEY
 
 )
+: null
+
+if(!supabaseClient){
+    console.warn("Supabase indisponível no momento. A plataforma continuará carregando a interface e tentará usar os dados quando a conexão estiver disponível.");
+}
 
 /*==========================================================
 MENSAGENS AMIGAVEIS

@@ -6,7 +6,7 @@ Carrega cursos do Supabase com fallback para os arquivos locais.
 "use strict";
 
 async function loadAcademyFromSupabase(){
-    if(typeof supabaseClient === "undefined"){
+    if(typeof supabaseClient === "undefined" || !supabaseClient){
         return false;
     }
 
