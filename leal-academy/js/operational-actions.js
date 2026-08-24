@@ -22,11 +22,11 @@ const OperationalActions = (() => {
             description: "Envio proativo ou operacional de bagagem com etiqueta Rush."
         },
         FAH: {
-            title: "FAH - Forward AHL / History",
+            title: "FAH - Forward Delayed Bag",
             category: "ACTION_MESSAGES",
             categoryLabel: "Action Messages",
-            actionTitle: "Forward AHL",
-            description: "Registro de histórico, resposta ou encaminhamento operacional relacionado ao AHL."
+            actionTitle: "Forward Delayed Bag",
+            description: "Envio de bagagem localizada relacionada a um AHL para a base responsável pela devolução ao passageiro."
         },
         FLZ: {
             title: "FLZ - Envio ao depósito",
@@ -192,17 +192,17 @@ const OperationalActions = (() => {
 
                             <div class="row g-3">
                                 <div class="col-md-3">
-                                    <label class="form-label">Base origem</label>
+                                    <label class="form-label">${originLabel()}</label>
                                     <input id="opStation" class="form-control" value="${station}">
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label">Companhia</label>
+                                    <label class="form-label">${airlineLabel()}</label>
                                     <input id="opAirline" class="form-control" value="${airline}">
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label">Base destino</label>
+                                    <label class="form-label">${destinationLabel()}</label>
                                     <input id="opDestination" class="form-control" value="${destinationDefault()}">
                                 </div>
 
@@ -212,7 +212,7 @@ const OperationalActions = (() => {
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label">Rush Tag</label>
+                                    <label class="form-label">${rushTagLabel()}</label>
                                     <input id="opRushTag" class="form-control" placeholder="Ex.: LA123456">
                                 </div>
 
@@ -222,12 +222,12 @@ const OperationalActions = (() => {
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label">Voo / data</label>
+                                    <label class="form-label">${flightLabel()}</label>
                                     <input id="opFlight" class="form-control" value="${escapeHtml(flightFrom(currentCase))}" placeholder="Ex.: LA1234/30JUN">
                                 </div>
 
                                 <div class="col-md-3">
-                                    <label class="form-label">Rota</label>
+                                    <label class="form-label">${routeLabel()}</label>
                                     <input id="opRoute" class="form-control" value="${escapeHtml(routeFrom(currentCase))}" placeholder="Ex.: GRU/REC">
                                 </div>
 
@@ -324,13 +324,49 @@ const OperationalActions = (() => {
         return "";
     }
 
+    function originLabel(){
+        return currentAction === "FAH"
+            ? "Origin Address - base origem"
+            : "Base origem";
+    }
+
+    function airlineLabel(){
+        return currentAction === "FAH"
+            ? "Origin Airline - cia origem"
+            : "Companhia";
+    }
+
+    function destinationLabel(){
+        return currentAction === "FAH"
+            ? "Base responsável pela entrega"
+            : "Base destino";
+    }
+
+    function rushTagLabel(){
+        return currentAction === "FAH"
+            ? "Rush Tag Number"
+            : "Rush Tag";
+    }
+
+    function flightLabel(){
+        return currentAction === "FAH"
+            ? "Rush Routing - voo/data"
+            : "Voo / data";
+    }
+
+    function routeLabel(){
+        return currentAction === "FAH"
+            ? "Rush Routing - rota"
+            : "Rota";
+    }
+
     function defaultNotes(){
         if(currentAction === "FWD"){
             return "BAGAGEM ENVIADA COM ETIQUETA RUSH. INFORMAR AO PASSAGEIRO NO DESEMBARQUE.";
         }
 
         if(currentAction === "FAH"){
-            return "HISTÓRICO DO AHL ATUALIZADO. REGISTRAR RESPOSTA, ENCAMINHAMENTO OU ACOMPANHAMENTO OPERACIONAL.";
+            return "BAGAGEM LOCALIZADA E ENVIADA PARA A BASE RESPONSÁVEL PELA DEVOLUÇÃO AO PASSAGEIRO.";
         }
 
         if(currentAction === "FLZ"){
@@ -357,8 +393,9 @@ const OperationalActions = (() => {
         if(currentAction === "FAH"){
             return `
                 <div class="alert alert-info">
-                    Use FAH para registrar no AHL uma resposta, histórico operacional,
-                    acompanhamento de envio, informação de match, contato ou atualização relevante.
+                    Use FAH quando a bagagem de um AHL foi localizada em sua base,
+                    mas o passageiro já está em outra localidade. Informe a etiqueta Rush,
+                    a origem do envio e a rota/voo para a base que fará a devolução.
                 </div>
             `;
         }
@@ -424,16 +461,32 @@ const OperationalActions = (() => {
     }
 
     function buildFah(reference){
+        const originAddress = [
+            text(value("opStation")),
+            text(value("opAirline"))
+        ].filter(Boolean).join("/");
+
+        const rushRouting = [
+            text(value("opFlight")),
+            text(value("opRoute")),
+            text(value("opDestination"))
+        ].filter(Boolean).join(" ");
+
         return [
             `>WM FAH ${text(reference)}`,
             `AHL ${text(currentCase.reference_number)}`,
+            `ON ${originAddress || "-"}`,
+            `RT ${rushRouting || "-"}`,
+            `XT ${text(value("opRushTag")) || "-"}`,
+            `OB ${text(value("opOriginalTag")) || "-"}`,
+            `CT ${text(currentCase.ct) || "-"}`,
+            `BI ${text(currentCase.bi) || "-"}`,
+            `BW ${text(value("opWeight")) || "-"}`,
             `NM ${nameFrom(currentCase) || "-"}`,
-            `TN ${text(value("opOriginalTag")) || "-"}`,
-            `RT ${text(value("opRoute")) || "-"}`,
-            `FD ${text(value("opFlight")) || "-"}`,
-            `FW ${text(value("opDestination")) || "-"}`,
-            `RL ${text(value("opReasonLoss")) || "-"}`,
-            `FS ${text(value("opFaultStation")) || "-"}`,
+            `PA ${text(currentCase.pa) || "-"}`,
+            `TA ${text(currentCase.ta) || "-"}`,
+            `CP ${text(currentCase.cp || currentCase.bp) || "-"}`,
+            `EA ${text(currentCase.ea) || "-"}`,
             `SI ${text(value("opNotes")) || "-"}`,
             "-",
             `AG ${text(value("opStation"))}`
