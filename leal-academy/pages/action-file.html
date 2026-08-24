@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Action File - WorldTracer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="bg-dark text-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary px-2">
+    <a class="navbar-brand fw-bold" href="../index.html">Airport Baggage Simulator</a>
+
+    <div class="ms-auto d-flex gap-3 small">
+        <a class="text-light text-decoration-none" href="../index.html">Dashboard</a>
+        <a class="text-info text-decoration-none fw-bold" href="academy-access.html">Cursos</a>
+        <a class="text-light text-decoration-none" href="checkin.html">Check-In</a>
+        <a class="text-light text-decoration-none" href="bhs.html">BHS</a>
+        <a class="text-light text-decoration-none" href="makeup.html">Make-Up</a>
+        <a class="text-light text-decoration-none" href="loading.html">Loading</a>
+        <a class="text-light text-decoration-none" href="ohd.html">OHD</a>
+        <a class="text-light text-decoration-none" href="ahl.html">AHL</a>
+        <a class="text-light text-decoration-none" href="dpr.html">DPR</a>
+        <a class="text-light text-decoration-none" href="rfp.html">RFP</a>
+        <a class="text-warning text-decoration-none fw-bold" href="action-file.html">Action File</a>
+    </div>
+</nav>
+
+<div class="container-fluid py-3">
+
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h2 class="fw-bold mb-1 text-warning">Action File</h2>
+            <div class="text-secondary">
+                Fila operacional de ações e mensagens pendentes do WorldTracer simulado
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="button" id="btnAtualizarActionFile" class="btn btn-success btn-sm">
+                Atualizar
+            </button>
+            <button type="button" id="btnLimparActionFile" class="btn btn-light btn-sm">
+                Limpar
+            </button>
+        </div>
+    </div>
+
+    <div id="actionFileAlert"></div>
+
+    <section class="bg-dark border border-secondary rounded p-3 mb-3">
+        <h5 class="fw-bold mb-3">Criar ação</h5>
+
+        <div class="row g-3">
+            <div class="col-md-2">
+                <label class="form-label text-warning fw-bold">Tipo de processo</label>
+                <select id="case_type" class="form-select form-select-sm">
+                    <option value="AHL">AHL</option>
+                    <option value="OHD">OHD</option>
+                    <option value="DPR">DPR</option>
+                    <option value="RFP">RFP</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label text-warning fw-bold">Referência</label>
+                <input id="reference_number" class="form-control form-control-sm" placeholder="Ex.: GRULA00001">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label text-warning fw-bold">Station</label>
+                <input id="station" class="form-control form-control-sm" maxlength="3" placeholder="GRU">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label text-warning fw-bold">Airline</label>
+                <input id="airline" class="form-control form-control-sm" maxlength="3" placeholder="LA">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label text-warning fw-bold">Código</label>
+                <select id="action_code" class="form-select form-select-sm"></select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label text-warning fw-bold">Prioridade</label>
+                <select id="priority" class="form-select form-select-sm">
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="ALTA">ALTA</option>
+                    <option value="URGENTE">URGENTE</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label text-warning fw-bold">Responsável</label>
+                <input id="assigned_to" class="form-control form-control-sm" placeholder="Agente ou base responsável">
+            </div>
+
+            <div class="col-md-8">
+                <label class="form-label text-warning fw-bold">Mensagem / orientação</label>
+                <textarea id="message" class="form-control form-control-sm" rows="3"
+                          placeholder="Descreva a ação necessária, resposta recebida ou pendência operacional."></textarea>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button type="button" id="btnSalvarActionFile" class="btn btn-success">
+                Salvar ação
+            </button>
+        </div>
+    </section>
+
+    <section class="bg-dark border border-secondary rounded p-3 mb-3">
+        <h5 class="fw-bold mb-3">Filtros</h5>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <input id="txtPesquisaActionFile" class="form-control form-control-sm"
+                       placeholder="Buscar por referência, código, station, mensagem ou responsável">
+            </div>
+
+            <div class="col-md-2">
+                <select id="filtroTipo" class="form-select form-select-sm">
+                    <option value="">Todos os processos</option>
+                    <option value="AHL">AHL</option>
+                    <option value="OHD">OHD</option>
+                    <option value="DPR">DPR</option>
+                    <option value="RFP">RFP</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select id="filtroCodigo" class="form-select form-select-sm"></select>
+            </div>
+
+            <div class="col-md-2">
+                <select id="filtroStatus" class="form-select form-select-sm">
+                    <option value="">Todos os status</option>
+                    <option value="PENDENTE">Pendente</option>
+                    <option value="EM TRATATIVA">Em tratativa</option>
+                    <option value="RESPONDIDO">Respondido</option>
+                    <option value="ENCERRADO">Encerrado</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" id="btnFiltrarActionFile" class="btn btn-warning btn-sm w-100">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-dark border border-secondary rounded p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Ações registradas</h5>
+            <span id="actionFileCounter" class="badge bg-secondary">0 ações</span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-sm table-hover align-middle">
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Processo</th>
+                    <th>Referência</th>
+                    <th>Station</th>
+                    <th>Status</th>
+                    <th>Prioridade</th>
+                    <th>Mensagem</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody id="listaActionFile"></tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<div class="modal fade" id="modalActionFile" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-light border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="modalActionFileTitle">Tratativa</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="modal_action_id">
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label text-warning fw-bold">Novo status</label>
+                        <select id="modal_status" class="form-select form-select-sm">
+                            <option value="PENDENTE">Pendente</option>
+                            <option value="EM TRATATIVA">Em tratativa</option>
+                            <option value="RESPONDIDO">Respondido</option>
+                            <option value="ENCERRADO">Encerrado</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label text-warning fw-bold">Responsável</label>
+                        <input id="modal_assigned_to" class="form-control form-control-sm">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label text-warning fw-bold">Próxima base</label>
+                        <input id="modal_forward_to" class="form-control form-control-sm" maxlength="3">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label text-warning fw-bold">Resposta / atualização</label>
+                        <textarea id="modal_response" class="form-control form-control-sm" rows="4"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label text-warning fw-bold">Histórico</label>
+                        <pre id="modal_history" class="bg-black text-light border border-secondary rounded p-2 small mb-0"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" id="btnSalvarTratativaActionFile" class="btn btn-success">
+                    Salvar tratativa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../js/supabase.js"></script>
+<script src="../js/access-control.js?v=20260823-accent-v2" data-access="protected"></script>
+<script src="../js/academy-text.js?v=20260823-accent-v2"></script>
+<script src="../js/academy-security.js?v=20260823-accent-v2"></script>
+<script src="../js/action-file.js?v=20260824-action-file"></script>
+
+</body>
+</html>
