@@ -597,9 +597,27 @@ async function carregarOhd(){
                 </button>
 
                 <button
+                    class="btn btn-primary btn-sm"
+                    onclick="OperationalActions.open('FWD', 'OHD', '${reg.id}')">
+                    FWD
+                </button>
+
+                <button
                     class="btn btn-warning btn-sm"
                     onclick="verSolicitacoesOhd('${reg.id}')">
                     FOH
+                </button>
+
+                <button
+                    class="btn btn-secondary btn-sm"
+                    onclick="OperationalActions.open('FLZ', 'OHD', '${reg.id}')">
+                    FLZ
+                </button>
+
+                <button
+                    class="btn btn-secondary btn-sm"
+                    onclick="OperationalActions.open('COH', 'OHD', '${reg.id}')">
+                    COH
                 </button>
 
                 <button
