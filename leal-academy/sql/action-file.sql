@@ -11,6 +11,8 @@ create table if not exists public.action_files (
     airline text,
 
     action_code text not null,
+    action_category text not null default 'ACTION_MESSAGES',
+    action_category_label text not null default 'Action Messages',
     action_title text not null,
     action_description text,
 
@@ -30,6 +32,12 @@ create table if not exists public.action_files (
     resolved_at timestamptz
 );
 
+alter table public.action_files
+    add column if not exists action_category text not null default 'ACTION_MESSAGES';
+
+alter table public.action_files
+    add column if not exists action_category_label text not null default 'Action Messages';
+
 create index if not exists idx_action_files_reference
     on public.action_files(reference_number);
 
@@ -42,8 +50,11 @@ create index if not exists idx_action_files_case
 create index if not exists idx_action_files_code
     on public.action_files(action_code);
 
+create index if not exists idx_action_files_category
+    on public.action_files(action_category);
+
 comment on table public.action_files is
-    'Fila operacional Action File do simulador WorldTracer, incluindo DXF, EXF, AP, FW, FWD, BDO, AA, ROH e FOH.';
+    'Fila operacional Action File do simulador WorldTracer, com Station Inbox, Forward Messages, Action Messages, System Matches, Extended Matches, Claims, Prompts, Email Correspondence, Purged/retired items e Local Manager.';
 
 alter table public.action_files enable row level security;
 

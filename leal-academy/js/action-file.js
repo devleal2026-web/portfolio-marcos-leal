@@ -6,54 +6,158 @@ WorldTracer Simulator
 "use strict";
 
 const ActionFile = (() => {
+    const INBOX_CATEGORIES = [
+        {
+            key:"FORWARD_MESSAGES",
+            label:"Forward Messages",
+            description:"Forward Messages e FWDs recebidos ou enviados pela estação."
+        },
+        {
+            key:"ACTION_MESSAGES",
+            label:"Action Messages",
+            description:"Ações necessárias em PIRs, solicitações de QOH/OHD, respostas de ROH, FOH e FAH."
+        },
+        {
+            key:"SYSTEM_MATCHES",
+            label:"System Matches",
+            description:"Matches comparativos entre AHLs da estação e OHDs registrados em outros aeroportos."
+        },
+        {
+            key:"EXTENDED_MATCHES",
+            label:"Extended Matches",
+            description:"Possíveis matches gerados quando o período de rastreio de uma AHL foi prolongado."
+        },
+        {
+            key:"CLAIM_MATCHES",
+            label:"Claim Matches",
+            description:"Notificações do módulo de investigação e reclamações."
+        },
+        {
+            key:"SYSTEM_PROMPTS",
+            label:"System Prompts",
+            description:"Alertas automáticos do sistema indicando ações pendentes em algum PIR."
+        },
+        {
+            key:"ADDITIONAL_PROMPTS",
+            label:"Additional Prompts",
+            description:"Mensagens gerais entre aeroportos. Equivalente ao antigo PXF do WorldTracer Native."
+        },
+        {
+            key:"EMAIL_CORRESPONDENCE",
+            label:"Email Correspondence",
+            description:"E-mails enviados por passageiros pela internet."
+        },
+        {
+            key:"CLAIMS_MESSAGES",
+            label:"Claims Messages",
+            description:"Notificações de reclamações enviadas pela internet ou autoatendimento."
+        },
+        {
+            key:"PURGED_RETIRED_ITEMS",
+            label:"Purged/retired items",
+            description:"QOHs com prazo vencido, normalmente após 24 horas."
+        },
+        {
+            key:"LOCAL_MANAGER",
+            label:"Local Manager",
+            description:"Mensagens enviadas pela Central de Bagagem, HDQ ou headquarters, aos aeroportos."
+        }
+    ];
+
     const ACTION_CODES = [
         {
             code:"DXF",
+            category:"ACTION_MESSAGES",
             title:"Documento ou dado pendente",
             description:"Solicitação de conferência, ajuste ou complemento de dados do processo."
         },
         {
             code:"EXF",
+            category:"ACTION_MESSAGES",
             title:"Informação extra",
             description:"Pedido de atualização, observação operacional ou informação complementar."
         },
         {
             code:"AP",
+            category:"ACTION_MESSAGES",
             title:"Ação pendente",
             description:"Pendência operacional que exige atuação da base ou do agente responsável."
         },
         {
             code:"FW",
+            category:"FORWARD_MESSAGES",
             title:"Encaminhamento",
             description:"Ação de encaminhamento de mensagem, objeto, bagagem ou processo para outra base."
         },
         {
             code:"FWD",
+            category:"FORWARD_MESSAGES",
             title:"Envio de rush bag",
             description:"Registro de envio ou encaminhamento de bagagem com etiqueta rush para outra base."
         },
         {
             code:"BDO",
+            category:"ACTION_MESSAGES",
             title:"Entrega de bagagem",
             description:"Registro de entrega da bagagem ao passageiro, representante ou destinatário autorizado."
         },
         {
             code:"AA",
+            category:"LOCAL_MANAGER",
             title:"Ação administrativa",
             description:"Acompanhamento administrativo, auditoria, revisão ou encerramento operacional."
         },
         {
             code:"ROH",
+            category:"ACTION_MESSAGES",
             title:"Request On-Hand",
             description:"Solicitação de envio de OHD relacionado a um AHL."
         },
         {
             code:"FOH",
+            category:"ACTION_MESSAGES",
             title:"Forward On-Hand",
             description:"Envio de OHD para a base solicitante ou destino definido."
         },
         {
+            code:"FAH",
+            category:"ACTION_MESSAGES",
+            title:"Forward AHL",
+            description:"Resposta ou encaminhamento relacionado a processo AHL."
+        },
+        {
+            code:"MATCH",
+            category:"SYSTEM_MATCHES",
+            title:"Match do sistema",
+            description:"Informação comparativa entre AHL e OHD."
+        },
+        {
+            code:"EXT",
+            category:"EXTENDED_MATCHES",
+            title:"Match estendido",
+            description:"Possível match após prolongamento do rastreio de AHL."
+        },
+        {
+            code:"CLM",
+            category:"CLAIMS_MESSAGES",
+            title:"Mensagem de claim",
+            description:"Reclamação recebida pela internet ou autoatendimento."
+        },
+        {
+            code:"EMAIL",
+            category:"EMAIL_CORRESPONDENCE",
+            title:"Correspondência por e-mail",
+            description:"E-mail enviado pelo passageiro através dos canais digitais."
+        },
+        {
+            code:"QOH",
+            category:"PURGED_RETIRED_ITEMS",
+            title:"QOH vencido",
+            description:"Item QOH com prazo operacional vencido."
+        },
+        {
             code:"GEN",
+            category:"ADDITIONAL_PROMPTS",
             title:"Ação geral",
             description:"Ação operacional genérica para casos fora dos códigos principais."
         }
@@ -105,11 +209,15 @@ const ActionFile = (() => {
     function carregarCombos(){
         const actionSelect = document.getElementById("action_code");
         const filtroCodigo = document.getElementById("filtroCodigo");
+        const categorySelect = document.getElementById("action_category");
+        const filtroCategoria = document.getElementById("filtroCategoria");
 
         if(actionSelect){
             actionSelect.innerHTML = ACTION_CODES
                 .map(item => `<option value="${item.code}">${item.code} - ${item.title}</option>`)
                 .join("");
+
+            actionSelect.addEventListener("change", atualizarCategoriaPeloCodigo);
         }
 
         if(filtroCodigo){
@@ -119,6 +227,22 @@ const ActionFile = (() => {
                     .map(item => `<option value="${item.code}">${item.code}</option>`)
                     .join("");
         }
+
+        if(categorySelect){
+            categorySelect.innerHTML = INBOX_CATEGORIES
+                .map(item => `<option value="${item.key}">${item.label}</option>`)
+                .join("");
+        }
+
+        if(filtroCategoria){
+            filtroCategoria.innerHTML =
+                `<option value="">Todos os campos</option>` +
+                INBOX_CATEGORIES
+                    .map(item => `<option value="${item.key}">${item.label}</option>`)
+                    .join("");
+        }
+
+        atualizarCategoriaPeloCodigo();
     }
 
     function configurarEventos(){
@@ -129,8 +253,17 @@ const ActionFile = (() => {
         document.getElementById("txtPesquisaActionFile")?.addEventListener("keyup", renderTabela);
         document.getElementById("filtroTipo")?.addEventListener("change", renderTabela);
         document.getElementById("filtroCodigo")?.addEventListener("change", renderTabela);
+        document.getElementById("filtroCategoria")?.addEventListener("change", renderTabela);
+        document.getElementById("filtroDia")?.addEventListener("change", renderTabela);
         document.getElementById("filtroStatus")?.addEventListener("change", renderTabela);
         document.getElementById("btnSalvarTratativaActionFile")?.addEventListener("click", salvarTratativa);
+    }
+
+    function atualizarCategoriaPeloCodigo(){
+        const code = text(valor("action_code"));
+        const info = actionInfo(code);
+
+        preencher("action_category", info.category || "ACTION_MESSAGES");
     }
 
     function friendlyError(error){
@@ -198,6 +331,10 @@ const ActionFile = (() => {
         return ACTION_CODES.find(item => item.code === code) || ACTION_CODES[ACTION_CODES.length - 1];
     }
 
+    function categoryInfo(key){
+        return INBOX_CATEGORIES.find(item => item.key === key) || INBOX_CATEGORIES[1];
+    }
+
     function montarHistoricoInicial(payload){
         return [
             {
@@ -220,6 +357,7 @@ const ActionFile = (() => {
         const airline = text(valor("airline"));
         const actionCode = text(valor("action_code"));
         const info = actionInfo(actionCode);
+        const category = valor("action_category") || info.category || "ACTION_MESSAGES";
         const message = valor("message");
 
         if(!caseType || !referenceNumber || !actionCode || !message){
@@ -236,6 +374,8 @@ const ActionFile = (() => {
             station:station || processo?.station || referenceNumber.substring(0, 3),
             airline:airline || processo?.airline || referenceNumber.substring(3, 5),
             action_code:actionCode,
+            action_category:category,
+            action_category_label:categoryInfo(category).label,
             action_title:info.title,
             action_description:info.description,
             status:"PENDENTE",
@@ -281,6 +421,7 @@ const ActionFile = (() => {
         }
 
         registros = data || [];
+        renderInbox();
         renderTabela();
     }
 
@@ -288,6 +429,8 @@ const ActionFile = (() => {
         const pesquisa = text(valor("txtPesquisaActionFile"));
         const tipo = text(valor("filtroTipo"));
         const codigo = text(valor("filtroCodigo"));
+        const categoria = text(valor("filtroCategoria"));
+        const dia = Number(valor("filtroDia"));
         const status = text(valor("filtroStatus"));
 
         return registros.filter(item => {
@@ -296,6 +439,14 @@ const ActionFile = (() => {
             }
 
             if(codigo && item.action_code !== codigo){
+                return false;
+            }
+
+            if(categoria && categoriaRegistro(item) !== categoria){
+                return false;
+            }
+
+            if(dia && dayBucket(item.created_at) !== dia){
                 return false;
             }
 
@@ -311,6 +462,7 @@ const ActionFile = (() => {
                 item.reference_number,
                 item.case_type,
                 item.action_code,
+                item.action_category_label,
                 item.action_title,
                 item.station,
                 item.airline,
@@ -322,6 +474,98 @@ const ActionFile = (() => {
             ].join(" ").toUpperCase();
 
             return haystack.includes(pesquisa);
+        });
+    }
+
+    function categoriaRegistro(item){
+        if(item.action_category){
+            return item.action_category;
+        }
+
+        return actionInfo(item.action_code).category || "ACTION_MESSAGES";
+    }
+
+    function dayBucket(dateValue){
+        if(!dateValue){
+            return 7;
+        }
+
+        const created = new Date(dateValue);
+        const now = new Date();
+        const diffMs = now.getTime() - created.getTime();
+        const diffDays = Math.floor(diffMs / 86400000) + 1;
+
+        if(diffDays < 1){
+            return 1;
+        }
+
+        if(diffDays > 7){
+            return 7;
+        }
+
+        return diffDays;
+    }
+
+    function renderInbox(){
+        const tbody = document.getElementById("stationInboxActionFile");
+        const refresh = document.getElementById("lastRefreshActionFile");
+
+        if(refresh){
+            refresh.textContent = "Last refresh: " + new Date().toLocaleString("pt-BR");
+        }
+
+        if(!tbody){
+            return;
+        }
+
+        const abertas = registros.filter(item => item.status !== "ENCERRADO");
+
+        tbody.innerHTML = INBOX_CATEGORIES.map(category => {
+            const cells = [];
+
+            for(let day = 1; day <= 7; day++){
+                const count = abertas.filter(item =>
+                    categoriaRegistro(item) === category.key &&
+                    dayBucket(item.created_at) === day
+                ).length;
+
+                cells.push(`
+                    <td class="text-center">
+                        <button
+                            type="button"
+                            class="btn btn-sm ${count > 0 ? "btn-warning" : "btn-outline-light"}"
+                            onclick="ActionFile.filtrarInbox('${category.key}', '${day}')">
+                            ${count}
+                        </button>
+                    </td>
+                `);
+            }
+
+            return `
+                <tr>
+                    <td>
+                        <button
+                            type="button"
+                            class="btn btn-link p-0 text-decoration-none text-start fw-bold"
+                            onclick="ActionFile.filtrarInbox('${category.key}', '')">
+                            ${escapeHtml(category.label)}
+                        </button>
+                        <div class="small text-secondary">${escapeHtml(category.description)}</div>
+                    </td>
+                    ${cells.join("")}
+                </tr>
+            `;
+        }).join("");
+    }
+
+    function filtrarInbox(category, day){
+        preencher("filtroCategoria", category || "");
+        preencher("filtroDia", day || "");
+        renderTabela();
+
+        document.getElementById("listaActionFile")?.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
         });
     }
 
@@ -367,7 +611,7 @@ const ActionFile = (() => {
         if(lista.length === 0){
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="8" class="text-center text-secondary py-4">
+                    <td colspan="9" class="text-center text-secondary py-4">
                         Nenhuma ação encontrada.
                     </td>
                 </tr>
@@ -377,6 +621,10 @@ const ActionFile = (() => {
 
         tbody.innerHTML = lista.map(item => `
             <tr>
+                <td>
+                    <div class="fw-bold">${escapeHtml(categoryInfo(categoriaRegistro(item)).label)}</div>
+                    <div class="small text-secondary">Day ${dayBucket(item.created_at)}</div>
+                </td>
                 <td>
                     <span class="badge bg-primary">${escapeHtml(item.action_code)}</span>
                     <div class="small text-secondary">${escapeHtml(item.action_title)}</div>
@@ -418,11 +666,14 @@ const ActionFile = (() => {
             "airline",
             "assigned_to",
             "message",
-            "txtPesquisaActionFile"
+            "txtPesquisaActionFile",
+            "filtroCategoria",
+            "filtroDia"
         ].forEach(id => preencher(id, ""));
 
         preencher("case_type", "AHL");
         preencher("action_code", "DXF");
+        atualizarCategoriaPeloCodigo();
         preencher("priority", "NORMAL");
 
         if(clearAlert){
@@ -593,6 +844,7 @@ const ActionFile = (() => {
         salvarTratativa,
         encerrar,
         abrirProcesso,
-        carregarActionFile
+        carregarActionFile,
+        filtrarInbox
     };
 })();
