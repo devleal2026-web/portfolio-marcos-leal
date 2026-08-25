@@ -27,6 +27,8 @@ async function iniciar(){
         document.getElementById("tn")?.focus();
     }
 
+    atualizarModoAhlWorldTracer();
+
 }
 
 /*==========================================================
@@ -47,6 +49,16 @@ function preencher(id, valorCampo){
 function formatarData(data){
     if(!data) return "";
     return new Date(data).toLocaleString("pt-BR");
+}
+
+function atualizarModoAhlWorldTracer(){
+    const botao = document.getElementById("btnSave");
+
+    if(botao){
+        botao.textContent = ahlId
+            ? "F1 AAH ALTERAR AHL"
+            : "F1 CRIAR AHL";
+    }
 }
 
 /*==========================================================
@@ -285,12 +297,18 @@ async function salvarAHL(){
         await ActionFileIntegration.recordCaseCreated("AHL", resposta.data);
     }
 
+    if(!novoAhl && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseUpdated("AHL", resposta.data);
+    }
+
     if(window.MatchEngine){
         await MatchEngine.processAhl(resposta.data);
         await MatchEngine.alertPending("ahl");
     }
 
-    alert((novoAhl ? "AHL criado com sucesso." : "AHL atualizado com sucesso.") + "\n\n" + resposta.data.reference_number);
+    atualizarModoAhlWorldTracer();
+
+    alert((novoAhl ? "AHL criado com sucesso." : "AHL alterado com sucesso.") + "\n\n" + resposta.data.reference_number);
 
 }
 
@@ -346,6 +364,12 @@ function limparCampos(){
         });
 
     preencher("status", "ABERTO");
+    preencher("reference_number", "");
+    preencher("created_at", formatarData(new Date().toISOString()));
+
+    ahlId = null;
+
+    atualizarModoAhlWorldTracer();
 
 }
 

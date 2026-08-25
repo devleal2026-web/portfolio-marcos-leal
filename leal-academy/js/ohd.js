@@ -11,6 +11,21 @@ let ohdAtual = null;
 
 const tabela = document.getElementById("listaOhd");
 
+function atualizarModoOhd(){
+    const botao = document.getElementById("btnSalvar");
+
+    if(!botao){
+        return;
+    }
+
+    botao.textContent = ohdAtual
+        ? "AOH - Alterar OHD"
+        : "Criar OHD";
+
+    botao.classList.toggle("btn-warning", Boolean(ohdAtual));
+    botao.classList.toggle("btn-success", !ohdAtual);
+}
+
 /*==========================================================
 INICIALIZAÇÃO
 ==========================================================*/
@@ -504,18 +519,12 @@ async function salvarOhd(){
 
     }
 
-    ohdAtual=null;
-
-    alert(
-
-        "OHD criado com sucesso.\n\n" +
-
-        resposta.data.reference_number
-
-    );
-
     if(novoOhd && window.ActionFileIntegration){
         await ActionFileIntegration.recordCaseCreated("OHD", resposta.data);
+    }
+
+    if(!novoOhd && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseUpdated("OHD", resposta.data);
     }
 
     const idCriado = resposta.data.id;
@@ -524,6 +533,21 @@ async function salvarOhd(){
     await MatchEngine.alertPending("ohd");
 
     await carregarOhd();
+
+    if(!novoOhd){
+        ohdAtual = resposta.data.id;
+        alert(
+            "OHD alterado com sucesso.\n\n" +
+            resposta.data.reference_number
+        );
+        atualizarModoOhd();
+        return;
+    }
+
+    alert(
+        "OHD criado com sucesso.\n\n" +
+        resposta.data.reference_number
+    );
 
     limparFormulario();
 
@@ -679,6 +703,10 @@ function limparFormulario(){
         }
 
     });
+
+    ohdAtual = null;
+
+    atualizarModoOhd();
 
 }
 /*==========================================================
@@ -910,6 +938,8 @@ async function visualizarOhd(id){
     if(window.BdoFlow){
         await BdoFlow.renderCaseHistory("OHD", id, "bdoHistoryOhd");
     }
+
+    atualizarModoOhd();
 
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",

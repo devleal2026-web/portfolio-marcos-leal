@@ -30,6 +30,8 @@ async function iniciar(){
         document.getElementById("tn")?.focus();
     }
 
+    atualizarModoOhdWorldTracer();
+
 }
 
 /*==========================================================
@@ -50,6 +52,16 @@ function preencher(id, valorCampo){
 function formatarData(data){
     if(!data) return "";
     return new Date(data).toLocaleString("pt-BR");
+}
+
+function atualizarModoOhdWorldTracer(){
+    const botao = document.getElementById("btnSave");
+
+    if(botao){
+        botao.textContent = idOhd
+            ? "F1 AOH ALTERAR OHD"
+            : "F1 CRIAR OHD";
+    }
 }
 
 /*==========================================================
@@ -343,12 +355,18 @@ async function salvarOhd(){
         await ActionFileIntegration.recordCaseCreated("OHD", resposta.data);
     }
 
+    if(!novoOhd && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseUpdated("OHD", resposta.data);
+    }
+
     if(window.MatchEngine){
         await MatchEngine.processOhd(resposta.data);
         await MatchEngine.alertPending("ohd");
     }
 
-    alert((novoOhd ? "OHD criado com sucesso." : "OHD atualizado com sucesso.") + "\n\n" + resposta.data.reference_number);
+    atualizarModoOhdWorldTracer();
+
+    alert((novoOhd ? "OHD criado com sucesso." : "OHD alterado com sucesso.") + "\n\n" + resposta.data.reference_number);
 
 }
 
@@ -404,6 +422,12 @@ function limparCampos(){
         });
 
     preencher("status", "ABERTO");
+    preencher("reference_number", "");
+    preencher("created_at", formatarData(new Date().toISOString()));
+
+    idOhd = null;
+
+    atualizarModoOhdWorldTracer();
 
 }
 

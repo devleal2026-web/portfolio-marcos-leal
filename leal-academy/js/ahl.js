@@ -139,6 +139,21 @@ function preencher(
 
 }
 
+function atualizarModoAhl(){
+    const botao = document.getElementById("btnSalvar");
+
+    if(!botao){
+        return;
+    }
+
+    botao.textContent = ahlAtual
+        ? "AAH - Alterar AHL"
+        : "Criar AHL";
+
+    botao.classList.toggle("btn-warning", Boolean(ahlAtual));
+    botao.classList.toggle("btn-success", !ahlAtual);
+}
+
 /*==========================================================
 LIMPAR FORMULÁRIO
 ==========================================================*/
@@ -170,6 +185,10 @@ function limparFormulario(){
             }
 
         });
+
+    ahlAtual = null;
+
+    atualizarModoAhl();
 
 }
 
@@ -459,6 +478,10 @@ async function salvarAhl(){
         await ActionFileIntegration.recordCaseCreated("AHL", resposta.data);
     }
 
+    if(!novoAhl && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseUpdated("AHL", resposta.data);
+    }
+
     await carregarAhl();
 
     const idCriado=
@@ -467,6 +490,21 @@ async function salvarAhl(){
 
         await MatchEngine.processAhl(resposta.data);
         await MatchEngine.alertPending("ahl");
+
+    if(!novoAhl){
+        alert(
+            "AHL alterado com sucesso.\n\n" +
+            resposta.data.reference_number
+        );
+
+        atualizarModoAhl();
+        return;
+    }
+
+    alert(
+        "AHL criado com sucesso.\n\n" +
+        resposta.data.reference_number
+    );
 
     limparFormulario();
 
@@ -975,6 +1013,8 @@ async function visualizarAhl(id){
     if(window.BdoFlow){
         await BdoFlow.renderCaseHistory("AHL", id, "bdoHistoryAhl");
     }
+
+    atualizarModoAhl();
 
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",

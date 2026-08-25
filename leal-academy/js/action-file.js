@@ -108,6 +108,24 @@ const ActionFile = (() => {
             description:"Ação que precisa ser tomada em PIRs, solicitações de OHD/QOH, ROH, FOH ou FAH."
         },
         {
+            code:"AAH",
+            category:"ACTION_MESSAGES",
+            title:"Alteração de AHL",
+            description:"Incluir, apagar ou alterar informações no relatório AHL."
+        },
+        {
+            code:"AOH",
+            category:"ACTION_MESSAGES",
+            title:"Alteração de OHD",
+            description:"Incluir, apagar ou alterar informações no relatório OHD."
+        },
+        {
+            code:"ADP",
+            category:"ACTION_MESSAGES",
+            title:"Alteração de DPR",
+            description:"Incluir, apagar ou alterar informações no relatório DPR."
+        },
+        {
             code:"ROH",
             category:"ACTION_MESSAGES",
             title:"Request On-Hand",

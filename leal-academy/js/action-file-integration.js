@@ -13,6 +13,24 @@ const ActionFileIntegration = (() => {
             title:"Action Message",
             description:"Ação operacional criada pelo simulador."
         },
+        AAH: {
+            category:"ACTION_MESSAGES",
+            label:"Action Messages",
+            title:"Update AHL",
+            description:"Alteração de informações no AHL."
+        },
+        AOH: {
+            category:"ACTION_MESSAGES",
+            label:"Action Messages",
+            title:"Update OHD",
+            description:"Alteração de informações no OHD."
+        },
+        ADP: {
+            category:"ACTION_MESSAGES",
+            label:"Action Messages",
+            title:"Update DPR",
+            description:"Alteração de informações no DPR."
+        },
         WM: {
             category:"SYSTEM_MATCHES",
             label:"System Matches",
@@ -177,6 +195,28 @@ const ActionFileIntegration = (() => {
         });
     }
 
+    async function recordCaseUpdated(caseType, recordData){
+        const type = text(caseType);
+        const reference = text(recordData?.reference_number);
+        const codeByType = {
+            AHL:"AAH",
+            OHD:"AOH",
+            DPR:"ADP"
+        };
+
+        return record({
+            case_type:type,
+            case_id:recordData?.id,
+            reference_number:reference,
+            station:stationFrom(recordData),
+            airline:airlineFrom(recordData),
+            action_code:codeByType[type] || "AA",
+            message:`${type} ${reference} alterado no simulador em ${new Date().toLocaleString("pt-BR")}. Conferir dados atualizados do processo.`,
+            assigned_to:recordData?.ag || "",
+            priority:"NORMAL"
+        });
+    }
+
     async function recordSystemMatch(ahl, ohd, match){
         const ahlReference = text(ahl?.reference_number);
         const ohdReference = text(ohd?.reference_number);
@@ -272,6 +312,7 @@ const ActionFileIntegration = (() => {
     return {
         record,
         recordCaseCreated,
+        recordCaseUpdated,
         recordSystemMatch,
         syncExistingMatches
     };

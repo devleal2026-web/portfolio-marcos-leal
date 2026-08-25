@@ -99,11 +99,11 @@ function gerarCategorias(){
 
         const coluna = document.createElement("div");
 
-        coluna.className = "col-xl-3 col-lg-4 col-md-6 mb-3";
+        coluna.className = "col-6 col-lg-4 col-xl-3 mb-2 mb-md-3";
 
         coluna.innerHTML = `
-            <div class="card h-100 shadow-sm">
-                <div class="card-body">
+            <div class="card h-100 shadow-sm contents-category-card">
+                <div class="card-body p-2 p-md-3">
 
                     <div class="form-check">
 
@@ -114,7 +114,7 @@ function gerarCategorias(){
                             value="${nome}">
 
                         <label
-                            class="form-check-label fw-bold"
+                            class="form-check-label fw-bold small"
                             for="${idCheck}">
                             ${nome}
                         </label>
@@ -123,7 +123,7 @@ function gerarCategorias(){
 
                     <input
                         type="text"
-                        class="form-control descricao mt-3"
+                        class="form-control form-control-sm descricao mt-2 mt-md-3"
                         placeholder="Ex.: DICTIONARY, BK MALE SHOES"
                         disabled>
 

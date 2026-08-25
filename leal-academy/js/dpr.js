@@ -10,6 +10,21 @@ let timerPesquisaDpr = null;
 
 const tabelaDpr = document.getElementById("listaDpr");
 
+function atualizarModoDpr(){
+    const botao = document.getElementById("btnSalvar");
+
+    if(!botao){
+        return;
+    }
+
+    botao.textContent = dprAtual
+        ? "ADP - Alterar DPR"
+        : "Criar DPR";
+
+    botao.classList.toggle("btn-warning", Boolean(dprAtual));
+    botao.classList.toggle("btn-success", !dprAtual);
+}
+
 const stations = [
     "GRU", "GIG", "CGH", "VCP", "SSA", "REC", "FOR", "CNF", "BSB",
     "POA", "MIA", "JFK", "LAX", "CDG", "FRA", "LHR", "LIS", "MAD"
@@ -264,13 +279,23 @@ async function salvarDpr(){
     preencher("reference_number", resposta.data.reference_number);
     preencher("status", resposta.data.status);
 
-    alert("DPR salvo com sucesso.\n\n" + resposta.data.reference_number);
-
     if(novoDpr && window.ActionFileIntegration){
         await ActionFileIntegration.recordCaseCreated("DPR", resposta.data);
     }
 
+    if(!novoDpr && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseUpdated("DPR", resposta.data);
+    }
+
     await carregarDpr();
+
+    if(!novoDpr){
+        alert("DPR alterado com sucesso.\n\n" + resposta.data.reference_number);
+        atualizarModoDpr();
+        return;
+    }
+
+    alert("DPR criado com sucesso.\n\n" + resposta.data.reference_number);
 
     limparFormularioDpr();
 
@@ -357,6 +382,8 @@ async function visualizarDpr(id){
     if(window.BdoFlow){
         await BdoFlow.renderCaseHistory("DPR", id, "bdoHistoryDpr");
     }
+
+    atualizarModoDpr();
 
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",
@@ -486,6 +513,8 @@ function limparFormularioDpr(){
     preencher("status", "ABERTO");
 
     dprAtual = null;
+
+    atualizarModoDpr();
 
 }
 

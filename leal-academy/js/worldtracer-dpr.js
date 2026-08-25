@@ -32,6 +32,8 @@ async function iniciarWorldTracerDpr(){
         preencher("status", "ABERTO");
         preencher("created_at", formatarData(new Date().toISOString()));
     }
+
+    atualizarModoDprWorldTracer();
 }
 
 function valor(id){
@@ -43,6 +45,16 @@ function preencher(id, valorCampo){
     const campo = document.getElementById(id);
     if(campo){
         campo.value = valorCampo ?? "";
+    }
+}
+
+function atualizarModoDprWorldTracer(){
+    const botao = document.getElementById("btnSave");
+
+    if(botao){
+        botao.textContent = dprId
+            ? "F1 ADP ALTERAR DPR"
+            : "F1 CRIAR DPR";
     }
 }
 
@@ -244,8 +256,17 @@ async function salvarDpr(){
         await ActionFileIntegration.recordCaseCreated("DPR", resposta.data);
     }
 
-    alert((novoDpr ? "DPR criado com sucesso." : "DPR atualizado com sucesso.") + "\n\n" + resposta.data.reference_number);
-    limparFormularioDprWorldTracer();
+    if(!novoDpr && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseUpdated("DPR", resposta.data);
+    }
+
+    atualizarModoDprWorldTracer();
+
+    alert((novoDpr ? "DPR criado com sucesso." : "DPR alterado com sucesso.") + "\n\n" + resposta.data.reference_number);
+
+    if(novoDpr){
+        limparFormularioDprWorldTracer();
+    }
 }
 
 function configurarBotoes(){
@@ -296,6 +317,12 @@ function limparCampos(){
         });
 
     preencher("status", "ABERTO");
+    preencher("reference_number", "");
+    preencher("created_at", formatarData(new Date().toISOString()));
+
+    dprId = null;
+
+    atualizarModoDprWorldTracer();
 }
 function limparFormularioDprWorldTracer(){
 
@@ -319,6 +346,8 @@ function limparFormularioDprWorldTracer(){
     preencher("created_at", formatarData(new Date().toISOString()));
 
     dprId = null;
+
+    atualizarModoDprWorldTracer();
 
 }
 
