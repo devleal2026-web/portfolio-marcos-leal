@@ -92,12 +92,15 @@ function atualizarModoRfp(){
         return;
     }
 
-    botao.textContent = rfpAtual
+    const emEdicao = Boolean(rfpAtual || valor("reference_number"));
+
+    botao.textContent = emEdicao
         ? "AFP - Alterar RFP"
         : "Criar RFP";
 
-    botao.classList.toggle("btn-warning", Boolean(rfpAtual));
-    botao.classList.toggle("btn-success", !rfpAtual);
+    botao.dataset.mode = emEdicao ? "edit" : "create";
+    botao.classList.toggle("btn-warning", emEdicao);
+    botao.classList.toggle("btn-success", !emEdicao);
 }
 
 function preencherDataPadraoRfp(){
@@ -361,6 +364,7 @@ async function visualizarRfp(id){
     });
 
     atualizarModoRfp();
+    requestAnimationFrame(atualizarModoRfp);
 
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",

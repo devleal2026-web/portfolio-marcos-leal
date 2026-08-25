@@ -102,9 +102,13 @@ function atualizarModoRfpWorldTracer(){
         return;
     }
 
-    botao.textContent = rfpId
+    const emEdicao = Boolean(rfpId || valor("reference_number"));
+
+    botao.textContent = emEdicao
         ? "F1 AFP ALTERAR RFP"
         : "F1 CRIAR RFP";
+
+    botao.dataset.mode = emEdicao ? "edit" : "create";
 }
 
 async function carregarRfp(){
