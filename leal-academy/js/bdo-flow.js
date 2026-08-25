@@ -88,6 +88,60 @@ const BdoFlow = (() => {
         return text(parts.join(" / "));
     }
 
+    function formatGmtStamp(date = new Date()){
+        const months = [
+            "JAN",
+            "FEB",
+            "MAR",
+            "APR",
+            "MAY",
+            "JUN",
+            "JUL",
+            "AUG",
+            "SEP",
+            "OCT",
+            "NOV",
+            "DEC"
+        ];
+
+        const hour = String(date.getUTCHours()).padStart(2, "0");
+        const minute = String(date.getUTCMinutes()).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        const month = months[date.getUTCMonth()];
+        const year = String(date.getUTCFullYear()).slice(-2);
+
+        return `${hour}${minute}GMT/${day}${month}${year}`;
+    }
+
+    function compactDate(value){
+        if(!value){
+            return "";
+        }
+
+        const date = new Date(`${value}T00:00:00`);
+
+        if(Number.isNaN(date.getTime())){
+            return text(value);
+        }
+
+        const months = [
+            "JAN",
+            "FEB",
+            "MAR",
+            "APR",
+            "MAY",
+            "JUN",
+            "JUL",
+            "AUG",
+            "SEP",
+            "OCT",
+            "NOV",
+            "DEC"
+        ];
+
+        return `${String(date.getDate()).padStart(2, "0")}${months[date.getMonth()]}${String(date.getFullYear()).slice(-2)}`;
+    }
+
     async function open(caseType, caseId){
         currentCaseType = text(caseType);
         currentCaseId = caseId;
@@ -316,21 +370,37 @@ const BdoFlow = (() => {
         const service = value("bdoDeliveryService");
         const serviceLabel = DELIVERY_SERVICES[service] || service;
         const closeCase = document.getElementById("bdoCloseCase")?.checked;
+        const amount = Number(value("bdoCostAmount") || 0);
+        const cost = `${text(value("bdoCostCurrency")) || "BRL"}${Number.isFinite(amount) ? amount.toFixed(0) : "0"}`;
+        const deliveryDate = compactDate(value("bdoDeliveryDate"));
+        const airline = text(value("bdoAirline")) || getAirline(currentCase);
+        const passenger = passengerName(currentCase) || "-";
+        const address = text(value("bdoDeliveryAddress")) || "-";
+        const city = text(currentCase?.pc || currentCase?.yt || currentCase?.pa || "");
+        const country = text(currentCase?.co || "");
+        const phone = text(value("bdoDeliveryContact")) || text(currentCase?.cp || currentCase?.pn || "");
+        const route = text(currentCase?.rt || "");
+        const flight = flightInfo(currentCase) || "-";
 
         const lines = [
-            `>WM BDO ${text(bdoReference || "PREVIEW")}`,
-            `${currentCaseType} ${text(currentCase.reference_number)}`,
-            `NM ${passengerName(currentCase) || "-"}`,
-            `TN ${tagNumber(currentCase) || "-"}`,
-            `FD ${flightInfo(currentCase) || "-"}`,
-            `DS ${service} ${serviceLabel}`,
-            `DD ${text(value("bdoDeliveryDate"))}`,
-            `ST ${station}`,
-            `CT ${text(value("bdoDeliveryContact")) || "-"}`,
-            `AD ${text(value("bdoDeliveryAddress")) || "-"}`,
-            `SI ${text(value("bdoDeliveryInstructions")) || "-"}`,
-            `SP ${text(value("bdoSupplementaryInfo")) || "-"}`,
-            "-"
+            "Delivery Information",
+            `1. WM BDO ${currentCaseType} ${text(currentCase.reference_number)} /${formatGmtStamp()}`,
+            `DS ${station}${airline}${service} - ${serviceLabel}`,
+            `${airline} AIRLINE GROUP.`,
+            "--------------------------------",
+            `NM01 ${passenger}`,
+            `AD ${address}`,
+            city ? `Y${city}` : "",
+            country ? `CO ${country}` : "",
+            `DD ${deliveryDate || "-"}`,
+            `DW ${currentCase?.bw ? `${currentCase.bw}KG` : "-"}`,
+            `CS ${cost}`,
+            phone ? `PN01 ${phone}` : "",
+            `LD01 ${text(value("bdoDeliveryInstructions")) || "-"}`,
+            `CT01 ${text(value("bdoSupplementaryInfo")) || bagDescription(currentCase) || "-"}`,
+            `FD ${flight}`,
+            route ? `RT ${route}` : "",
+            `TX ${text(bdoReference || "PREVIEW")}`
         ];
 
         if(closeCase){
@@ -344,7 +414,7 @@ const BdoFlow = (() => {
 
         lines.push(`AG ${station}`);
 
-        return lines.join("\n");
+        return lines.filter(Boolean).join("\n");
     }
 
     function preview(){
@@ -534,13 +604,7 @@ const BdoFlow = (() => {
     }
 
     function buildCaseHistoryEntry(payload){
-        return [
-            `[${new Date().toLocaleString("pt-BR")}] BDO ${payload.bdo_reference} criado.`,
-            `Processo: ${payload.reference_number}`,
-            `Servico: ${payload.delivery_service_label || "-"}`,
-            `Entrega: ${payload.delivery_station || "-"}`,
-            `Instrucao: ${payload.delivery_instructions || "-"}`
-        ].join(" ");
+        return payload.message || `Delivery Information\n1. WM BDO ${payload.case_type} ${payload.reference_number}`;
     }
 
     async function appendToRelatedCaseHistory(payload){
