@@ -907,6 +907,10 @@ async function visualizarOhd(id){
 
     await verSolicitacoesOhd(id);
 
+    if(window.BdoFlow){
+        await BdoFlow.renderCaseHistory("OHD", id, "bdoHistoryOhd");
+    }
+
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",
         block:"center"

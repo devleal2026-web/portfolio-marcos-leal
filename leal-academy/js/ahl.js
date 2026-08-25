@@ -972,6 +972,10 @@ async function visualizarAhl(id){
         await OhdFlow.renderAhlRequests(id, "ahlFlowRequests");
     }
 
+    if(window.BdoFlow){
+        await BdoFlow.renderCaseHistory("AHL", id, "bdoHistoryAhl");
+    }
+
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",
         block:"center"

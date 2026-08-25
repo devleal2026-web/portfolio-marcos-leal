@@ -354,6 +354,10 @@ async function visualizarDpr(id){
         preencher(key, data[key]);
     });
 
+    if(window.BdoFlow){
+        await BdoFlow.renderCaseHistory("DPR", id, "bdoHistoryDpr");
+    }
+
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",
         block:"center"

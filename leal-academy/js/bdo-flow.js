@@ -440,10 +440,13 @@ const BdoFlow = (() => {
         }
 
         await createActionFile(payload);
+        await appendToRelatedCaseHistory(payload);
 
         if(closeCase){
             await closeRelatedCase(payload);
         }
+
+        await renderCurrentCaseHistory();
 
         alert(
             closeCase
@@ -530,6 +533,159 @@ const BdoFlow = (() => {
         }
     }
 
+    function buildCaseHistoryEntry(payload){
+        return [
+            `[${new Date().toLocaleString("pt-BR")}] BDO ${payload.bdo_reference} criado.`,
+            `Processo: ${payload.reference_number}`,
+            `Servico: ${payload.delivery_service_label || "-"}`,
+            `Entrega: ${payload.delivery_station || "-"}`,
+            `Instrucao: ${payload.delivery_instructions || "-"}`
+        ].join(" ");
+    }
+
+    async function appendToRelatedCaseHistory(payload){
+        const table = CASE_TABLES[payload.case_type];
+
+        if(!table || !currentCase){
+            return;
+        }
+
+        const historyField = Object.prototype.hasOwnProperty.call(currentCase, "ff")
+            ? "ff"
+            : Object.prototype.hasOwnProperty.call(currentCase, "description")
+                ? "description"
+                : "";
+
+        if(!historyField){
+            return;
+        }
+
+        const atual = String(currentCase[historyField] || "").trim();
+        const linha = buildCaseHistoryEntry(payload);
+
+        const updatePayload = {
+            [historyField]: atual
+                ? `${atual}\n${linha}`
+                : linha
+        };
+
+        const { error } = await supabaseClient
+            .from(table)
+            .update(updatePayload)
+            .eq("id", payload.case_id);
+
+        if(error){
+            console.error(error);
+            alert(
+                "O BDO foi salvo, mas não foi possível anexar a nota ao histórico do processo."
+            );
+            return;
+        }
+
+        currentCase = {
+            ...currentCase,
+            ...updatePayload
+        };
+    }
+
+    async function renderCurrentCaseHistory(){
+        const containerByType = {
+            AHL: "bdoHistoryAhl",
+            OHD: "bdoHistoryOhd",
+            DPR: "bdoHistoryDpr"
+        };
+
+        const containerId = containerByType[currentCaseType];
+
+        if(containerId){
+            await renderCaseHistory(currentCaseType, currentCaseId, containerId);
+        }
+    }
+
+    async function renderCaseHistory(caseType, caseId, containerId){
+        const container = document.getElementById(containerId);
+        const normalizedType = text(caseType);
+
+        if(!container || !CASE_TABLES[normalizedType] || !caseId){
+            return;
+        }
+
+        const { data, error } = await supabaseClient
+            .from("bdo_orders")
+            .select("*")
+            .eq("case_type", normalizedType)
+            .eq("case_id", caseId)
+            .order("created_at", { ascending:false });
+
+        if(error){
+            console.error(error);
+            container.innerHTML = `
+                <div class="alert alert-danger mb-0">
+                    Não foi possível carregar o histórico BDO deste processo.
+                </div>
+            `;
+            return;
+        }
+
+        if(!data || data.length === 0){
+            container.innerHTML = `
+                <div class="text-secondary small">
+                    Nenhum BDO criado para este processo.
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = data.map(order => {
+            const statusClass = order.status === "PROCESSO ENCERRADO"
+                ? "bg-secondary"
+                : "bg-success";
+
+            return `
+                <div class="border border-secondary rounded p-3 mb-2 bg-dark text-light">
+                    <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+                        <div>
+                            <strong class="text-warning">
+                                BDO - Ordem de entrega criada
+                            </strong>
+
+                            <span class="badge ${statusClass} ms-2">
+                                ${escapeHtml(order.status || "CRIADO")}
+                            </span>
+                        </div>
+
+                        <div class="small text-secondary">
+                            ${new Date(order.created_at).toLocaleString("pt-BR")}
+                        </div>
+                    </div>
+
+                    <div class="mt-2 small">
+                        <div>
+                            <strong>BDO:</strong> ${escapeHtml(order.bdo_reference || "-")}
+                        </div>
+                        <div>
+                            <strong>Processo:</strong> ${escapeHtml(order.reference_number || "-")}
+                        </div>
+                        <div>
+                            <strong>Serviço:</strong> ${escapeHtml(order.delivery_service_label || "-")}
+                        </div>
+                        <div>
+                            <strong>Entrega:</strong> ${escapeHtml(order.delivery_station || "-")}
+                            ${order.delivery_date ? " - " + escapeHtml(order.delivery_date) : ""}
+                        </div>
+                        <div>
+                            <strong>Custo:</strong>
+                            ${escapeHtml(order.delivery_cost_currency || "BRL")}
+                            ${Number(order.delivery_cost_amount || 0).toFixed(2)}
+                        </div>
+                    </div>
+
+                    <pre class="bg-black text-light border border-secondary rounded p-2 mt-2 small mb-0">${escapeHtml(order.message || "")}</pre>
+                </div>
+            `;
+        }).join("");
+    }
+
     function refreshCurrentList(){
         if(currentCaseType === "AHL" && typeof carregarAhl === "function"){
             carregarAhl();
@@ -547,7 +703,8 @@ const BdoFlow = (() => {
     return {
         open,
         preview,
-        save
+        save,
+        renderCaseHistory
     };
 
 })();
