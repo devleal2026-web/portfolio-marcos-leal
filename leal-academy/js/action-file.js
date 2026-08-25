@@ -278,6 +278,7 @@ const ActionFile = (() => {
     function configurarEventos(){
         document.getElementById("btnSalvarActionFile")?.addEventListener("click", salvarActionFile);
         document.getElementById("btnAtualizarActionFile")?.addEventListener("click", carregarActionFile);
+        document.getElementById("btnSincronizarMatchesActionFile")?.addEventListener("click", sincronizarMatchesExistentes);
         document.getElementById("btnLimparActionFile")?.addEventListener("click", limparFormulario);
         document.getElementById("btnFiltrarActionFile")?.addEventListener("click", renderTabela);
         document.getElementById("txtPesquisaActionFile")?.addEventListener("keyup", renderTabela);
@@ -816,6 +817,30 @@ const ActionFile = (() => {
             alertar("success", `Cia ${airline.airline_code} disponível para as próximas simulações.`);
             preencher("newAirlineCode", "");
             preencher("newAirlineName", "");
+        }catch(error){
+            console.error(error);
+            alertar("danger", friendlyError(error));
+        }
+    }
+
+    async function sincronizarMatchesExistentes(){
+        limparAlerta();
+
+        if(!window.ActionFileIntegration || typeof supabaseClient === "undefined" || !supabaseClient){
+            alertar("warning", "Conecte ao Supabase para sincronizar os matches existentes com o Action File.");
+            return;
+        }
+
+        try{
+            const result = await ActionFileIntegration.syncExistingMatches();
+
+            if(result.created > 0){
+                alertar("success", `${result.created} match(es) antigo(s) refletido(s) no Action File como WM.`);
+            }else{
+                alertar("info", "Os matches existentes já estavam refletidos no Action File ou não possuem vínculo completo com AHL/OHD.");
+            }
+
+            await carregarActionFile();
         }catch(error){
             console.error(error);
             alertar("danger", friendlyError(error));

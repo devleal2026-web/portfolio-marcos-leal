@@ -199,10 +199,81 @@ const ActionFileIntegration = (() => {
         });
     }
 
+    async function fetchCase(table, id, reference){
+        let query = supabaseClient
+            .from(table)
+            .select("*");
+
+        if(id){
+            query = query.eq("id", id);
+        }else if(reference){
+            query = query.eq("reference_number", reference);
+        }else{
+            return null;
+        }
+
+        const { data, error } = await query.maybeSingle();
+
+        if(error){
+            console.warn("Não foi possível carregar processo para refletir match no Action File:", error);
+            return null;
+        }
+
+        return data || null;
+    }
+
+    async function syncExistingMatches(limit = 300){
+        if(typeof supabaseClient === "undefined" || !supabaseClient){
+            return {
+                scanned:0,
+                created:0,
+                skipped:0
+            };
+        }
+
+        const { data, error } = await supabaseClient
+            .from("baggage_matches")
+            .select("*")
+            .order("percentage", { ascending:false })
+            .limit(limit);
+
+        if(error){
+            throw error;
+        }
+
+        let created = 0;
+        let skipped = 0;
+
+        for(const match of data || []){
+            const ahl = await fetchCase("ahl_cases", match.ahl_id, match.ahl_reference);
+            const ohd = await fetchCase("ohd_cases", match.ohd_id, match.ohd_reference);
+
+            if(!ahl || !ohd){
+                skipped++;
+                continue;
+            }
+
+            const recordCreated = await recordSystemMatch(ahl, ohd, match);
+
+            if(recordCreated){
+                created++;
+            }else{
+                skipped++;
+            }
+        }
+
+        return {
+            scanned:(data || []).length,
+            created,
+            skipped
+        };
+    }
+
     return {
         record,
         recordCaseCreated,
-        recordSystemMatch
+        recordSystemMatch,
+        syncExistingMatches
     };
 })();
 
