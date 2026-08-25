@@ -687,6 +687,9 @@ const ActionFile = (() => {
                         <button class="btn btn-info btn-sm" onclick="ActionFile.abrirTratativa('${item.id}')">
                             Tratar
                         </button>
+                        <button class="btn btn-success btn-sm" onclick="ActionFile.abrirWorldTracer('${item.id}')">
+                            WT
+                        </button>
                         <button class="btn btn-warning btn-sm" onclick="ActionFile.transferir('${item.id}')">
                             Transferir
                         </button>
@@ -985,6 +988,17 @@ const ActionFile = (() => {
         janela.print();
     }
 
+    function abrirWorldTracer(id){
+        if(!id){
+            return;
+        }
+
+        window.open(
+            `worldtracer/action-file.html?id=${id}`,
+            "_blank"
+        );
+    }
+
     function mensagemCompleta(registro){
         return [
             `${registro.action_code || ""} - ${registro.action_title || ""}`,
@@ -1021,6 +1035,7 @@ const ActionFile = (() => {
         imprimir,
         abrirProcesso,
         carregarActionFile,
-        filtrarInbox
+        filtrarInbox,
+        abrirWorldTracer
     };
 })();

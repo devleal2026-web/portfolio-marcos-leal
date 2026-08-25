@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action File WorldTracer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/worldtracer.css">
+</head>
+
+<body>
+
+<div class="wt-container">
+    <header class="wt-header">
+        <div class="wt-title">AIRPORT BAGGAGE SIMULATOR</div>
+        <div class="wt-subtitle">WORLDTRACER MODE</div>
+        <div class="wt-screen">ACTION FILE</div>
+    </header>
+
+    <section class="wt-info">
+        <div>
+            <label>REFERENCE</label>
+            <input id="reference_number" readonly>
+        </div>
+        <div>
+            <label>STATUS</label>
+            <input id="status" readonly>
+        </div>
+        <div>
+            <label>DATE</label>
+            <input id="created_at" readonly>
+        </div>
+    </section>
+
+    <div class="wt-form">
+        <div class="wt-row">
+            <div class="wt-field">
+                <label>MESSAGE COUNT</label>
+                <input id="action_category_label" readonly>
+            </div>
+            <div class="wt-field small">
+                <label>CODE</label>
+                <input id="action_code" readonly>
+            </div>
+            <div class="wt-field">
+                <label>PROCESS</label>
+                <input id="case_type" readonly>
+            </div>
+            <div class="wt-field small">
+                <label>DAY</label>
+                <input id="day" readonly>
+            </div>
+        </div>
+
+        <div class="wt-row">
+            <div class="wt-field small">
+                <label>ST</label>
+                <input id="station" readonly>
+            </div>
+            <div class="wt-field tiny">
+                <label>AL</label>
+                <input id="airline" readonly>
+            </div>
+            <div class="wt-field">
+                <label>PRIORITY</label>
+                <input id="priority" readonly>
+            </div>
+            <div class="wt-field">
+                <label>ASSIGNED TO</label>
+                <input id="assigned_to" readonly>
+            </div>
+            <div class="wt-field">
+                <label>FORWARD TO</label>
+                <input id="forward_to" readonly>
+            </div>
+        </div>
+
+        <div class="wt-row">
+            <div class="wt-field full">
+                <label>ACTION TITLE</label>
+                <input id="action_title" readonly>
+            </div>
+        </div>
+
+        <div class="wt-row">
+            <div class="wt-field full">
+                <label>MESSAGE</label>
+                <textarea id="message" rows="8" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="wt-row">
+            <div class="wt-field full">
+                <label>RESPONSE</label>
+                <textarea id="response" rows="5" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="wt-row">
+            <div class="wt-field full">
+                <label>HISTORY</label>
+                <textarea id="history" rows="8" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <footer class="wt-footer">
+        <button id="btnPrint">F3 PRINT</button>
+        <button id="btnClose">F10 EXIT</button>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../../js/supabase.js?v=20260825-sita-actions"></script>
+<script src="../../js/worldtracer-action-file.js?v=20260825-sita-actions"></script>
+
+</body>
+</html>

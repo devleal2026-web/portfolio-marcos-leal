@@ -622,9 +622,11 @@ const OperationalActions = (() => {
             status: currentAction === "COH" ? "ENCERRADO" : "REGISTRADO"
         };
 
-        const { error } = await supabaseClient
+        const { data: savedAction, error } = await supabaseClient
             .from("operational_actions")
-            .insert([payload]);
+            .insert([payload])
+            .select("id")
+            .single();
 
         if(error){
             console.error(error);
@@ -642,6 +644,13 @@ const OperationalActions = (() => {
         }
 
         alert(`${currentAction} ${generatedReference} salvo com sucesso.`);
+
+        if(["FWD", "FAH"].includes(currentAction) && savedAction?.id){
+            window.open(
+                `worldtracer/${currentAction.toLowerCase()}.html?id=${savedAction.id}`,
+                "_blank"
+            );
+        }
 
         bootstrap.Modal
             .getInstance(document.getElementById("operationalActionModal"))
