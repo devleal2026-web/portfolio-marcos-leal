@@ -289,9 +289,7 @@ function validarFormulario(){
         ["cp","CP - Cellular Phone"],
         ["pa","PA - Permanent Address"],
         ["pc","PC - Permanent City"],
-        ["co","CO - Country"],
-        ["rl","RL - Reason for Loss"],
-        ["fs","FS - Fault Station"]
+        ["co","CO - Country"]
 
     ];
 
