@@ -337,6 +337,24 @@ const OhdFlow = (() => {
                 .eq("id", currentMatch.ohd_id);
         }
 
+        if(window.ActionFileIntegration){
+            await ActionFileIntegration.record({
+                case_type: currentType === "FOH" ? "OHD" : "AHL",
+                case_id: currentType === "FOH" ? currentMatch.ohd_id : currentMatch.ahl_id,
+                reference_number: currentType === "FOH"
+                    ? currentMatch.ohd_reference
+                    : currentMatch.ahl_reference,
+                station: payload.from_station,
+                airline: text(currentAhl?.airline || currentOhd?.airline || String(currentMatch.ahl_reference || "").substring(3, 5)),
+                action_code: currentType,
+                status: currentType === "FOH" ? "RESPONDIDO" : "PENDENTE",
+                priority: currentType === "FOH" ? "ALTA" : "NORMAL",
+                assigned_to: payload.agent,
+                forward_to: payload.to_station,
+                message: payload.message
+            });
+        }
+
         alert(
             currentType === "FOH"
                 ? "FOH salvo. OHD encerrado automaticamente."
