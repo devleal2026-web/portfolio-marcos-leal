@@ -5,49 +5,50 @@ CONTENTS CATEGORIES
 const LIMITE_CATEGORIAS = 12;
 
 const categorias = [
-    "ALCOHOL",
-    "ART",
-    "AUDIO",
-    "BOOK",
-    "COAT",
-    "COMPUTER",
-    "COSMETIC",
-    "CURRENCY",
-    "DISHES",
-    "DOCUMENT",
-    "DRESS",
-    "ELECTRIC",
-    "FOOD",
-    "FOOTWEAR",
-    "FRAGILE",
-    "GLASSES",
-    "HANDICRAFT",
-    "HAT",
-    "JEWELRY",
-    "KEY",
-    "KITCHEN",
-    "LINEN",
-    "LIQUID",
-    "MEDICAL",
-    "MOBILE",
-    "MUSIC",
-    "OPTICAL",
-    "PAPER",
-    "PERSONAL",
-    "PHOTO",
-    "RELIGIOUS",
-    "SHOES",
-    "SPORT",
-    "SUIT",
-    "TOILETRIES",
-    "TOOLS",
-    "TOYS",
-    "UMBRELLA",
-    "VIDEO",
-    "WATCH",
-    "WEAPON",
-    "WORK",
-    "OTHER"
+    "ALCOHOL-2",
+    "ART-3",
+    "AUDIO-1",
+    "BOOK-2",
+    "COAT-1",
+    "COMPUTER-2",
+    "COSMETIC-1",
+    "CURRENCY-3",
+    "DRESS-1",
+    "ELECTRIC-2",
+    "FOOD-1",
+    "FOOTWEAR-1",
+    "GIFT-1",
+    "HAIR-2",
+    "HANDBAG-1",
+    "HEADWEAR-2",
+    "HOUSEHOLD-1",
+    "INFANT-1",
+    "JEWELLERY-1",
+    "LINEN-1",
+    "MECHANIC-3",
+    "MEDICAL-1",
+    "MUSIC-3",
+    "NATURE-2",
+    "OPTICS-3",
+    "PAPERS-1",
+    "PHOTO-1",
+    "RELIGIOUS-3",
+    "SHIRT-1",
+    "SKIRT-1",
+    "SLEEPWEAR-1",
+    "SPORT-1",
+    "SPORTSWEAR-1",
+    "SUIT-1",
+    "SWEATER-1",
+    "TIMEPIECE-2",
+    "TOBACCO-2",
+    "TOOLS-3",
+    "TOYS-2",
+    "TROUSERS-1",
+    "UNIFORM-3",
+    "VIDEO-1",
+    "WEAPON-3",
+    "WEATHER-1"
 ];
 
 let categoriasSelecionadas = [];
@@ -98,7 +99,7 @@ function gerarCategorias(){
 
         const coluna = document.createElement("div");
 
-        coluna.className = "col-lg-4 col-md-6 mb-3";
+        coluna.className = "col-xl-3 col-lg-4 col-md-6 mb-3";
 
         coluna.innerHTML = `
             <div class="card h-100 shadow-sm">
@@ -123,7 +124,7 @@ function gerarCategorias(){
                     <input
                         type="text"
                         class="form-control descricao mt-3"
-                        placeholder="Ex.: WT TENNIS ADIDAS, BN SANDALS HAVAIANAS"
+                        placeholder="Ex.: DICTIONARY, BK MALE SHOES"
                         disabled>
 
                 </div>
