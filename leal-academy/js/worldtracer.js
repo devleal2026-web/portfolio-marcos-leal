@@ -216,9 +216,7 @@ function validarAhl(){
         ["cp", "CP"],
         ["pa", "PA"],
         ["pc", "PC"],
-        ["co", "CO"],
-        ["rl", "RL"],
-        ["fs", "FS"]
+        ["co", "CO"]
     ];
 
     for(const item of obrigatorios){
@@ -244,8 +242,9 @@ async function salvarAHL(){
     }
 
     const objeto = objetoAhl();
+    const novoAhl = !ahlId;
 
-    if(!ahlId){
+    if(!ahlId && !objeto.reference_number){
         objeto.reference_number = await gerarReferenciaAhl();
 
         if(objeto.reference_number === ""){
@@ -281,6 +280,10 @@ async function salvarAHL(){
     preencher("reference_number", resposta.data.reference_number);
     preencher("status", resposta.data.status);
     preencher("created_at", formatarData(resposta.data.created_at));
+
+    if(novoAhl && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseCreated("AHL", resposta.data);
+    }
 
     if(window.MatchEngine){
         await MatchEngine.processAhl(resposta.data);
@@ -319,10 +322,27 @@ function configurarBotoes(){
             alert("Histórico será implementado.");
         });
 
+    document
+        .getElementById("btnReference")
+        ?.addEventListener("click", gerarReferenciaManualAhl);
+
         document
             .getElementById("btnContents")
             ?.addEventListener("click", abrirContents);
 
+}
+
+async function gerarReferenciaManualAhl(){
+    if(ahlId){
+        alert("Este AHL já possui referência.");
+        return;
+    }
+
+    const reference = await gerarReferenciaAhl();
+
+    if(reference){
+        preencher("reference_number", reference);
+    }
 }
 
 /*==========================================================
@@ -374,6 +394,11 @@ function configurarAtalhos(){
             case "F4":
                 e.preventDefault();
                 alert("Histórico será implementado.");
+                break;
+
+            case "F5":
+                e.preventDefault();
+                gerarReferenciaManualAhl();
                 break;
 
             case "F10":

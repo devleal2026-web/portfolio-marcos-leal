@@ -300,8 +300,9 @@ async function salvarOhd(){
     }
 
     const objeto = objetoOhd();
+    const novoOhd = !idOhd;
 
-    if(!idOhd){
+    if(!idOhd && !objeto.reference_number){
         objeto.reference_number = await gerarReferenciaOhd();
 
         if(objeto.reference_number === ""){
@@ -337,6 +338,10 @@ async function salvarOhd(){
     preencher("reference_number", resposta.data.reference_number);
     preencher("status", resposta.data.status);
     preencher("created_at", formatarData(resposta.data.created_at));
+
+    if(novoOhd && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseCreated("OHD", resposta.data);
+    }
 
     if(window.MatchEngine){
         await MatchEngine.processOhd(resposta.data);
@@ -375,10 +380,27 @@ function configurarBotoes(){
             alert("Histórico será implementado.");
         });
 
+    document
+        .getElementById("btnReference")
+        ?.addEventListener("click", gerarReferenciaManualOhd);
+
         document
             .getElementById("btnContents")
             ?.addEventListener("click", abrirContents);
 
+}
+
+async function gerarReferenciaManualOhd(){
+    if(idOhd){
+        alert("Este OHD já possui referência.");
+        return;
+    }
+
+    const reference = await gerarReferenciaOhd();
+
+    if(reference){
+        preencher("reference_number", reference);
+    }
 }
 
 /*==========================================================
@@ -430,6 +452,11 @@ function configurarAtalhos(){
             case "F4":
                 e.preventDefault();
                 alert("Histórico será implementado.");
+                break;
+
+            case "F5":
+                e.preventDefault();
+                gerarReferenciaManualOhd();
                 break;
 
             case "F10":
