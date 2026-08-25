@@ -495,6 +495,12 @@ const ActionFile = (() => {
             : { station:"", airline:"" };
 
         return registros.filter(item => {
+            const bucket = dayBucket(item.created_at);
+
+            if(item.status === "PENDENTE" && bucket > 7){
+                return false;
+            }
+
             if(contexto.station && item.station !== contexto.station && item.forward_to !== contexto.station){
                 return false;
             }
@@ -515,7 +521,7 @@ const ActionFile = (() => {
                 return false;
             }
 
-            if(dia && dayBucket(item.created_at) !== dia){
+            if(dia && bucket !== dia){
                 return false;
             }
 
@@ -561,12 +567,22 @@ const ActionFile = (() => {
 
     function dayBucket(dateValue){
         if(!dateValue){
-            return 7;
+            return 8;
         }
 
         const created = new Date(dateValue);
         const now = new Date();
-        const diffMs = now.getTime() - created.getTime();
+        const createdDate = new Date(
+            created.getFullYear(),
+            created.getMonth(),
+            created.getDate()
+        );
+        const todayDate = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate()
+        );
+        const diffMs = todayDate.getTime() - createdDate.getTime();
         const diffDays = Math.floor(diffMs / 86400000) + 1;
 
         if(diffDays < 1){
@@ -574,10 +590,16 @@ const ActionFile = (() => {
         }
 
         if(diffDays > 7){
-            return 7;
+            return 8;
         }
 
         return diffDays;
+    }
+
+    function dayLabel(dateValue){
+        const bucket = dayBucket(dateValue);
+
+        return bucket > 7 ? "Expirada" : `Day ${bucket}`;
     }
 
     function renderInbox(){
@@ -597,7 +619,13 @@ const ActionFile = (() => {
             : { station:"", airline:"" };
 
         const abertas = registros.filter(item => {
+            const bucket = dayBucket(item.created_at);
+
             if(item.status !== "PENDENTE"){
+                return false;
+            }
+
+            if(bucket > 7){
                 return false;
             }
 
@@ -715,7 +743,7 @@ const ActionFile = (() => {
             <tr>
                 <td>
                     <div class="fw-bold">${escapeHtml(categoryInfo(categoriaRegistro(item)).label)}</div>
-                    <div class="small text-secondary">Day ${dayBucket(item.created_at)}</div>
+                    <div class="small text-secondary">${dayLabel(item.created_at)}</div>
                 </td>
                 <td>
                     <span class="badge bg-primary">${escapeHtml(item.action_code)}</span>
