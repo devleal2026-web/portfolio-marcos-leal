@@ -143,8 +143,8 @@ on public.simulator_bases for select to authenticated using (true);
 drop policy if exists "simulator_bases_write_authenticated" on public.simulator_bases;
 create policy "simulator_bases_write_authenticated"
 on public.simulator_bases for all to authenticated
-using (auth.uid() is not null)
-with check (auth.uid() is not null);
+using (public.is_academy_admin())
+with check (public.is_academy_admin());
 
 drop policy if exists "simulator_airlines_select_authenticated" on public.simulator_airlines;
 create policy "simulator_airlines_select_authenticated"
@@ -153,8 +153,8 @@ on public.simulator_airlines for select to authenticated using (true);
 drop policy if exists "simulator_airlines_write_authenticated" on public.simulator_airlines;
 create policy "simulator_airlines_write_authenticated"
 on public.simulator_airlines for all to authenticated
-using (auth.uid() is not null)
-with check (auth.uid() is not null);
+using (public.is_academy_admin())
+with check (public.is_academy_admin());
 
 drop policy if exists "simulator_base_airlines_select_authenticated" on public.simulator_base_airlines;
 create policy "simulator_base_airlines_select_authenticated"
@@ -163,8 +163,8 @@ on public.simulator_base_airlines for select to authenticated using (true);
 drop policy if exists "simulator_base_airlines_write_authenticated" on public.simulator_base_airlines;
 create policy "simulator_base_airlines_write_authenticated"
 on public.simulator_base_airlines for all to authenticated
-using (auth.uid() is not null)
-with check (auth.uid() is not null);
+using (public.is_academy_admin())
+with check (public.is_academy_admin());
 
 drop policy if exists "training_sessions_select_authenticated" on public.training_sessions;
 create policy "training_sessions_select_authenticated"
@@ -173,5 +173,5 @@ on public.training_sessions for select to authenticated using (true);
 drop policy if exists "training_sessions_write_authenticated" on public.training_sessions;
 create policy "training_sessions_write_authenticated"
 on public.training_sessions for all to authenticated
-using (auth.uid() is not null)
-with check (auth.uid() is not null);
+using (public.is_academy_admin())
+with check (public.is_academy_admin());

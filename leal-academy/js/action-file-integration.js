@@ -31,6 +31,12 @@ const ActionFileIntegration = (() => {
             title:"Update DPR",
             description:"Alteração de informações no DPR."
         },
+        AFP: {
+            category:"ACTION_MESSAGES",
+            label:"Action Messages",
+            title:"Update RFP",
+            description:"Alteração de informações no registro RFP."
+        },
         WM: {
             category:"SYSTEM_MATCHES",
             label:"System Matches",
@@ -201,7 +207,8 @@ const ActionFileIntegration = (() => {
         const codeByType = {
             AHL:"AAH",
             OHD:"AOH",
-            DPR:"ADP"
+            DPR:"ADP",
+            RFP:"AFP"
         };
 
         return record({

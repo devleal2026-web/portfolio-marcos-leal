@@ -126,6 +126,12 @@ const ActionFile = (() => {
             description:"Incluir, apagar ou alterar informações no relatório DPR."
         },
         {
+            code:"AFP",
+            category:"ACTION_MESSAGES",
+            title:"Alteração de RFP",
+            description:"Incluir, apagar ou alterar informações no registro de objeto esquecido RFP."
+        },
+        {
             code:"ROH",
             category:"ACTION_MESSAGES",
             title:"Request On-Hand",

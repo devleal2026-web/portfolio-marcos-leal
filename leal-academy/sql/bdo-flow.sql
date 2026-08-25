@@ -162,4 +162,4 @@ create policy "bdo_orders_delete_authenticated"
 on public.bdo_orders
 for delete
 to authenticated
-using (true);
+using (public.is_academy_admin());

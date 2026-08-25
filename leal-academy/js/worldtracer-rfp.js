@@ -50,6 +50,8 @@ async function iniciarWorldTracerRfp(){
         preencher("found_time", new Date().toTimeString().slice(0, 5));
         preencher("item_count", "1");
     }
+
+    atualizarModoRfpWorldTracer();
 }
 
 function valor(id){
@@ -91,6 +93,18 @@ function carregarCombosRfp(){
     carregarSelect("airline", wtRfpAirlines);
     carregarSelect("category", wtRfpCategories);
     carregarSelect("storage_status", wtRfpStorageStatuses);
+}
+
+function atualizarModoRfpWorldTracer(){
+    const botao = document.getElementById("btnSave");
+
+    if(!botao){
+        return;
+    }
+
+    botao.textContent = rfpId
+        ? "F1 AFP ALTERAR RFP"
+        : "F1 CRIAR RFP";
 }
 
 async function carregarRfp(){
@@ -218,8 +232,9 @@ async function salvarRfp(){
     }
 
     const rfp = objetoRfp();
+    const novoRfp = !rfpId;
 
-    if(!rfpId){
+    if(novoRfp){
         rfp.reference_number = await gerarReferenciaRfp();
 
         if(rfp.reference_number === ""){
@@ -234,7 +249,7 @@ async function salvarRfp(){
 
     let resposta;
 
-    if(rfpId){
+    if(!novoRfp){
         resposta = await supabaseClient
             .from("rfp_cases")
             .update(rfp)
@@ -257,13 +272,22 @@ async function salvarRfp(){
 
     rfpId = resposta.data.id;
 
+    if(window.ActionFileIntegration){
+        if(novoRfp){
+            await window.ActionFileIntegration.recordCaseCreated("RFP", resposta.data);
+        }else{
+            await window.ActionFileIntegration.recordCaseUpdated("RFP", resposta.data);
+        }
+    }
+
     Object.keys(resposta.data).forEach(key => {
         preencher(key, resposta.data[key]);
     });
 
     preencher("created_at", formatarData(resposta.data.created_at));
+    atualizarModoRfpWorldTracer();
 
-    alert("RFP salvo com sucesso.\n\n" + resposta.data.reference_number);
+    alert((novoRfp ? "RFP criado com sucesso." : "RFP alterado com sucesso.") + "\n\n" + resposta.data.reference_number);
 }
 
 function limparCampos(){
@@ -284,7 +308,10 @@ function limparCampos(){
 
     rfpId = null;
     preencher("status", "ABERTO");
+    preencher("reference_number", "");
+    preencher("created_at", formatarData(new Date().toISOString()));
     preencher("item_count", "1");
+    atualizarModoRfpWorldTracer();
 }
 
 function configurarBotoesRfp(){

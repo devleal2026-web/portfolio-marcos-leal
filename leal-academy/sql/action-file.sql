@@ -85,4 +85,4 @@ create policy "action_files_delete_authenticated"
 on public.action_files
 for delete
 to authenticated
-using (true);
+using (public.is_academy_admin());

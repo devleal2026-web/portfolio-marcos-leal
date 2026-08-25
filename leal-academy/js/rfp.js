@@ -82,6 +82,22 @@ function configurarEventosRfp(){
     document.getElementById("btnWorldTracer")?.addEventListener("click", () => abrirWorldTracerRfp());
     document.getElementById("btnLimpar")?.addEventListener("click", limparFormularioRfp);
     document.getElementById("txtPesquisaRfp")?.addEventListener("keyup", pesquisarRfpAutomaticamente);
+    atualizarModoRfp();
+}
+
+function atualizarModoRfp(){
+    const botao = document.getElementById("btnSalvar");
+
+    if(!botao){
+        return;
+    }
+
+    botao.textContent = rfpAtual
+        ? "AFP - Alterar RFP"
+        : "Criar RFP";
+
+    botao.classList.toggle("btn-warning", Boolean(rfpAtual));
+    botao.classList.toggle("btn-success", !rfpAtual);
 }
 
 function preencherDataPadraoRfp(){
@@ -211,8 +227,9 @@ async function salvarRfp(){
     }
 
     const rfp = objetoRfp();
+    const novoRfp = !rfpAtual;
 
-    if(!rfpAtual){
+    if(novoRfp){
         rfp.reference_number = await gerarReferenciaRfp();
 
         if(rfp.reference_number === ""){
@@ -227,7 +244,7 @@ async function salvarRfp(){
 
     let resposta;
 
-    if(rfpAtual){
+    if(!novoRfp){
         resposta = await supabaseClient
             .from("rfp_cases")
             .update(rfp)
@@ -250,13 +267,27 @@ async function salvarRfp(){
 
     rfpAtual = resposta.data.id;
 
+    if(window.ActionFileIntegration){
+        if(novoRfp){
+            await window.ActionFileIntegration.recordCaseCreated("RFP", resposta.data);
+        }else{
+            await window.ActionFileIntegration.recordCaseUpdated("RFP", resposta.data);
+        }
+    }
+
     preencher("reference_number", resposta.data.reference_number);
     preencher("status", resposta.data.status);
     preencher("history", resposta.data.history);
 
-    alert("RFP salvo com sucesso.\n\n" + resposta.data.reference_number);
-
     await carregarRfp();
+    atualizarModoRfp();
+
+    if(!novoRfp){
+        alert("RFP alterado com sucesso.\n\n" + resposta.data.reference_number);
+        return;
+    }
+
+    alert("RFP criado com sucesso.\n\n" + resposta.data.reference_number);
 
     window.open(
         "worldtracer/rfp.html?id=" + resposta.data.id,
@@ -328,6 +359,8 @@ async function visualizarRfp(id){
     Object.keys(data).forEach(key => {
         preencher(key, data[key]);
     });
+
+    atualizarModoRfp();
 
     document.getElementById("reference_number")?.scrollIntoView({
         behavior:"smooth",
@@ -477,6 +510,7 @@ function limparFormularioRfp(){
         });
 
     preencherDataPadraoRfp();
+    atualizarModoRfp();
 }
 
 document.addEventListener("keydown", event => {

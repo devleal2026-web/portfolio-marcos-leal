@@ -173,4 +173,4 @@ create policy "operational_actions_delete_authenticated"
 on public.operational_actions
 for delete
 to authenticated
-using (true);
+using (public.is_academy_admin());
