@@ -290,7 +290,7 @@ async function salvarAHL(){
         await MatchEngine.alertPending("ahl");
     }
 
-    alert("AHL salvo com sucesso.\n\n" + resposta.data.reference_number);
+    alert((novoAhl ? "AHL criado com sucesso." : "AHL atualizado com sucesso.") + "\n\n" + resposta.data.reference_number);
 
 }
 
@@ -322,27 +322,10 @@ function configurarBotoes(){
             alert("Histórico será implementado.");
         });
 
-    document
-        .getElementById("btnReference")
-        ?.addEventListener("click", gerarReferenciaManualAhl);
-
         document
             .getElementById("btnContents")
             ?.addEventListener("click", abrirContents);
 
-}
-
-async function gerarReferenciaManualAhl(){
-    if(ahlId){
-        alert("Este AHL já possui referência.");
-        return;
-    }
-
-    const reference = await gerarReferenciaAhl();
-
-    if(reference){
-        preencher("reference_number", reference);
-    }
 }
 
 /*==========================================================
@@ -394,11 +377,6 @@ function configurarAtalhos(){
             case "F4":
                 e.preventDefault();
                 alert("Histórico será implementado.");
-                break;
-
-            case "F5":
-                e.preventDefault();
-                gerarReferenciaManualAhl();
                 break;
 
             case "F10":

@@ -244,7 +244,7 @@ async function salvarDpr(){
         await ActionFileIntegration.recordCaseCreated("DPR", resposta.data);
     }
 
-    alert("DPR salvo com sucesso.\n\n" + resposta.data.reference_number);
+    alert((novoDpr ? "DPR criado com sucesso." : "DPR atualizado com sucesso.") + "\n\n" + resposta.data.reference_number);
     limparFormularioDprWorldTracer();
 }
 
@@ -253,7 +253,6 @@ function configurarBotoes(){
     document.getElementById("btnPrint")?.addEventListener("click", () => window.print());
     document.getElementById("btnClear")?.addEventListener("click", limparCampos);
     document.getElementById("btnClose")?.addEventListener("click", () => window.close());
-    document.getElementById("btnReference")?.addEventListener("click", gerarReferenciaManualDpr);
 
     document.getElementById("btnHistory")?.addEventListener("click", () => {
         alert("Histórico DPR será implementado.");
@@ -276,30 +275,12 @@ function configurarBotoes(){
                 window.print();
                 break;
 
-            case "F5":
-                e.preventDefault();
-                gerarReferenciaManualDpr();
-                break;
-
             case "F10":
                 e.preventDefault();
                 window.close();
                 break;
         }
     });
-}
-
-async function gerarReferenciaManualDpr(){
-    if(dprId){
-        alert("Este DPR já possui referência.");
-        return;
-    }
-
-    const reference = await gerarReferenciaDpr();
-
-    if(reference){
-        preencher("reference_number", reference);
-    }
 }
 
 function limparCampos(){

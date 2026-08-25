@@ -348,7 +348,7 @@ async function salvarOhd(){
         await MatchEngine.alertPending("ohd");
     }
 
-    alert("OHD salvo com sucesso.\n\n" + resposta.data.reference_number);
+    alert((novoOhd ? "OHD criado com sucesso." : "OHD atualizado com sucesso.") + "\n\n" + resposta.data.reference_number);
 
 }
 
@@ -380,27 +380,10 @@ function configurarBotoes(){
             alert("Histórico será implementado.");
         });
 
-    document
-        .getElementById("btnReference")
-        ?.addEventListener("click", gerarReferenciaManualOhd);
-
         document
             .getElementById("btnContents")
             ?.addEventListener("click", abrirContents);
 
-}
-
-async function gerarReferenciaManualOhd(){
-    if(idOhd){
-        alert("Este OHD já possui referência.");
-        return;
-    }
-
-    const reference = await gerarReferenciaOhd();
-
-    if(reference){
-        preencher("reference_number", reference);
-    }
 }
 
 /*==========================================================
@@ -452,11 +435,6 @@ function configurarAtalhos(){
             case "F4":
                 e.preventDefault();
                 alert("Histórico será implementado.");
-                break;
-
-            case "F5":
-                e.preventDefault();
-                gerarReferenciaManualOhd();
                 break;
 
             case "F10":
