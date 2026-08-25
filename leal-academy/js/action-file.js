@@ -523,6 +523,10 @@ const ActionFile = (() => {
                 return false;
             }
 
+            if(!status && item.status !== "PENDENTE"){
+                return false;
+            }
+
             if(!pesquisa){
                 return true;
             }
@@ -593,7 +597,7 @@ const ActionFile = (() => {
             : { station:"", airline:"" };
 
         const abertas = registros.filter(item => {
-            if(item.status === "ENCERRADO"){
+            if(item.status !== "PENDENTE"){
                 return false;
             }
 
@@ -730,7 +734,12 @@ const ActionFile = (() => {
                     <span class="badge ${priorityBadge(item.priority)}">${escapeHtml(item.priority || "NORMAL")}</span>
                 </td>
                 <td style="max-width:360px">
-                    <div class="small">${escapeHtml(item.message).slice(0, 180)}</div>
+                    <button
+                        type="button"
+                        class="btn btn-link text-info text-start p-0 small"
+                        onclick="ActionFile.abrirDetalhesMensagem('${item.id}')">
+                        ${escapeHtml(item.message).slice(0, 180)}
+                    </button>
                     ${item.response ? `<div class="small text-success mt-1">${escapeHtml(item.response).slice(0, 120)}</div>` : ""}
                 </td>
                 <td>
@@ -955,6 +964,169 @@ const ActionFile = (() => {
         await carregarActionFile();
     }
 
+    async function abrirDetalhesMensagem(id){
+        const registro = registros.find(item => item.id === id);
+        const container = document.getElementById("actionFileDetails");
+
+        if(!registro || !container){
+            alertar("warning", "Mensagem não encontrada. Atualize a página e tente novamente.");
+            return;
+        }
+
+        container.classList.remove("d-none");
+        container.innerHTML = detalhesBase(registro, "Carregando vínculos do processo...");
+        container.scrollIntoView({ behavior:"smooth", block:"start" });
+
+        await marcarComoLida(registro);
+
+        const matches = registro.action_code === "WM"
+            ? await localizarMatchesDaMensagem(registro)
+            : [];
+
+        container.innerHTML = detalhesBase(registro, renderMatchesDetalhe(matches));
+        await carregarActionFile();
+    }
+
+    function detalhesBase(registro, conteudo){
+        return `
+            <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap mb-3">
+                <div>
+                    <h5 class="fw-bold text-warning mb-1">
+                        ${escapeHtml(registro.action_code)} - ${escapeHtml(registro.reference_number)}
+                    </h5>
+                    <div class="small text-secondary">
+                        ${escapeHtml(categoryInfo(categoriaRegistro(registro)).label)}
+                        · ${escapeHtml(registro.station || "-")}
+                        ${registro.forward_to ? " para " + escapeHtml(registro.forward_to) : ""}
+                        · ${escapeHtml(registro.airline || "-")}
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-outline-light btn-sm" onclick="ActionFile.fecharDetalhesMensagem()">
+                    Fechar
+                </button>
+            </div>
+
+            <pre class="bg-black border border-secondary rounded p-3 small text-light">${escapeHtml(mensagemCompleta(registro))}</pre>
+
+            <div class="mt-3">
+                ${conteudo}
+            </div>
+        `;
+    }
+
+    function renderMatchesDetalhe(matches){
+        if(!matches.length){
+            return `
+                <div class="text-secondary small">
+                    Nenhum match vinculado a esta mensagem.
+                </div>
+            `;
+        }
+
+        return `
+            <h6 class="fw-bold text-warning mb-2">Matches vinculados</h6>
+            ${matches.map(match => `
+                <div class="border border-secondary rounded p-3 mb-2">
+                    <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+                        <strong>
+                            AHL ${escapeHtml(match.ahl_reference || "-")}
+                            x OHD ${escapeHtml(match.ohd_reference || "-")}
+                        </strong>
+                        <span class="badge bg-warning text-dark">${escapeHtml(match.percentage || 0)}%</span>
+                    </div>
+                    <ul class="small mt-2 mb-0">
+                        ${(match.reasons || []).slice(0, 8).map(reason => `
+                            <li>
+                                ${escapeHtml(typeof reason === "string" ? reason : reason.field || "Campo compatível")}
+                                ${typeof reason === "object" && reason.percentage ? " - " + escapeHtml(reason.percentage) + "%" : ""}
+                            </li>
+                        `).join("")}
+                    </ul>
+                </div>
+            `).join("")}
+        `;
+    }
+
+    function fecharDetalhesMensagem(){
+        const container = document.getElementById("actionFileDetails");
+
+        if(container){
+            container.classList.add("d-none");
+            container.innerHTML = "";
+        }
+    }
+
+    async function marcarComoLida(registro){
+        if(registro.status !== "PENDENTE"){
+            return;
+        }
+
+        const history = Array.isArray(registro.history)
+            ? [...registro.history]
+            : [];
+
+        history.push({
+            at:new Date().toISOString(),
+            status:"EM TRATATIVA",
+            action:"Mensagem lida",
+            message:"Mensagem aberta para leitura e análise operacional."
+        });
+
+        const { error } = await supabaseClient
+            .from("action_files")
+            .update({
+                status:"EM TRATATIVA",
+                history,
+                updated_at:new Date().toISOString()
+            })
+            .eq("id", registro.id);
+
+        if(error){
+            console.warn("Não foi possível marcar a mensagem como lida:", error);
+        }
+    }
+
+    async function localizarMatchesDaMensagem(registro){
+        const referencia = text(registro.reference_number);
+        const ohdNoTexto = text(registro.message).match(/OHD\s+([A-Z0-9]+)/)?.[1] || "";
+
+        const consultas = [
+            supabaseClient
+                .from("baggage_matches")
+                .select("*")
+                .eq("ahl_reference", referencia),
+            supabaseClient
+                .from("baggage_matches")
+                .select("*")
+                .eq("ohd_reference", referencia)
+        ];
+
+        if(ohdNoTexto){
+            consultas.push(
+                supabaseClient
+                    .from("baggage_matches")
+                    .select("*")
+                    .eq("ohd_reference", ohdNoTexto)
+            );
+        }
+
+        const resultados = await Promise.all(consultas);
+        const map = new Map();
+
+        resultados.forEach(result => {
+            if(result.error){
+                console.warn("Não foi possível localizar match:", result.error);
+                return;
+            }
+
+            (result.data || []).forEach(match => map.set(match.id, match));
+        });
+
+        return Array.from(map.values())
+            .sort((a, b) => Number(b.percentage || 0) - Number(a.percentage || 0));
+    }
+
     async function encerrar(id){
         if(!confirm("Encerrar esta ação do Action File?")){
             return;
@@ -1011,16 +1183,21 @@ const ActionFile = (() => {
 
         history.push({
             at:new Date().toISOString(),
-            status:"EM TRATATIVA",
+            status:"ENCERRADO",
             action:"Mensagem transferida para o processo",
             message:`Mensagem ${registro.action_code} marcada para tratativa no processo ${registro.reference_number}.`
         });
 
+        if(registro.action_code === "WM"){
+            await transferirMatchParaProcessos(registro);
+        }
+
         const { error } = await supabaseClient
             .from("action_files")
             .update({
-                status:"EM TRATATIVA",
+                status:"ENCERRADO",
                 history,
+                resolved_at:new Date().toISOString(),
                 updated_at:new Date().toISOString()
             })
             .eq("id", id);
@@ -1033,6 +1210,21 @@ const ActionFile = (() => {
 
         alertar("success", "Mensagem transferida para tratativa do processo.");
         await carregarActionFile();
+    }
+
+    async function transferirMatchParaProcessos(registro){
+        const matches = await localizarMatchesDaMensagem(registro);
+
+        for(const match of matches){
+            await supabaseClient
+                .from("baggage_matches")
+                .update({
+                    viewed_by_ahl:false,
+                    viewed_by_ohd:false,
+                    updated_at:new Date().toISOString()
+                })
+                .eq("id", match.id);
+        }
     }
 
     async function copiar(id){
@@ -1102,15 +1294,23 @@ const ActionFile = (() => {
         janela.print();
     }
 
-    function abrirWorldTracer(id){
+    async function abrirWorldTracer(id){
         if(!id){
             return;
+        }
+
+        const registro = registros.find(item => item.id === id);
+
+        if(registro){
+            await marcarComoLida(registro);
         }
 
         window.open(
             `worldtracer/action-file.html?id=${id}`,
             "_blank"
         );
+
+        await carregarActionFile();
     }
 
     function mensagemCompleta(registro){
@@ -1150,6 +1350,8 @@ const ActionFile = (() => {
         abrirProcesso,
         carregarActionFile,
         filtrarInbox,
-        abrirWorldTracer
+        abrirWorldTracer,
+        abrirDetalhesMensagem,
+        fecharDetalhesMensagem
     };
 })();
