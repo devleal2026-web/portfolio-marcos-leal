@@ -224,6 +224,8 @@ async function salvarDpr(){
 
     const dpr = objetoDpr();
 
+    const novoDpr = !dprAtual;
+
     if(!dprAtual){
         dpr.reference_number = await gerarReferenciaDpr();
 
@@ -263,6 +265,10 @@ async function salvarDpr(){
     preencher("status", resposta.data.status);
 
     alert("DPR salvo com sucesso.\n\n" + resposta.data.reference_number);
+
+    if(novoDpr && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseCreated("DPR", resposta.data);
+    }
 
     await carregarDpr();
 

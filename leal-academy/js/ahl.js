@@ -347,6 +347,8 @@ async function salvarAhl(){
 
         objetoAHL();
 
+    const novoAhl = !ahlAtual;
+
     if(
 
         !ahlAtual
@@ -454,6 +456,10 @@ async function salvarAhl(){
         resposta.data.reference_number
 
     );
+
+    if(novoAhl && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseCreated("AHL", resposta.data);
+    }
 
     await carregarAhl();
 

@@ -199,7 +199,11 @@ const ActionFile = (() => {
 
     document.addEventListener("DOMContentLoaded", iniciar);
 
-    function iniciar(){
+    async function iniciar(){
+        if(window.SimulatorNetwork){
+            await SimulatorNetwork.init();
+        }
+
         carregarCombos();
         configurarEventos();
         renderInbox();
@@ -283,6 +287,18 @@ const ActionFile = (() => {
         document.getElementById("filtroDia")?.addEventListener("change", renderTabela);
         document.getElementById("filtroStatus")?.addEventListener("change", renderTabela);
         document.getElementById("btnSalvarTratativaActionFile")?.addEventListener("click", salvarTratativa);
+        document.getElementById("activeStation")?.addEventListener("change", () => {
+            preencher("station", valor("activeStation"));
+            renderInbox();
+            renderTabela();
+        });
+        document.getElementById("activeAirline")?.addEventListener("change", () => {
+            preencher("airline", valor("activeAirline"));
+            renderInbox();
+            renderTabela();
+        });
+        document.getElementById("btnCadastrarBase")?.addEventListener("click", cadastrarBase);
+        document.getElementById("btnCadastrarAirline")?.addEventListener("click", cadastrarAirline);
     }
 
     function atualizarCategoriaPeloCodigo(){
@@ -381,6 +397,7 @@ const ActionFile = (() => {
         const referenceNumber = text(valor("reference_number"));
         const station = text(valor("station"));
         const airline = text(valor("airline"));
+        const forwardTo = text(valor("forward_to"));
         const actionCode = text(valor("action_code"));
         const info = actionInfo(actionCode);
         const category = valor("action_category") || info.category || "ACTION_MESSAGES";
@@ -409,7 +426,7 @@ const ActionFile = (() => {
             assigned_to:valor("assigned_to"),
             message,
             response:"",
-            forward_to:"",
+            forward_to:forwardTo,
             history:[]
         };
 
@@ -472,8 +489,19 @@ const ActionFile = (() => {
         const categoria = text(valor("filtroCategoria"));
         const dia = Number(valor("filtroDia"));
         const status = text(valor("filtroStatus"));
+        const contexto = window.SimulatorNetwork
+            ? SimulatorNetwork.getActiveContext()
+            : { station:"", airline:"" };
 
         return registros.filter(item => {
+            if(contexto.station && item.station !== contexto.station && item.forward_to !== contexto.station){
+                return false;
+            }
+
+            if(contexto.airline && item.airline !== contexto.airline){
+                return false;
+            }
+
             if(tipo && item.case_type !== tipo){
                 return false;
             }
@@ -505,6 +533,7 @@ const ActionFile = (() => {
                 item.action_category_label,
                 item.action_title,
                 item.station,
+                item.forward_to,
                 item.airline,
                 item.status,
                 item.priority,
@@ -558,7 +587,25 @@ const ActionFile = (() => {
             return;
         }
 
-        const abertas = registros.filter(item => item.status !== "ENCERRADO");
+        const contexto = window.SimulatorNetwork
+            ? SimulatorNetwork.getActiveContext()
+            : { station:"", airline:"" };
+
+        const abertas = registros.filter(item => {
+            if(item.status === "ENCERRADO"){
+                return false;
+            }
+
+            if(contexto.station && item.station !== contexto.station && item.forward_to !== contexto.station){
+                return false;
+            }
+
+            if(contexto.airline && item.airline !== contexto.airline){
+                return false;
+            }
+
+            return true;
+        });
 
         tbody.innerHTML = INBOX_CATEGORIES.map(category => {
             const cells = [];
@@ -671,7 +718,10 @@ const ActionFile = (() => {
                 </td>
                 <td>${escapeHtml(item.case_type)}</td>
                 <td class="fw-bold">${escapeHtml(item.reference_number)}</td>
-                <td>${escapeHtml(item.station || "-")}</td>
+                <td>
+                    ${escapeHtml(item.station || "-")}
+                    ${item.forward_to ? `<div class="small text-info">para ${escapeHtml(item.forward_to)}</div>` : ""}
+                </td>
                 <td>
                     <span class="badge ${statusBadge(item.status)}">${escapeHtml(item.status)}</span>
                 </td>
@@ -716,6 +766,7 @@ const ActionFile = (() => {
             "reference_number",
             "station",
             "airline",
+            "forward_to",
             "assigned_to",
             "message",
             "txtPesquisaActionFile",
@@ -730,6 +781,44 @@ const ActionFile = (() => {
 
         if(clearAlert){
             limparAlerta();
+        }
+    }
+
+    async function cadastrarBase(){
+        limparAlerta();
+
+        if(!window.SimulatorNetwork || typeof supabaseClient === "undefined" || !supabaseClient){
+            alertar("warning", "Conecte ao Supabase para cadastrar uma nova base da aula.");
+            return;
+        }
+
+        try{
+            const base = await SimulatorNetwork.createBase();
+            alertar("success", `Base ${base.station_code} disponível para as próximas simulações.`);
+            preencher("newBaseCode", "");
+            preencher("newBaseName", "");
+        }catch(error){
+            console.error(error);
+            alertar("danger", friendlyError(error));
+        }
+    }
+
+    async function cadastrarAirline(){
+        limparAlerta();
+
+        if(!window.SimulatorNetwork || typeof supabaseClient === "undefined" || !supabaseClient){
+            alertar("warning", "Conecte ao Supabase para cadastrar uma nova cia aérea da aula.");
+            return;
+        }
+
+        try{
+            const airline = await SimulatorNetwork.createAirline();
+            alertar("success", `Cia ${airline.airline_code} disponível para as próximas simulações.`);
+            preencher("newAirlineCode", "");
+            preencher("newAirlineName", "");
+        }catch(error){
+            console.error(error);
+            alertar("danger", friendlyError(error));
         }
     }
 

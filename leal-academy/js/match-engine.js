@@ -416,6 +416,10 @@ const MatchEngine = (() => {
             return null;
         }
 
+        if(window.ActionFileIntegration){
+            await ActionFileIntegration.recordSystemMatch(ahl, ohd, data);
+        }
+
         return data;
     }
 

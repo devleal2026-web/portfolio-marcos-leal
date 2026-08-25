@@ -434,6 +434,8 @@ async function salvarOhd(){
 
     const ohd=objetoOhd();
 
+    const novoOhd = !ohdAtual;
+
     if(!ohdAtual){
 
         ohd.reference_number=
@@ -511,6 +513,10 @@ async function salvarOhd(){
         resposta.data.reference_number
 
     );
+
+    if(novoOhd && window.ActionFileIntegration){
+        await ActionFileIntegration.recordCaseCreated("OHD", resposta.data);
+    }
 
     const idCriado = resposta.data.id;
 
