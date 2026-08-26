@@ -149,15 +149,6 @@ function preencherCategoriasDoCampo(){
 
         const card = check.closest(".card");
         const descricaoInput = card.querySelector(".descricao");
-        const itemSugerido = card.querySelector(".item-sugerido");
-        const opcaoExiste = Array.from(itemSugerido.options)
-            .some(opcao => opcao.value === descricao);
-
-        if(opcaoExiste){
-            itemSugerido.value = descricao;
-        }else{
-            itemSugerido.value = "__OUTROS__";
-        }
 
         descricaoInput.value = descricao;
 
@@ -193,6 +184,7 @@ function gerarCategorias(){
 
         coluna.className = "col-6 col-lg-4 col-xl-3 mb-2 mb-md-3";
 
+        const idLista = "itens_" + index;
         const sugestoes = itensPorCategoria[nome] || [];
         const opcoes = sugestoes
             .map(item => `<option value="${escaparHtml(item)}">${escaparHtml(item)}</option>`)
@@ -218,19 +210,16 @@ function gerarCategorias(){
 
                     </div>
 
-                    <select
-                        class="form-select form-select-sm item-sugerido mt-2"
-                        disabled>
-                        <option value="">Selecione um item</option>
-                        ${opcoes}
-                        <option value="__OUTROS__">OUTROS</option>
-                    </select>
-
                     <input
                         type="text"
                         class="form-control form-control-sm descricao mt-2 mt-md-3"
-                        placeholder="Item manual"
+                        list="${idLista}"
+                        placeholder="Selecione ou digite o item"
                         disabled>
+
+                    <datalist id="${idLista}">
+                        ${opcoes}
+                    </datalist>
 
                 </div>
             </div>
@@ -239,39 +228,19 @@ function gerarCategorias(){
         const check = coluna.querySelector(".categoria");
 
         const descricao = coluna.querySelector(".descricao");
-        const itemSugerido = coluna.querySelector(".item-sugerido");
 
         check.addEventListener("change", function(){
             selecionarCategoria(this);
         });
 
-        itemSugerido.addEventListener("change", function(){
+        descricao.addEventListener("click", function(){
 
             if(!check.checked){
                 check.checked = true;
                 selecionarCategoria(check);
             }
-
-            if(this.value === "__OUTROS__"){
-                descricao.value = "";
-                descricao.disabled = false;
-                descricao.focus();
-                return;
-            }
-
-            descricao.value = this.value;
-            descricao.disabled = false;
 
         });
-
-        [itemSugerido, descricao].forEach(campo => campo.addEventListener("click", function(){
-
-            if(!check.checked){
-                check.checked = true;
-                selecionarCategoria(check);
-            }
-
-        }));
 
         lista.appendChild(coluna);
 
@@ -288,18 +257,12 @@ function selecionarCategoria(check){
     const card = check.closest(".card");
 
     const descricao = card.querySelector(".descricao");
-    const itemSugerido = card.querySelector(".item-sugerido");
 
     if(check.checked){
 
         if(categoriasSelecionadas.includes(check)){
-            itemSugerido.disabled = false;
             descricao.disabled = false;
-            if(descricao.value.trim() === ""){
-                itemSugerido.focus();
-            }else{
-                descricao.focus();
-            }
+            descricao.focus();
             return;
         }
 
@@ -315,10 +278,9 @@ function selecionarCategoria(check){
 
         categoriasSelecionadas.push(check);
 
-        itemSugerido.disabled = false;
         descricao.disabled = false;
 
-        itemSugerido.focus();
+        descricao.focus();
 
     }else{
 
@@ -328,8 +290,6 @@ function selecionarCategoria(check){
 
         descricao.value = "";
 
-        itemSugerido.value = "";
-        itemSugerido.disabled = true;
         descricao.disabled = true;
 
     }
