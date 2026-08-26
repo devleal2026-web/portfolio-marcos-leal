@@ -1194,6 +1194,31 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
     font-weight:700;
 }
 
+html[data-theme="dark"] .assessment-result{
+    border-color:#355166;
+    background:#0f1d2a;
+    color:#e8f1f8;
+}
+
+html[data-theme="dark"] .assessment-result.approved{
+    border-color:#22a15d;
+    background:#0f1d2a;
+    color:#86efac;
+}
+
+html[data-theme="dark"] .assessment-result.failed{
+    border-color:#f87171;
+    color:#fecaca;
+}
+
+html[data-theme="dark"] .assessment-result strong{
+    color:#f8fafc;
+}
+
+html[data-theme="dark"] .assessment-result p{
+    color:#cbd5e1;
+}
+
 .assessment-review{
     margin-top:14px;
     border:1px solid #dbeafe;
