@@ -1,3 +1,6 @@
+alter table public.academy_courses
+    add column if not exists category text;
+
 insert into public.academy_courses (
     id,
     title,

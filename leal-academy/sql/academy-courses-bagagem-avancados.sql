@@ -1,3 +1,6 @@
+alter table public.academy_courses
+    add column if not exists category text;
+
 with course_seed as (
     select *
     from (
