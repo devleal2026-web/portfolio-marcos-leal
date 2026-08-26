@@ -56,24 +56,50 @@ async function carregarCategoriasSupabase(){
         return;
     }
 
-    const { data, error } = await supabaseClient
+    const [
+        { data: dadosCategorias, error: erroCategorias },
+        { data: dadosItens, error: erroItens }
+    ] = await Promise.all([
+        supabaseClient
+            .from("content_categories")
+            .select("category_code,sort_order,is_active")
+            .eq("is_active", true)
+            .order("sort_order", { ascending:true })
+            .order("category_code", { ascending:true }),
+        supabaseClient
         .from("content_category_items")
         .select("category_code,item_label,sort_order,is_active")
         .eq("is_active", true)
         .order("category_code", { ascending:true })
         .order("sort_order", { ascending:true })
-        .order("item_label", { ascending:true });
+            .order("item_label", { ascending:true })
+    ]);
 
-    if(error){
+    if(erroCategorias){
         categorias = [];
         itensPorCategoria = {};
-        alert(error.message);
+        alert(erroCategorias.message);
+        return;
+    }
+
+    if(erroItens){
+        categorias = [];
+        itensPorCategoria = {};
+        alert(erroItens.message);
         return;
     }
 
     const mapa = {};
 
-    (data || []).forEach(row => {
+    categorias = (dadosCategorias || [])
+        .map(row => String(row.category_code || "").trim().toUpperCase())
+        .filter(Boolean);
+
+    categorias.forEach(categoria => {
+        mapa[categoria] = [];
+    });
+
+    (dadosItens || []).forEach(row => {
 
         const categoria = String(row.category_code || "").trim().toUpperCase();
         const item = String(row.item_label || "").trim().toUpperCase();
@@ -84,6 +110,7 @@ async function carregarCategoriasSupabase(){
 
         if(!mapa[categoria]){
             mapa[categoria] = [];
+            categorias.push(categoria);
         }
 
         if(!mapa[categoria].includes(item)){
@@ -92,7 +119,6 @@ async function carregarCategoriasSupabase(){
 
     });
 
-    categorias = Object.keys(mapa).sort();
     itensPorCategoria = mapa;
 
     if(categorias.length === 0){
