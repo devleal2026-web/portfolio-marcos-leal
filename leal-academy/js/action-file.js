@@ -9,17 +9,17 @@ const ActionFile = (() => {
     const INBOX_CATEGORIES = [
         {
             key:"FORWARD_MESSAGES",
-            label:"Forward Messages",
+            label:"FW - Forward Messages",
             description:"Forward Messages e FWDs recebidos ou enviados pela estação."
         },
         {
             key:"ACTION_MESSAGES",
-            label:"Action Messages",
+            label:"AA - Action Messages",
             description:"Ações necessárias em PIRs, solicitações de QOH/OHD, respostas de ROH, FOH e FAH."
         },
         {
             key:"SYSTEM_MATCHES",
-            label:"System Matches",
+            label:"WM - System Matches",
             description:"Matches comparativos entre AHLs da estação e OHDs registrados em outros aeroportos."
         },
         {
@@ -34,17 +34,17 @@ const ActionFile = (() => {
         },
         {
             key:"SYSTEM_PROMPTS",
-            label:"System Prompts",
+            label:"SP - System Prompts",
             description:"Alertas automáticos do sistema indicando ações pendentes em algum PIR."
         },
         {
             key:"ADDITIONAL_PROMPTS",
-            label:"Additional Prompts",
-            description:"Mensagens gerais entre aeroportos. Equivalente ao antigo PXF do WorldTracer Native."
+            label:"AP - Additional Prompts",
+            description:"Mensagens gerais entre aeroportos ou cia aérea, também usadas como diário de serviço."
         },
         {
             key:"EMAIL_CORRESPONDENCE",
-            label:"Email Correspondence",
+            label:"EC - Email Correspondence",
             description:"E-mails enviados por passageiros pela internet."
         },
         {
@@ -54,28 +54,46 @@ const ActionFile = (() => {
         },
         {
             key:"PURGED_RETIRED_ITEMS",
-            label:"Purged/retired items",
+            label:"PR - Purged/retired items",
             description:"QOHs com prazo vencido, normalmente após 24 horas."
         },
         {
             key:"LOCAL_MANAGER",
-            label:"Local Manager",
+            label:"LM - Local Manager",
             description:"Mensagens enviadas pela Central de Bagagem, HDQ ou headquarters, aos aeroportos."
         }
     ];
 
     const ACTION_CODES = [
         {
+            code:"CXF",
+            category:"ACTION_MESSAGES",
+            title:"Action File",
+            description:"Área de armazenamento de mensagens do Action File."
+        },
+        {
             code:"DXF",
             category:"ACTION_MESSAGES",
-            title:"Visualização de mensagem",
-            description:"Leitura, conferência ou tratativa de mensagem recebida no Action File."
+            title:"Ler mensagens",
+            description:"Ler mensagens do Action File."
         },
         {
             code:"EXF",
             category:"ACTION_MESSAGES",
-            title:"Informação extra",
-            description:"Pedido de atualização, observação operacional ou informação complementar."
+            title:"Excluir mensagens",
+            description:"Excluir mensagens do Action File."
+        },
+        {
+            code:"PXF",
+            category:"ADDITIONAL_PROMPTS",
+            title:"Enviar mensagens",
+            description:"Enviar mensagens pelo Action File."
+        },
+        {
+            code:"TXF",
+            category:"ACTION_MESSAGES",
+            title:"Transferir mensagens",
+            description:"Transferir mensagens do Action File."
         },
         {
             code:"AP",
