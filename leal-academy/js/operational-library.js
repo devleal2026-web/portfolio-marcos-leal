@@ -82,9 +82,23 @@ function renderizarCards(){
 
         card.className = "manual-card";
 
+        const imagem = item.imagem
+            ? `
+                <button
+                    type="button"
+                    class="manual-card-image"
+                    data-manual-image="${item.imagem.src}"
+                    data-manual-title="${item.imagem.titulo || item.titulo}">
+                    <img src="${item.imagem.src}" alt="${item.imagem.titulo || item.titulo}">
+                </button>
+            `
+            : "";
+
         card.innerHTML = `
             <h2>${item.titulo}</h2>
             <p>${item.texto}</p>
+
+            ${imagem}
 
             <ul>
                 ${item.pontos.map(ponto => `<li>${ponto}</li>`).join("")}
@@ -96,6 +110,38 @@ function renderizarCards(){
         `;
 
         cards.appendChild(card);
+    });
+
+    document.querySelectorAll("[data-manual-image]").forEach(button => {
+        button.addEventListener("click", () => {
+            const old = document.getElementById("manualImagePreview");
+
+            if(old){
+                old.remove();
+            }
+
+            document.body.insertAdjacentHTML("beforeend", `
+                <div class="manual-image-preview" id="manualImagePreview" role="dialog" aria-modal="true">
+                    <div class="manual-image-dialog">
+                        <div class="manual-image-header">
+                            <strong>${button.dataset.manualTitle}</strong>
+                            <button type="button" id="manualImageClose">Fechar</button>
+                        </div>
+                        <img src="${button.dataset.manualImage}" alt="${button.dataset.manualTitle}">
+                    </div>
+                </div>
+            `);
+
+            document.getElementById("manualImageClose")?.addEventListener("click", () => {
+                document.getElementById("manualImagePreview")?.remove();
+            });
+
+            document.getElementById("manualImagePreview")?.addEventListener("click", event => {
+                if(event.target.id === "manualImagePreview"){
+                    event.currentTarget.remove();
+                }
+            });
+        });
     });
 }
 

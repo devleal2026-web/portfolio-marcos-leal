@@ -559,7 +559,52 @@ const lessonMediaProfiles = {
     ]
 };
 const courseIntroVideos = {};
-const lessonScreenshots = {};
+const lessonScreenshots = {
+    "chart-bagagem-iata": [
+        [
+            {
+                src:"../assets/academy-screenshots/chart-iata/chart-iata-overview.jpg",
+                title:"Visão geral do Baggage Identification Chart",
+                caption:"O chart organiza a leitura em cores, tipos de bagagem, elementos descritivos e artigos diversos."
+            }
+        ],
+        [
+            {
+                src:"../assets/academy-screenshots/chart-iata/chart-iata-colors.jpg",
+                title:"Faixa de cores do chart",
+                caption:"Use a cor predominante como primeira camada da identificação visual da bagagem."
+            }
+        ],
+        [
+            {
+                src:"../assets/academy-screenshots/chart-iata/chart-iata-luggage-types.jpg",
+                title:"Tipos visuais de bagagem",
+                caption:"Compare o formato externo do volume com o tipo mais próximo no chart."
+            }
+        ],
+        [
+            {
+                src:"../assets/academy-screenshots/chart-iata/chart-iata-descriptive-elements.jpg",
+                title:"Elementos descritivos",
+                caption:"Detalhes como alças, rodas, cadeado, cinta, zíper e material ajudam a diferenciar malas parecidas."
+            }
+        ],
+        [
+            {
+                src:"../assets/academy-screenshots/chart-iata/chart-iata-misc-articles.jpg",
+                title:"Miscellaneous articles",
+                caption:"Use esta área quando o volume não for uma mala tradicional, como carrinho, equipamento ou artigo especial."
+            }
+        ],
+        [
+            {
+                src:"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg",
+                title:"Leitura integrada do código",
+                caption:"Monte a identificação combinando cor, tipo visual e elementos externos relevantes."
+            }
+        ]
+    ]
+};
 const msbCoursePages = {};
 function readJson(key){
     try{
@@ -1749,6 +1794,7 @@ function renderLesson(course){
         </div>
         <h2>${module.title}</h2>
         ${lessonMedia(course, module, state.selectedModuleIndex)}
+        ${lessonScreenshotCards(course, state.selectedModuleIndex)}
         <div class="lesson-content-label">${contentLabel}</div>
         <article class="lesson-full-content">${formatLessonContent(
             lessonContent,
@@ -1766,6 +1812,8 @@ function renderLesson(course){
             <button class="primary-action" id="lessonBackToTop" type="button">Voltar ao topo</button>
         </nav>
     `;
+
+    bindLessonScreenshots();
 
     document.getElementById("previousLesson")?.addEventListener("click", () => {
         if(!hasPrevious){
@@ -1859,7 +1907,45 @@ function msbImageForLesson(course, moduleIndex){
     return null;
 }
 function lessonScreenshotCards(course, moduleIndex){
-    return "";
+    const courseScreenshots = lessonScreenshots[course.id];
+
+    if(!Array.isArray(courseScreenshots)){
+        return "";
+    }
+
+    const screenshots = courseScreenshots[moduleIndex];
+
+    if(!Array.isArray(screenshots) || screenshots.length === 0){
+        return "";
+    }
+
+    return `
+        <section class="lesson-screenshot-block" aria-label="Prints de apoio da trilha">
+            <div class="lesson-screenshot-heading">
+                <div>
+                    <span>Print do chart</span>
+                    <strong>Referência visual da trilha</strong>
+                </div>
+            </div>
+            <div class="lesson-screenshot-grid">
+                ${screenshots.map(item => `
+                    <figure class="lesson-screenshot-card">
+                        <button
+                            type="button"
+                            class="lesson-screenshot-zoom"
+                            data-screenshot-src="${escapeHtml(item.src)}"
+                            data-screenshot-title="${escapeHtml(item.title)}">
+                            <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
+                        </button>
+                        <figcaption>
+                            <strong>${escapeHtml(item.title)}</strong>
+                            <span>${escapeHtml(item.caption || "")}</span>
+                        </figcaption>
+                    </figure>
+                `).join("")}
+            </div>
+        </section>
+    `;
 }
 
 function bindLessonScreenshots(){

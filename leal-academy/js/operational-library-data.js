@@ -341,6 +341,23 @@ const operationalLibraryData = [
         tags:["contents","cc","categorias","ahl","ohd","worldtracer","book","footwear","weapon"]
     },
     {
+        categoria:"WorldTracer",
+        titulo:"Chart de identificação de bagagem IATA",
+        texto:"Referência visual para interpretar cor, tipo, elementos descritivos e artigos diversos no preenchimento de AHL, OHD e DPR. Use o chart para padronizar a descrição e aumentar a qualidade do match entre bagagem extraviada e bagagem sobrante.",
+        imagem:{
+            src:"../assets/academy-screenshots/chart-iata/chart-iata-overview.jpg",
+            titulo:"Baggage Identification Chart IATA"
+        },
+        pontos:[
+            "Cores: BK preto, BU azul, RD vermelho, WT branco/transparente, GY cinza/prata, PU roxo, YW amarelo, BE bege, BN marrom, GN verde, MC multicolorido e PC padrão/estampa.",
+            "Tipos de bagagem: escolha o formato visual mais parecido com o volume real, como mala rígida, mala flexível, mochila, sacola, bolsa, caixa ou artigo especial.",
+            "Elementos descritivos: use detalhes visíveis como rodas, alça, bolso externo, cinta, cadeado, zíper, dano aparente, material e formato incomum.",
+            "Miscellaneous articles: use para itens que não parecem malas tradicionais, como carrinhos, equipamentos, pacotes, instrumentos, artigos esportivos ou objetos volumosos.",
+            "Regra prática: cor predominante + tipo visual + elementos relevantes. A descrição deve ajudar outro aeroporto a reconhecer a mesma bagagem."
+        ],
+        tags:["chart","iata","baggage identification chart","ct","cor","tipo","elementos","bagagem","ahl","ohd","dpr","worldtracer"]
+    },
+    {
         categoria:"Siglas Operacionais",
         titulo:"Atendimento, acessibilidade e serviços especiais",
         texto:"Siglas usadas no atendimento a passageiros com necessidade de assistência, prioridade ou serviço especial.",
