@@ -30,6 +30,7 @@ async function loadAcademyFromSupabase(){
         id: row.id,
         title: row.title,
         eyebrow: row.eyebrow,
+        category: row.category,
         duration: row.duration,
         level: row.level,
         summary: row.summary,
