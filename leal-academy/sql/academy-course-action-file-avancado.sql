@@ -15,189 +15,137 @@ using (true);
 
 update public.academy_courses
 set
-    title = 'Mensagens WorldTracer e Action File',
+    title = 'Action File Operacional',
     eyebrow = 'Action File avançado',
     category = 'bagagem',
     level = 'Avançado',
-    duration = '2h 45min',
+    duration = '2h 20min',
     color = '#facc15',
-    summary = 'Curso completo para acessar, interpretar, administrar e tratar pendências do Action File, incluindo áreas FW, AA, WM, SP, PR, AP, EC, LM, transações CXF, DXF, EXF, PXF, TXF e regra operacional dos 7 dias.',
+    summary = 'Curso dedicado exclusivamente ao Action File: acesso, Station Inbox, áreas FW, AA, WM, SP, PR, AP, EC, LM, leitura, exclusão, envio, transferência e administração da fila.',
     modules = '[
         {
-            "title":"Acesso ao Action File",
+            "title":"O que é Action File",
             "type":"Aula guiada",
             "duration":"12 min",
-            "content":"O Action File é uma área de gerenciamento de mensagens operacionais. Nele ficam armazenadas mensagens enviadas para a sua base, exceto mensagens recebidas via teletipo, e mensagens enviadas pela própria estação. É pelo Action File que a equipe mede a carga de trabalho do dia, identifica pendências, acompanha matches e decide quais relatórios precisam de ação. Cada base tem seu próprio Action File, mas ele pode ser consultado por outra base ou companhia aérea autorizada. No simulador, o acesso é feito pelo menu Action File; no padrão WorldTracer Native, o comando de entrada pode seguir a lógica WM CXF BASE/CIA, como WM CXF XJGLA.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Acesso e Station Inbox","caption":"A entrada pelo menu Action File abre a caixa de pendências da estação, separada por área e dia operacional."}]
+            "content":"O Action File é o gerenciador operacional de mensagens da estação. Ele reúne mensagens enviadas para a base, mensagens criadas pela própria equipe e alertas que precisam de acompanhamento. O objetivo da tela é mostrar o volume de trabalho do dia, organizar pendências por área e permitir que o agente leia, envie, transfira ou retire mensagens da fila somente depois da tratativa correta.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Station Inbox","caption":"A tela apresenta as famílias de mensagens e a distribuição por dia operacional."}]
         },
         {
-            "title":"Station Inbox e regra dos 7 dias",
+            "title":"Acesso pelo CXF",
+            "type":"Comando operacional",
+            "duration":"14 min",
+            "content":"CXF identifica a área de armazenamento de mensagens do Action File. No padrão de máscara, a entrada pode seguir a estrutura WM CXF BASE/CIA, como WM CXF XJGLA. Na plataforma, o acesso ocorre pelo menu Action File. O aluno deve entender que entrar no CXF significa abrir a caixa de trabalho da estação, não encerrar pendência nem criar relatório de outro módulo.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Entrada no Action File","caption":"A primeira ação é conferir a fila antes de criar novas mensagens."}]
+        },
+        {
+            "title":"Station Inbox e D1 a D7",
             "type":"Rotina operacional",
             "duration":"18 min",
-            "content":"O Station Inbox organiza mensagens por área e por dia operacional, de D1 a D7. A leitura normalmente começa pelas mensagens mais antigas, porque elas representam maior risco de atraso na tratativa. A regra prática dos 7 dias serve para administrar envelhecimento da fila: o que entrou hoje deve ser avaliado imediatamente; o que permanece aberto precisa ser acompanhado diariamente; itens próximos ao Day 7 exigem prioridade de decisão, resposta ou encerramento. A tabela por dia evita que mensagens críticas fiquem escondidas atrás de casos novos.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Contagem por Day 1 a Day 7","caption":"A tabela mostra quantas mensagens existem em cada área e há quantos dias aguardam tratamento."}]
+            "content":"O Station Inbox organiza mensagens por área e por idade operacional, de D1 a D7. D1 indica mensagens recentes; D7 indica mensagens antigas e mais críticas. A leitura deve priorizar o que está envelhecido, porque mensagens antigas representam risco de atraso, perda de rastreabilidade e falha de resposta. A regra dos 7 dias é uma régua de controle: acompanhar diariamente, responder o que exige providência e retirar da fila somente o que já foi tratado.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Dias operacionais","caption":"A contagem por dia ajuda a priorizar a fila sem depender de memória."}]
         },
         {
-            "title":"Áreas principais: FW, AA e WM",
-            "type":"Mapa da tela",
-            "duration":"20 min",
-            "content":"FW é a área onde ficam armazenadas as informações de envio de FWD. AA é a área de ação: nela aparecem solicitações de envio de OHDs que estão em sua base, como ROH, envios de OHDs de outras bases solicitados por você, como FOH, e também mensagens FAH. WM é a área de comparação, onde ficam mensagens de match geradas pelo sistema entre AHLs e OHDs registrados em outras bases. Cada área exige postura diferente: FW pede conferência de envio; AA pede providência humana; WM pede análise antes de aceitar ou rejeitar uma possível correspondência.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"FW, AA e WM no painel","caption":"Forward Messages, Action Messages e System Matches são áreas centrais da rotina de bagagem."}]
+            "title":"Áreas FW, AA e WM",
+            "type":"Mapa da fila",
+            "duration":"18 min",
+            "content":"FW concentra mensagens de encaminhamento e movimentação operacional. AA concentra mensagens que exigem ação da equipe. WM concentra mensagens de comparação geradas pelo sistema. A diferença entre as áreas evita tratamento equivocado: FW pede conferência de envio ou deslocamento, AA pede providência humana, e WM pede análise criteriosa antes de aceitar, rejeitar ou transferir uma pendência.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Áreas principais","caption":"FW, AA e WM são linhas centrais para leitura diária da caixa."}]
         },
         {
-            "title":"Demais áreas: prompts, claims, e-mail e Local Manager",
-            "type":"Consulta",
-            "duration":"20 min",
-            "content":"SP mostra alertas do sistema quando alguma ação deve ser tomada. PR mostra todos os QOHs que já tiveram o prazo de 24 horas expirado. AP é uma área geral de mensagens, usada quando outras bases enviam recados operacionais ou quando a equipe quer deixar uma orientação para outro turno; pode funcionar como diário de serviço. EC armazena e-mails enviados pelo cliente via internet. LM concentra mensagens enviadas pela central, HDQ ou headquarters às bases. Além dessas áreas, o simulador também apresenta Extended Matches, Claim Matches e Claims Messages para treinar investigação, reclamações e possíveis correspondências prolongadas.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Áreas completas do Inbox","caption":"Cada linha da caixa de entrada representa uma família diferente de pendências."}]
+            "title":"Áreas SP, PR, AP, EC e LM",
+            "type":"Mapa da fila",
+            "duration":"18 min",
+            "content":"SP apresenta alertas automáticos do sistema. PR reúne itens vencidos ou retirados da rotina ativa conforme regra operacional da fila. AP é usado para mensagens gerais entre bases, companhias ou turnos. EC concentra correspondências recebidas por canal digital. LM apresenta comunicações da gestão, central ou headquarters. Cada área deve ser lida com uma intenção clara: identificar origem, urgência, responsável e próxima ação.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Demais áreas","caption":"As áreas complementares ajudam a separar alerta, recado, e-mail e orientação central."}]
         },
         {
-            "title":"Transações CXF, DXF, EXF, PXF e TXF",
-            "type":"Comandos operacionais",
-            "duration":"20 min",
-            "content":"CXF é a área de armazenamento de mensagens do Action File. No padrão WorldTracer Native, a entrada pode ser representada por WM CXF BASE/CIA, por exemplo WM CXF XJGLA. Depois de acessar a fila, a equipe usa DXF para ler mensagens, EXF para excluir mensagens já tratadas, PXF para enviar mensagens a outras bases ou companhias aéreas, e TXF para transferir uma mensagem para o relatório correto. A sequência didática é: entrar na área CXF, avaliar a contagem por área e dia, ler a pendência com DXF, responder ou enviar quando aplicável com PXF, transferir responsabilidade quando necessário com TXF e excluir apenas mensagens resolvidas com EXF.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Campo Código","caption":"O código define a natureza da ação: leitura, complemento, encaminhamento, match ou encerramento."}]
-        },
-        {
-            "title":"Leitura e exclusão: DXF e EXF",
+            "title":"Leitura com DXF",
             "type":"Prática orientada",
             "duration":"18 min",
-            "content":"DXF é a transação usada para ler mensagens do Action File. Ao utilizar DXF, o sistema passa a mostrar as mensagens da área escolhida, normalmente a partir do D7 em direção aos dias mais recentes, começando pelas mais antigas. Também é possível solicitar uma área e um dia específico, como WM DXF XJGLA AA D1. EXF é usado para apagar mensagens do Action File somente depois que elas foram lidas e todas as ações pertinentes foram tomadas. A exclusão é uma providência importante porque mensagens resolvidas continuam acumulando e atrapalham a visualização das pendências novas. Como regra de treinamento, apagar mensagem sem tratar o caso é erro operacional, pois depois de excluída a mensagem pode não ser recuperada.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Leitura e limpeza da fila","caption":"DXF abre as mensagens; EXF remove da fila apenas o que já foi resolvido."}]
+            "content":"DXF é a transação usada para ler mensagens do Action File. A leitura pode ser feita de forma geral ou direcionada por área e dia, como WM DXF XJGLA AA D1. O agente deve ler a mensagem inteira, identificar área, número, origem, destino, data, conteúdo e ação esperada. A leitura não resolve a pendência sozinha; ela apenas transforma uma mensagem acumulada em uma tarefa operacional compreendida.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Leitura da mensagem","caption":"DXF abre a pendência para análise antes de qualquer resposta."}]
         },
         {
-            "title":"Transferência e envio: TXF e PXF",
-            "type":"Comandos operacionais",
-            "duration":"18 min",
-            "content":"TXF transfere mensagens recebidas no Action File para um relatório, principalmente em áreas como FW, WM, AP e LM. A transferência exige informar de qual área vem a mensagem, qual número será transferido e para qual relatório ela deve ir, por exemplo associando a pendência a um AHL específico. PXF é usado quando a estação precisa enviar mensagem para outra base ou companhia aérea, ou deixar um recado para outro turno. A mensagem deve ser objetiva, identificar referência, base, companhia, necessidade e assinatura operacional.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Mensagem e ação","caption":"PXF envia mensagens; TXF transfere uma pendência para o relatório correto."}]
+            "title":"Exclusão com EXF",
+            "type":"Controle de fila",
+            "duration":"16 min",
+            "content":"EXF exclui mensagens do Action File. A exclusão só deve ocorrer após leitura, tratativa e registro da providência necessária. Apagar uma mensagem para limpar a tela sem resolver o assunto gera perda de controle e pode impedir que outro agente entenda o histórico da pendência. Em treinamento, o critério é simples: se ainda existe ação pendente, a mensagem permanece; se a ação foi concluída e registrada, a mensagem pode sair da fila.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Limpeza responsável","caption":"EXF é etapa final de uma pendência, não atalho para reduzir volume."}]
         },
         {
-            "title":"Códigos de bagagem: FWD, ROH, FOH, FAH e BDO",
-            "type":"Mensagens de processo",
-            "duration":"22 min",
-            "content":"FWD é mensagem de envio de bagagem. ROH é solicitar OHD. FOH é enviar OHD. FAH é envio de bagagens pertencentes a AHLs de sua base. FLZ é envio de bagagem para a central de bagagens ou HDQ. BDO é ordem de entrega de bagagem. Esses códigos precisam ser usados com referência correta, base, companhia, voo, data, peso, lacre quando aplicável e histórico coerente.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png","title":"ROH e FOH no histórico","caption":"Mensagens de solicitação e envio precisam ficar registradas no histórico do processo."}]
+            "title":"Envio com PXF",
+            "type":"Mensagem operacional",
+            "duration":"16 min",
+            "content":"PXF envia mensagens pelo Action File. Ele deve ser usado quando a estação precisa comunicar outra base, companhia ou equipe sobre uma ação operacional. Uma boa mensagem informa referência, origem, destino, motivo, pedido objetivo e assinatura do responsável. O texto deve ser curto, claro e rastreável, evitando abreviações ambíguas quando elas prejudicam o entendimento.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Envio de mensagem","caption":"PXF transforma a necessidade operacional em comunicação formal."}]
         },
         {
-            "title":"Identificação das transações",
-            "type":"Tabela de consulta",
-            "duration":"22 min",
-            "content":"As principais transações relacionadas à consulta, criação, visualização, alteração e mensagens são: HELP ajuda do sistema; AHL criar relatório de bagagem extraviada; OHD criar relatório de bagagem sobrante; QOH inserção rápida de bagagem sobrante; DPR criar relatório de danificação e violação; DAH visualizar AHL; DOH visualizar OHD; DDP visualizar DPR; RAF lista de AHLs; ROF lista de OHDs; DOF lista de OHDs, QOHs e mensagens FWD, FOH, FAH e FLZ; AAH alterar AHL; AOH alterar OHD; ADP alterar DPR; CXF área de armazenamento de mensagens; DXF ler mensagens; EXF excluir mensagens; PXF enviar mensagens; TXF transferir mensagens; ROH solicitar OHD; FOH enviar OHD; RIT reativar relatórios de AHL e OHD; CAH fechar AHL; CDP fechar DPR; COH fechar OHD; CFD fechar AHL e abrir DPR; RCB reabrir relatório fechado; DST visualizar dados da base; RFP inserir objetos localizados a bordo; DFP visualizar objetos encontrados a bordo; AFP inserir informações em objetos esquecidos; PDI visualizar relatórios inativos; PDE inserir, alterar ou apagar informações em relatórios inativos; FRR visualizar relatórios AHL, OHD ou DPR abertos usando somente o número.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Transações e fila operacional","caption":"A transação indica se o agente deve criar, visualizar, alterar, enviar, transferir, reativar ou fechar um processo."}]
+            "title":"Transferência com TXF",
+            "type":"Tratamento de pendência",
+            "duration":"16 min",
+            "content":"TXF transfere uma mensagem para o local correto de acompanhamento. A transferência é usada quando a pendência precisa deixar a fila geral e ficar vinculada ao tratamento adequado. Antes de transferir, o agente confere área, número da mensagem, referência citada, motivo e destino da transferência. Transferir sem leitura completa apenas muda o problema de lugar; transferir bem melhora rastreabilidade e continuidade do atendimento.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Transferência","caption":"TXF direciona a mensagem para a tratativa correta."}]
         },
         {
-            "title":"Como administrar a fila",
+            "title":"Administração da fila",
             "type":"Gestão operacional",
             "duration":"18 min",
-            "content":"Administrar o Action File exige rotina: filtrar por processo, código, área, status e dias; priorizar mensagens antigas, matches de alta probabilidade, solicitações de outras bases e casos com passageiro aguardando; atribuir responsável; responder com texto objetivo; atualizar o processo relacionado; e encerrar somente quando a pendência estiver resolvida. A fila deve ser revisada no início, durante e no fim do turno.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Criação e administração da ação","caption":"Filtros, prioridade, responsável e mensagem ajudam a transformar a fila em controle operacional."}]
-        },
-        {
-            "title":"Fluxo prático de tratamento",
-            "type":"Simulação",
-            "duration":"20 min",
-            "content":"O fluxo recomendado é: acessar o Action File, verificar Day 1 a Day 7, selecionar área, abrir a mensagem, identificar referência e processo, consultar AHL/OHD/DPR/RFP, avaliar se há match ou solicitação, executar a ação necessária, registrar resposta e histórico, atualizar status e revisar se há nova pendência gerada. Nenhuma mensagem deve ser encerrada apenas para limpar a tela; o encerramento precisa refletir ação real.",
-            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ohd-web.png","title":"Conferência no processo vinculado","caption":"Antes de responder uma mensagem, o agente precisa conferir o processo relacionado."}]
+            "content":"Administrar o Action File exige rotina de início, meio e fim de turno. O agente deve filtrar por área, código, status, prioridade, responsável e dias; atacar primeiro mensagens antigas e críticas; registrar providências; evitar duplicidade de comunicação; e revisar se a fila gerou novas pendências. Uma fila saudável não é necessariamente vazia: é uma fila compreendida, priorizada e com histórico coerente.",
+            "screenshots":[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Filtros e ações","caption":"Filtro, prioridade e responsável ajudam a transformar mensagens em fluxo de trabalho."}]
         }
     ]'::jsonb,
     labs = '[
         {"label":"Action File","href":"action-file.html"},
-        {"label":"AHL Web","href":"ahl.html"},
-        {"label":"OHD Web","href":"ohd.html"},
-        {"label":"DPR Web","href":"dpr.html"},
         {"label":"Máscara Action File WorldTracer","href":"worldtracer/action-file.html"}
     ]'::jsonb,
     quiz = '[
-        {"question":"Como acessar o Action File no simulador?","options":["Pelo menu principal, opção Action File","Somente pela tela de certificado","Apenas pelo admin","Pelo botão de logout"],"correct":0},
-        {"question":"O Station Inbox serve para:","options":["Concentrar mensagens e pendências da estação por área e dia","Emitir cartão de embarque","Cadastrar senha de aluno","Alterar layout da página"],"correct":0},
-        {"question":"A regra dos 7 dias ajuda principalmente a:","options":["Controlar envelhecimento e prioridade das pendências","Excluir todos os processos no sétimo dia","Liberar acesso sem login","Calcular peso da mala"],"correct":0},
-        {"question":"FW significa, no contexto do Action File:","options":["Forward Messages","Final Weight","File Warning","Flight Window"],"correct":0},
-        {"question":"AA significa:","options":["Action Messages","Airport Arrival","Airline Admin","Automatic Approval"],"correct":0},
-        {"question":"WM indica:","options":["System Match entre processos, como AHL e OHD","Peso mundial","Mensagem sem ação","Encerramento automático"],"correct":0},
-        {"question":"CXF representa:","options":["Área de armazenamento de mensagens do Action File","Fechamento de AHL","Envio de OHD","Lista de DPR"],"correct":0},
-        {"question":"DXF significa:","options":["Ler mensagens do Action File","Excluir mensagens","Transferir mensagens","Criar AHL"],"correct":0},
-        {"question":"EXF representa:","options":["Excluir mensagens do Action File","Informação extra","Envio de etiqueta física","Entrega final"],"correct":0},
-        {"question":"PXF significa:","options":["Enviar mensagens","Visualizar DPR","Reabrir relatório","Criar OHD"],"correct":0},
-        {"question":"TXF significa:","options":["Transferir mensagens","Listar AHLs","Fechar DPR","Ajuda do sistema"],"correct":0},
-        {"question":"ROH significa:","options":["Request On-Hand","Report On Hold","Return Of Handling","Rush On Flight"],"correct":0},
-        {"question":"FOH significa:","options":["Forward On-Hand","Final On Hold","File Of History","Flight On Hold"],"correct":0},
-        {"question":"FAH está ligado a:","options":["Envio de bagagens pertencentes a AHLs de sua base","Fechamento de RFP","Filtro de administração","Falha de login"],"correct":0},
-        {"question":"Antes de aceitar um WM, o agente deve:","options":["Comparar AHL, OHD, rota, tag, conteúdo e descrição","Encerrar sem verificar","Criar certificado","Apagar OHD"],"correct":0},
-        {"question":"Uma fila bem administrada exige:","options":["Filtro, prioridade, responsável, resposta e histórico","Apenas abrir a tela uma vez por semana","Encerrar tudo sem resposta","Ignorar mensagens antigas"],"correct":0},
-        {"question":"Quando encerrar uma ação?","options":["Somente depois que a pendência foi tratada e registrada","Assim que aparecer no Day 1","Sempre no Day 7 sem análise","Antes de consultar o processo"],"correct":0}
+        {"question":"Qual é o objetivo do Action File?","options":["Gerenciar mensagens e pendências operacionais da estação","Criar certificados de curso","Alterar dados de login","Montar uma escala de funcionários"],"correct":0},
+        {"question":"CXF representa:","options":["Área de armazenamento de mensagens do Action File","Fechamento de atendimento","Cadastro de passageiro","Tela de relatório financeiro"],"correct":0},
+        {"question":"O Station Inbox organiza mensagens principalmente por:","options":["Área e dia operacional","Nome do aluno","Cor da mala","Número de certificado"],"correct":0},
+        {"question":"D7 indica uma mensagem:","options":["Mais antiga e com maior prioridade de acompanhamento","Criada automaticamente no futuro","Sem necessidade de leitura","Excluída pelo sistema"],"correct":0},
+        {"question":"DXF é usado para:","options":["Ler mensagens do Action File","Excluir a base","Criar nova senha","Gerar relatório administrativo"],"correct":0},
+        {"question":"EXF deve ser usado quando:","options":["A mensagem já foi lida, tratada e registrada","A fila parece longa","O agente não sabe o que fazer","A mensagem chegou em D1"],"correct":0},
+        {"question":"PXF serve para:","options":["Enviar mensagens operacionais","Alterar a cor da tela","Abrir biblioteca de cursos","Calcular peso total"],"correct":0},
+        {"question":"TXF serve para:","options":["Transferir uma mensagem para o acompanhamento correto","Excluir todos os filtros","Criar uma nova categoria de curso","Fechar a plataforma"],"correct":0},
+        {"question":"AP no contexto do Action File é:","options":["Área de mensagens gerais entre bases, companhias ou turnos","Aprovação automática de avaliação","Arquivo pessoal do aluno","Atalho para painel administrativo"],"correct":0},
+        {"question":"Uma fila bem administrada deve ser:","options":["Priorizada, registrada e revisada durante o turno","Esvaziada sem leitura","Ignorada até D7","Tratada apenas uma vez por semana"],"correct":0}
     ]'::jsonb,
     cover_path = '../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png',
-    material = 'Curso avançado de Mensagens WorldTracer e Action File
+    material = 'Curso avançado de Action File
 
 Objetivo
-Ensinar o aluno a acessar, interpretar, priorizar, responder e encerrar pendências do Action File com método operacional.
+Ensinar o aluno a acessar, interpretar, priorizar, responder, transferir e limpar mensagens do Action File com método operacional.
 
-1. Como acessar
-Na plataforma, o Action File fica no menu principal. Ao entrar, o aluno encontra Station Inbox, área de criação de mensagem/ação, filtros e tabela de ações registradas. No padrão WorldTracer Native, o acesso ao Action File pode seguir a lógica WM CXF BASE/CIA, por exemplo WM CXF XJGLA. A rotina começa pela leitura da fila, não pela criação aleatória de mensagens.
+1. Conceito
+O Action File é o gerenciador de mensagens da estação. Ele organiza pendências por área e por dia operacional, permitindo acompanhar o volume de trabalho e a prioridade de cada mensagem.
 
-2. Regra dos 7 dias
-O Inbox separa pendências de Day 1 a Day 7. Essa régua indica envelhecimento operacional. Mensagens novas devem ser avaliadas cedo; mensagens antigas precisam de prioridade, resposta ou conclusão. O objetivo é evitar que solicitações de outras bases, matches ou prompts fiquem esquecidos.
+2. Acesso
+Na plataforma, o acesso fica no menu Action File. No padrão de máscara, a entrada pode seguir o formato WM CXF BASE/CIA, como WM CXF XJGLA.
 
-3. Áreas principais
-FW - Forward Messages: área onde ficam armazenadas informações de envio de FWD.
-AA - Action Messages: área de ação com solicitações de OHDs na sua base, envios de OHDs solicitados em outras bases e mensagens FAH.
-WM - System Matches: área de comparação com matches gerados pelo sistema entre AHLs da estação e OHDs de outras bases.
+3. Station Inbox
+A caixa de entrada separa mensagens por D1 a D7. D1 representa entrada recente. D7 representa pendência antiga e deve receber atenção prioritária.
 
-4. Outras áreas
-SP - System Prompts: alertas do sistema quando alguma ação precisa ser tomada.
-PR - Purged/retired items: QOHs que já tiveram o prazo operacional de 24 horas expirado.
-AP - Additional Prompts: mensagens gerais entre bases ou companhia aérea; pode ser usado como diário de serviço e passagem de turno.
-EC - Email Correspondence: e-mails enviados pelo cliente via internet.
-LM - Local Manager: mensagens enviadas pela central, HDQ ou headquarters às bases.
-Extended Matches: matches prolongados após extensão de rastreio.
-Claim Matches: correspondências ligadas a investigação ou reclamação.
-Claims Messages: reclamações ou notificações de claim.
+4. Áreas do Action File
+FW - Forward Messages: mensagens de encaminhamento e movimentação operacional.
+AA - Action Messages: mensagens que exigem ação da equipe.
+WM - System Matches: mensagens de comparação geradas pelo sistema.
+SP - System Prompts: alertas automáticos do sistema.
+PR - Purged/retired items: itens retirados ou vencidos conforme regra operacional da fila.
+AP - Additional Prompts: mensagens gerais entre bases, companhias ou turnos.
+EC - Email Correspondence: correspondências recebidas por canal digital.
+LM - Local Manager: comunicações da gestão, central ou headquarters.
 
-5. Comandos
-HELP: ajuda do sistema.
-AHL: criar relatório de bagagem extraviada.
-OHD: criar relatório de bagagem sobrante.
-QOH: inserção rápida de bagagem sobrante.
-DPR: criar relatório de danificação e violação.
-DAH: visualização de AHL.
-DOH: visualização de OHD.
-DDP: visualização de DPR.
-RAF: lista de AHLs.
-ROF: lista de OHDs.
-DOF: lista de OHDs, QOHs e mensagens de envio FWD, FOH, FAH e FLZ.
-AAH: incluir, apagar ou alterar informações no AHL.
-AOH: incluir, apagar ou alterar informações no OHD.
-ADP: incluir, apagar ou alterar informações no DPR.
-CXF: área de armazenamento de mensagens do Action File.
-DXF: ler mensagens do Action File.
-EXF: excluir mensagens do Action File.
-PXF: enviar mensagens.
-TXF: transferir mensagens.
-ROH: solicitar OHD.
-FOH: enviar OHD.
-RIT: reativar relatórios de AHL e OHD.
-FAH: envio de bagagens pertencentes a AHLs de sua base.
-FLZ: envio de bagagem para a central de bagagens, HDQ.
-CAH: fechamento de AHL.
-CDP: fechamento de DPR.
-COH: fechamento de OHD.
-CFD: fechamento de AHL e abertura de DPR.
-BDO: ordem de entrega de bagagem.
-RCB: reabertura de relatório fechado.
-DST: área de visualização dos dados da base.
-FWD: mensagem de envio de bagagem.
-RFP: inserção de objetos localizados a bordo.
-DFP: visualização de objetos encontrados a bordo.
-AFP: inserir informações nos objetos esquecidos a bordo.
-PDI: visualizar relatórios inativos no sistema.
-PDE: inserir, alterar ou apagar informações em relatórios inativos.
-FRR: relatórios de AHL, OHD e DPR abertos usando somente o número.
+5. Transações próprias do Action File
+CXF: área de armazenamento de mensagens.
+DXF: leitura de mensagens.
+EXF: exclusão de mensagens já tratadas.
+PXF: envio de mensagens.
+TXF: transferência de mensagens para acompanhamento correto.
 
-6. Administração da fila
-Filtrar por processo, código, área, status e dias. Priorizar mensagens antigas, matches fortes, solicitações de outras bases e casos com passageiro aguardando. A leitura por DXF pode ser feita por área e dia, como WM DXF XJGLA AA D1. Quando a mensagem pertence a um relatório, usar TXF para transferir a pendência ao processo correto. Quando for necessário comunicar outra base, companhia aérea ou turno, usar PXF com texto objetivo, referência, necessidade e assinatura operacional. Usar EXF somente depois de ler, tratar e registrar a ação necessária; apagar mensagem sem resolver o caso elimina rastreabilidade e prejudica a operação.
+6. Método de trabalho
+Entrar na fila, conferir área e dia, priorizar mensagens antigas, ler com DXF, decidir a ação, enviar com PXF quando houver comunicação externa, transferir com TXF quando a pendência precisar seguir para acompanhamento específico e excluir com EXF somente após conclusão real.
 
 Mensagem principal
-Action File é disciplina de acompanhamento. Uma fila limpa sem ação real não é qualidade; qualidade é pendência tratada, processo atualizado e histórico rastreável.',
+Action File é controle de pendências. O objetivo não é apenas reduzir números na tela; é garantir leitura, ação, registro e continuidade operacional.',
     sort_order = 248
 where id = 'mensagens-worldtracer-action-file';
