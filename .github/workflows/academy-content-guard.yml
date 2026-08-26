@@ -1,0 +1,33 @@
+name: Leal Academy content guard
+
+on:
+  push:
+    paths:
+      - "leal-academy/js/academy-course-content.js"
+      - "leal-academy/sql/**"
+      - "leal-academy/quality/course-content-baseline.json"
+      - "tools/validate-academy-course-content.js"
+      - ".github/workflows/academy-content-guard.yml"
+  pull_request:
+    paths:
+      - "leal-academy/js/academy-course-content.js"
+      - "leal-academy/sql/**"
+      - "leal-academy/quality/course-content-baseline.json"
+      - "tools/validate-academy-course-content.js"
+      - ".github/workflows/academy-content-guard.yml"
+
+jobs:
+  validate-course-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate academy course content
+        run: node tools/validate-academy-course-content.js

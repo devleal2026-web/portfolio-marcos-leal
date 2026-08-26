@@ -1,0 +1,176 @@
+{
+  "note": "Conteudo minimo aprovado. Atualize este arquivo somente quando uma reducao de conteudo for intencional.",
+  "generatedFrom": "leal-academy/sql/course-content-batches",
+  "courses": {
+    "fundamentos": {
+      "modules": 3,
+      "moduleContentChars": 12033,
+      "materialChars": 12111
+    },
+    "bagagem-extraviada": {
+      "modules": 5,
+      "moduleContentChars": 29368,
+      "materialChars": 29527
+    },
+    "objetos-esquecidos": {
+      "modules": 5,
+      "moduleContentChars": 11072,
+      "materialChars": 11220
+    },
+    "avsec": {
+      "modules": 5,
+      "moduleContentChars": 4197,
+      "materialChars": 4324
+    },
+    "manuseio-bagagem": {
+      "modules": 5,
+      "moduleContentChars": 10091,
+      "materialChars": 10228
+    },
+    "ahl": {
+      "modules": 3,
+      "moduleContentChars": 28573,
+      "materialChars": 28635
+    },
+    "ohd": {
+      "modules": 3,
+      "moduleContentChars": 6802,
+      "materialChars": 6867
+    },
+    "matches": {
+      "modules": 3,
+      "moduleContentChars": 1646,
+      "materialChars": 1732
+    },
+    "dpr": {
+      "modules": 3,
+      "moduleContentChars": 20142,
+      "materialChars": 20197
+    },
+    "worldtracer-completo": {
+      "modules": 5,
+      "moduleContentChars": 54429,
+      "materialChars": 54551
+    },
+    "atendimento-cliente-aviacao": {
+      "modules": 5,
+      "moduleContentChars": 12498,
+      "materialChars": 12636
+    },
+    "boas-praticas-atendimento": {
+      "modules": 5,
+      "moduleContentChars": 6132,
+      "materialChars": 6251
+    },
+    "bagagem-violada": {
+      "modules": 4,
+      "moduleContentChars": 6049,
+      "materialChars": 6140
+    },
+    "bagagem-danificada": {
+      "modules": 5,
+      "moduleContentChars": 19890,
+      "materialChars": 19987
+    },
+    "tratativa-rl-mct": {
+      "modules": 5,
+      "moduleContentChars": 49107,
+      "materialChars": 49215
+    },
+    "bagagem-sem-etiqueta-ohd": {
+      "modules": 5,
+      "moduleContentChars": 8930,
+      "materialChars": 9040
+    },
+    "lideranca-bagagem-extraviada": {
+      "modules": 6,
+      "moduleContentChars": 19744,
+      "materialChars": 19890
+    },
+    "atendimento-pcd": {
+      "modules": 5,
+      "moduleContentChars": 4742,
+      "materialChars": 4854
+    },
+    "interpretacao-etiqueta-bagagem": {
+      "modules": 8,
+      "moduleContentChars": 11289,
+      "materialChars": 11536
+    },
+    "gestao-pessoas-rampa": {
+      "modules": 5,
+      "moduleContentChars": 11768,
+      "materialChars": 11961
+    },
+    "restituicao-bagagem-sla": {
+      "modules": 8,
+      "moduleContentChars": 16538,
+      "materialChars": 16763
+    },
+    "siga-gestao-aeroportuaria": {
+      "modules": 8,
+      "moduleContentChars": 13138,
+      "materialChars": 13347
+    },
+    "checkin-operacional": {
+      "modules": 6,
+      "moduleContentChars": 12903,
+      "materialChars": 13069
+    },
+    "embarque-controle-portao": {
+      "modules": 6,
+      "moduleContentChars": 10654,
+      "materialChars": 10808
+    },
+    "irregularidades-voo": {
+      "modules": 6,
+      "moduleContentChars": 12562,
+      "materialChars": 12733
+    },
+    "conexoes-mct": {
+      "modules": 6,
+      "moduleContentChars": 11701,
+      "materialChars": 11870
+    },
+    "bagagens-especiais": {
+      "modules": 6,
+      "moduleContentChars": 11817,
+      "materialChars": 11996
+    },
+    "mercadorias-perigosas-atendimento": {
+      "modules": 6,
+      "moduleContentChars": 13036,
+      "materialChars": 13234
+    },
+    "comunicacao-operacional-aeroportuaria": {
+      "modules": 6,
+      "moduleContentChars": 10718,
+      "materialChars": 10925
+    },
+    "contestacao-operacional-aviacao": {
+      "modules": 6,
+      "moduleContentChars": 11358,
+      "materialChars": 11539
+    },
+    "gestao-crise-aeroporto": {
+      "modules": 6,
+      "moduleContentChars": 12149,
+      "materialChars": 12323
+    },
+    "qualidade-indicadores-operacionais": {
+      "modules": 6,
+      "moduleContentChars": 9909,
+      "materialChars": 10122
+    },
+    "introducao-operacao-rampa": {
+      "modules": 6,
+      "moduleContentChars": 9463,
+      "materialChars": 9619
+    },
+    "chart-bagagem-iata": {
+      "modules": 6,
+      "moduleContentChars": 10834,
+      "materialChars": 10992
+    }
+  }
+}
