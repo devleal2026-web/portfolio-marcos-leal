@@ -195,3 +195,22 @@ do update set
     cover_path = excluded.cover_path,
     material = excluded.material,
     sort_order = excluded.sort_order;
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-overview.jpg","title":"Visão geral do Baggage Identification Chart","caption":"O chart organiza a leitura em cores, tipos de bagagem, elementos descritivos e artigos diversos."}]'::jsonb, true)
+where id = 'chart-bagagem-iata';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-colors.jpg","title":"Faixa de cores do chart","caption":"Use a cor predominante como primeira camada da identificação visual da bagagem."}]'::jsonb, true)
+where id = 'chart-bagagem-iata';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-luggage-types.jpg","title":"Tipos visuais de bagagem","caption":"Compare o formato externo do volume com o tipo mais próximo no chart."}]'::jsonb, true)
+where id = 'chart-bagagem-iata';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-descriptive-elements.jpg","title":"Elementos descritivos","caption":"Detalhes como alças, rodas, cadeado, cinta, zíper e material ajudam a diferenciar malas parecidas."}]'::jsonb, true)
+where id = 'chart-bagagem-iata';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-misc-articles.jpg","title":"Miscellaneous articles","caption":"Use esta área quando o volume não for uma mala tradicional, como carrinho, equipamento ou artigo especial."}]'::jsonb, true)
+where id = 'chart-bagagem-iata';
+update public.academy_courses
+set modules = jsonb_set(modules, '{5,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg","title":"Leitura integrada do código","caption":"Monte a identificação combinando cor, tipo visual e elementos externos relevantes."}]'::jsonb, true)
+where id = 'chart-bagagem-iata';

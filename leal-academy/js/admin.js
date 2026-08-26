@@ -96,6 +96,25 @@ const AcademyAdmin = (() => {
         return academyCourses.find(course => course.id === courseId) || null;
     }
 
+    async function loadCoursesFromSupabase(){
+        const { data, error } = await supabaseClient
+            .from("academy_courses")
+            .select("id,title,modules")
+            .order("sort_order", { ascending:true });
+
+        if(error){
+            throw error;
+        }
+
+        window.academyCourses = Array.isArray(data)
+            ? data.map(course => ({
+                id:course.id,
+                title:course.title,
+                modules:Array.isArray(course.modules) ? course.modules : []
+            }))
+            : [];
+    }
+
     async function isAdmin(email){
         const normalizedEmail = normalizeEmail(email);
 
@@ -166,8 +185,8 @@ const AcademyAdmin = (() => {
             return;
         }
 
-        setStatus("Acesso administrativo confirmado. Sincronizando dados locais...");
-        await syncLocalDataForCurrentUser(session);
+        setStatus("Acesso administrativo confirmado. Carregando dados do Supabase...");
+        await loadCoursesFromSupabase();
         await loadDashboard();
     }
 
@@ -428,24 +447,16 @@ const AcademyAdmin = (() => {
                 selectTable("academy_certificates", "*", "issued_at"),
                 selectTable("academy_access_events", "*", "created_at")
             ]);
-            const localData = localDashboardData(session);
-            const mergedProgress = mergeByKey(progress, localData.progress, row => `${row.user_id}|${row.course_id}`);
-            const mergedAttempts = mergeByKey(attempts, localData.attempts, row => `${row.user_id}|${row.course_id}|${row.created_at || row.score_percent}`);
-            const mergedCertificates = mergeByKey(certificates, localData.certificates, row => `${row.certificate_code}`);
-            const hasLocalData = localData.progress.length > 0 || localData.attempts.length > 0 || localData.certificates.length > 0;
-
             renderDashboard({
                 profiles,
-                progress:mergedProgress,
-                attempts:mergedAttempts,
-                certificates:mergedCertificates,
+                progress,
+                attempts,
+                certificates,
                 events
             });
 
             setStatus(
-                hasLocalData
-                    ? "Métricas atualizadas com sucesso. Dados locais desta conta também foram considerados."
-                    : "Métricas atualizadas com sucesso.",
+                "Métricas atualizadas com sucesso.",
                 "success"
             );
         }catch(error){

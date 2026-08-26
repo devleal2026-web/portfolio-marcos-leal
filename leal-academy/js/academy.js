@@ -1,24 +1,10 @@
-const localAcademyCourses = Array.isArray(academyCourses)
-    ? JSON.parse(JSON.stringify(academyCourses))
-    : [];
-
-function restoreLocalAcademyCourses(){
-    if(!Array.isArray(academyCourses) || academyCourses.length > 0){
-        return;
-    }
-
-    if(localAcademyCourses.length === 0){
-        return;
-    }
-
-    academyCourses.splice(
-        0,
-        academyCourses.length,
-        ...JSON.parse(JSON.stringify(localAcademyCourses))
-    );
+if(typeof academyCourses === "undefined"){
+    window.academyCourses = [];
 }
-restoreLocalAcademyCourses();
 
+if(typeof academyMaterials === "undefined"){
+    window.academyMaterials = {};
+}
 const state = {
     selectedCourseId: (academyCourses[0] || {}).id || "",
     selectedModuleIndex: 0,
@@ -35,13 +21,11 @@ const state = {
 };
 
 async function ensureAcademyCoursesLoaded(){
-    if(Array.isArray(academyCourses) && academyCourses.length > 0){
-        return true;
-    }
+    let loadedRemote = window.academyDataSource === "supabase";
 
-    if(typeof loadAcademyFromSupabase === "function"){
+    if(!loadedRemote && typeof loadAcademyFromSupabase === "function"){
         try{
-            await loadAcademyFromSupabase();
+            loadedRemote = await loadAcademyFromSupabase();
         }
         catch(error){
             console.warn(
@@ -50,8 +34,6 @@ async function ensureAcademyCoursesLoaded(){
             );
         }
     }
-
-    restoreLocalAcademyCourses();
 
     if(Array.isArray(academyCourses) && academyCourses.length > 0){
         state.selectedCourseId = state.selectedCourseId || academyCourses[0].id;
@@ -559,311 +541,6 @@ const lessonMediaProfiles = {
     ]
 };
 const courseIntroVideos = {};
-const lessonScreenshots = {
-    "baggage-claim-desembarque": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/baggage-claim-checkin.png",
-                title:"Bagagens recebidas e indicadores",
-                caption:"O desembarque começa antes da reclamação: a equipe precisa conferir voos, volumes e status das bagagens."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png",
-                title:"Tela AHL para abertura do caso",
-                caption:"Quando a bagagem não aparece, a triagem conduz para registro com dados da bagagem, viagem e passageiro."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ohd-web.png",
-                title:"Consulta OHD",
-                caption:"Pesquisar OHDs e matches evita abrir ou manter casos sem checar bagagens sobrantes."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png",
-                title:"Histórico ROH e FOH",
-                caption:"O histórico operacional documenta pedidos e respostas entre bases durante a busca."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/bdo-history.png",
-                title:"BDO e entrega",
-                caption:"Após localização, a entrega precisa ser registrada com serviço, endereço, data e conteúdo relevante."
-            }
-        ]
-    ],
-    "conexoes-criticas-mct-pratica": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/connections-bhs.png",
-                title:"Fila no BHS",
-                caption:"A conexão crítica começa na leitura da fila: rota, destino e tempo disponível para transferir o volume."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/connections-makeup.png",
-                title:"Make-Up por voo",
-                caption:"Agrupar bagagens por voo ajuda a enxergar prioridade e risco de perda de conexão."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/integrated-loading.png",
-                title:"Loading e carregamento",
-                caption:"O carregamento confirma se o volume realmente chegou ao voo correto."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png",
-                title:"Mensagens e pendências",
-                caption:"Conexões críticas podem gerar mensagens no Action File quando há pendência operacional."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png",
-                title:"Efeito no destino",
-                caption:"Quando a mala não conecta, o impacto aparece no destino como atendimento de extravio."
-            }
-        ]
-    ],
-    "mensagens-worldtracer-action-file": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png",
-                title:"Station Inbox",
-                caption:"A caixa de ações concentra mensagens, matches, prompts e pendências por dia operacional."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png",
-                title:"Criar mensagem ou ação",
-                caption:"Uma ação bem registrada informa processo, referência, base, companhia, código e orientação."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png",
-                title:"ROH e FOH no AHL",
-                caption:"Pedidos de OHD e respostas entre aeroportos precisam ser objetivos e rastreáveis."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/bdo-history.png",
-                title:"BDO no histórico",
-                caption:"A ordem de entrega mostra como a mensagem operacional vira ação prática para o passageiro."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ohd-web.png",
-                title:"Processos OHD",
-                caption:"Mensagens e matches devem ser conferidos contra dados do OHD e do AHL antes de agir."
-            }
-        ]
-    ],
-    "dpr-avancado-responsabilidade": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/dpr-web.png",
-                title:"DPR na interface web",
-                caption:"O registro de dano exige dados base, bagagem, ocorrência, passageiro e dano ou violação."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/dpr-worldtracer.png",
-                title:"Máscara DPR WorldTracer",
-                caption:"Na máscara operacional, códigos de elemento, localização e extensão do dano precisam estar coerentes."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg",
-                title:"Descrição visual de apoio",
-                caption:"O chart ajuda a descrever a bagagem danificada com cor, tipo e elementos externos."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/dpr-web.png",
-                title:"Campos de dano e violação",
-                caption:"A decisão de aceitar, recusar ou encaminhar depende de evidência, prazo e coerência do relato."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png",
-                title:"Encaminhamento registrado",
-                caption:"Quando há pendência, a ação deve documentar responsabilidade, prioridade e orientação."
-            }
-        ]
-    ],
-    "entrevista-passageiro-ahl": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png",
-                title:"Formulário AHL",
-                caption:"A entrevista transforma relato do passageiro em dados estruturados para busca."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg",
-                title:"Descrição da bagagem",
-                caption:"Use o chart para confirmar cor, tipo, marca, peso, conteúdo e sinais visíveis."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png",
-                title:"Histórico da ocorrência",
-                caption:"Cada contato e cada mensagem precisam ficar registrados para continuidade do atendimento."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/bdo-history.png",
-                title:"Preparação para entrega",
-                caption:"Endereço, telefone e disponibilidade do passageiro evitam falhas no BDO."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png",
-                title:"Acompanhamento após abertura",
-                caption:"O AHL não termina na criação: mensagens, matches e pendências precisam ser acompanhados."
-            }
-        ]
-    ],
-    "auditoria-processos-bagagem": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/admin-metrics.png",
-                title:"Painel administrativo",
-                caption:"Auditoria começa olhando volume de acessos, cursos, aprovações, certificados e atividade."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/admin-accounts.png",
-                title:"Detalhe por conta",
-                caption:"O acompanhamento por aluno ajuda a identificar lacunas de treinamento e necessidade de reforço."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png",
-                title:"Qualidade do histórico AHL",
-                caption:"Mensagens ROH/FOH mostram se o processo tem rastreabilidade suficiente."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/dpr-worldtracer.png",
-                title:"Conferência de DPR",
-                caption:"Campos técnicos do DPR devem bater com evidência, relato e classificação do dano."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png",
-                title:"Pendências operacionais",
-                caption:"Action File ajuda a auditar ações abertas, status, prioridade e tempo de resposta."
-            }
-        ]
-    ],
-    "simulacao-integrada-checkin-worldtracer": [
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/baggage-claim-checkin.png",
-                title:"Check-in de bagagens",
-                caption:"A simulação integrada começa com geração de bagagem, etiqueta, rota, peso e status inicial."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/connections-bhs.png",
-                title:"Triagem BHS",
-                caption:"No BHS, a bagagem é localizada e movimentada para o próximo ponto do fluxo."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/connections-makeup.png",
-                title:"Make-Up",
-                caption:"A área de make-up prepara volumes por voo antes do envio ao carregamento."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/integrated-loading.png",
-                title:"Loading",
-                caption:"O carregamento finaliza o ciclo operacional do voo ou revela falhas para investigação."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png",
-                title:"WorldTracer e irregularidade",
-                caption:"Quando o fluxo falha, a simulação conduz para AHL, OHD, DPR, RFP e Action File."
-            }
-        ]
-    ],
-    "chart-bagagem-iata": [
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-overview.jpg",
-                title:"Visão geral do Baggage Identification Chart",
-                caption:"O chart organiza a leitura em cores, tipos de bagagem, elementos descritivos e artigos diversos."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-colors.jpg",
-                title:"Faixa de cores do chart",
-                caption:"Use a cor predominante como primeira camada da identificação visual da bagagem."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-luggage-types.jpg",
-                title:"Tipos visuais de bagagem",
-                caption:"Compare o formato externo do volume com o tipo mais próximo no chart."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-descriptive-elements.jpg",
-                title:"Elementos descritivos",
-                caption:"Detalhes como alças, rodas, cadeado, cinta, zíper e material ajudam a diferenciar malas parecidas."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-misc-articles.jpg",
-                title:"Miscellaneous articles",
-                caption:"Use esta área quando o volume não for uma mala tradicional, como carrinho, equipamento ou artigo especial."
-            }
-        ],
-        [
-            {
-                src:"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg",
-                title:"Leitura integrada do código",
-                caption:"Monte a identificação combinando cor, tipo visual e elementos externos relevantes."
-            }
-        ]
-    ]
-};
 const msbCoursePages = {};
 function readJson(key){
     try{
@@ -967,7 +644,6 @@ function normalizeSearch(value){
 }
 
 function selectedCourse(){
-    restoreLocalAcademyCourses();
     return academyCourses.find(course => course.id === state.selectedCourseId) || academyCourses[0] || null;
 }
 
@@ -1788,7 +1464,6 @@ function academyCurrentUserName(){
 }
 
 function renderHome(){
-    restoreLocalAcademyCourses();
     const grid = document.getElementById("courseGrid");
     const count = document.getElementById("homeCourseCount");
     const welcomeTitle = document.getElementById("academyWelcomeTitle");
@@ -2166,13 +1841,8 @@ function msbImageForLesson(course, moduleIndex){
     return null;
 }
 function lessonScreenshotCards(course, moduleIndex){
-    const courseScreenshots = lessonScreenshots[course.id];
-
-    if(!Array.isArray(courseScreenshots)){
-        return "";
-    }
-
-    const screenshots = courseScreenshots[moduleIndex];
+    const module = courseModules(course)[moduleIndex] || {};
+    const screenshots = Array.isArray(module.screenshots) ? module.screenshots : [];
 
     if(!Array.isArray(screenshots) || screenshots.length === 0){
         return "";

@@ -321,3 +321,115 @@ do update set
     cover_path = excluded.cover_path,
     material = excluded.material,
     sort_order = excluded.sort_order;
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/baggage-claim-checkin.png","title":"Bagagens recebidas e indicadores","caption":"O desembarque começa antes da reclamação: a equipe precisa conferir voos, volumes e status das bagagens."}]'::jsonb, true)
+where id = 'baggage-claim-desembarque';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png","title":"Tela AHL para abertura do caso","caption":"Quando a bagagem não aparece, a triagem conduz para registro com dados da bagagem, viagem e passageiro."}]'::jsonb, true)
+where id = 'baggage-claim-desembarque';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ohd-web.png","title":"Consulta OHD","caption":"Pesquisar OHDs e matches evita abrir ou manter casos sem checar bagagens sobrantes."}]'::jsonb, true)
+where id = 'baggage-claim-desembarque';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png","title":"Histórico ROH e FOH","caption":"O histórico operacional documenta pedidos e respostas entre bases durante a busca."}]'::jsonb, true)
+where id = 'baggage-claim-desembarque';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/bdo-history.png","title":"BDO e entrega","caption":"Após localização, a entrega precisa ser registrada com serviço, endereço, data e conteúdo relevante."}]'::jsonb, true)
+where id = 'baggage-claim-desembarque';
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/connections-bhs.png","title":"Fila no BHS","caption":"A conexão crítica começa na leitura da fila: rota, destino e tempo disponível para transferir o volume."}]'::jsonb, true)
+where id = 'conexoes-criticas-mct-pratica';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/connections-makeup.png","title":"Make-Up por voo","caption":"Agrupar bagagens por voo ajuda a enxergar prioridade e risco de perda de conexão."}]'::jsonb, true)
+where id = 'conexoes-criticas-mct-pratica';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/integrated-loading.png","title":"Loading e carregamento","caption":"O carregamento confirma se o volume realmente chegou ao voo correto."}]'::jsonb, true)
+where id = 'conexoes-criticas-mct-pratica';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Mensagens e pendências","caption":"Conexões críticas podem gerar mensagens no Action File quando há pendência operacional."}]'::jsonb, true)
+where id = 'conexoes-criticas-mct-pratica';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png","title":"Efeito no destino","caption":"Quando a mala não conecta, o impacto aparece no destino como atendimento de extravio."}]'::jsonb, true)
+where id = 'conexoes-criticas-mct-pratica';
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Station Inbox","caption":"A caixa de ações concentra mensagens, matches, prompts e pendências por dia operacional."}]'::jsonb, true)
+where id = 'mensagens-worldtracer-action-file';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Criar mensagem ou ação","caption":"Uma ação bem registrada informa processo, referência, base, companhia, código e orientação."}]'::jsonb, true)
+where id = 'mensagens-worldtracer-action-file';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png","title":"ROH e FOH no AHL","caption":"Pedidos de OHD e respostas entre aeroportos precisam ser objetivos e rastreáveis."}]'::jsonb, true)
+where id = 'mensagens-worldtracer-action-file';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/bdo-history.png","title":"BDO no histórico","caption":"A ordem de entrega mostra como a mensagem operacional vira ação prática para o passageiro."}]'::jsonb, true)
+where id = 'mensagens-worldtracer-action-file';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ohd-web.png","title":"Processos OHD","caption":"Mensagens e matches devem ser conferidos contra dados do OHD e do AHL antes de agir."}]'::jsonb, true)
+where id = 'mensagens-worldtracer-action-file';
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/dpr-web.png","title":"DPR na interface web","caption":"O registro de dano exige dados base, bagagem, ocorrência, passageiro e dano ou violação."}]'::jsonb, true)
+where id = 'dpr-avancado-responsabilidade';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/dpr-worldtracer.png","title":"Máscara DPR WorldTracer","caption":"Na máscara operacional, códigos de elemento, localização e extensão do dano precisam estar coerentes."}]'::jsonb, true)
+where id = 'dpr-avancado-responsabilidade';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg","title":"Descrição visual de apoio","caption":"O chart ajuda a descrever a bagagem danificada com cor, tipo e elementos externos."}]'::jsonb, true)
+where id = 'dpr-avancado-responsabilidade';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/dpr-web.png","title":"Campos de dano e violação","caption":"A decisão de aceitar, recusar ou encaminhar depende de evidência, prazo e coerência do relato."}]'::jsonb, true)
+where id = 'dpr-avancado-responsabilidade';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-create.png","title":"Encaminhamento registrado","caption":"Quando há pendência, a ação deve documentar responsabilidade, prioridade e orientação."}]'::jsonb, true)
+where id = 'dpr-avancado-responsabilidade';
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png","title":"Formulário AHL","caption":"A entrevista transforma relato do passageiro em dados estruturados para busca."}]'::jsonb, true)
+where id = 'entrevista-passageiro-ahl';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/chart-iata/chart-iata-code-reading.jpg","title":"Descrição da bagagem","caption":"Use o chart para confirmar cor, tipo, marca, peso, conteúdo e sinais visíveis."}]'::jsonb, true)
+where id = 'entrevista-passageiro-ahl';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png","title":"Histórico da ocorrência","caption":"Cada contato e cada mensagem precisam ficar registrados para continuidade do atendimento."}]'::jsonb, true)
+where id = 'entrevista-passageiro-ahl';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/bdo-history.png","title":"Preparação para entrega","caption":"Endereço, telefone e disponibilidade do passageiro evitam falhas no BDO."}]'::jsonb, true)
+where id = 'entrevista-passageiro-ahl';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Acompanhamento após abertura","caption":"O AHL não termina na criação: mensagens, matches e pendências precisam ser acompanhados."}]'::jsonb, true)
+where id = 'entrevista-passageiro-ahl';
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/admin-metrics.png","title":"Painel administrativo","caption":"Auditoria começa olhando volume de acessos, cursos, aprovações, certificados e atividade."}]'::jsonb, true)
+where id = 'auditoria-processos-bagagem';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/admin-accounts.png","title":"Detalhe por conta","caption":"O acompanhamento por aluno ajuda a identificar lacunas de treinamento e necessidade de reforço."}]'::jsonb, true)
+where id = 'auditoria-processos-bagagem';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-history.png","title":"Qualidade do histórico AHL","caption":"Mensagens ROH/FOH mostram se o processo tem rastreabilidade suficiente."}]'::jsonb, true)
+where id = 'auditoria-processos-bagagem';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/dpr-worldtracer.png","title":"Conferência de DPR","caption":"Campos técnicos do DPR devem bater com evidência, relato e classificação do dano."}]'::jsonb, true)
+where id = 'auditoria-processos-bagagem';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/action-file-inbox.png","title":"Pendências operacionais","caption":"Action File ajuda a auditar ações abertas, status, prioridade e tempo de resposta."}]'::jsonb, true)
+where id = 'auditoria-processos-bagagem';
+
+update public.academy_courses
+set modules = jsonb_set(modules, '{0,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/baggage-claim-checkin.png","title":"Check-in de bagagens","caption":"A simulação integrada começa com geração de bagagem, etiqueta, rota, peso e status inicial."}]'::jsonb, true)
+where id = 'simulacao-integrada-checkin-worldtracer';
+update public.academy_courses
+set modules = jsonb_set(modules, '{1,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/connections-bhs.png","title":"Triagem BHS","caption":"No BHS, a bagagem é localizada e movimentada para o próximo ponto do fluxo."}]'::jsonb, true)
+where id = 'simulacao-integrada-checkin-worldtracer';
+update public.academy_courses
+set modules = jsonb_set(modules, '{2,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/connections-makeup.png","title":"Make-Up","caption":"A área de make-up prepara volumes por voo antes do envio ao carregamento."}]'::jsonb, true)
+where id = 'simulacao-integrada-checkin-worldtracer';
+update public.academy_courses
+set modules = jsonb_set(modules, '{3,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/integrated-loading.png","title":"Loading","caption":"O carregamento finaliza o ciclo operacional do voo ou revela falhas para investigação."}]'::jsonb, true)
+where id = 'simulacao-integrada-checkin-worldtracer';
+update public.academy_courses
+set modules = jsonb_set(modules, '{4,screenshots}', '[{"src":"../assets/academy-screenshots/advanced-baggage-courses/ahl-web.png","title":"WorldTracer e irregularidade","caption":"Quando o fluxo falha, a simulação conduz para AHL, OHD, DPR, RFP e Action File."}]'::jsonb, true)
+where id = 'simulacao-integrada-checkin-worldtracer';
