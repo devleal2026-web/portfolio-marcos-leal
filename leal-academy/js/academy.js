@@ -1841,6 +1841,25 @@ function renderLesson(course){
 function msbImageForLesson(course, moduleIndex){
     return null;
 }
+
+function resolveAcademyAssetPath(src){
+    const value = String(src || "").trim();
+
+    if(!value){
+        return "";
+    }
+
+    if(/^(https?:|data:|\/)/i.test(value)){
+        return value;
+    }
+
+    if(window.LEAL_ACADEMY_SHORT_ROUTES === true && value.startsWith("../assets/")){
+        return `/leal-academy/${value.slice(3)}`;
+    }
+
+    return value;
+}
+
 function lessonScreenshotCards(course, moduleIndex){
     const module = courseModules(course)[moduleIndex] || {};
     const screenshots = Array.isArray(module.screenshots) ? module.screenshots : [];
@@ -1858,21 +1877,24 @@ function lessonScreenshotCards(course, moduleIndex){
                 </div>
             </div>
             <div class="lesson-screenshot-grid">
-                ${screenshots.map(item => `
+                ${screenshots.map(item => {
+                    const src = resolveAcademyAssetPath(item.src);
+
+                    return `
                     <figure class="lesson-screenshot-card">
                         <button
                             type="button"
                             class="lesson-screenshot-zoom"
-                            data-screenshot-src="${escapeHtml(item.src)}"
+                            data-screenshot-src="${escapeHtml(src)}"
                             data-screenshot-title="${escapeHtml(item.title)}">
-                            <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">
+                            <img src="${escapeHtml(src)}" alt="${escapeHtml(item.title)}">
                         </button>
                         <figcaption>
                             <strong>${escapeHtml(item.title)}</strong>
                             <span>${escapeHtml(item.caption || "")}</span>
                         </figcaption>
                     </figure>
-                `).join("")}
+                `;}).join("")}
             </div>
         </section>
     `;
