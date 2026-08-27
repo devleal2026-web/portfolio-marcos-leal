@@ -1,0 +1,72 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/netlify/academy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/academy"
+  to = "/netlify/academy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/academy/"
+  to = "/netlify/academy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/lealacademy"
+  to = "/netlify/academy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/lealacademy/"
+  to = "/netlify/academy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/academy.html"
+  to = "/netlify/academy/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/access.html"
+  to = "/netlify/academy/access.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/access.html"
+  to = "/netlify/academy/access.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin.html"
+  to = "/netlify/academy/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/pages/admin.html"
+  to = "/netlify/academy/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/course.html"
+  to = "/netlify/academy/course.html"
+  status = 200
+
+[[redirects]]
+  from = "/assessment.html"
+  to = "/netlify/academy/assessment.html"
+  status = 200
+
+[[redirects]]
+  from = "/certificate.html"
+  to = "/netlify/academy/certificate.html"
+  status = 200
+
+[[redirects]]
+  from = "/operational-library.html"
+  to = "/netlify/academy/operational-library.html"
+  status = 200

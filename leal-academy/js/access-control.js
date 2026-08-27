@@ -26,7 +26,15 @@ const AccessControl = (() => {
         return window.location.pathname.split("/").pop().toLowerCase();
     }
 
+    function shortRouteMode(){
+        return window.LEAL_ACADEMY_SHORT_ROUTES === true;
+    }
+
     function accessPagePath(){
+        if(shortRouteMode()){
+            return "/pages/access.html";
+        }
+
         const path = window.location.pathname;
 
         if(path.includes("/pages/worldtracer/")){
@@ -41,6 +49,10 @@ const AccessControl = (() => {
     }
 
     function adminPagePath(){
+        if(shortRouteMode()){
+            return "/admin.html";
+        }
+
         const path = window.location.pathname;
 
         if(path.includes("/pages/worldtracer/")){
@@ -62,6 +74,10 @@ const AccessControl = (() => {
             return target;
         }
 
+        if(shortRouteMode()){
+            return "/";
+        }
+
         return defaultReturn;
     }
 
@@ -69,6 +85,14 @@ const AccessControl = (() => {
         const path = window.location.pathname;
         const file = currentPathName();
         const query = window.location.search || "";
+
+        if(shortRouteMode()){
+            if(!file || file === "index.html"){
+                return "/" + query;
+            }
+
+            return "/" + file + query;
+        }
 
         if(path.includes("/pages/worldtracer/")){
             return "worldtracer/" + file + query;
