@@ -1081,16 +1081,25 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
 }
 
 .academy-copy-protected :where(
-    .academy-shell,
-    .academy-admin-shell,
-    .course-shell,
-    .assessment-shell,
+    .academy-welcome-card,
+    .academy-course-card,
+    .course-guide,
+    .course-content-panel,
+    .course-side-panel,
+    .assessment-main-panel,
     .lesson-full-content,
+    .lesson-inline-visual,
     .lesson-rich-card,
     .lesson-screenshot-block,
+    .lesson-command,
     .academy-course-card,
     .track-card,
-    .quiz-card
+    .quiz-card,
+    .assessment-result,
+    .assessment-review,
+    .assessment-wrong-card,
+    .operational-library,
+    .library-card
 ){
     -webkit-user-select:none;
     user-select:none;
@@ -1100,6 +1109,7 @@ html[data-theme="dark"] .course-mini-tracks button.completed span{
 .academy-copy-protected textarea,
 .academy-copy-protected select,
 .academy-copy-protected button,
+.academy-copy-protected a,
 .academy-copy-protected .certificate-document,
 .academy-copy-protected .certificate-document *{
     -webkit-user-select:text;
