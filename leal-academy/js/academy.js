@@ -1207,7 +1207,7 @@ function lessonInlineIllustration(course, module, moduleIndex){
     const profile = lessonVisualProfile(course, module, moduleIndex);
     const kind = profile.kind;
     const labels = profile.labels.map(label => escapeHtml(visualLabel(label)));
-    const caption = escapeHtml(profile.caption);
+    const caption = escapeHtml(compactText(profile.caption, 220));
     const title = escapeHtml(module.title || course.title || "Trilha");
 
     const diagrams = {

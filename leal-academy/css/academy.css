@@ -1516,6 +1516,10 @@ html[data-theme="dark"] .assessment-result p{
 .lesson-inline-visual figcaption span{
     color:#475569;
     line-height:1.55;
+    display:-webkit-box;
+    -webkit-line-clamp:4;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
 }
 
 .lesson-visual-tag,
