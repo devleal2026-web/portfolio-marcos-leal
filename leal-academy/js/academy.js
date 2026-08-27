@@ -1182,6 +1182,7 @@ function lessonVisualFallbackLabels(kind){
 }
 
 function lessonVisualProfile(course, module, moduleIndex){
+    const captionSource = module.summary || compactText(module.content || course.summary || "", 180);
     const courseProfiles = lessonMediaProfiles[course.id] || [];
     const profile = courseProfiles[moduleIndex];
 
@@ -1189,7 +1190,7 @@ function lessonVisualProfile(course, module, moduleIndex){
         return {
             kind: profile.kind || "flow",
             labels: profile.labels || lessonVisualFallbackLabels(profile.kind || "flow"),
-            caption: profile.caption || module.content || course.summary || ""
+            caption: profile.caption || captionSource
         };
     }
 
@@ -1198,7 +1199,7 @@ function lessonVisualProfile(course, module, moduleIndex){
     return {
         kind,
         labels: lessonVisualFallbackLabels(kind),
-        caption: module.content || course.summary || ""
+        caption: captionSource
     };
 }
 
