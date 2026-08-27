@@ -48,7 +48,8 @@ function listSqlFiles() {
         .filter(fs.existsSync);
     const overrideSqlFiles = [
         "academy-course-etiqueta-airports-phonetic.sql",
-        "academy-course-action-file-avancado.sql"
+        "academy-course-action-file-avancado.sql",
+        "academy-course-entrevista-desembarque.sql"
     ]
         .map(file => path.join(sqlDir, file))
         .filter(fs.existsSync);
