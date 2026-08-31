@@ -1860,6 +1860,82 @@ function resolveAcademyAssetPath(src){
     return value;
 }
 
+function sigaFinalTrailVisual(){
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Boas práticas de uso do SIGA">
+            <defs>
+                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#071827"/>
+                    <stop offset="0.52" stop-color="#12324a"/>
+                    <stop offset="1" stop-color="#0f766e"/>
+                </linearGradient>
+                <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#f8fafc"/>
+                    <stop offset="1" stop-color="#dbeafe"/>
+                </linearGradient>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.28"/>
+                </filter>
+            </defs>
+            <rect width="1200" height="675" fill="url(#bg)"/>
+            <circle cx="1060" cy="92" r="118" fill="#38bdf8" opacity="0.12"/>
+            <circle cx="110" cy="560" r="145" fill="#22c55e" opacity="0.10"/>
+            <g opacity="0.20" stroke="#93c5fd" stroke-width="2" fill="none">
+                <path d="M820 110 C920 80 1000 120 1115 84"/>
+                <path d="M790 150 C930 125 1020 185 1160 140"/>
+                <path d="M820 210 C920 178 1015 240 1135 202"/>
+            </g>
+            <g filter="url(#shadow)">
+                <rect x="92" y="84" width="675" height="440" rx="26" fill="url(#panel)"/>
+                <rect x="122" y="120" width="615" height="54" rx="14" fill="#0f2740"/>
+                <circle cx="155" cy="147" r="10" fill="#22c55e"/>
+                <circle cx="185" cy="147" r="10" fill="#38bdf8"/>
+                <circle cx="215" cy="147" r="10" fill="#facc15"/>
+                <rect x="132" y="210" width="270" height="98" rx="18" fill="#ffffff"/>
+                <rect x="430" y="210" width="278" height="98" rx="18" fill="#ffffff"/>
+                <rect x="132" y="330" width="576" height="154" rx="18" fill="#ffffff"/>
+                <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="12">
+                    <path d="M165 253 l26 26 l54 -62" stroke="#16a34a"/>
+                    <path d="M460 254 h90 M460 282 h175" stroke="#94a3b8"/>
+                    <path d="M172 370 h475 M172 410 h380 M172 450 h435" stroke="#cbd5e1"/>
+                </g>
+                <g fill="#0f766e">
+                    <rect x="586" y="244" width="82" height="18" rx="9"/>
+                    <rect x="586" y="274" width="52" height="18" rx="9" opacity="0.7"/>
+                </g>
+            </g>
+            <g filter="url(#shadow)">
+                <rect x="808" y="102" width="300" height="420" rx="28" fill="#f8fafc"/>
+                <rect x="846" y="146" width="224" height="38" rx="19" fill="#0f2740"/>
+                <g font-family="Segoe UI, Arial, sans-serif" font-weight="800" fill="#0f172a">
+                    <text x="846" y="238" font-size="30">Rotina segura</text>
+                    <text x="846" y="304" font-size="30">Registro correto</text>
+                    <text x="846" y="370" font-size="30">Comunicação clara</text>
+                    <text x="846" y="436" font-size="30">Acompanhamento</text>
+                </g>
+                <g fill="none" stroke="#16a34a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1000 226 l18 18 l40 -46"/>
+                    <path d="M1000 292 l18 18 l40 -46"/>
+                    <path d="M1000 358 l18 18 l40 -46"/>
+                    <path d="M1000 424 l18 18 l40 -46"/>
+                </g>
+            </g>
+            <g font-family="Segoe UI, Arial, sans-serif" fill="#ffffff">
+                <text x="92" y="592" font-size="42" font-weight="900">Boas práticas de uso</text>
+                <text x="92" y="632" font-size="24" fill="#bfdbfe">Consultar, registrar, comunicar e acompanhar com disciplina operacional.</text>
+            </g>
+        </svg>`;
+
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function fallbackScreenshotSrc(course, moduleIndex){
+    if(course?.id === "siga-gestao-aeroportuaria" && Number(moduleIndex) === 7){
+        return sigaFinalTrailVisual();
+    }
+
+    return "";
+}
 function lessonScreenshotCards(course, moduleIndex){
     const module = courseModules(course)[moduleIndex] || {};
     const screenshots = Array.isArray(module.screenshots) ? module.screenshots : [];
@@ -1878,7 +1954,8 @@ function lessonScreenshotCards(course, moduleIndex){
             </div>
             <div class="lesson-screenshot-grid">
                 ${screenshots.map(item => {
-                    const src = resolveAcademyAssetPath(item.src);
+                    const fallbackSrc = fallbackScreenshotSrc(course, moduleIndex);
+                    const src = fallbackSrc || resolveAcademyAssetPath(item.src);
 
                     return `
                     <figure class="lesson-screenshot-card">
