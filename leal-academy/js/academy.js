@@ -1936,17 +1936,46 @@ function bindLessonScreenshots(){
         });
     });
 }
-function renderLabs(course){
-    const labs = document.getElementById("labLinks");
+function isSupportMaterialLink(link){
+    const kind = String(link?.kind || link?.type || "").toLowerCase();
+    const href = String(link?.href || "").toLowerCase();
 
-    labs.innerHTML = course.labs.map(lab => `
-        <a class="lab-link" href="${lab.href}">
-            <span>${lab.label}</span>
-            <strong>Abrir</strong>
-        </a>
-    `).join("") || `<div class="assessment-empty">Sem laboratorio vinculado.</div>`;
+    return kind === "material" || kind === "support" || href.endsWith(".pdf");
 }
 
+function renderCourseLinks(links){
+    return links.map(link => {
+        const href = resolveAcademyAssetPath(link.href);
+        const label = link.label || "Abrir";
+
+        return `
+            <a class="lab-link" href="${escapeHtml(href)}" target="_blank" rel="noopener">
+                <span>${escapeHtml(label)}</span>
+                <strong>Abrir</strong>
+            </a>
+        `;
+    }).join("");
+}
+
+function renderLabs(course){
+    const labs = document.getElementById("labLinks");
+    const labLinks = (Array.isArray(course.labs) ? course.labs : []).filter(link => !isSupportMaterialLink(link));
+
+    labs.innerHTML = renderCourseLinks(labLinks) || `<div class="assessment-empty">Sem laboratorio vinculado.</div>`;
+}
+
+function renderSupportMaterials(course){
+    const block = document.getElementById("supportMaterialsBlock");
+    const container = document.getElementById("supportMaterialLinks");
+
+    if(!block || !container){
+        return;
+    }
+
+    const materials = (Array.isArray(course.labs) ? course.labs : []).filter(isSupportMaterialLink);
+    block.hidden = materials.length === 0;
+    container.innerHTML = renderCourseLinks(materials);
+}
 function quizScore(course){
     const answers = state.quizAnswers[course.id] || {};
     const questions = normalizeQuiz(course);
@@ -2683,6 +2712,7 @@ function renderCoursePage(){
     renderLesson(course);
     renderCourseNavigator(course);
     renderLabs(course);
+    renderSupportMaterials(course);
     renderAssessment(course);
 }
 

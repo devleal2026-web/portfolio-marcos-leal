@@ -3382,3 +3382,11 @@ ADMIN DASHBOARD
         grid-template-columns:repeat(2,minmax(0,1fr));
     }
 }
+
+.support-materials-block{
+    margin-top:22px;
+}
+
+.support-materials-block[hidden]{
+    display:none;
+}
