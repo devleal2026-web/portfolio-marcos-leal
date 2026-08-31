@@ -1860,90 +1860,49 @@ function resolveAcademyAssetPath(src){
     return value;
 }
 
-function sigaFinalTrailVisual(){
-    const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Boas práticas de uso do SIGA">
-            <defs>
-                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#071827"/>
-                    <stop offset="0.55" stop-color="#12324a"/>
-                    <stop offset="1" stop-color="#0f766e"/>
-                </linearGradient>
-                <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#f8fafc"/>
-                    <stop offset="1" stop-color="#dbeafe"/>
-                </linearGradient>
-                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.25"/>
-                </filter>
-            </defs>
-
-            <rect width="1200" height="675" fill="url(#bg)"/>
-            <path d="M0 540 C210 462 310 655 520 560 S850 440 1200 500 V675 H0Z" fill="#14b8a6" opacity="0.18"/>
-            <circle cx="1032" cy="126" r="122" fill="#38bdf8" opacity="0.14"/>
-            <circle cx="172" cy="560" r="128" fill="#22c55e" opacity="0.12"/>
-
-            <g filter="url(#shadow)">
-                <rect x="94" y="78" width="706" height="462" rx="30" fill="url(#screen)"/>
-                <rect x="126" y="112" width="642" height="58" rx="16" fill="#0f2740"/>
-                <circle cx="162" cy="141" r="10" fill="#22c55e"/>
-                <circle cx="194" cy="141" r="10" fill="#38bdf8"/>
-                <circle cx="226" cy="141" r="10" fill="#facc15"/>
-
-                <rect x="132" y="202" width="294" height="132" rx="20" fill="#ffffff"/>
-                <rect x="454" y="202" width="300" height="132" rx="20" fill="#ffffff"/>
-                <rect x="132" y="362" width="622" height="128" rx="20" fill="#ffffff"/>
-
-                <g fill="none" stroke="#16a34a" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M176 267 l34 34 l78 -90"/>
-                </g>
-                <g fill="#94a3b8">
-                    <rect x="486" y="238" width="128" height="15" rx="8"/>
-                    <rect x="486" y="270" width="210" height="15" rx="8" opacity="0.72"/>
-                    <rect x="486" y="302" width="160" height="15" rx="8" opacity="0.55"/>
-                    <rect x="174" y="405" width="500" height="14" rx="7" opacity="0.55"/>
-                    <rect x="174" y="440" width="430" height="14" rx="7" opacity="0.45"/>
-                </g>
-                <g fill="#0f766e">
-                    <rect x="632" y="236" width="84" height="20" rx="10"/>
-                    <rect x="632" y="298" width="58" height="20" rx="10" opacity="0.75"/>
-                </g>
-            </g>
-
-            <g filter="url(#shadow)">
-                <rect x="840" y="102" width="246" height="420" rx="30" fill="#f8fafc"/>
-                <rect x="876" y="144" width="174" height="36" rx="18" fill="#0f2740"/>
-                <g fill="none" stroke="#16a34a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M884 237 l28 28 l60 -72"/>
-                    <path d="M884 317 l28 28 l60 -72"/>
-                    <path d="M884 397 l28 28 l60 -72"/>
-                </g>
-                <g fill="#cbd5e1">
-                    <rect x="984" y="216" width="66" height="14" rx="7"/>
-                    <rect x="984" y="246" width="48" height="14" rx="7" opacity="0.7"/>
-                    <rect x="984" y="296" width="66" height="14" rx="7"/>
-                    <rect x="984" y="326" width="48" height="14" rx="7" opacity="0.7"/>
-                    <rect x="984" y="376" width="66" height="14" rx="7"/>
-                    <rect x="984" y="406" width="48" height="14" rx="7" opacity="0.7"/>
-                </g>
-            </g>
-
-            <g opacity="0.78" fill="none" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M860 582 C945 528 1025 535 1110 475"/>
-                <path d="M1078 462 l60 -18 l-42 48 l-18 -30Z" fill="#bfdbfe" stroke="none"/>
-            </g>
-        </svg>`;
-
-    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+function isSigaFinalTrail(course, moduleIndex){
+    return course?.id === "siga-gestao-aeroportuaria" && Number(moduleIndex) === 7;
 }
-function fallbackScreenshotSrc(course, moduleIndex){
-    if(course?.id === "siga-gestao-aeroportuaria" && Number(moduleIndex) === 7){
-        return sigaFinalTrailVisual();
-    }
 
-    return "";
+function sigaFinalTrailCard(){
+    return `
+        <section class="lesson-screenshot-block" aria-label="Prints de apoio da trilha">
+            <div class="lesson-screenshot-heading">
+                <div>
+                    <span>Print de apoio</span>
+                    <strong>Referência visual da trilha</strong>
+                </div>
+            </div>
+            <div class="lesson-screenshot-grid">
+                <figure class="lesson-screenshot-card siga-final-practice-card">
+                    <div class="siga-final-practice-visual" role="img" aria-label="Painel visual sobre boas práticas de uso do SIGA">
+                        <div class="siga-visual-screen">
+                            <div class="siga-visual-bar"><span></span><span></span><span></span></div>
+                            <div class="siga-visual-content">
+                                <div class="siga-visual-check"></div>
+                                <div class="siga-visual-lines"><span></span><span></span><span></span></div>
+                                <div class="siga-visual-status"><span></span><span></span><span></span></div>
+                            </div>
+                            <div class="siga-visual-table"><span></span><span></span><span></span></div>
+                        </div>
+                        <div class="siga-visual-side">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <figcaption>
+                        <strong>Boas práticas de uso</strong>
+                        <span>Referência visual sobre consulta regular, registro preciso, comunicação e disciplina operacional.</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    `;
 }
 function lessonScreenshotCards(course, moduleIndex){
+    if(isSigaFinalTrail(course, moduleIndex)){
+        return sigaFinalTrailCard();
+    }
+
     const module = courseModules(course)[moduleIndex] || {};
     const screenshots = Array.isArray(module.screenshots) ? module.screenshots : [];
 
@@ -1961,8 +1920,7 @@ function lessonScreenshotCards(course, moduleIndex){
             </div>
             <div class="lesson-screenshot-grid">
                 ${screenshots.map(item => {
-                    const fallbackSrc = fallbackScreenshotSrc(course, moduleIndex);
-                    const src = fallbackSrc || resolveAcademyAssetPath(item.src);
+                    const src = resolveAcademyAssetPath(item.src);
 
                     return `
                     <figure class="lesson-screenshot-card">
