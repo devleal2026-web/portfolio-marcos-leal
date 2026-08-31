@@ -1866,69 +1866,76 @@ function sigaFinalTrailVisual(){
             <defs>
                 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0" stop-color="#071827"/>
-                    <stop offset="0.52" stop-color="#12324a"/>
+                    <stop offset="0.55" stop-color="#12324a"/>
                     <stop offset="1" stop-color="#0f766e"/>
                 </linearGradient>
-                <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+                <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0" stop-color="#f8fafc"/>
                     <stop offset="1" stop-color="#dbeafe"/>
                 </linearGradient>
                 <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.28"/>
+                    <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.25"/>
                 </filter>
             </defs>
+
             <rect width="1200" height="675" fill="url(#bg)"/>
-            <circle cx="1060" cy="92" r="118" fill="#38bdf8" opacity="0.12"/>
-            <circle cx="110" cy="560" r="145" fill="#22c55e" opacity="0.10"/>
-            <g opacity="0.20" stroke="#93c5fd" stroke-width="2" fill="none">
-                <path d="M820 110 C920 80 1000 120 1115 84"/>
-                <path d="M790 150 C930 125 1020 185 1160 140"/>
-                <path d="M820 210 C920 178 1015 240 1135 202"/>
-            </g>
+            <path d="M0 540 C210 462 310 655 520 560 S850 440 1200 500 V675 H0Z" fill="#14b8a6" opacity="0.18"/>
+            <circle cx="1032" cy="126" r="122" fill="#38bdf8" opacity="0.14"/>
+            <circle cx="172" cy="560" r="128" fill="#22c55e" opacity="0.12"/>
+
             <g filter="url(#shadow)">
-                <rect x="92" y="84" width="675" height="440" rx="26" fill="url(#panel)"/>
-                <rect x="122" y="120" width="615" height="54" rx="14" fill="#0f2740"/>
-                <circle cx="155" cy="147" r="10" fill="#22c55e"/>
-                <circle cx="185" cy="147" r="10" fill="#38bdf8"/>
-                <circle cx="215" cy="147" r="10" fill="#facc15"/>
-                <rect x="132" y="210" width="270" height="98" rx="18" fill="#ffffff"/>
-                <rect x="430" y="210" width="278" height="98" rx="18" fill="#ffffff"/>
-                <rect x="132" y="330" width="576" height="154" rx="18" fill="#ffffff"/>
-                <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="12">
-                    <path d="M165 253 l26 26 l54 -62" stroke="#16a34a"/>
-                    <path d="M460 254 h90 M460 282 h175" stroke="#94a3b8"/>
-                    <path d="M172 370 h475 M172 410 h380 M172 450 h435" stroke="#cbd5e1"/>
+                <rect x="94" y="78" width="706" height="462" rx="30" fill="url(#screen)"/>
+                <rect x="126" y="112" width="642" height="58" rx="16" fill="#0f2740"/>
+                <circle cx="162" cy="141" r="10" fill="#22c55e"/>
+                <circle cx="194" cy="141" r="10" fill="#38bdf8"/>
+                <circle cx="226" cy="141" r="10" fill="#facc15"/>
+
+                <rect x="132" y="202" width="294" height="132" rx="20" fill="#ffffff"/>
+                <rect x="454" y="202" width="300" height="132" rx="20" fill="#ffffff"/>
+                <rect x="132" y="362" width="622" height="128" rx="20" fill="#ffffff"/>
+
+                <g fill="none" stroke="#16a34a" stroke-width="15" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M176 267 l34 34 l78 -90"/>
+                </g>
+                <g fill="#94a3b8">
+                    <rect x="486" y="238" width="128" height="15" rx="8"/>
+                    <rect x="486" y="270" width="210" height="15" rx="8" opacity="0.72"/>
+                    <rect x="486" y="302" width="160" height="15" rx="8" opacity="0.55"/>
+                    <rect x="174" y="405" width="500" height="14" rx="7" opacity="0.55"/>
+                    <rect x="174" y="440" width="430" height="14" rx="7" opacity="0.45"/>
                 </g>
                 <g fill="#0f766e">
-                    <rect x="586" y="244" width="82" height="18" rx="9"/>
-                    <rect x="586" y="274" width="52" height="18" rx="9" opacity="0.7"/>
+                    <rect x="632" y="236" width="84" height="20" rx="10"/>
+                    <rect x="632" y="298" width="58" height="20" rx="10" opacity="0.75"/>
                 </g>
             </g>
+
             <g filter="url(#shadow)">
-                <rect x="808" y="102" width="300" height="420" rx="28" fill="#f8fafc"/>
-                <rect x="846" y="146" width="224" height="38" rx="19" fill="#0f2740"/>
-                <g font-family="Segoe UI, Arial, sans-serif" font-weight="800" fill="#0f172a">
-                    <text x="846" y="238" font-size="30">Rotina segura</text>
-                    <text x="846" y="304" font-size="30">Registro correto</text>
-                    <text x="846" y="370" font-size="30">Comunicação clara</text>
-                    <text x="846" y="436" font-size="30">Acompanhamento</text>
+                <rect x="840" y="102" width="246" height="420" rx="30" fill="#f8fafc"/>
+                <rect x="876" y="144" width="174" height="36" rx="18" fill="#0f2740"/>
+                <g fill="none" stroke="#16a34a" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M884 237 l28 28 l60 -72"/>
+                    <path d="M884 317 l28 28 l60 -72"/>
+                    <path d="M884 397 l28 28 l60 -72"/>
                 </g>
-                <g fill="none" stroke="#16a34a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M1000 226 l18 18 l40 -46"/>
-                    <path d="M1000 292 l18 18 l40 -46"/>
-                    <path d="M1000 358 l18 18 l40 -46"/>
-                    <path d="M1000 424 l18 18 l40 -46"/>
+                <g fill="#cbd5e1">
+                    <rect x="984" y="216" width="66" height="14" rx="7"/>
+                    <rect x="984" y="246" width="48" height="14" rx="7" opacity="0.7"/>
+                    <rect x="984" y="296" width="66" height="14" rx="7"/>
+                    <rect x="984" y="326" width="48" height="14" rx="7" opacity="0.7"/>
+                    <rect x="984" y="376" width="66" height="14" rx="7"/>
+                    <rect x="984" y="406" width="48" height="14" rx="7" opacity="0.7"/>
                 </g>
             </g>
-            <g font-family="Segoe UI, Arial, sans-serif" fill="#ffffff">
-                <text x="92" y="592" font-size="42" font-weight="900">Boas práticas de uso</text>
-                <text x="92" y="632" font-size="24" fill="#bfdbfe">Consultar, registrar, comunicar e acompanhar com disciplina operacional.</text>
+
+            <g opacity="0.78" fill="none" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M860 582 C945 528 1025 535 1110 475"/>
+                <path d="M1078 462 l60 -18 l-42 48 l-18 -30Z" fill="#bfdbfe" stroke="none"/>
             </g>
         </svg>`;
 
     return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
-
 function fallbackScreenshotSrc(course, moduleIndex){
     if(course?.id === "siga-gestao-aeroportuaria" && Number(moduleIndex) === 7){
         return sigaFinalTrailVisual();
