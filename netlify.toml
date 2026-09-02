@@ -84,3 +84,46 @@
   to = "/netlify/academy/operational-library.html"
   status = 200
   force = true
+
+# Canonical short routes for the official domain.
+[[redirects]]
+  from = "/leal-academy/pages/academy.html"
+  to = "/academy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leal-academy/pages/access.html"
+  to = "/access.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leal-academy/pages/course.html"
+  to = "/course.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leal-academy/pages/assessment.html"
+  to = "/assessment.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leal-academy/pages/certificate.html"
+  to = "/certificate.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leal-academy/pages/admin.html"
+  to = "/admin.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leal-academy/pages/operational-library.html"
+  to = "/operational-library.html"
+  status = 301
+  force = true
