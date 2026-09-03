@@ -2,50 +2,38 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aero Access Web</title>
     <meta name="description" content="Aero Access Web: atendimento assistido para passageiros PNAE, agentes e administracao operacional.">
     <link rel="canonical" href="https://aeroaccess.lealacademy.com.br/">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260903-android-home">
 </head>
 
-<body>
+<body class="home-page">
 
-<header>
-    <div class="home-logo">
-        <img src="images/logo-aero-access.png" alt="Aero Access">
-    </div>
-</header>
-
-<div class="container">
-    <div class="card">
-        <h2>Selecionar perfil</h2>
-
-        <div class="profile-container">
-            <h1 class="profile-title">Aero Access</h1>
-
-            <p class="profile-subtitle">Selecione o perfil de acesso</p>
-
-            <button class="profile-btn passenger" onclick="location.href='login-passenger.html'">
-                ♿ Passageiro
+<main class="home-shell">
+    <section class="home-card" aria-label="Selecionar perfil de acesso">
+        <div class="admin-access-menu android-admin-menu">
+            <button class="admin-dots" type="button" aria-label="Abrir acessos administrativos" aria-expanded="false" aria-controls="adminOptions" onclick="toggleAdminOptions()">
+                ⋮
             </button>
-
-            <button class="profile-btn agent" onclick="location.href='login-agent.html'">
-                👨‍✈️ Agente
-            </button>
-
-            <div class="admin-access-menu">
-                <button class="admin-dots" type="button" aria-expanded="false" aria-controls="adminOptions" onclick="toggleAdminOptions()">
-                    ⋮
-                </button>
-                <div id="adminOptions" class="admin-options" hidden>
-                    <button type="button" onclick="location.href='login-admin.html?perfil=operacional'">Admin operacional</button>
-                    <button type="button" onclick="location.href='login-admin.html?perfil=empresa'">Admin empresa</button>
-                    <button type="button" onclick="location.href='login-admin.html?perfil=global'">Admin global</button>
-                </div>
+            <div id="adminOptions" class="admin-options" hidden>
+                <button type="button" onclick="location.href='login-admin.html?perfil=empresa'">Admin da Empresa</button>
+                <button type="button" onclick="location.href='login-admin.html?perfil=global'">Admin Global Aero Access</button>
             </div>
         </div>
-    </div>
-</div>
+
+        <img class="android-home-logo" src="images/logo-aero-access.png" alt="Aero Access">
+
+        <p class="android-home-subtitle">Atendimento assistido para passageiros PNAE.</p>
+
+        <div class="android-profile-actions">
+            <button type="button" onclick="location.href='login-passenger.html'">Passageiro</button>
+            <button type="button" onclick="location.href='login-agent.html'">Agentes</button>
+            <button type="button" onclick="location.href='login-admin.html?perfil=operacional'">Administração Operacional</button>
+        </div>
+    </section>
+</main>
 
 <script>
     function toggleAdminOptions(){

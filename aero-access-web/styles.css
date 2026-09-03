@@ -688,3 +688,157 @@ button:hover{
     font-weight: 700;
     cursor: pointer;
 }
+
+/* =========================
+   TELA INICIAL - PADRAO ANDROID
+========================= */
+
+body.home-page {
+    min-height: 100vh;
+    margin: 0;
+    background: #eef3f8;
+    color: #1f2937;
+}
+
+.home-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 72px 24px 96px;
+    box-sizing: border-box;
+}
+
+.home-card {
+    position: relative;
+    width: min(100%, 654px);
+    min-height: 860px;
+    padding: 130px 46px 44px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, .10);
+}
+
+.android-home-logo {
+    display: block;
+    width: min(320px, 62%);
+    height: auto;
+    margin: 32px auto 190px;
+}
+
+.android-home-subtitle {
+    max-width: 560px;
+    margin: 0 auto 52px;
+    color: #1f2937;
+    font-size: 31px;
+    line-height: 1.22;
+    text-align: center;
+}
+
+.android-profile-actions {
+    display: grid;
+    gap: 40px;
+}
+
+.android-profile-actions button,
+.admin-options button {
+    min-height: 96px;
+    border: 0;
+    border-radius: 20px;
+    background: #0a82dc;
+    color: #ffffff;
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    box-shadow: none;
+}
+
+.android-profile-actions button:hover,
+.admin-options button:hover {
+    background: #0875c7;
+    transform: none;
+}
+
+.android-admin-menu {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    z-index: 10;
+    display: block;
+    margin: 0;
+}
+
+.android-admin-menu .admin-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 82px;
+    height: 82px;
+    border-radius: 16px;
+    background: #f8fbff;
+    color: #004b83;
+    font-size: 58px;
+    font-weight: 800;
+    line-height: .65;
+    letter-spacing: 0;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, .08);
+}
+
+.android-admin-menu .admin-options {
+    position: absolute;
+    top: 102px;
+    left: 0;
+    right: auto;
+    width: min(502px, calc(100vw - 72px));
+    display: grid;
+    gap: 32px;
+    padding: 28px 20px;
+    border: 2px solid #dbe7f4;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 22px 52px rgba(15, 23, 42, .10);
+}
+
+.android-admin-menu .admin-options[hidden] {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .home-shell {
+        padding: 72px 34px 96px;
+    }
+
+    .home-card {
+        min-height: calc(100vh - 190px);
+        padding: 130px 46px 44px;
+    }
+
+    .android-home-logo {
+        width: min(285px, 70%);
+        margin-bottom: 185px;
+    }
+}
+
+@media (max-width: 430px) {
+    .home-shell {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .home-card {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .android-home-subtitle {
+        font-size: 25px;
+    }
+
+    .android-profile-actions button,
+    .admin-options button {
+        min-height: 76px;
+        font-size: 23px;
+    }
+}

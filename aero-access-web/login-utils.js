@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js?v=20260903-admin-profiles";
+import { supabase } from "./supabase.js?v=20260903-admin-fallback";
 
 const ADMIN_ROLES = [
     "admin",
@@ -205,6 +205,12 @@ export async function loginAgentAccount({ email, password, message }) {
 
 export async function loginAdminAccount({ email, password, adminProfile = "operacional", message }) {
     const normalizedEmail = normalizeEmail(email);
+    const selectedProfile = normalizeRole(adminProfile || "operacional");
+    const fallbackRole = selectedProfile === "empresa"
+        ? "admin_empresa"
+        : selectedProfile === "global"
+            ? "admin_global"
+            : "admin_operacional";
     showMessage(message, "");
 
     if (!normalizedEmail || !password) {
@@ -212,54 +218,63 @@ export async function loginAdminAccount({ email, password, adminProfile = "opera
         return false;
     }
 
-    const rpc = await rpcLogin(`admin_${adminProfile}`, normalizedEmail, password);
+    const rpc = await rpcLogin(`admin_${selectedProfile}`, normalizedEmail, password);
     let profile = rpc.profile;
+    let legacyError = null;
 
-    if (!profile && !rpc.error) {
+    if (!profile) {
+        const legacyConfig = selectedProfile === "empresa"
+            ? { table: "aa_company_admins", acceptedRoles: [] }
+            : selectedProfile === "global"
+                ? { table: "aa_global_admins", acceptedRoles: [] }
+                : { table: "users", acceptedRoles: ADMIN_ROLES };
+
         const legacy = await legacyTableLogin({
-            table: "users",
+            table: legacyConfig.table,
             email: normalizedEmail,
             password,
-            acceptedRoles: ADMIN_ROLES
+            acceptedRoles: legacyConfig.acceptedRoles
         });
 
+        legacyError = legacy.error;
         profile = legacy.profile;
 
-        if (!profile && legacy.error) {
-            showMessage(message, "Login não autorizado pelo banco de dados. Verifique as políticas RLS/tabela users no Supabase.");
-            return false;
+        if (profile && !profile.role) {
+            profile.role = fallbackRole;
         }
     }
 
-    if (!profile && !rpc.error) {
+    if (!profile && selectedProfile === "operacional") {
         const authUser = await authLogin(normalizedEmail, password);
         if (authUser) {
             profile = await findProfile("users", normalizedEmail) || {
                 id: authUser.id,
                 name: authUser.user_metadata?.name || authUser.email || "Administrador",
                 email: authUser.email || normalizedEmail,
-                role: authUser.user_metadata?.role || "admin_operacional"
+                role: authUser.user_metadata?.role || fallbackRole
             };
         }
     }
 
     if (!profile) {
-        showMessage(message, rpc.error
-            ? "Erro na função aa_access_login. Execute o SQL atualizado no Supabase e aguarde o schema cache atualizar."
+        showMessage(message, legacyError
+            ? "Login não autorizado pelo banco de dados. Verifique as políticas RLS da tabela deste perfil no Supabase."
             : "Login inválido.");
         return false;
     }
 
-    if (!isAdminRole(profile.role || "admin_operacional")) {
+    if (!isAdminRole(profile.role || fallbackRole)) {
         showMessage(message, "A conta informada não possui perfil administrativo.");
         return false;
     }
 
     localStorage.removeItem("passenger");
-    localStorage.setItem("user", JSON.stringify(buildUserSession(profile, "admin_operacional", normalizedEmail)));
+    localStorage.setItem("user", JSON.stringify(buildUserSession(profile, fallbackRole, normalizedEmail)));
     location.href = "admin.html";
     return true;
 }
+
+
 
 
 
