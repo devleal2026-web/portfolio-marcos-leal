@@ -3598,3 +3598,11 @@ html[data-theme="dark"] .siga-final-practice-card{
         display:none;
     }
 }
+
+@media(max-width:760px){
+    .academy-floating-top{
+        left:18px;
+        right:auto;
+        bottom:calc(92px + env(safe-area-inset-bottom, 0px));
+    }
+}
