@@ -1,68 +1,52 @@
+const ADMIN_ROLES = [
+    "admin",
+    "admin_operacional",
+    "operational_admin",
+    "admin_empresa",
+    "company_admin",
+    "admin_global",
+    "global_admin"
+];
+
+function isAdminRole(role) {
+    return ADMIN_ROLES.includes(String(role || "").trim().toLowerCase());
+}
+
 export function checkPassengerAccess() {
+    const passenger = JSON.parse(localStorage.getItem("passenger"));
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    const passenger =
-        JSON.parse(
-            localStorage.getItem("passenger")
-        );
-
-    const user =
-        JSON.parse(
-            localStorage.getItem("user")
-        );
-
-    if (passenger) {
-        return true;
-    }
-
-    if (
-        user &&
-        user.role === "admin"
-    ) {
+    if (passenger || isAdminRole(user?.role)) {
         return true;
     }
 
     location.href = "index.html";
+    return false;
 }
 
 export function checkAgentAccess() {
-
-    const user =
-        JSON.parse(
-            localStorage.getItem("user")
-        );
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
-
         location.href = "index.html";
-        return;
+        return false;
     }
 
-    if (
-        user.role !== "agent" &&
-        user.role !== "admin"
-    ) {
-
+    if (user.role !== "agent" && !isAdminRole(user.role)) {
         location.href = "index.html";
+        return false;
     }
+
+    return true;
 }
 
 export function checkAdminAccess() {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    const user =
-        JSON.parse(
-            localStorage.getItem("user")
-        );
-
-    if (!user) {
-
+    if (!user || !isAdminRole(user.role)) {
         location.href = "index.html";
-        return;
+        return false;
     }
 
-    if (
-        user.role !== "admin"
-    ) {
-
-        location.href = "index.html";
-    }
+    return true;
 }
