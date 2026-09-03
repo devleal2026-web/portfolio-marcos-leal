@@ -1,138 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <loc>https://www.lealacademy.com.br/</loc>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/aero-access/</loc>
-    <lastmod>2026-08-07</lastmod>
+    <loc>https://www.lealacademy.com.br/access.html</loc>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/alf/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/avisou/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/encontre-facil/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/mibis/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/neuroloop/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/construindo-palavras/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/airport-baggage-simulator/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/videos/laura-lara-aventura/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/sistema-achados-perdidos/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/quadroo/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/neuroloop/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/adivinhe-o-animal/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/insect-hunter/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/construindo-palavras/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/avisou/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/aero-access/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/mibis/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/projetos/laura-lara-aventura/</loc>
-    <lastmod>2026-08-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/pages/academy-access.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://devleal2026-web.github.io/portfolio-marcos-leal/academy/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 </urlset>
-
-
-

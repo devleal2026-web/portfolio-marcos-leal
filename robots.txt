@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://devleal2026-web.github.io/portfolio-marcos-leal/sitemap.xml
-Sitemap: https://devleal2026-web.github.io/portfolio-marcos-leal/video-sitemap.xml
-Sitemap: https://devleal2026-web.github.io/portfolio-marcos-leal/project-sitemap.xml
-Sitemap: https://devleal2026-web.github.io/portfolio-marcos-leal/game-sitemap.xml
+Sitemap: https://www.lealacademy.com.br/sitemap.xml
