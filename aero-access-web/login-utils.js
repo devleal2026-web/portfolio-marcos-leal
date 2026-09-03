@@ -58,6 +58,21 @@ async function legacyTableLogin({ table, email, password, activeOnly = false, ac
     return { profile: data || null, error: null };
 }
 
+async function rpcLogin(profile, email, password) {
+    const { data, error } = await supabase.rpc("aa_login_web", {
+        p_profile: profile,
+        p_email: email,
+        p_password: password
+    });
+
+    if (error) {
+        console.error("Aero Access RPC login error:", error);
+        return { profile: null, error };
+    }
+
+    return { profile: data || null, error: null };
+}
+
 async function authLogin(email, password) {
     if (!supabase.auth || typeof supabase.auth.signInWithPassword !== "function") {
         return null;
@@ -100,14 +115,15 @@ export async function loginPassengerAccount({ email, password, message }) {
         return false;
     }
 
-    const legacy = await legacyTableLogin({
+    const rpc = await rpcLogin("passenger", normalizedEmail, password);
+    const legacy = rpc.profile ? { profile: null, error: null } : await legacyTableLogin({
         table: "passengers",
         email: normalizedEmail,
         password,
         activeOnly: true
     });
 
-    let passenger = legacy.profile;
+    let passenger = rpc.profile || legacy.profile;
 
     if (!passenger) {
         const authUser = await authLogin(normalizedEmail, password);
@@ -145,14 +161,15 @@ export async function loginAgentAccount({ email, password, message }) {
         return false;
     }
 
-    const legacy = await legacyTableLogin({
+    const rpc = await rpcLogin("agent", normalizedEmail, password);
+    const legacy = rpc.profile ? { profile: null, error: null } : await legacyTableLogin({
         table: "agents",
         email: normalizedEmail,
         password,
         activeOnly: true
     });
 
-    let profile = legacy.profile;
+    let profile = rpc.profile || legacy.profile;
 
     if (!profile) {
         const authUser = await authLogin(normalizedEmail, password);
@@ -193,14 +210,15 @@ export async function loginAdminAccount({ email, password, message }) {
         return false;
     }
 
-    const legacy = await legacyTableLogin({
+    const rpc = await rpcLogin("admin", normalizedEmail, password);
+    const legacy = rpc.profile ? { profile: null, error: null } : await legacyTableLogin({
         table: "users",
         email: normalizedEmail,
         password,
         acceptedRoles: ADMIN_ROLES
     });
 
-    let profile = legacy.profile;
+    let profile = rpc.profile || legacy.profile;
 
     if (!profile) {
         const authUser = await authLogin(normalizedEmail, password);
@@ -231,3 +249,5 @@ export async function loginAdminAccount({ email, password, message }) {
     location.href = "admin.html";
     return true;
 }
+
+
