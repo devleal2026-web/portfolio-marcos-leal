@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Global - Aero Access</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="topo"></div>
+
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="sidebar-logo">
+            <img src="images/logo-aero-access.png" alt="Aero Access" class="page-logo">
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="#dashboard">Dashboard Global</a>
+            <a href="#companies">Empresas</a>
+            <a href="#companyAdmins">Admins das Empresas</a>
+            <a href="#globalPassengers">Passageiros</a>
+            <a href="#globalAgents">Agentes</a>
+            <a href="#globalRequests">Atendimentos</a>
+            <a href="index.html">Menu Principal</a>
+            <a href="#" onclick="logoutGlobalAdmin()">Sair</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="container">
+            <h1>Painel Global Aero Access</h1>
+            <p id="globalAdminInfo"></p>
+            <p id="message"></p>
+
+            <div id="dashboard" class="dashboard-grid">
+                <div class="dashboard-card">
+                    <span>Empresas</span>
+                    <h2 id="totalCompanies">0</h2>
+                </div>
+
+                <div class="dashboard-card">
+                    <span>Admins Empresas</span>
+                    <h2 id="totalCompanyAdmins">0</h2>
+                </div>
+
+                <div class="dashboard-card">
+                    <span>Atendimentos</span>
+                    <h2 id="totalRequests">0</h2>
+                </div>
+            </div>
+
+            <div id="companies" class="card">
+                <h2>Cadastrar Empresa</h2>
+
+                <input id="companyName" placeholder="Nome da empresa">
+                <input id="companySlug" placeholder="Identificador. Ex: latam">
+                <select id="companyPlan">
+                    <option value="standard">Plano Standard</option>
+                    <option value="exclusive">Espaço Exclusivo</option>
+                    <option value="enterprise">Enterprise</option>
+                </select>
+
+                <button type="button" onclick="createCompany()">Cadastrar empresa</button>
+
+                <h3>Empresas cadastradas</h3>
+                <div id="companiesList">Carregando...</div>
+            </div>
+
+            <div id="companyAdmins" class="card">
+                <h2>Criar Admin de Empresa</h2>
+
+                <select id="adminCompanyId">
+                    <option value="">Carregando empresas...</option>
+                </select>
+
+                <input id="companyAdminName" placeholder="Nome do admin">
+                <input id="companyAdminEmail" type="email" placeholder="E-mail do admin">
+                <input id="companyAdminPassword" type="password" placeholder="Senha inicial">
+
+                <button type="button" onclick="createCompanyAdmin()">Criar admin</button>
+
+                <h3>Admins das empresas</h3>
+                <div id="companyAdminsList">Carregando...</div>
+            </div>
+
+            <div id="globalPassengers" class="card">
+                <h2>Passageiros por Empresa</h2>
+                <div id="passengersList">Carregando...</div>
+            </div>
+
+            <div id="globalAgents" class="card">
+                <h2>Agentes por Empresa</h2>
+                <div id="agentsList">Carregando...</div>
+            </div>
+
+            <div id="globalRequests" class="card">
+                <h2>Atendimentos por Empresa</h2>
+                <div id="requestsList">Carregando...</div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<button
+        class="floating-top-button"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        aria-label="Voltar ao topo"
+        title="Voltar ao topo">
+    ↑
+</button>
+
+<script type="module" src="global-admin.js"></script>
+
+</body>
+</html>

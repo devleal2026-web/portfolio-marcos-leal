@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Passageiro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="menu-container"></div>
+
+<div class="container">
+    <div class="card">
+        <h2>Solicitar Atendimento</h2>
+
+        <input id="name" placeholder="Nome" readonly>
+
+        <select id="location">
+            <option value="">Selecione sua localizacao</option>
+            <option>Portao 101</option>
+            <option>Portao 102</option>
+            <option>Portao 201</option>
+            <option>Portao 301</option>
+            <option>Check-in A</option>
+            <option>Check-in B</option>
+            <option>Check-in C</option>
+            <option>Pizza Hut T1</option>
+            <option>Pizza Hut T2</option>
+            <option>Starbucks T1</option>
+            <option>Starbucks T2</option>
+            <option>Esteira 01</option>
+            <option>Esteira 02</option>
+            <option>Esteira 03</option>
+            <option value="outro">Outro local</option>
+        </select>
+
+        <input id="otherLocation" placeholder="Digite o local" style="display:none;">
+
+        <select id="destination">
+            <option value="">Destino desejado</option>
+            <option>Portao 101</option>
+            <option>Portao 102</option>
+            <option>Portao 201</option>
+            <option>Portao 301</option>
+            <option>Check-in A</option>
+            <option>Check-in B</option>
+            <option>Esteira 01</option>
+            <option>Esteira 02</option>
+            <option>Esteira 03</option>
+            <option value="outro">Outro local</option>
+        </select>
+
+        <input id="otherDestination" placeholder="Digite o destino" style="display:none;">
+        <textarea id="notes" placeholder="Observacoes opcionais"></textarea>
+
+        <button onclick="requestHelp()">Solicitar Atendimento</button>
+
+        <p id="status"></p>
+
+        <button id="chatButton" style="display:none;" onclick="openPassengerChat()">
+            Abrir Chat com Agente
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>Meus atendimentos</h2>
+        <div id="myRequests"></div>
+    </div>
+</div>
+
+<script type="module">
+    import "./passenger.js";
+    import { criarMenu } from "./layout.js";
+    criarMenu("Area do Passageiro");
+</script>
+
+</body>
+</html>

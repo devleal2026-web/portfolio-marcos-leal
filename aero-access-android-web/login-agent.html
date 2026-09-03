@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Agente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <img
+                src="images/logo-aero-access.png"
+                alt="Aero Access"
+                class="page-logo">
+        <h2>Login Agente</h2>
+
+        <input type="email" id="email" placeholder="E-mail">
+        <input type="password" id="password" placeholder="Senha">
+
+        <button onclick="loginAgent()">Entrar</button>
+        <button class="secondary" onclick="location.href='index.html'">Voltar</button>
+
+        <p id="message"></p>
+    </div>
+</div>
+
+<script type="module" src="login-agent.js"></script>
+</body>
+</html>

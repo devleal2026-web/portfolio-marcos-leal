@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Agente</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="menu-container"></div>
+
+<div class="container">
+    <div class="card">
+        <h2>Area do Agente</h2>
+        <button onclick="loadRequests()">Atualizar</button>
+    </div>
+
+    <div id="list"></div>
+
+    <div class="card">
+        <h2>Historico de atendimentos</h2>
+        <div id="agentHistory"></div>
+    </div>
+</div>
+
+<script type="module">
+    import "./agent.js";
+    import { criarMenu } from "./layout.js";
+    criarMenu("Area do Agente");
+</script>
+
+</body>
+</html>

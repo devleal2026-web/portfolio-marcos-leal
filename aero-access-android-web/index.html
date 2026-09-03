@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aero Access</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .home-menu-wrapper {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+        }
+
+        .home-menu-button {
+            width: 38px;
+            height: 38px;
+            border: none;
+            background: transparent;
+            color: #003b71;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .home-menu-button:hover {
+            background: rgba(0, 59, 113, 0.08);
+        }
+
+        .home-menu-options {
+            display: none;
+            margin-top: 8px;
+            padding: 10px;
+            background: #ffffff;
+            border: 1px solid #d7e1ec;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 59, 113, 0.18);
+            min-width: 230px;
+        }
+
+        .home-menu-options.show {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .home-menu-options button {
+            width: 100%;
+            min-height: 44px;
+            border: none;
+            border-radius: 10px;
+            background: #0078d7;
+            color: #ffffff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .home-menu-options button:hover {
+            background: #005fae;
+        }
+
+        .main-action-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .main-action-buttons button {
+            width: 280px;
+            max-width: 100%;
+            min-height: 48px;
+            border: none;
+            border-radius: 12px;
+            background: #0078d7;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .main-action-buttons button:hover {
+            background: #005fae;
+        }
+
+        .home-card {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="home-menu-wrapper">
+    <button
+            class="home-menu-button"
+            onclick="toggleCorporateMenu()"
+            aria-label="Abrir menu administrativo"
+            title="Menu administrativo">
+        ⋮
+    </button>
+
+    <div id="corporateMenu" class="home-menu-options">
+        <button onclick="location.href='company-admin-login.html'">
+            Admin da Empresa
+        </button>
+
+        <button onclick="location.href='global-admin-login.html'">
+            Admin Global Aero Access
+        </button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card home-card">
+        <img
+                src="images/logo-aero-access.png"
+                alt="Aero Access"
+                class="page-logo">
+
+        <h1></h1>
+
+        <p>Atendimento assistido para passageiros PNAE.</p>
+
+        <div class="main-action-buttons">
+            <button onclick="location.href='login-passenger.html'">
+                Passageiro
+            </button>
+
+            <button onclick="location.href='login-agent.html'">
+                Agentes
+            </button>
+
+            <button onclick="location.href='login-admin.html'">
+                Administração Operacional
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleCorporateMenu() {
+        document.getElementById("corporateMenu").classList.toggle("show");
+    }
+
+    document.addEventListener("click", function (event) {
+        const wrapper = document.querySelector(".home-menu-wrapper");
+        const menu = document.getElementById("corporateMenu");
+
+        if (!wrapper.contains(event.target)) {
+            menu.classList.remove("show");
+        }
+    });
+</script>
+
+</body>
+</html>

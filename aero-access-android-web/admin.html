@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Aero Access</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="topo"></div>
+
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="sidebar-logo">
+            <img
+                    src="images/logo-aero-access.png"
+                    alt="Aero Access"
+                    class="page-logo">
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#statusAgentes">Status Agentes</a>
+            <a href="#agentes">Agentes</a>
+            <a href="agents-company.html">Agentes por Empresa</a>
+            <a href="#central">Central</a>
+            <a href="#tempoReal">Tempo Real</a>
+            <a href="#historico">Histórico</a>
+            <a href="#pnaeControl">Sala PNAE</a>
+            <a href="pnae-display.html">Abrir Telão PNAE</a>
+            <a href="index.html">Menu Principal</a>
+            <a href="#" onclick="logoutAdmin()">Sair</a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <div class="container">
+            <h1>Painel Administrativo</h1>
+
+            <div id="dashboard" class="dashboard-grid">
+                <div class="dashboard-card">
+                    <span>Agentes</span>
+                    <h2 id="totalAgents">0</h2>
+                </div>
+
+                <div class="dashboard-card">
+                    <span>Atendimentos</span>
+                    <h2 id="totalRequests">0</h2>
+                </div>
+
+                <div class="dashboard-card">
+                    <span>Em andamento</span>
+                    <h2 id="activeRequests">0</h2>
+                </div>
+            </div>
+
+            <div id="dailyStats" class="card">
+                <h2>Estatísticas do Dia</h2>
+                Carregando...
+            </div>
+
+            <div id="statusAgentes" class="card">
+                <h2>Status dos Agentes</h2>
+                <div id="agentStatusSummary">Carregando...</div>
+            </div>
+
+            <div class="card">
+                <h2>Ranking de Agentes</h2>
+                <div id="rankingAgents">Carregando...</div>
+            </div>
+
+            <div id="agentes" class="card">
+                <h2>Cadastro de Agentes</h2>
+
+                <input id="agentName" placeholder="Nome do agente">
+                <input id="agentEmail" type="email" placeholder="E-mail">
+                <input id="agentPassword" type="password" placeholder="Senha inicial">
+
+                <button onclick="addAgent()">Cadastrar</button>
+
+                <button
+                        type="button"
+                        class="secondary"
+                        onclick="location.href='agents-company.html'">
+                    Vincular agentes às empresas
+                </button>
+            </div>
+
+            <div class="card">
+                <h2>Lista de Agentes</h2>
+                <div id="agents"></div>
+            </div>
+
+            <div id="central" class="card">
+                <h2>Central Operacional</h2>
+                <div id="agentsStatus"></div>
+            </div>
+
+            <div id="tempoReal" class="card">
+                <h2>Atendimentos em Tempo Real</h2>
+                <div id="liveRequests"></div>
+            </div>
+
+            <div id="historico" class="card">
+                <h2>Histórico de Atendimentos</h2>
+                <div id="history"></div>
+            </div>
+
+            <div id="pnaeControl" class="card pnae-panel">
+                <h2>Sala de Controle PNAE</h2>
+
+                <button onclick="location.href='pnae-display.html'">
+                    Abrir Telão PNAE
+                </button>
+
+                <div class="pnae-grid">
+                    <input id="pnaePassengerName" placeholder="Nome do passageiro">
+                    <input id="pnaeFlightNumber" placeholder="Voo. Ex: LA3201">
+                    <input id="pnaeDestination" placeholder="Destino">
+                    <input id="pnaeDepartureTime" type="datetime-local">
+                    <input id="pnaeAssistanceType" placeholder="Assistência. Ex: cadeira de rodas">
+                    <input id="pnaeMeetingPoint" placeholder="Ponto de encontro">
+                    <textarea id="pnaeNotes" placeholder="Observações"></textarea>
+                </div>
+
+                <button onclick="addPnaeCall()">Cadastrar passageiro PNAE</button>
+
+                <h3>Chamadas PNAE</h3>
+                <div id="pnaeCalls"></div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<button
+        class="floating-top-button"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        aria-label="Voltar ao topo"
+        title="Voltar ao topo">
+    ↑
+</button>
+
+<script type="module" src="admin.js"></script>
+<script type="module" src="pnae-admin.js"></script>
+
+</body>
+</html>

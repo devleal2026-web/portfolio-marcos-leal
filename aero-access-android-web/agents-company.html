@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentes por Empresa - Aero Access</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <img
+                src="images/logo-aero-access.png"
+                alt="Aero Access"
+                class="page-logo">
+
+        <h2>Agentes por Empresa</h2>
+
+        <p id="message"></p>
+
+        <h3>Cadastrar novo agente</h3>
+
+        <input id="agentName" type="text" placeholder="Nome do agente">
+        <input id="agentEmail" type="email" placeholder="E-mail do agente">
+        <input id="agentPassword" type="password" placeholder="Senha do agente">
+
+        <select id="newAgentCompanyId">
+            <option value="">Carregando empresas...</option>
+        </select>
+
+        <button type="button" onclick="createAgent()">Cadastrar agente</button>
+
+        <hr>
+
+        <h3>Vincular agente existente</h3>
+
+        <select id="agentId">
+            <option value="">Carregando agentes...</option>
+        </select>
+
+        <select id="companyId">
+            <option value="">Carregando empresas...</option>
+        </select>
+
+        <button type="button" onclick="linkAgentToCompany()">Vincular agente</button>
+        <button type="button" class="secondary" onclick="unlinkSelectedAgent()">Desvincular agente</button>
+
+        <hr>
+
+        <h3>Agentes cadastrados</h3>
+
+        <div id="agentsList">
+            <p>Carregando agentes...</p>
+        </div>
+
+        <button class="secondary" type="button" onclick="location.href='admin.html'">
+            Voltar para Administração
+        </button>
+    </div>
+</div>
+
+<script type="module" src="agents-company.js"></script>
+
+</body>
+</html>

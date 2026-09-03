@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telão PNAE - Aero Access</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="airport-display-body">
+
+<div class="airport-display">
+    <header class="airport-header">
+        <div class="airport-brand">
+            <img
+                    src="images/logo-aero-access.png"
+                    alt="Aero Access"
+                    class="airport-logo">
+
+            <div>
+                <p class="airport-kicker">Aero Access PNAE</p>
+                <h1 id="displayTitle">Bem-vindos clientes Aero Access</h1>
+            </div>
+        </div>
+
+        <div class="airport-clock-box">
+            <span id="displayClock" class="airport-clock">--:--</span>
+            <span id="displayDate" class="airport-date">--/--/----</span>
+        </div>
+    </header>
+
+    <section class="airport-info-strip">
+        <div>
+            <span class="strip-label">Empresa</span>
+            <strong id="displayCompany">Aero Access</strong>
+        </div>
+
+        <div>
+            <span class="strip-label">Serviço</span>
+            <strong>Assistência PNAE</strong>
+        </div>
+
+        <div>
+            <span class="strip-label">Painel</span>
+            <strong>Chamadas Ativas</strong>
+        </div>
+    </section>
+
+    <main class="airport-main">
+        <section class="airport-board">
+            <div class="airport-board-header">
+                <span>Passageiro</span>
+                <span>Voo</span>
+                <span>Destino</span>
+                <span>Data</span>
+                <span>Decolagem</span>
+                <span>Local</span>
+                <span>Status</span>
+            </div>
+
+            <div id="currentCalls" class="airport-board-rows">
+                <div class="airport-empty">
+                    Carregando chamadas...
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="airport-footer">
+        <div class="ticker">
+            <span id="displayTicker">
+                Aguarde sua chamada no painel. Em caso de dúvida, procure a equipe de assistência.
+            </span>
+        </div>
+    </footer>
+</div>
+
+<script type="module" src="pnae-display.js"></script>
+
+</body>
+</html>
