@@ -1,6 +1,19 @@
 [build]
   publish = "."
 
+# Subdomain-specific project entry points.
+[[redirects]]
+  from = "https://aeroaccess.lealacademy.com.br/"
+  to = "/projetos/aero-access/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://devleal2026.lealacademy.com.br/"
+  to = "/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/"
   to = "/netlify/academy/index.html"
