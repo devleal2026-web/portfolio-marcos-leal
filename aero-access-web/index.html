@@ -12,63 +12,50 @@
 
 <header>
     <div class="home-logo">
-
-        <img
-                src="images/logo-aero-access.png"
-                alt="Aero Access">
-
+        <img src="images/logo-aero-access.png" alt="Aero Access">
     </div>
 </header>
 
 <div class="container">
-
     <div class="card">
         <h2>Selecionar perfil</h2>
 
         <div class="profile-container">
+            <h1 class="profile-title">Aero Access</h1>
 
-            <h1 class="profile-title">
-                    Aero Access
-            </h1>
+            <p class="profile-subtitle">Selecione o perfil de acesso</p>
 
-            <p class="profile-subtitle">
-                Selecione o perfil de acesso
-            </p>
-
-            <button
-                    class="profile-btn passenger"
-                    onclick="location.href='login-passenger.html'">
-
+            <button class="profile-btn passenger" onclick="location.href='login-passenger.html'">
                 ♿ Passageiro
-
             </button>
 
-            <button
-                    class="profile-btn agent"
-                    onclick="location.href='login-agent.html'">
-
+            <button class="profile-btn agent" onclick="location.href='login-agent.html'">
                 👨‍✈️ Agente
-
             </button>
 
-            <button
-                    class="profile-btn admin"
-                    onclick="location.href='login-admin.html'">
-
-                🖥️ Administrador
-
-            </button>
-
+            <div class="admin-access-menu">
+                <button class="admin-dots" type="button" aria-expanded="false" aria-controls="adminOptions" onclick="toggleAdminOptions()">
+                    ⋮
+                </button>
+                <div id="adminOptions" class="admin-options" hidden>
+                    <button type="button" onclick="location.href='login-admin.html?perfil=operacional'">Admin operacional</button>
+                    <button type="button" onclick="location.href='login-admin.html?perfil=empresa'">Admin empresa</button>
+                    <button type="button" onclick="location.href='login-admin.html?perfil=global'">Admin global</button>
+                </div>
+            </div>
         </div>
-
+    </div>
 </div>
 
 <script>
-    function go(page){
-      window.location.href = page;
+    function toggleAdminOptions(){
+        const menu = document.getElementById('adminOptions');
+        const button = document.querySelector('.admin-dots');
+        const isOpen = !menu.hidden;
+        menu.hidden = isOpen;
+        button.setAttribute('aria-expanded', String(!isOpen));
     }
 </script>
 
 </body>
 </html>
-

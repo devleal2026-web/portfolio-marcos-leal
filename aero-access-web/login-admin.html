@@ -1,45 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <title>Login Administrador</title>
+    <title>Login Administrativo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <div class="container">
-
     <div class="card">
+        <h2 id="adminLoginTitle">Login Administrativo</h2>
 
-        <h2>Login Administrador</h2>
+        <input id="email" type="email" placeholder="E-mail">
+        <input id="password" type="password" placeholder="Senha">
 
-        <input
-                id="email"
-                type="email"
-                placeholder="E-mail">
-
-        <input
-                id="password"
-                type="password"
-                placeholder="Senha">
-
-        <button onclick="loginAdmin()">
-            Entrar
-        </button>
-
+        <button onclick="loginAdmin()">Entrar</button>
         <p id="message"></p>
-
     </div>
-
 </div>
 
 <script type="module">
-    import "./login-admin.js?v=20260903-rpc-login-v3";
+    import "./login-admin.js?v=20260903-admin-profiles";
 </script>
 
 </body>
 </html>
-
-

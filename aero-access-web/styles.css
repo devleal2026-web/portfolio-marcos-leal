@@ -645,3 +645,46 @@ button:hover{
     max-width: 90%;
 
 }
+.admin-access-menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.admin-dots {
+    width: 54px;
+    height: 54px;
+    border: none;
+    border-radius: 18px;
+    background: #111827;
+    color: #ffffff;
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.admin-options {
+    position: absolute;
+    top: 62px;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 18px;
+    background: #ffffff;
+    border: 1px solid #dbe3ef;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, .18);
+}
+
+.admin-options button {
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    background: #7c3aed;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+}

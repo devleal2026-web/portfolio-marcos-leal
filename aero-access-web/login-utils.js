@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js?v=20260903-rpc-login-v3";
+import { supabase } from "./supabase.js?v=20260903-admin-profiles";
 
 const ADMIN_ROLES = [
     "admin",
@@ -59,10 +59,12 @@ async function legacyTableLogin({ table, email, password, activeOnly = false, ac
 }
 
 async function rpcLogin(profile, email, password) {
-    const { data, error } = await supabase.rpc("aa_web_login_v2", {
-        p_profile: profile,
-        p_email: email,
-        p_password: password
+    const { data, error } = await supabase.rpc("aa_access_login", {
+        payload: {
+            profile,
+            email,
+            password
+        }
     });
 
     if (error) {
@@ -201,7 +203,7 @@ export async function loginAgentAccount({ email, password, message }) {
     return true;
 }
 
-export async function loginAdminAccount({ email, password, message }) {
+export async function loginAdminAccount({ email, password, adminProfile = "operacional", message }) {
     const normalizedEmail = normalizeEmail(email);
     showMessage(message, "");
 
@@ -210,7 +212,7 @@ export async function loginAdminAccount({ email, password, message }) {
         return false;
     }
 
-    const rpc = await rpcLogin("admin", normalizedEmail, password);
+    const rpc = await rpcLogin(`admin_${adminProfile}`, normalizedEmail, password);
     let profile = rpc.profile;
 
     if (!profile && !rpc.error) {
@@ -243,7 +245,7 @@ export async function loginAdminAccount({ email, password, message }) {
 
     if (!profile) {
         showMessage(message, rpc.error
-            ? "Erro na função aa_web_login_v2. Execute o SQL da função v2 no Supabase e aguarde o schema cache atualizar."
+            ? "Erro na função aa_access_login. Execute o SQL atualizado no Supabase e aguarde o schema cache atualizar."
             : "Login inválido.");
         return false;
     }
@@ -258,6 +260,7 @@ export async function loginAdminAccount({ email, password, message }) {
     location.href = "admin.html";
     return true;
 }
+
 
 
 
