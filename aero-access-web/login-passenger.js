@@ -1,4 +1,4 @@
-import { loginPassengerAccount } from "./login-utils.js?v=20260903-rpc-login";
+import { loginPassengerAccount } from "./login-utils.js?v=20260903-rpc-login-v2";
 
 window.loginPassenger = async () => {
     await loginPassengerAccount({
@@ -7,4 +7,5 @@ window.loginPassenger = async () => {
         message: document.getElementById("message")
     });
 };
+
 

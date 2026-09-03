@@ -1,4 +1,4 @@
-import { loginAgentAccount } from "./login-utils.js?v=20260903-rpc-login";
+import { loginAgentAccount } from "./login-utils.js?v=20260903-rpc-login-v2";
 
 window.loginAgent = async () => {
     await loginAgentAccount({
@@ -7,4 +7,5 @@ window.loginAgent = async () => {
         message: document.getElementById("message")
     });
 };
+
 

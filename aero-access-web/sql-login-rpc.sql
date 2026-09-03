@@ -110,3 +110,7 @@ $$;
 
 grant execute on function public.aa_login_web(text, text, text) to anon;
 grant execute on function public.aa_login_web(text, text, text) to authenticated;
+
+-- Forca o PostgREST/Supabase API a reconhecer a funcao imediatamente.
+notify pgrst, 'reload schema';
+

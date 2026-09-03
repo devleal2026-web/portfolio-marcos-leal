@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js?v=20260903-rpc-login";
+import { supabase } from "./supabase.js?v=20260903-rpc-login-v2";
 
 const ADMIN_ROLES = [
     "admin",
@@ -211,16 +211,25 @@ export async function loginAdminAccount({ email, password, message }) {
     }
 
     const rpc = await rpcLogin("admin", normalizedEmail, password);
-    const legacy = rpc.profile ? { profile: null, error: null } : await legacyTableLogin({
-        table: "users",
-        email: normalizedEmail,
-        password,
-        acceptedRoles: ADMIN_ROLES
-    });
+    let profile = rpc.profile;
 
-    let profile = rpc.profile || legacy.profile;
+    if (!profile && !rpc.error) {
+        const legacy = await legacyTableLogin({
+            table: "users",
+            email: normalizedEmail,
+            password,
+            acceptedRoles: ADMIN_ROLES
+        });
 
-    if (!profile) {
+        profile = legacy.profile;
+
+        if (!profile && legacy.error) {
+            showMessage(message, "Login não autorizado pelo banco de dados. Verifique as políticas RLS/tabela users no Supabase.");
+            return false;
+        }
+    }
+
+    if (!profile && !rpc.error) {
         const authUser = await authLogin(normalizedEmail, password);
         if (authUser) {
             profile = await findProfile("users", normalizedEmail) || {
@@ -233,8 +242,8 @@ export async function loginAdminAccount({ email, password, message }) {
     }
 
     if (!profile) {
-        showMessage(message, legacy.error
-            ? "Login não autorizado pelo banco de dados. Verifique as políticas RLS/tabela users no Supabase."
+        showMessage(message, rpc.error
+            ? "Erro na função aa_login_web. Execute o SQL completo novamente e aguarde o schema cache do Supabase atualizar."
             : "Login inválido.");
         return false;
     }
@@ -249,6 +258,4 @@ export async function loginAdminAccount({ email, password, message }) {
     location.href = "admin.html";
     return true;
 }
-
-
 
