@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js?v=20260903-admin-fallback";
+import { supabase } from "./supabase.js?v=20260903-table-login-safe";
 
 const ADMIN_ROLES = [
     "admin",
@@ -33,10 +33,18 @@ function buildUserSession(profile, fallbackRole, email) {
     };
 }
 
+const SAFE_LOGIN_COLUMNS = {
+    users: "id,name,email,role",
+    agents: "id,name,email,status,total_requests",
+    passengers: "id,name,email,phone,total_requests",
+    aa_company_admins: "id,name,email,company_id",
+    aa_global_admins: "id,name,email"
+};
+
 async function legacyTableLogin({ table, email, password, activeOnly = false, acceptedRoles = [] }) {
     let query = supabase
         .from(table)
-        .select("*")
+        .select(SAFE_LOGIN_COLUMNS[table] || "id,name,email,role")
         .eq("email", email)
         .eq("password", password);
 
@@ -92,7 +100,7 @@ async function authLogin(email, password) {
 async function findProfile(table, email) {
     const { data, error } = await supabase
         .from(table)
-        .select("*")
+        .select(SAFE_LOGIN_COLUMNS[table] || "id,name,email,role")
         .eq("email", email)
         .maybeSingle();
 
@@ -273,6 +281,8 @@ export async function loginAdminAccount({ email, password, adminProfile = "opera
     location.href = "admin.html";
     return true;
 }
+
+
 
 
 

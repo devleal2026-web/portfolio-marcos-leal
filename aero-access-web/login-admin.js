@@ -1,4 +1,4 @@
-import { loginAdminAccount } from "./login-utils.js?v=20260903-admin-fallback";
+import { loginAdminAccount } from "./login-utils.js?v=20260903-table-login-safe";
 
 const params = new URLSearchParams(location.search);
 const adminProfile = params.get("perfil") || "operacional";
@@ -18,4 +18,5 @@ window.loginAdmin = async () => {
         message: document.getElementById("message")
     });
 };
+
 

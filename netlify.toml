@@ -150,7 +150,8 @@
     X-Frame-Options = "DENY"
     Referrer-Policy = "no-referrer"
     Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), usb=(), web-share=()"
-    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://axpmsjiirrzljeeqewgs.supabase.co wss://axpmsjiirrzljeeqewgs.supabase.co https://pqhuvakeolsogczfbynb.supabase.co wss://pqhuvakeolsogczfbynb.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://axpmsjiirrzljeeqewgs.supabase.co wss://axpmsjiirrzljeeqewgs.supabase.co https://pqhuvakeolsogczfbynb.supabase.co wss://pqhuvakeolsogczfbynb.supabase.co https://lxvoozrtmbqsrgxbajgp.supabase.co wss://lxvoozrtmbqsrgxbajgp.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+
 
 
 
