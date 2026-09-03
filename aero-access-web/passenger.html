@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Passageiro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div id="menu-container"></div>
+
+    <h2>Solicitar Atendimento</h2>
+
+    <input
+            id="name"
+            placeholder="Nome"
+            readonly
+    >
+
+    <select id="location">
+
+        <option value="">
+            Selecione sua localização
+        </option>
+
+        <option>Portão 101</option>
+        <option>Portão 102</option>
+        <option>Portão 201</option>
+        <option>Portão 301</option>
+
+        <option>Check-in A</option>
+        <option>Check-in B</option>
+        <option>Check-in C</option>
+
+        <option>Pizza Hut T1</option>
+        <option>Pizza Hut T2</option>
+
+        <option>Starbucks T1</option>
+        <option>Starbucks T2</option>
+
+        <option>Esteira 01</option>
+        <option>Esteira 02</option>
+        <option>Esteira 03</option>
+
+        <option value="outro">
+            Outro local
+        </option>
+
+    </select>
+
+    <input
+            id="otherLocation"
+            placeholder="Digite o local"
+            style="display:none;"
+    >
+
+    <select id="destination">
+
+        <option value="">
+            Destino desejado
+        </option>
+
+        <option>Portão 101</option>
+        <option>Portão 102</option>
+        <option>Portão 201</option>
+        <option>Portão 301</option>
+
+        <option>Check-in A</option>
+        <option>Check-in B</option>
+
+        <option>Esteira 01</option>
+        <option>Esteira 02</option>
+        <option>Esteira 03</option>
+        <option value="outro">
+            Outro local
+        </option>
+
+    </select>
+
+    <textarea
+            id="notes"
+            placeholder="Observações (opcional)"
+    ></textarea>
+
+    <button onclick="requestHelp()">
+        Solicitar Atendimento
+    </button>
+
+    <p id="status"></p>
+
+</div>
+
+<script type="module">
+    import "./passenger.js";
+</script>
+
+<script type="module">
+
+    import { criarMenu } from "./layout.js";
+
+    criarMenu("Área do Passageiro");
+
+</script>
+
+</body>
+</html>

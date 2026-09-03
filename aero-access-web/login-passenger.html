@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Passageiro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Login Passageiro</h2>
+
+        <input
+                type="email"
+                id="email"
+                placeholder="E-mail">
+
+        <input
+                type="password"
+                id="password"
+                placeholder="Senha">
+
+        <button onclick="loginPassenger()">
+            Entrar
+        </button>
+
+        <br><br>
+
+        <button
+                onclick="location.href='register-passenger.html'">
+
+            Criar Cadastro
+
+        </button>
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+<script type="module">
+    import "./login-passenger.js";
+</script>
+
+</body>
+</html>

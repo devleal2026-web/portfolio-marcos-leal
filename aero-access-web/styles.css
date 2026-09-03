@@ -1,0 +1,647 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #eef1f4;
+  color: #333;
+}
+
+.container {
+  max-width: 500px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+  margin-top: 0;
+  color: #1f2937;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.card {
+  background: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.topbar{
+
+    background:#2563eb;
+    color:white;
+
+    padding:15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+.logo{
+
+    font-size:22px;
+    font-weight:bold;
+}
+
+.titulo{
+
+    font-size:18px;
+}
+
+.botoes-menu{
+
+    display:flex;
+    gap:8px;
+}
+
+.botoes-menu button{
+
+    background:white;
+    color:#2563eb;
+
+    border:none;
+
+    padding:8px 15px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.botoes-menu button:hover{
+
+    opacity:0.9;
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+.agent-card{
+
+    padding:15px;
+    margin-bottom:15px;
+
+    border-radius:12px;
+
+    background:white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+}
+
+.agent-card h3{
+
+    margin-bottom:8px;
+}
+
+.actions{
+
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+
+    margin-top:12px;
+}
+
+#agentsStatus,
+#liveRequests,
+#history{
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+/* =========================
+   TELA INICIAL
+========================= */
+
+.profile-container {
+
+    max-width: 500px;
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.12);
+}
+
+.profile-title {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    color: #1f2937;
+
+    font-size: 30px;
+}
+
+.profile-subtitle {
+
+    text-align: center;
+
+    color: #6b7280;
+
+    margin-bottom: 25px;
+}
+
+.profile-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    border-radius: 14px;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all .25s ease;
+}
+
+.profile-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.15);
+}
+
+.passenger {
+
+    background: #2563eb;
+    color: white;
+}
+
+.agent {
+
+    background: #059669;
+    color: white;
+}
+
+.admin {
+
+    background: #7c3aed;
+    color: white;
+}
+
+/* ==================================
+   CONTAINER
+================================== */
+
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+}
+
+/* ==================================
+   CARDS
+================================== */
+
+.card,
+.agent-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:16px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.08);
+
+    border:1px solid #e9eef5;
+
+    transition:.2s;
+}
+
+.card:hover,
+.agent-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.12);
+}
+
+/* ==================================
+   TÍTULOS
+================================== */
+
+h1{
+
+    color:#003366;
+
+    margin-bottom:20px;
+}
+
+h2{
+
+    color:#004b8d;
+
+    margin-bottom:15px;
+
+    border-bottom:2px solid #e8eef7;
+
+    padding-bottom:8px;
+}
+
+h3{
+
+    margin-bottom:10px;
+
+    color:#003366;
+}
+
+/* ==================================
+   INPUTS
+================================== */
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+    border:1px solid #d7dee7;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    background:#fff;
+
+    box-sizing:border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+    border-color:#0078d4;
+
+    box-shadow:
+        0 0 0 3px rgba(0,120,212,.15);
+}
+
+textarea{
+
+    min-height:90px;
+
+    resize:vertical;
+}
+
+/* ==================================
+   BOTÕES
+================================== */
+
+button{
+
+    background:#0078d4;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px 18px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+button:hover{
+
+    background:#005ea6;
+
+    transform:translateY(-1px);
+}
+
+/* ==================================
+   STATUS
+================================== */
+
+.status-livre{
+
+    color:#0b9f46;
+    font-weight:bold;
+}
+
+.status-ocupado{
+
+    color:#ff7a00;
+    font-weight:bold;
+}
+
+.status-finalizado{
+
+    color:#0078d4;
+    font-weight:bold;
+}
+
+.status-cancelado{
+
+    color:#d60000;
+    font-weight:bold;
+}
+
+/* ==================================
+   ADMIN GRID
+================================== */
+
+.admin-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+
+    gap:20px;
+}
+
+/* ==================================
+   MENU SUPERIOR
+================================== */
+
+.topbar{
+
+    background:#003366;
+
+    color:white;
+
+    padding:15px 25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,.15);
+}
+
+.logo{
+
+    font-size:22px;
+    font-weight:bold;
+}
+
+.titulo{
+
+    font-size:18px;
+}
+
+.botoes-menu{
+
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.botoes-menu button{
+
+    background:white;
+
+    color:#003366;
+
+    font-weight:bold;
+
+    border-radius:10px;
+
+    padding:10px 16px;
+}
+
+.botoes-menu button:hover{
+
+    background:#f0f5ff;
+}
+
+/* ==================================
+   MENSAGEM PASSAGEIRO
+================================== */
+
+#status{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#eef6ff;
+
+    border-left:5px solid #0078d4;
+
+    font-weight:500;
+}
+
+/* ==================================
+   MOBILE
+================================== */
+
+@media(max-width:768px){
+
+    .topbar{
+
+        flex-direction:column;
+    }
+
+    .botoes-menu{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .container{
+
+        padding:12px;
+    }
+}
+
+/* ==================================
+   ADMIN LATERAL
+================================== */
+
+.admin-layout{
+
+    display:flex;
+
+    min-height:100vh;
+}
+
+/* MENU */
+
+.admin-sidebar{
+
+    width:260px;
+
+    background:#003366;
+
+    color:white;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+    overflow-y:auto;
+}
+
+.sidebar-logo{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:30px;
+
+    text-align:center;
+}
+
+.sidebar-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.sidebar-menu a{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    transition:.2s;
+
+    background:rgba(255,255,255,.08);
+}
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.18);
+}
+
+/* CONTEÚDO */
+
+.admin-content{
+
+    margin-left:260px;
+
+    width:100%;
+
+    padding:20px;
+
+    box-sizing:border-box;
+}
+
+.logo-sistema {
+
+    width: 180px;
+
+    max-width: 100%;
+
+    display: block;
+
+    margin: 0 auto;
+
+}
+
+.logo-topo {
+
+    height: 55px;
+
+    width: auto;
+
+}
+
+.home-logo {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+.home-logo img {
+
+    width: 280px;
+
+    max-width: 90%;
+
+}
