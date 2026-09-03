@@ -1,4 +1,4 @@
-import { loginAdminAccount } from "./login-utils.js";
+import { loginAdminAccount } from "./login-utils.js?v=20260903-rpc-login";
 
 window.loginAdmin = async () => {
     await loginAdminAccount({
@@ -7,3 +7,4 @@ window.loginAdmin = async () => {
         message: document.getElementById("message")
     });
 };
+

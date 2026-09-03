@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js";
+import { supabase } from "./supabase.js?v=20260903-rpc-login";
 
 const ADMIN_ROLES = [
     "admin",
@@ -249,5 +249,6 @@ export async function loginAdminAccount({ email, password, message }) {
     location.href = "admin.html";
     return true;
 }
+
 
 
