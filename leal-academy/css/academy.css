@@ -2675,14 +2675,16 @@ html[data-theme="dark"] .assessment-result p{
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:24px;
-    background:rgba(15,23,42,.82);
+    padding:14px;
+    background:rgba(15,23,42,.88);
 }
 
 .screenshot-preview-dialog{
-    width:min(1180px,96vw);
-    max-height:92vh;
-    overflow:auto;
+    display:grid;
+    grid-template-rows:auto minmax(0,1fr);
+    width:min(1560px,98vw);
+    height:min(900px,96vh);
+    overflow:hidden;
     border:1px solid #64748b;
     border-radius:18px;
     background:#0f172a;
@@ -2694,24 +2696,64 @@ html[data-theme="dark"] .assessment-result p{
     justify-content:space-between;
     gap:16px;
     align-items:center;
-    padding:14px 16px;
+    padding:12px 14px;
     color:#ffffff;
     border-bottom:1px solid #334155;
 }
 
+.screenshot-preview-header strong{
+    min-width:0;
+    font-size:16px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.screenshot-preview-actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+    align-items:center;
+}
+
+.screenshot-preview-actions span{
+    min-width:54px;
+    color:#dbeafe;
+    font-size:13px;
+    font-weight:800;
+    text-align:center;
+}
+
 .screenshot-preview-header button{
+    min-width:40px;
     border:1px solid #93c5fd;
     border-radius:10px;
     background:#1d4ed8;
     color:#ffffff;
     padding:8px 12px;
+    font-weight:800;
     cursor:pointer;
 }
 
-.screenshot-preview-dialog img{
+.screenshot-preview-stage{
+    overflow:auto;
+    overscroll-behavior:contain;
+    padding:14px;
+    background:#020617;
+}
+
+.screenshot-preview-stage img{
     display:block;
     width:100%;
+    min-width:100%;
+    max-width:none;
     height:auto;
+    margin:auto;
+    border-radius:12px;
+    background:#ffffff;
+    box-shadow:0 10px 28px rgba(0,0,0,.35);
+    image-rendering:auto;
 }
 
 @media(max-width:700px){
@@ -2731,7 +2773,27 @@ html[data-theme="dark"] .assessment-result p{
     }
 
     .screenshot-preview-modal{
-        padding:10px;
+        padding:6px;
+    }
+
+    .screenshot-preview-dialog{
+        width:100vw;
+        height:100dvh;
+        border-radius:0;
+    }
+
+    .screenshot-preview-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .screenshot-preview-actions{
+        justify-content:flex-start;
+        width:100%;
+    }
+
+    .screenshot-preview-stage{
+        padding:8px;
     }
 }
 

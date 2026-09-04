@@ -1105,8 +1105,21 @@ function applyCorrectLibrasVisuals(course){
 
     course.modules.forEach((module, index) => {
         const profile = librasCorrectVisualProfiles[index] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
+        const current = Array.isArray(module.screenshots) ? module.screenshots[0] : null;
+        const currentSrc = String(current?.src || "");
+        const hasSupabaseVisual = currentSrc.includes("libras-correto-") && current?.zoomSrc;
+        const hasBrokenLegacyVisual = !currentSrc
+            || currentSrc.startsWith("data:image/svg")
+            || currentSrc.includes("libras-10-seguranca")
+            || !currentSrc.includes("libras-correto-");
+
+        if(hasSupabaseVisual && !hasBrokenLegacyVisual){
+            return;
+        }
+
         module.screenshots = [{
-            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260904-libras-correto-1",
+            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260904-libras-zoom-1",
+            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260904-libras-zoom-1",
             title:profile.title,
             caption:profile.caption
         }];
@@ -2044,7 +2057,7 @@ function lessonScreenshotCards(course, moduleIndex){
                         <button
                             type="button"
                             class="lesson-screenshot-zoom"
-                            data-screenshot-src="${escapeHtml(src)}"
+                            data-screenshot-src="${escapeHtml(resolveAcademyAssetPath(fixedItem.zoomSrc || src))}"
                             data-screenshot-title="${escapeHtml(fixedItem.title)}">
                             <img src="${escapeHtml(src)}" alt="${escapeHtml(fixedItem.title)}">
                         </button>
@@ -2075,23 +2088,76 @@ function bindLessonScreenshots(){
                     <div class="screenshot-preview-dialog">
                         <div class="screenshot-preview-header">
                             <strong>${escapeHtml(title)}</strong>
-                            <button type="button" id="closeScreenshotPreview">Fechar</button>
+                            <div class="screenshot-preview-actions" aria-label="Controles de zoom">
+                                <button type="button" data-screenshot-zoom="out">-</button>
+                                <span id="screenshotZoomLevel">100%</span>
+                                <button type="button" data-screenshot-zoom="in">+</button>
+                                <button type="button" data-screenshot-zoom="reset">Ajustar</button>
+                                <button type="button" id="closeScreenshotPreview">Fechar</button>
+                            </div>
                         </div>
 
-                        <img src="${escapeHtml(src)}" alt="${escapeHtml(title)}">
+                        <div class="screenshot-preview-stage">
+                            <img id="screenshotPreviewImage" src="${escapeHtml(src)}" alt="${escapeHtml(title)}">
+                        </div>
                     </div>
                 </div>
             `);
 
-            document.getElementById("closeScreenshotPreview")?.addEventListener("click", () => {
-                document.getElementById("screenshotPreviewModal")?.remove();
+            const modal = document.getElementById("screenshotPreviewModal");
+            const image = document.getElementById("screenshotPreviewImage");
+            const level = document.getElementById("screenshotZoomLevel");
+            let zoom = 1;
+
+            const applyZoom = () => {
+                if(!image || !level){
+                    return;
+                }
+
+                image.style.width = `${Math.round(100 * zoom)}%`;
+                level.textContent = `${Math.round(100 * zoom)}%`;
+            };
+
+            modal?.querySelectorAll("[data-screenshot-zoom]").forEach(control => {
+                control.addEventListener("click", event => {
+                    event.stopPropagation();
+                    const action = control.dataset.screenshotZoom;
+
+                    if(action === "in"){
+                        zoom = Math.min(4, +(zoom + 0.25).toFixed(2));
+                    } else if(action === "out"){
+                        zoom = Math.max(0.5, +(zoom - 0.25).toFixed(2));
+                    } else {
+                        zoom = 1;
+                    }
+
+                    applyZoom();
+                });
             });
 
-            document.getElementById("screenshotPreviewModal")?.addEventListener("click", event => {
+            document.getElementById("closeScreenshotPreview")?.addEventListener("click", () => {
+                modal?.remove();
+            });
+
+            modal?.addEventListener("click", event => {
                 if(event.target.id === "screenshotPreviewModal"){
                     event.currentTarget.remove();
                 }
             });
+
+            modal?.addEventListener("wheel", event => {
+                if(!event.ctrlKey){
+                    return;
+                }
+
+                event.preventDefault();
+                zoom = event.deltaY < 0
+                    ? Math.min(4, +(zoom + 0.25).toFixed(2))
+                    : Math.max(0.5, +(zoom - 0.25).toFixed(2));
+                applyZoom();
+            }, { passive:false });
+
+            applyZoom();
         });
     });
 }
