@@ -37,7 +37,7 @@ values (
     "duration": "18 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.png?v=20260904-1",
         "title": "Acessibilidade comunicacional",
         "caption": "Saudação, AJUDA e ESCREVER em ilustração autoral com avatar genérico de agente aeroportuário."
       }
@@ -50,7 +50,7 @@ values (
     "duration": "20 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-02-cultura-surda.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-02-cultura-surda.png?v=20260904-1",
         "title": "Cultura surda e LIBRAS",
         "caption": "Pronomes e comunicação direta: EU, VOCÊ e NÓS aplicados ao atendimento respeitoso."
       }
@@ -63,7 +63,7 @@ values (
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-03-parametros.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-03-parametros.png?v=20260904-1",
         "title": "Parâmetros dos sinais",
         "caption": "Parâmetros dos sinais: configuração de mão, ponto de articulação, movimento, orientação e expressão facial."
       }
@@ -76,12 +76,12 @@ values (
     "duration": "26 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-numeros.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-numeros.png?v=20260904-1",
         "title": "Alfabeto e números",
         "caption": "Alfabeto manual e números com exemplos aeroportuários para voo, sigla e etiqueta."
       },
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-completo.png?v=6",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-completo.png?v=20260904-2",
         "title": "Alfabeto manual completo",
         "caption": "Prancha completa A-Z do alfabeto manual da LIBRAS para soletrar nomes, siglas, localizadores e dados críticos."
       }
@@ -94,7 +94,7 @@ values (
     "duration": "25 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-05-primeiro-contato.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-05-primeiro-contato.png?v=20260904-1",
         "title": "Primeiro contato",
         "caption": "Primeiro contato com perguntas visuais, triagem e confirmação por mapa ou escrita."
       }
@@ -107,7 +107,7 @@ values (
     "duration": "30 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-06-checkin.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-06-checkin.png?v=20260904-1",
         "title": "Check-in e bagagem",
         "caption": "Check-in com passagem, documento, voo, etiqueta, assento e destino final da bagagem."
       }
@@ -120,7 +120,7 @@ values (
     "duration": "28 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-07-embarque.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-07-embarque.png?v=20260904-1",
         "title": "Embarque e conexão",
         "caption": "Embarque, conexão, atraso, portão e horário com diálogo de orientação ao passageiro."
       }
@@ -133,7 +133,7 @@ values (
     "duration": "34 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-08-bagagem.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-08-bagagem.png?v=20260904-1",
         "title": "Bagagem no desembarque",
         "caption": "Bagagem no desembarque com MALA, AHL, DPR, OHD, cor e entrega de protocolo."
       }
@@ -146,7 +146,7 @@ values (
     "duration": "26 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-09-pnae.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-09-pnae.png?v=20260904-1",
         "title": "Atendimento PNAE",
         "caption": "Atendimento PNAE com ajuda, acompanhamento, cadeira, consentimento e autonomia do passageiro."
       }
@@ -159,7 +159,7 @@ values (
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.png?v=6",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.png?v=20260904-2",
         "title": "Segurança e emergência",
         "caption": "Segurança e emergência com NÃO, PARE, ESPERE, SIGA e ÁREA RESTRITA."
       }
@@ -172,7 +172,7 @@ values (
     "duration": "32 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-11-dialogos.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-11-dialogos.png?v=20260904-1",
         "title": "Diálogos práticos",
         "caption": "Diálogos práticos com pergunta, resposta, repetir e confirmar em situação de balcão."
       }
@@ -185,7 +185,7 @@ values (
     "duration": "33 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-12-simulacoes.png?v=5",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-12-simulacoes.png?v=20260904-1",
         "title": "Simulações avaliativas",
         "caption": "Simulação avaliativa com checklist, soletração, apontamento, confirmação, registro e feedback."
       }
@@ -337,7 +337,7 @@ values (
     "correct": 0
   }
 ]$quiz_libras$::jsonb,
-    '../assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.png',
+    'https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.png?v=20260904-1',
     $material_libras$LIBRAS e Linguagem de Sinais para Atendimento em Aeroportos
 
 Resumo operacional
@@ -410,5 +410,6 @@ on conflict (id) do update set
 select id, title, jsonb_array_length(modules::jsonb) as trilhas, jsonb_array_length(quiz::jsonb) as questoes
 from public.academy_courses
 where id = 'libras-atendimento-aeroportos';
+
 
 
