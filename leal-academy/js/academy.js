@@ -1040,6 +1040,32 @@ function normalizeQuiz(course){
     return course.quiz;
 }
 
+function removeUnavailableLibrasLesson(course){
+    if(course?.id !== "libras-atendimento-aeroportos"){
+        return course;
+    }
+
+    if(Array.isArray(course.modules)){
+        course.modules = course.modules.filter(module => {
+            const title = String(module?.title || "").toLowerCase();
+            return !title.includes("segurança") && !title.includes("emergência");
+        });
+    }
+
+    if(Array.isArray(course.quiz)){
+        course.quiz = course.quiz.filter(question => {
+            const text = String(question?.question || "").toLowerCase();
+            return !text.includes("segurança") && !text.includes("emergência");
+        });
+    }
+
+    return course;
+}
+
+function normalizeAcademyCoursesForRuntime(){
+    academyCourses.forEach(removeUnavailableLibrasLesson);
+}
+
 function compactText(value, limit = 160){
     const clean = stripEmoji(value).replace(/\s+/g, " ").trim();
     if(clean.length <= limit){
@@ -2844,6 +2870,7 @@ async function bootAcademy(){
     await ensureAcademyCoursesLoaded();
     await syncCloudAcademyDataFromSupabase();
     await ensureAcademyCoursesLoaded();
+    normalizeAcademyCoursesForRuntime();
 
     if(document.getElementById("courseGrid")){
         renderHome();
@@ -2882,6 +2909,7 @@ async function bootAcademy(){
 document.addEventListener("DOMContentLoaded", () => {
     bootAcademy();
 });
+
 
 
 
