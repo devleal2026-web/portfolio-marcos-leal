@@ -79,6 +79,11 @@ values (
         "src": "../assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-numeros.png?v=5",
         "title": "Alfabeto e números",
         "caption": "Alfabeto manual e números com exemplos aeroportuários para voo, sigla e etiqueta."
+      },
+      {
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-completo.png?v=6",
+        "title": "Alfabeto manual completo",
+        "caption": "Prancha completa A-Z do alfabeto manual da LIBRAS para soletrar nomes, siglas, localizadores e dados críticos."
       }
     ],
     "content": "Objetivo da trilha\nUsar datilologia e números como apoio para confirmar dados que exigem precisão.\n\nQuando usar\nO alfabeto manual ajuda em nomes próprios, aeroportos, siglas IATA, companhia, localizador, sobrenome, hotel e endereços. Números são essenciais para voo, horário, assento, etiqueta de bagagem, telefone e protocolo.\n\nBoas práticas\n- Soletrar devagar e em campo visual claro.\n- Dividir sequências longas: voo, data, etiqueta e telefone em blocos.\n- Confirmar apontando para o papel, tela ou documento.\n- Pedir repetição com respeito quando houver dúvida.\n- Não substituir todo o atendimento por soletração; use apenas para dados específicos.\n\nSimulação\nO passageiro informa etiqueta 1234567890. O agente divide em blocos, registra, mostra na tela e pergunta se está correto. Depois confirma origem, conexão e destino, usando escrita curta e apontamento no itinerário."
@@ -154,7 +159,7 @@ values (
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.png?v=5",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.png?v=6",
         "title": "Segurança e emergência",
         "caption": "Segurança e emergência com NÃO, PARE, ESPERE, SIGA e ÁREA RESTRITA."
       }
@@ -382,6 +387,8 @@ Como as referências foram utilizadas
 O conteúdo foi reorganizado para o contexto aeroportuário, com situações de check-in, embarque, conexão, PNAE, AHL, DPR, OHD, orientação crítica e atendimento em irregularidades de bagagem. As imagens do curso são autorais, inspiradas nas referências visuais fornecidas, com avatar genérico de agente aeroportuário, alfabeto manual, numerais, pronomes, expressões, negação, horários, cores e simulações visuais relacionadas a cada trilha.
 
 Observação didática
+A trilha de alfabeto inclui uma prancha completa A-Z do alfabeto manual da LIBRAS para prática de soletração de nomes, siglas, localizadores, etiquetas e dados críticos.
+
 As imagens deste curso são apoios visuais autorais e não substituem demonstração por instrutor fluente em LIBRAS. Para sinais específicos, pratique com profissional qualificado e valide variações regionais antes de aplicar em atendimento real.$material_libras$,
     470
 )
@@ -403,4 +410,5 @@ on conflict (id) do update set
 select id, title, jsonb_array_length(modules::jsonb) as trilhas, jsonb_array_length(quiz::jsonb) as questoes
 from public.academy_courses
 where id = 'libras-atendimento-aeroportos';
+
 
