@@ -9,9 +9,8 @@
   <path d="M80 162 H540" stroke="#22d3ee" stroke-width="3" opacity="0.45"/>
   <text x="76" y="108" class="kicker">LIBRAS NO AEROPORTO</text>
   <text x="76" y="172" class="title">Cultura surda e LIBRAS</text>
-  <foreignObject x="76" y="204" width="610" height="118"><div xmlns="http://www.w3.org/1999/xhtml" style="font:500 24px Arial,sans-serif;color:#dbeafe;line-height:1.35">LIBRAS e uma lingua visual-espacial; o atendimento deve reconhecer identidade, preferencia e autonomia.</div></foreignObject>
-  <g><rect x="76" y="358" width="196" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="94" y="383" class="chip">Lingua visual</text><rect x="290" y="358" width="166" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="308" y="383" class="chip">Respeito</text><rect x="474" y="358" width="196" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="492" y="383" class="chip">Sem improviso</text></g>
-  <g transform="translate(76 472)"><rect width="350" height="42" rx="14" fill="#062033" opacity="0.72"/><text x="18" y="28" class="small">Imagem autoral sem marcas comerciais</text></g>
+  <foreignObject x="76" y="204" width="610" height="118"><div xmlns="http://www.w3.org/1999/xhtml" style="font:500 24px Arial,sans-serif;color:#dbeafe;line-height:1.35">LIBRAS é uma língua visual-espacial; o atendimento deve reconhecer identidade, preferência e autonomia.</div></foreignObject>
+  <g><rect x="76" y="358" width="196" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="94" y="383" class="chip">Língua visual</text><rect x="290" y="358" width="166" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="308" y="383" class="chip">Respeito</text><rect x="474" y="358" width="196" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="492" y="383" class="chip">Sem improviso</text></g>
   
     <g transform="translate(740 98)">
       <rect x="80" y="120" width="62" height="178" rx="31" fill="#dff7ef" stroke="#0284c7" stroke-width="8"/>

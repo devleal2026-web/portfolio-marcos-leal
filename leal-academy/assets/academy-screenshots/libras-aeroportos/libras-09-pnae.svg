@@ -9,9 +9,8 @@
   <path d="M80 162 H540" stroke="#22d3ee" stroke-width="3" opacity="0.45"/>
   <text x="76" y="108" class="kicker">LIBRAS NO AEROPORTO</text>
   <text x="76" y="172" class="title">Atendimento PNAE</text>
-  <foreignObject x="76" y="204" width="610" height="118"><div xmlns="http://www.w3.org/1999/xhtml" style="font:500 24px Arial,sans-serif;color:#dbeafe;line-height:1.35">Apoio deve preservar autonomia, consentimento e comunicacao direta com o passageiro.</div></foreignObject>
+  <foreignObject x="76" y="204" width="610" height="118"><div xmlns="http://www.w3.org/1999/xhtml" style="font:500 24px Arial,sans-serif;color:#dbeafe;line-height:1.35">Apoio deve preservar autonomia, consentimento e comunicação direta com o passageiro.</div></foreignObject>
   <g><rect x="76" y="358" width="196" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="94" y="383" class="chip">Consentimento</text><rect x="290" y="358" width="148" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="308" y="383" class="chip">Apoio</text><rect x="456" y="358" width="142" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="474" y="383" class="chip">Rota</text></g>
-  <g transform="translate(76 472)"><rect width="350" height="42" rx="14" fill="#062033" opacity="0.72"/><text x="18" y="28" class="small">Imagem autoral sem marcas comerciais</text></g>
   
     <g transform="translate(740 98)">
       <rect x="80" y="120" width="62" height="178" rx="31" fill="#dff7ef" stroke="#15803d" stroke-width="8"/>

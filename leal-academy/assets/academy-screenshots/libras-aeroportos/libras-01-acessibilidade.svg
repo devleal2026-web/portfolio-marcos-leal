@@ -9,9 +9,8 @@
   <path d="M80 162 H540" stroke="#22d3ee" stroke-width="3" opacity="0.45"/>
   <text x="76" y="108" class="kicker">LIBRAS NO AEROPORTO</text>
   <text x="76" y="172" class="title">Acessibilidade comunicacional</text>
-  <foreignObject x="76" y="204" width="610" height="118"><div xmlns="http://www.w3.org/1999/xhtml" style="font:500 24px Arial,sans-serif;color:#dbeafe;line-height:1.35">Atendimento aeroportuario claro, visual e respeitoso desde o primeiro contato.</div></foreignObject>
-  <g><rect x="76" y="358" width="202" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="94" y="383" class="chip">Contato visual</text><rect x="296" y="358" width="172" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="314" y="383" class="chip">Autonomia</text><rect x="486" y="358" width="214" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="504" y="383" class="chip">Ambiente visivel</text></g>
-  <g transform="translate(76 472)"><rect width="350" height="42" rx="14" fill="#062033" opacity="0.72"/><text x="18" y="28" class="small">Imagem autoral sem marcas comerciais</text></g>
+  <foreignObject x="76" y="204" width="610" height="118"><div xmlns="http://www.w3.org/1999/xhtml" style="font:500 24px Arial,sans-serif;color:#dbeafe;line-height:1.35">Atendimento aeroportuário claro, visual e respeitoso desde o primeiro contato.</div></foreignObject>
+  <g><rect x="76" y="358" width="202" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="94" y="383" class="chip">Contato visual</text><rect x="296" y="358" width="172" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="314" y="383" class="chip">Autonomia</text><rect x="486" y="358" width="214" height="38" rx="12" fill="#ffffff" opacity="0.92"/><text x="504" y="383" class="chip">Ambiente visível</text></g>
   
     <g transform="translate(740 98)">
       <rect x="80" y="120" width="62" height="178" rx="31" fill="#dff7ef" stroke="#16a34a" stroke-width="8"/>
