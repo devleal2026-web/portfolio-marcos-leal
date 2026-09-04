@@ -1860,6 +1860,28 @@ function resolveAcademyAssetPath(src){
     return value;
 }
 
+function academyDeploymentAssetPath(assetPath){
+    const cleanPath = String(assetPath || "").replace(/^\/+/, "");
+    const host = window.location.hostname;
+
+    if(host.includes("github.io")){
+        return `/portfolio-marcos-leal/${cleanPath}`;
+    }
+
+    return `/leal-academy/${cleanPath.replace(/^leal-academy\//, "")}`;
+}
+
+function forceKnownCourseScreenshot(course, moduleIndex, item){
+    if(course?.id === "libras-atendimento-aeroportos" && Number(moduleIndex) === 9){
+        return {
+            ...item,
+            src: academyDeploymentAssetPath("leal-academy/assets/academy-screenshots/libras-aeroportos/libras-10-seguranca-final.jpg") + "?v=20260904-frontend-1"
+        };
+    }
+
+    return item;
+}
+
 function isSigaFinalTrail(course, moduleIndex){
     return course?.id === "siga-gestao-aeroportuaria" && Number(moduleIndex) === 7;
 }
@@ -1920,7 +1942,8 @@ function lessonScreenshotCards(course, moduleIndex){
             </div>
             <div class="lesson-screenshot-grid">
                 ${screenshots.map(item => {
-                    const src = resolveAcademyAssetPath(item.src);
+                    const fixedItem = forceKnownCourseScreenshot(course, moduleIndex, item);
+                    const src = resolveAcademyAssetPath(fixedItem.src);
 
                     return `
                     <figure class="lesson-screenshot-card">
@@ -1928,12 +1951,12 @@ function lessonScreenshotCards(course, moduleIndex){
                             type="button"
                             class="lesson-screenshot-zoom"
                             data-screenshot-src="${escapeHtml(src)}"
-                            data-screenshot-title="${escapeHtml(item.title)}">
-                            <img src="${escapeHtml(src)}" alt="${escapeHtml(item.title)}">
+                            data-screenshot-title="${escapeHtml(fixedItem.title)}">
+                            <img src="${escapeHtml(src)}" alt="${escapeHtml(fixedItem.title)}">
                         </button>
                         <figcaption>
-                            <strong>${escapeHtml(item.title)}</strong>
-                            <span>${escapeHtml(item.caption || "")}</span>
+                            <strong>${escapeHtml(fixedItem.title)}</strong>
+                            <span>${escapeHtml(fixedItem.caption || "")}</span>
                         </figcaption>
                     </figure>
                 `;}).join("")}
@@ -2859,6 +2882,7 @@ async function bootAcademy(){
 document.addEventListener("DOMContentLoaded", () => {
     bootAcademy();
 });
+
 
 
 
