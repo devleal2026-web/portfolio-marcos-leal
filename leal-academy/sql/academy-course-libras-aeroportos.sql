@@ -159,7 +159,7 @@ values (
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.png?v=20260904-2",
+        "src": "https://devleal2026-web.github.io/portfolio-marcos-leal/leal-academy/assets/academy-screenshots/libras-aeroportos/libras-10-seguranca-final.jpg?v=20260904-3",
         "title": "Segurança e emergência",
         "caption": "Segurança e emergência com NÃO, PARE, ESPERE, SIGA e ÁREA RESTRITA."
       }
@@ -410,6 +410,7 @@ on conflict (id) do update set
 select id, title, jsonb_array_length(modules::jsonb) as trilhas, jsonb_array_length(quiz::jsonb) as questoes
 from public.academy_courses
 where id = 'libras-atendimento-aeroportos';
+
 
 
 
