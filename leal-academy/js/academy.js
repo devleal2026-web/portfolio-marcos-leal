@@ -1043,57 +1043,57 @@ function normalizeQuiz(course){
 const librasCorrectVisualProfiles = [
     {
         title:"Acessibilidade comunicacional em LIBRAS",
-        asset:"libras-correto-01-acessibilidade.png",
+        asset:"libras-aplicado-01-inicio-atendimento.png",
         caption:"Cumprimento, apresentação e preferência comunicacional com sinais de referência aplicados ao balcão de atendimento."
     },
     {
         title:"Cultura surda e respeito no atendimento",
-        asset:"libras-correto-02-cultura-surda.png",
+        asset:"libras-aplicado-02-cultura-surda.png",
         caption:"Pronomes e apontamento espacial para falar diretamente com o passageiro surdo, preservando autonomia."
     },
     {
         title:"Parâmetros dos sinais e expressão",
-        asset:"libras-correto-03-parametros.png",
+        asset:"libras-aplicado-03-parametros.png",
         caption:"Configuração de mão, ponto, movimento, orientação e expressão com referência visual de Libras."
     },
     {
         title:"Alfabeto manual, números e códigos",
-        asset:"libras-correto-04-alfabeto-numeros.png",
+        asset:"libras-aplicado-04-alfabeto-numeros.png",
         caption:"Alfabeto manual e numerais para soletrar nomes, voos, portões, assentos, etiquetas e protocolos."
     },
     {
         title:"Primeiro contato e triagem",
-        asset:"libras-correto-05-primeiro-contato.png",
+        asset:"libras-aplicado-05-primeiro-contato.png",
         caption:"Saudação, apresentação, EU/VOCÊ e demonstrativos aplicados aos primeiros segundos de atendimento."
     },
     {
         title:"Check-in, documento e bagagem",
-        asset:"libras-correto-06-checkin.png",
+        asset:"libras-aplicado-06-checkin.png",
         caption:"Datilologia e numerais para confirmar documento, voo, assento, destino final e etiqueta da bagagem."
     },
     {
         title:"Embarque, conexão e portão",
-        asset:"libras-correto-07-embarque.png",
+        asset:"libras-aplicado-07-embarque-conexao.png",
         caption:"PORTÃO B12 tratado como código aeroportuário: datilologia/numerais, placa, mapa, horário e painel."
     },
     {
         title:"Bagagem no desembarque",
-        asset:"libras-correto-08-bagagem.png",
+        asset:"libras-aplicado-08-bagagem-desembarque.png",
         caption:"Cores, números e descrição visual para AHL, DPR, OHD, etiqueta, mala, protocolo e prazo."
     },
     {
         title:"Atendimento PNAE com autonomia",
-        asset:"libras-correto-09-pnae.png",
+        asset:"libras-aplicado-09-pnae-autonomia.png",
         caption:"Pronomes, demonstrativos e referência espacial para perguntar, orientar e acompanhar com consentimento."
     },
     {
         title:"Diálogos práticos em aeroporto",
-        asset:"libras-correto-10-dialogos.png",
+        asset:"libras-aplicado-10-dialogos.png",
         caption:"Cumprimentos, perguntas, respostas, negação/interrogação e confirmação final em diálogos de aeroporto."
     },
     {
         title:"Simulações avaliativas",
-        asset:"libras-correto-11-simulacoes.png",
+        asset:"libras-aplicado-11-simulacoes.png",
         caption:"Avaliação de sinais estudados, datilologia, numerais, expressões, contexto aeroportuário e confirmação."
     }
 ];
@@ -1107,19 +1107,19 @@ function applyCorrectLibrasVisuals(course){
         const profile = librasCorrectVisualProfiles[index] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
         const current = Array.isArray(module.screenshots) ? module.screenshots[0] : null;
         const currentSrc = String(current?.src || "");
-        const hasSupabaseVisual = currentSrc.includes("libras-correto-") && current?.zoomSrc;
+        const hasSupabaseVisual = currentSrc.includes("libras-aplicado-") && current?.zoomSrc;
         const hasBrokenLegacyVisual = !currentSrc
             || currentSrc.startsWith("data:image/svg")
             || currentSrc.includes("libras-10-seguranca")
-            || !currentSrc.includes("libras-correto-");
+            || !currentSrc.includes("libras-aplicado-");
 
         if(hasSupabaseVisual && !hasBrokenLegacyVisual){
             return;
         }
 
         module.screenshots = [{
-            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260904-libras-zoom-1",
-            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260904-libras-zoom-1",
+            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260904-libras-aplicado-1",
+            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260904-libras-aplicado-1",
             title:profile.title,
             caption:profile.caption
         }];

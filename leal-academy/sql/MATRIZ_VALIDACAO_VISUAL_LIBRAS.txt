@@ -1,0 +1,52 @@
+MATRIZ DE VALIDAÇÃO VISUAL - CURSO LIBRAS APLICADA AO ATENDIMENTO AEROPORTUÁRIO
+
+Critério usado:
+- Sinal nomeado só aparece quando há referência visual nas pranchas fornecidas.
+- O avatar e o aeroporto são composição autoral de contexto.
+- Tela, escrita e placas são apoio ao atendimento, não substituem Libras.
+- Sinais não validados não são apresentados como oficiais.
+
+Trilha 01 - Início do atendimento em LIBRAS
+Fonte visual: prancha de saudações, pronomes VOCÊ.
+Uso: cumprimento/apresentação + pergunta escrita de apoio "Como posso ajudá-lo?".
+Observação: AJUDA não é desenhado como sinal se não houver recorte validado do sinal AJUDAR/AJUDA.
+
+Trilha 02 - Cultura surda e respeito
+Fonte visual: pronomes EU, VOCÊ, NÓS.
+Uso: atendimento direto ao passageiro e autonomia comunicacional.
+
+Trilha 03 - Parâmetros dos sinais
+Fonte visual: alfabeto/configuração, expressão/negação, movimentos.
+Uso: explicar estrutura linguística para evitar invenção de sinais.
+
+Trilha 04 - Alfabeto manual e números
+Fonte visual: alfabeto manual A-Z e numerais.
+Uso: nome, sigla, voo, portão, assento, etiqueta e protocolo.
+
+Trilha 05 - Primeiro contato e triagem
+Fonte visual: saudações, pronomes e demonstrativos.
+Uso: identificar necessidade no balcão/terminal.
+
+Trilha 06 - Check-in em LIBRAS
+Fonte visual: alfabeto, numerais e horário.
+Uso: documento, voo, assento, destino final e bagagem.
+
+Trilha 07 - Embarque, conexão e portão
+Fonte visual: alfabeto/números, horário e transporte/avião.
+Uso: B12, horário, painel e rota do terminal.
+
+Trilha 08 - Bagagem no desembarque
+Fonte visual: cores, claro/escuro e números.
+Uso: descrever mala, etiqueta, AHL/DPR/OHD e protocolo.
+
+Trilha 09 - Atendimento PNAE com autonomia
+Fonte visual: VOCÊ, NÓS e demonstrativos AQUI/AÍ/LÁ.
+Uso: perguntar consentimento, indicar rota e acompanhar.
+
+Trilha 10 - Diálogos práticos
+Fonte visual: saudações, negação e expressão interrogativa.
+Uso: pergunta, resposta, confirmação e fechamento.
+
+Trilha 11 - Simulações avaliativas
+Fonte visual: alfabeto, horário e transporte.
+Uso: simular situações de check-in, portão, bagagem e PNAE.
