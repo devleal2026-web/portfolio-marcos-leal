@@ -1040,148 +1040,75 @@ function normalizeQuiz(course){
     return course.quiz;
 }
 
-const librasOfficialVisualProfiles = [
+const librasCorrectVisualProfiles = [
     {
-        title:"Acessibilidade comunicacional",
-        heading:"Atendimento visual e direto",
-        focus:"Não é um sinal isolado: é a conduta correta para iniciar o atendimento.",
-        items:["Contato visual", "Boa iluminação", "Escrita de apoio", "Confirmar entendimento"],
-        context:"Balcão de informações com passageiro surdo e recurso escrito visível."
+        title:"Acessibilidade comunicacional em LIBRAS",
+        asset:"libras-correto-01-acessibilidade.png",
+        caption:"Cumprimento, apresentação e preferência comunicacional com sinais de referência aplicados ao balcão de atendimento."
     },
     {
-        title:"Cultura surda e respeito",
-        heading:"Pessoa atendida no centro da comunicação",
-        focus:"A imagem deve mostrar respeito e autonomia, não intermediação indevida.",
-        items:["Falar com o passageiro", "Perguntar preferência", "Não puxar", "Não gritar"],
-        context:"Agente de frente para o passageiro, com acompanhante apenas se autorizado."
+        title:"Cultura surda e respeito no atendimento",
+        asset:"libras-correto-02-cultura-surda.png",
+        caption:"Pronomes e apontamento espacial para falar diretamente com o passageiro surdo, preservando autonomia."
     },
     {
-        title:"Parâmetros dos sinais",
-        heading:"Elementos linguísticos da LIBRAS",
-        focus:"Fundamento oficial: configuração de mão, ponto, movimento, orientação e expressão.",
-        items:["Configuração de mão", "Ponto de articulação", "Movimento", "Orientação", "Expressão facial"],
-        context:"Quadro técnico separando parâmetros, sem transformar desenho autoral em dicionário."
+        title:"Parâmetros dos sinais e expressão",
+        asset:"libras-correto-03-parametros.png",
+        caption:"Configuração de mão, ponto, movimento, orientação e expressão com referência visual de Libras."
     },
     {
-        title:"Alfabeto manual e números",
-        heading:"Datilologia para dados críticos",
-        focus:"Use o alfabeto manual validado por instrutor/fonte oficial para soletrar, não para substituir a conversa.",
-        items:["A-Z", "Voo", "Assento", "Etiqueta", "Localizador"],
-        context:"Confirmação de nome, sigla, código de reserva e etiqueta de bagagem."
+        title:"Alfabeto manual, números e códigos",
+        asset:"libras-correto-04-alfabeto-numeros.png",
+        caption:"Alfabeto manual e numerais para soletrar nomes, voos, portões, assentos, etiquetas e protocolos."
     },
     {
-        title:"Primeiro contato",
-        heading:"Triagem acessível em 60 segundos",
-        focus:"A cena correta mostra pergunta, recurso visual e confirmação, não um gesto sem contexto.",
-        items:["Como posso ajudar?", "Você usa LIBRAS?", "Prefere escrever?", "Mostrar tela/mapa"],
-        context:"Passageiro chega ao balcão e o agente identifica o melhor canal de comunicação."
+        title:"Primeiro contato e triagem",
+        asset:"libras-correto-05-primeiro-contato.png",
+        caption:"Saudação, apresentação, EU/VOCÊ e demonstrativos aplicados aos primeiros segundos de atendimento."
     },
     {
-        title:"Check-in e bagagem",
-        heading:"Documento, passagem e etiqueta",
-        focus:"A imagem deve relacionar o texto aos objetos reais do check-in.",
-        items:["Documento", "Passagem", "Voo", "Assento", "Destino final"],
-        context:"Agente mostra etiqueta e cartão de embarque para confirmar rota da bagagem."
+        title:"Check-in, documento e bagagem",
+        asset:"libras-correto-06-checkin.png",
+        caption:"Datilologia e numerais para confirmar documento, voo, assento, destino final e etiqueta da bagagem."
     },
     {
-        title:"Embarque e conexão",
-        heading:"Portão B12 com contexto real",
-        focus:"Portão B12 precisa aparecer como placa/mapa de terminal, não apenas como rótulo sobre uma mão.",
-        items:["Placa B12", "Mapa do terminal", "Horário", "Conexão", "Atraso"],
-        context:"Agente aponta para a placa B12 e mostra o caminho no mapa."
+        title:"Embarque, conexão e portão",
+        asset:"libras-correto-07-embarque.png",
+        caption:"PORTÃO B12 tratado como código aeroportuário: datilologia/numerais, placa, mapa, horário e painel."
     },
     {
         title:"Bagagem no desembarque",
-        heading:"AHL, DPR e OHD com protocolo",
-        focus:"Representar a ocorrência e o registro: esteira, mala, etiqueta, formulário e protocolo.",
-        items:["Mala não localizada", "Dano", "Sobra de volume", "Etiqueta", "Protocolo"],
-        context:"Entrevista acessível para irregularidade de bagagem no desembarque."
+        asset:"libras-correto-08-bagagem.png",
+        caption:"Cores, números e descrição visual para AHL, DPR, OHD, etiqueta, mala, protocolo e prazo."
     },
     {
-        title:"Atendimento PNAE",
-        heading:"Consentimento e autonomia",
-        focus:"A imagem correta mostra oferta de apoio antes da condução.",
-        items:["Perguntar antes", "Acompanhar", "Cadeira", "Portão", "Confirmar"],
-        context:"Agente pergunta se pode acompanhar e mostra o percurso até o embarque."
+        title:"Atendimento PNAE com autonomia",
+        asset:"libras-correto-09-pnae.png",
+        caption:"Pronomes, demonstrativos e referência espacial para perguntar, orientar e acompanhar com consentimento."
     },
     {
-        title:"Diálogos práticos",
-        heading:"Perguntar, responder, repetir e confirmar",
-        focus:"Representar a conversa completa com fechamento verificável.",
-        items:["Qual voo?", "GRU 123", "Repetir", "Registrar", "Confirmar"],
-        context:"Roleplay no balcão com registro do que foi entendido."
+        title:"Diálogos práticos em aeroporto",
+        asset:"libras-correto-10-dialogos.png",
+        caption:"Cumprimentos, perguntas, respostas, negação/interrogação e confirmação final em diálogos de aeroporto."
     },
     {
         title:"Simulações avaliativas",
-        heading:"Checklist de atendimento acessível",
-        focus:"Avaliar processo: abordagem, soletração, apontamento, confirmação e registro.",
-        items:["Abordar", "Soletrar", "Apontar", "Confirmar", "Registrar", "Feedback"],
-        context:"Instrutor avalia atendimento simulado com checklist operacional."
+        asset:"libras-correto-11-simulacoes.png",
+        caption:"Avaliação de sinais estudados, datilologia, numerais, expressões, contexto aeroportuário e confirmação."
     }
 ];
 
-function librasOfficialSafeVisual(profile, index){
-    const accent = ["#0f766e", "#0284c7", "#1d4ed8", "#7c3aed"][index % 4];
-    const itemCards = profile.items.map((item, itemIndex) => {
-        const x = 68 + (itemIndex % 3) * 260;
-        const y = 278 + Math.floor(itemIndex / 3) * 112;
-        return `
-            <rect x="${x}" y="${y}" width="222" height="74" rx="14" fill="#ffffff" stroke="#bfdbfe"/>
-            <circle cx="${x + 32}" cy="${y + 37}" r="17" fill="${accent}" opacity="0.16"/>
-            <text x="${x + 60}" y="${y + 43}" font-size="22" font-weight="700" fill="#0f172a">${escapeHtml(item)}</text>
-        `;
-    }).join("");
-
-    const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="${escapeHtml(profile.title)}">
-            <defs>
-                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#f8fafc"/>
-                    <stop offset="1" stop-color="#e0f2fe"/>
-                </linearGradient>
-                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.16"/>
-                </filter>
-            </defs>
-            <rect width="1600" height="900" fill="url(#bg)"/>
-            <rect x="48" y="48" width="1504" height="804" rx="34" fill="#ffffff" filter="url(#shadow)"/>
-            <rect x="48" y="48" width="1504" height="126" rx="34" fill="#082f49"/>
-            <text x="90" y="128" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#7dd3fc">TRILHA ${String(index + 1).padStart(2, "0")}</text>
-            <text x="330" y="128" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="800" fill="#ffffff">${escapeHtml(profile.title)}</text>
-            <rect x="92" y="214" width="648" height="34" rx="17" fill="${accent}" opacity="0.14"/>
-            <text x="92" y="236" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" fill="${accent}">${escapeHtml(profile.heading)}</text>
-            <text x="92" y="628" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="800" fill="#0f172a">Contexto aeroportuário correto</text>
-            <foreignObject x="92" y="650" width="690" height="120">
-                <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Segoe UI,Arial,sans-serif;font-size:23px;line-height:1.35;color:#334155">${escapeHtml(profile.context)}</div>
-            </foreignObject>
-            <g>${itemCards}</g>
-            <rect x="880" y="228" width="560" height="420" rx="24" fill="#eff6ff" stroke="#bfdbfe"/>
-            <rect x="928" y="284" width="464" height="116" rx="14" fill="#082f49"/>
-            <text x="962" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="800" fill="#ffffff">Referência oficial</text>
-            <path d="M970 500h374M970 552h300M970 604h342" stroke="#0f766e" stroke-width="18" stroke-linecap="round" opacity="0.85"/>
-            <circle cx="1348" cy="498" r="46" fill="#0f766e" opacity="0.16"/>
-            <path d="M1326 499l17 17 31-40" fill="none" stroke="#0f766e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <foreignObject x="880" y="682" width="560" height="86">
-                <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Segoe UI,Arial,sans-serif;font-size:22px;line-height:1.3;color:#334155">${escapeHtml(profile.focus)}</div>
-            </foreignObject>
-            <rect x="92" y="790" width="1356" height="42" rx="21" fill="#ecfeff"/>
-            <text x="120" y="819" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="700" fill="#155e75">Sinais específicos devem ser praticados com instrutor fluente e conferidos em fontes como INES/Dicionário de Libras e VLibras.</text>
-        </svg>`;
-
-    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-}
-
-function applyOfficialSafeLibrasVisuals(course){
+function applyCorrectLibrasVisuals(course){
     if(course?.id !== "libras-atendimento-aeroportos" || !Array.isArray(course.modules)){
         return course;
     }
 
     course.modules.forEach((module, index) => {
-        const profile = librasOfficialVisualProfiles[index] || librasOfficialVisualProfiles[librasOfficialVisualProfiles.length - 1];
+        const profile = librasCorrectVisualProfiles[index] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
         module.screenshots = [{
-            src:librasOfficialSafeVisual(profile, index),
+            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260904-libras-correto-1",
             title:profile.title,
-            caption:`Visual didático revisado: ${profile.context}`
+            caption:profile.caption
         }];
     });
 
@@ -1207,7 +1134,7 @@ function removeUnavailableLibrasLesson(course){
         });
     }
 
-    applyOfficialSafeLibrasVisuals(course);
+    applyCorrectLibrasVisuals(course);
     return course;
 }
 
@@ -2046,13 +1973,6 @@ function academyDeploymentAssetPath(assetPath){
 }
 
 function forceKnownCourseScreenshot(course, moduleIndex, item){
-    if(course?.id === "libras-atendimento-aeroportos" && Number(moduleIndex) === 9){
-        return {
-            ...item,
-            src: academyDeploymentAssetPath("leal-academy/assets/academy-screenshots/libras-aeroportos/libras-10-seguranca-final.jpg") + "?v=20260904-frontend-1"
-        };
-    }
-
     return item;
 }
 
