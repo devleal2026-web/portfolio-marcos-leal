@@ -37,9 +37,9 @@ values (
     "duration": "18 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.png?v=5",
         "title": "Acessibilidade comunicacional",
-        "caption": "Saudação e abertura em LIBRAS com avatar genérico de agente e soletração OLA/AJUDA."
+        "caption": "Saudação, AJUDA e ESCREVER em ilustração autoral com avatar genérico de agente aeroportuário."
       }
     ],
     "content": "Objetivo da trilha\nPreparar o agente para iniciar um atendimento acessível a passageiros surdos, sinalizantes ou com preferência por comunicação visual.\n\nConteúdo essencial\nLIBRAS é uma língua visual-espacial, não uma versão gesticulada do português. No aeroporto, isso exige postura objetiva: manter contato visual, garantir boa iluminação, falar diretamente com o passageiro, usar escrita ou recursos visuais quando necessário e confirmar entendimento antes de prosseguir.\n\nConduta operacional\n- Identifique a melhor forma de comunicação: LIBRAS, escrita, leitura labial, aplicativo, acompanhante ou intérprete.\n- Nunca fale apenas com o acompanhante quando o passageiro puder decidir por si.\n- Evite gritar; volume alto não resolve barreira visual.\n- Mostre documentos, telas, etiquetas, horários e portas de embarque sempre que possível.\n- Confirme a próxima ação: esperar, seguir, assinar, retirar, registrar ou retornar.\n\nContexto aeroportuário\nA comunicação acessível aparece no check-in, embarque, conexão, atendimento PNAE, bagagem extraviada, dano, sobra de volume, segurança e emergência. A meta não é decorar tudo, mas criar um fluxo seguro de entendimento."
@@ -50,9 +50,9 @@ values (
     "duration": "20 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-02-cultura-surda.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-02-cultura-surda.png?v=5",
         "title": "Cultura surda e LIBRAS",
-        "caption": "Pronomes e comunicação direta: EU, VOCÊ e aplicação no atendimento ao passageiro."
+        "caption": "Pronomes e comunicação direta: EU, VOCÊ e NÓS aplicados ao atendimento respeitoso."
       }
     ],
     "content": "Objetivo da trilha\nEntender que atendimento inclusivo começa pela forma como o passageiro é reconhecido.\n\nPontos principais\nA pessoa surda pode se comunicar por LIBRAS, português escrito, leitura labial, oralização, gestos combinados, aplicativos ou uma mistura desses recursos. O agente não deve presumir. Pergunte de maneira simples e visual: Você usa LIBRAS? Prefere escrever? Quer que eu mostre na tela?\n\nAtitudes esperadas\n- Chame a atenção com gesto visual respeitoso, nunca puxando a pessoa.\n- Posicione-se de frente, sem cobrir a boca e sem falar andando.\n- Reduza ruído visual: mostre uma informação por vez.\n- Respeite o tempo de resposta.\n- Use frases curtas em português escrito quando a comunicação for por texto.\n\nExemplo no aeroporto\nSe o passageiro chega ao balcão apontando para o cartão de embarque, o agente deve olhar para ele, sorrir, indicar que compreendeu e usar a tela, papel ou celular para confirmar: voo, horário, portão, bagagem e necessidade de assistência."
@@ -63,9 +63,9 @@ values (
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-03-parametros.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-03-parametros.png?v=5",
         "title": "Parâmetros dos sinais",
-        "caption": "Parâmetros dos sinais com mão, movimento, orientação e expressão facial/corporal."
+        "caption": "Parâmetros dos sinais: configuração de mão, ponto de articulação, movimento, orientação e expressão facial."
       }
     ],
     "content": "Objetivo da trilha\nReconhecer os elementos que diferenciam sinais e evitam comunicação imprecisa.\n\nBase técnica\nOs sinais combinam configuração de mão, ponto de articulação, movimento, orientação da palma e expressões faciais/corporais. Uma pequena mudança pode alterar o significado. Por isso, o agente iniciante deve usar os sinais aprendidos com cuidado e complementar com confirmação visual.\n\nAplicação aeroportuária\n- Use expressão facial coerente para pergunta, negação, alerta ou orientação.\n- Aponte para o recurso visual correto: etiqueta, esteira, portão, documento, mapa ou número de voo.\n- Se não souber um sinal, não invente. Escreva, mostre a tela e confirme.\n- Em orientações críticas, combine sinalização, escrita e apontamento.\n\nExercício\nTreine diferenciar uma pergunta simples de uma afirmação: Você precisa de ajuda? / Você precisa esperar. No atendimento real, a expressão facial e corporal ajuda o passageiro a entender a intenção antes mesmo da frase completa."
@@ -76,9 +76,9 @@ values (
     "duration": "26 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-numeros.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-04-alfabeto-numeros.png?v=5",
         "title": "Alfabeto e números",
-        "caption": "Alfabeto manual e números em quadro autoral para datilologia aeroportuária."
+        "caption": "Alfabeto manual e números com exemplos aeroportuários para voo, sigla e etiqueta."
       }
     ],
     "content": "Objetivo da trilha\nUsar datilologia e números como apoio para confirmar dados que exigem precisão.\n\nQuando usar\nO alfabeto manual ajuda em nomes próprios, aeroportos, siglas IATA, companhia, localizador, sobrenome, hotel e endereços. Números são essenciais para voo, horário, assento, etiqueta de bagagem, telefone e protocolo.\n\nBoas práticas\n- Soletrar devagar e em campo visual claro.\n- Dividir sequências longas: voo, data, etiqueta e telefone em blocos.\n- Confirmar apontando para o papel, tela ou documento.\n- Pedir repetição com respeito quando houver dúvida.\n- Não substituir todo o atendimento por soletração; use apenas para dados específicos.\n\nSimulação\nO passageiro informa etiqueta 1234567890. O agente divide em blocos, registra, mostra na tela e pergunta se está correto. Depois confirma origem, conexão e destino, usando escrita curta e apontamento no itinerário."
@@ -89,9 +89,9 @@ values (
     "duration": "25 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-05-primeiro-contato.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-05-primeiro-contato.png?v=5",
         "title": "Primeiro contato",
-        "caption": "Perguntas iniciais e soletração de VOCÊ/QUAL para triagem de atendimento."
+        "caption": "Primeiro contato com perguntas visuais, triagem e confirmação por mapa ou escrita."
       }
     ],
     "content": "Objetivo da trilha\nConduzir os primeiros 60 segundos do atendimento com clareza e controle.\n\nFluxo recomendado\n1. Cumprimente visualmente.\n2. Verifique a preferência comunicacional.\n3. Identifique o motivo: check-in, embarque, bagagem, conexão, informação, PNAE ou problema.\n4. Mostre o recurso de apoio: tela, formulário, mapa, placa, protocolo ou etiqueta.\n5. Confirme a próxima ação.\n\nFrases curtas para escrita de apoio\n- Como posso ajudar?\n- Você prefere LIBRAS, escrita ou leitura da tela?\n- Vou verificar seu voo.\n- Preciso do documento e da passagem.\n- Aguarde aqui, por favor.\n- Vou chamar apoio.\n\nCenário\nPassageiro surdo chega agitado porque não encontra o portão. O agente mostra o cartão de embarque, consulta o monitor, escreve: Portão mudou para B12. Embarque 18:40. Siga comigo até a placa B. Confirma se o passageiro entendeu antes de encerrar."
@@ -102,9 +102,9 @@ values (
     "duration": "30 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-06-checkin.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-06-checkin.png?v=5",
         "title": "Check-in e bagagem",
-        "caption": "Check-in com VOO, números, documento, assento, etiqueta e destino final."
+        "caption": "Check-in com passagem, documento, voo, etiqueta, assento e destino final da bagagem."
       }
     ],
     "content": "Objetivo da trilha\nAtender passageiro surdo no check-in sem perda de informação operacional.\n\nPontos de controle\n- Documento válido e nome conforme reserva.\n- Voo, destino, conexão e horário.\n- Bagagem de mão e bagagem despachada.\n- Peso, volume extra, item especial ou restrição.\n- Assento, prioridade, assistência e necessidade de acompanhamento.\n- Entrega da etiqueta e explicação do destino final da bagagem.\n\nConduta técnica\nMostre a etiqueta e aponte destino, data e número. Se houver conexão ou retirada obrigatória, escreva a instrução. Para itens especiais, use desenho simples ou lista de opções. Se o passageiro não compreender uma regra, acione apoio adequado em vez de encerrar rapidamente.\n\nSimulação\nO passageiro tem conexão e pergunta se a mala vai até o destino final. O agente mostra a etiqueta, destaca o aeroporto final, escreve a rota e confirma: sua bagagem segue até o destino X. Caso precise retirar em algum ponto, a informação deve ficar visível e registrada."
@@ -115,9 +115,9 @@ values (
     "duration": "28 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-07-embarque.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-07-embarque.png?v=5",
         "title": "Embarque e conexão",
-        "caption": "Horário, duração, ATRASO e PORTÃO B12 em contexto de embarque e conexão."
+        "caption": "Embarque, conexão, atraso, portão e horário com diálogo de orientação ao passageiro."
       }
     ],
     "content": "Objetivo da trilha\nComunicar mudanças de voo com rapidez sem gerar abandono de informação.\n\nSituações comuns\n- Troca de portão.\n- Atraso ou cancelamento.\n- Chamada de embarque.\n- Conexão curta.\n- Remarcação.\n- Prioridade ou assistência PNAE.\n\nMétodo visual\nUse monitor, cartão de embarque, mapa do terminal e escrita curta. Evite explicar tudo de costas para o passageiro ou apontar sem contexto. Em atraso, escreva o novo horário e o local de espera. Em conexão, desenhe rota simples: chegada, segurança, portão, tempo.\n\nCenário\nVoo mudou do portão 04 para 12. O agente mostra o painel, escreve PORTÃO 12, desenha seta para o corredor e pergunta se o passageiro quer acompanhamento. Se houver tempo curto, aciona apoio e registra a necessidade no fluxo operacional."
@@ -128,9 +128,9 @@ values (
     "duration": "34 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-08-bagagem.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-08-bagagem.png?v=5",
         "title": "Bagagem no desembarque",
-        "caption": "Bagagem com cores, MALA e aplicação em AHL, DPR e OHD no desembarque."
+        "caption": "Bagagem no desembarque com MALA, AHL, DPR, OHD, cor e entrega de protocolo."
       }
     ],
     "content": "Objetivo da trilha\nRealizar entrevista acessível em irregularidades de bagagem no desembarque.\n\nAHL - bagagem não localizada\nColete etiqueta, rota, descrição visual, conteúdo por categorias, endereço, telefone, e-mail e urgência. Mostre o número do processo e explique o acompanhamento.\n\nDPR - dano ou violação\nVerifique dano, fotos, etiqueta, tipo de ocorrência, prazo, política aplicável e orientação de continuidade. Evite prometer compensação sem validação.\n\nOHD - bagagem sobrante\nRegistre identificação, local de guarda, evidências e possível match. Se um passageiro surdo procura mala parecida, compare etiqueta, descrição e conteúdo com calma.\n\nSimulação\nPassageiro surdo não encontra a mala. O agente mostra esteira, etiqueta, formulário e campos do sistema. Escreve: vou abrir registro de busca. Preciso confirmar rota, mala e contato. Ao final, mostra protocolo e próxima comunicação."
@@ -141,9 +141,9 @@ values (
     "duration": "26 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-09-pnae.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-09-pnae.png?v=5",
         "title": "Atendimento PNAE",
-        "caption": "Atendimento PNAE com AJUDA, consentimento e autonomia do passageiro."
+        "caption": "Atendimento PNAE com ajuda, acompanhamento, cadeira, consentimento e autonomia do passageiro."
       }
     ],
     "content": "Objetivo da trilha\nOferecer apoio sem retirar autonomia do passageiro.\n\nPrincípios\nA necessidade auditiva ou comunicacional não autoriza conduzir a pessoa sem consentimento. Pergunte antes de acompanhar, tocar, chamar cadeira, mudar fila ou envolver terceiros. O passageiro deve receber a informação diretamente sempre que possível.\n\nFluxo PNAE\n- Identifique a assistência solicitada.\n- Confirme preferência de comunicação.\n- Explique etapa atual e próxima etapa.\n- Registre necessidade de acompanhamento quando aplicável.\n- Avise equipe de portão, embarque, conexão ou desembarque.\n\nExemplo\nPassageiro surdo em conexão curta solicita ajuda. O agente confirma destino, portão, tempo e necessidade de acompanhamento. Escreve: vou acompanhar até o portão. Podemos ir agora? Só inicia deslocamento após confirmação clara."
@@ -154,9 +154,9 @@ values (
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-10-seguranca.png?v=5",
         "title": "Segurança e emergência",
-        "caption": "Negação e orientação crítica: NÃO, PARE e SIGA em segurança aeroportuária."
+        "caption": "Segurança e emergência com NÃO, PARE, ESPERE, SIGA e ÁREA RESTRITA."
       }
     ],
     "content": "Objetivo da trilha\nTransmitir orientações urgentes de modo simples e verificável.\n\nSituações críticas\n- Área restrita.\n- Evacuação.\n- Inspeção de segurança.\n- Item proibido.\n- Alteração de fluxo.\n- Passageiro perdido ou sem contato.\n\nBoas práticas\nUse gestos universais simples, placas, escrita objetiva e demonstração visual. Em emergência, priorize instruções curtas: PARE, ESPERE, SIGA COMIGO, DOCUMENTO, BOLSA NA BANDEJA, NÃO ENTRE. Confirme por resposta visual ou ação correta.\n\nLimite de atuação\nO agente em formação básica não deve improvisar interpretação complexa em situações jurídicas, médicas ou de segurança sensível. Deve acionar profissional habilitado, supervisor ou canal de apoio conforme protocolo."
@@ -167,9 +167,9 @@ values (
     "duration": "32 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-11-dialogos.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-11-dialogos.png?v=5",
         "title": "Diálogos práticos",
-        "caption": "Diálogos práticos: perguntas, respostas, repetição e fechamento com protocolo."
+        "caption": "Diálogos práticos com pergunta, resposta, repetir e confirmar em situação de balcão."
       }
     ],
     "content": "Objetivo da trilha\nTreinar interações completas com início, coleta, solução e fechamento.\n\nDiálogo 1 - Check-in\nAgente: Como posso ajudar? Passageiro: voo para Recife. Agente confirma documento, reserva, bagagem, assento e etiqueta.\n\nDiálogo 2 - Portão alterado\nPassageiro mostra cartão. Agente consulta painel, escreve novo portão, horário e rota até o local.\n\nDiálogo 3 - Mala não chegou\nPassageiro mostra comprovante. Agente abre atendimento, confirma etiqueta, rota, descrição e contato, depois mostra protocolo.\n\nDiálogo 4 - Dano de bagagem\nAgente observa dano, registra evidências, explica prazo e próxima etapa.\n\nRegra de ouro\nCada diálogo termina com confirmação: o passageiro sabe o que aconteceu, onde deve ir, quanto deve esperar, qual documento/protocolo possui e como receberá retorno."
@@ -180,9 +180,9 @@ values (
     "duration": "33 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/libras-aeroportos/libras-12-simulacoes.svg?v=4",
+        "src": "../assets/academy-screenshots/libras-aeroportos/libras-12-simulacoes.png?v=5",
         "title": "Simulações avaliativas",
-        "caption": "Simulação avaliativa com OK, checklist operacional e confirmação final."
+        "caption": "Simulação avaliativa com checklist, soletração, apontamento, confirmação, registro e feedback."
       }
     ],
     "content": "Objetivo da trilha\nAvaliar se o aluno consegue aplicar LIBRAS básica, recursos visuais e conduta aeroportuária segura.\n\nSimulações sugeridas\n1. Passageiro surdo faz check-in com bagagem e conexão.\n2. Passageiro precisa localizar portão após alteração.\n3. Passageiro abre AHL por mala não localizada.\n4. Passageiro registra DPR por dano aparente.\n5. Passageiro PNAE precisa de apoio até o embarque.\n6. Agente comunica atraso e novo horário.\n\nCritérios de avaliação\n- Abordagem respeitosa.\n- Contato visual e ambiente adequado.\n- Uso correto de escrita, telas e apontamento.\n- Confirmação de dados críticos.\n- Registro operacional completo.\n- Encerramento com próxima ação clara.\n\nMensagem final\nO objetivo não é substituir intérprete nem formar fluência completa em LIBRAS. O curso prepara o atendimento aeroportuário para reduzir barreiras, organizar informações e proteger a autonomia do passageiro."
@@ -332,7 +332,7 @@ values (
     "correct": 0
   }
 ]$quiz_libras$::jsonb,
-    '../assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.svg',
+    '../assets/academy-screenshots/libras-aeroportos/libras-01-acessibilidade.png',
     $material_libras$LIBRAS e Linguagem de Sinais para Atendimento em Aeroportos
 
 Resumo operacional
@@ -403,3 +403,4 @@ on conflict (id) do update set
 select id, title, jsonb_array_length(modules::jsonb) as trilhas, jsonb_array_length(quiz::jsonb) as questoes
 from public.academy_courses
 where id = 'libras-atendimento-aeroportos';
+
