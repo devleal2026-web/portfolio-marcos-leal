@@ -1106,18 +1106,52 @@ function normalizeSearchText(value){
 }
 
 function isLibrasAirportCourse(course){
+    const modulesText = Array.isArray(course?.modules)
+        ? course.modules.map(module => [
+            module?.title,
+            module?.type,
+            module?.duration,
+            module?.content,
+            Array.isArray(module?.screenshots)
+                ? module.screenshots.map(screenshot => [
+                    screenshot?.title,
+                    screenshot?.caption,
+                    screenshot?.src,
+                    screenshot?.zoomSrc
+                ].join(" ")).join(" ")
+                : ""
+        ].join(" ")).join(" ")
+        : "";
+    const labsText = Array.isArray(course?.labs)
+        ? course.labs.map(link => [
+            link?.label,
+            link?.title,
+            link?.href,
+            link?.kind
+        ].join(" ")).join(" ")
+        : "";
+    const quizText = Array.isArray(course?.quiz)
+        ? course.quiz.map(question => [
+            question?.question,
+            Array.isArray(question?.options) ? question.options.join(" ") : "",
+            question?.explanation
+        ].join(" ")).join(" ")
+        : "";
     const haystack = normalizeSearchText([
         course?.id,
         course?.title,
         course?.eyebrow,
         course?.category,
-        course?.summary
+        course?.summary,
+        modulesText,
+        labsText,
+        quizText
     ].join(" "));
 
     return haystack.includes("libras");
 }
 
-const librasVisualVersion = "20260905-libras-any-title-1";
+const librasVisualVersion = "20260905-libras-module-detect-1";
 
 function librasKnownScreenshot(moduleIndex){
     const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
@@ -2267,6 +2301,17 @@ function renderLabs(course){
     labs.innerHTML = renderCourseLinks(labLinks, { requirePublishedPage:true }) || `<div class="assessment-empty">Nenhum material de laboratório disponível para este curso.</div>`;
 }
 
+function librasReferenceMaterial(course){
+    if(!isLibrasAirportCourse(course)){
+        return null;
+    }
+
+    return {
+        kind:"support",
+        label:"Dicionário INES - consulta pública de sinais em LIBRAS",
+        href:"https://dicionario.ines.gov.br/"
+    };
+}
 function renderSupportMaterials(course){
     const block = document.getElementById("supportMaterialsBlock");
     const container = document.getElementById("supportMaterialLinks");
@@ -2275,7 +2320,13 @@ function renderSupportMaterials(course){
         return;
     }
 
-    const materials = (Array.isArray(course.labs) ? course.labs : []).filter(isSupportMaterialLink);
+    let materials = (Array.isArray(course.labs) ? course.labs : []).filter(isSupportMaterialLink);
+    const librasReference = librasReferenceMaterial(course);
+
+    if(librasReference && !materials.some(link => String(link.href || "") === librasReference.href)){
+        materials = [librasReference, ...materials];
+    }
+
     block.hidden = materials.length === 0;
     container.innerHTML = renderCourseLinks(materials);
 }
