@@ -1073,7 +1073,7 @@ const librasCorrectVisualProfiles = [
     },
     {
         title:"Embarque, portao e conexao",
-        asset:"libras-ines-07-embarque-conexao.png",
+        asset:"libras-trilha-07-embarque-conexao-fixo.png",
         caption:"Sinais INES para PORTAO, AVIAO, HORA e MAPA; codigos como B12 devem ser feitos por datilologia/numerais."
     },
     {
@@ -1098,7 +1098,7 @@ const librasCorrectVisualProfiles = [
     }
 ];
 
-const librasVisualVersion = "20260905-libras-ines-reference-1";
+const librasVisualVersion = "20260905-trilha7-file-fix-1";
 
 function librasKnownScreenshot(moduleIndex){
     const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
@@ -2076,15 +2076,20 @@ function lessonScreenshotCards(course, moduleIndex){
                 ${screenshots.map(item => {
                     const fixedItem = forceKnownCourseScreenshot(course, moduleIndex, item);
                     const src = resolveAcademyAssetPath(fixedItem.src);
+                    const zoomSrc = resolveAcademyAssetPath(fixedItem.zoomSrc || src);
 
                     return `
                     <figure class="lesson-screenshot-card">
                         <button
                             type="button"
                             class="lesson-screenshot-zoom"
-                            data-screenshot-src="${escapeHtml(resolveAcademyAssetPath(fixedItem.zoomSrc || src))}"
+                            data-screenshot-src="${escapeHtml(zoomSrc)}"
                             data-screenshot-title="${escapeHtml(fixedItem.title)}">
-                            <img src="${escapeHtml(src)}" alt="${escapeHtml(fixedItem.title)}">
+                            <img
+                                src="${escapeHtml(src)}"
+                                alt="${escapeHtml(fixedItem.title)}"
+                                data-fallback-src="${escapeHtml(zoomSrc)}"
+                                onerror="this.onerror=null; this.src=this.dataset.fallbackSrc;">
                         </button>
                         <figcaption>
                             <strong>${escapeHtml(fixedItem.title)}</strong>
