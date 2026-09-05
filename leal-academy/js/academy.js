@@ -1118,8 +1118,8 @@ function applyCorrectLibrasVisuals(course){
         }
 
         module.screenshots = [{
-            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260905-libras-ines-avatar-1",
-            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260905-libras-ines-avatar-1",
+            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260905-libras-ines-y-1",
+            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260905-libras-ines-y-1",
             title:profile.title,
             caption:profile.caption
         }];
