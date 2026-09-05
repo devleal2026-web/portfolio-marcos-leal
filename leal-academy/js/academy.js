@@ -1098,31 +1098,26 @@ const librasCorrectVisualProfiles = [
     }
 ];
 
+const librasVisualVersion = "20260905-libras-ines-reference-1";
+
+function librasKnownScreenshot(moduleIndex){
+    const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
+
+    return {
+        src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + `?v=${librasVisualVersion}`,
+        zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + `?v=${librasVisualVersion}`,
+        title:profile.title,
+        caption:profile.caption
+    };
+}
+
 function applyCorrectLibrasVisuals(course){
     if(course?.id !== "libras-atendimento-aeroportos" || !Array.isArray(course.modules)){
         return course;
     }
 
     course.modules.forEach((module, index) => {
-        const profile = librasCorrectVisualProfiles[index] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
-        const current = Array.isArray(module.screenshots) ? module.screenshots[0] : null;
-        const currentSrc = String(current?.src || "");
-        const hasSupabaseVisual = currentSrc.includes("libras-ines-") && current?.zoomSrc;
-        const hasBrokenLegacyVisual = !currentSrc
-            || currentSrc.startsWith("data:image/svg")
-            || currentSrc.includes("libras-10-seguranca")
-            || !currentSrc.includes("libras-ines-");
-
-        if(hasSupabaseVisual && !hasBrokenLegacyVisual){
-            return;
-        }
-
-        module.screenshots = [{
-            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260905-libras-labs-empty-1",
-            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260905-libras-labs-empty-1",
-            title:profile.title,
-            caption:profile.caption
-        }];
+        module.screenshots = [librasKnownScreenshot(index)];
     });
 
     return course;
@@ -1738,6 +1733,30 @@ function renderTracks(course){
     });
 }
 
+function courseReferenceAction(course){
+    if(course?.id !== "libras-atendimento-aeroportos"){
+        return "";
+    }
+
+    return `
+        <a class="secondary-action course-reference-action" href="https://dicionario.ines.gov.br/" target="_blank" rel="noopener">
+            Dicionário INES
+        </a>
+    `;
+}
+
+function courseReferenceNote(course){
+    if(course?.id !== "libras-atendimento-aeroportos"){
+        return "";
+    }
+
+    return `
+        <p class="course-reference-note">
+            Para evoluir em Libras, consulte o Dicionário INES: uma referência pública para pesquisar sinais, revisar movimentos e ampliar vocabulário.
+        </p>
+    `;
+}
+
 function renderCourseGuide(course){
     const guide = document.getElementById("courseGuide");
 
@@ -1756,9 +1775,11 @@ function renderCourseGuide(course){
             <span>Você está na trilha ${current} de ${modules.length}</span>
             <strong>${escapeHtml(currentModule(course).title)}</strong>
             <p>${done.length} de ${modules.length} trilhas concluídas.</p>
+            ${courseReferenceNote(course)}
         </div>
 
         <div class="course-guide-actions">
+            ${courseReferenceAction(course)}
             <button class="secondary-action" id="goFirstPending" type="button">
                 ${nextPending >= 0 ? "Continuar pendente" : "Revisar curso"}
             </button>
@@ -1986,6 +2007,10 @@ function academyDeploymentAssetPath(assetPath){
 }
 
 function forceKnownCourseScreenshot(course, moduleIndex, item){
+    if(course?.id === "libras-atendimento-aeroportos"){
+        return librasKnownScreenshot(moduleIndex);
+    }
+
     return item;
 }
 
