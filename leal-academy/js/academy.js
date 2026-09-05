@@ -1098,7 +1098,31 @@ const librasCorrectVisualProfiles = [
     }
 ];
 
-const librasVisualVersion = "20260905-trilha7-file-fix-1";
+function normalizeSearchText(value){
+    return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+}
+
+function isLibrasAirportCourse(course){
+    const haystack = normalizeSearchText([
+        course?.id,
+        course?.title,
+        course?.eyebrow,
+        course?.category,
+        course?.summary
+    ].join(" "));
+
+    return haystack.includes("libras") && (
+        haystack.includes("aeroporto")
+        || haystack.includes("aeroportuario")
+        || haystack.includes("aeroportuaria")
+        || haystack.includes("atendimento")
+    );
+}
+
+const librasVisualVersion = "20260905-libras-detect-course-1";
 
 function librasKnownScreenshot(moduleIndex){
     const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
@@ -1112,7 +1136,7 @@ function librasKnownScreenshot(moduleIndex){
 }
 
 function applyCorrectLibrasVisuals(course){
-    if(course?.id !== "libras-atendimento-aeroportos" || !Array.isArray(course.modules)){
+    if(!isLibrasAirportCourse(course) || !Array.isArray(course.modules)){
         return course;
     }
 
@@ -1124,7 +1148,7 @@ function applyCorrectLibrasVisuals(course){
 }
 
 function removeUnavailableLibrasLesson(course){
-    if(course?.id !== "libras-atendimento-aeroportos"){
+    if(!isLibrasAirportCourse(course)){
         return course;
     }
 
@@ -1734,7 +1758,7 @@ function renderTracks(course){
 }
 
 function courseReferenceAction(course){
-    if(course?.id !== "libras-atendimento-aeroportos"){
+    if(!isLibrasAirportCourse(course)){
         return "";
     }
 
@@ -1746,7 +1770,7 @@ function courseReferenceAction(course){
 }
 
 function courseReferenceNote(course){
-    if(course?.id !== "libras-atendimento-aeroportos"){
+    if(!isLibrasAirportCourse(course)){
         return "";
     }
 
@@ -2007,7 +2031,7 @@ function academyDeploymentAssetPath(assetPath){
 }
 
 function forceKnownCourseScreenshot(course, moduleIndex, item){
-    if(course?.id === "libras-atendimento-aeroportos"){
+    if(isLibrasAirportCourse(course)){
         return librasKnownScreenshot(moduleIndex);
     }
 
