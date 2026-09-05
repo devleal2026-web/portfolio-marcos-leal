@@ -1114,15 +1114,10 @@ function isLibrasAirportCourse(course){
         course?.summary
     ].join(" "));
 
-    return haystack.includes("libras") && (
-        haystack.includes("aeroporto")
-        || haystack.includes("aeroportuario")
-        || haystack.includes("aeroportuaria")
-        || haystack.includes("atendimento")
-    );
+    return haystack.includes("libras");
 }
 
-const librasVisualVersion = "20260905-libras-detect-course-1";
+const librasVisualVersion = "20260905-libras-any-title-1";
 
 function librasKnownScreenshot(moduleIndex){
     const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
