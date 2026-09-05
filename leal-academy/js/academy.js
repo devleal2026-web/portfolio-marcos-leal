@@ -1151,7 +1151,7 @@ function isLibrasAirportCourse(course){
     return haystack.includes("libras");
 }
 
-const librasVisualVersion = "20260905-libras-trilha7-hardfix-1";
+const librasVisualVersion = "20260905-libras-trilha7-title-hardfix-1";
 
 function librasKnownScreenshot(moduleIndex){
     const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
@@ -2070,11 +2070,12 @@ function isLibrasBoardingTrail(course, moduleIndex){
         Array.isArray(course?.modules) ? course.modules.map(item => [item?.title, item?.content].join(" ")).join(" ") : ""
     ].join(" "));
 
-    return (
-        Number(moduleIndex) === 6 ||
+    const isBoardingContext = (
         (title.includes("embarque") && title.includes("conexao") && title.includes("portao")) ||
         (content.includes("embarque") && content.includes("conexao") && content.includes("portao"))
-    ) && courseText.includes("libras");
+    );
+
+    return isBoardingContext || (Number(moduleIndex) === 6 && courseText.includes("libras"));
 }
 function forceKnownCourseScreenshot(course, moduleIndex, item){
     if(isLibrasBoardingTrail(course, moduleIndex)){
