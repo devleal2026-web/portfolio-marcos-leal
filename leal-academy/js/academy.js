@@ -1151,7 +1151,7 @@ function isLibrasAirportCourse(course){
     return haystack.includes("libras");
 }
 
-const librasVisualVersion = "20260905-libras-module-detect-1";
+const librasVisualVersion = "20260905-libras-trilha7-hardfix-1";
 
 function librasKnownScreenshot(moduleIndex){
     const profile = librasCorrectVisualProfiles[moduleIndex] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
@@ -2059,7 +2059,28 @@ function academyDeploymentAssetPath(assetPath){
     return `/leal-academy/${cleanPath.replace(/^leal-academy\//, "")}`;
 }
 
+function isLibrasBoardingTrail(course, moduleIndex){
+    const module = courseModules(course)[moduleIndex] || {};
+    const title = normalizeSearchText(module?.title || "");
+    const content = normalizeSearchText(module?.content || "");
+    const courseText = normalizeSearchText([
+        course?.id,
+        course?.title,
+        course?.summary,
+        Array.isArray(course?.modules) ? course.modules.map(item => [item?.title, item?.content].join(" ")).join(" ") : ""
+    ].join(" "));
+
+    return (
+        Number(moduleIndex) === 6 ||
+        (title.includes("embarque") && title.includes("conexao") && title.includes("portao")) ||
+        (content.includes("embarque") && content.includes("conexao") && content.includes("portao"))
+    ) && courseText.includes("libras");
+}
 function forceKnownCourseScreenshot(course, moduleIndex, item){
+    if(isLibrasBoardingTrail(course, moduleIndex)){
+        return librasKnownScreenshot(6);
+    }
+
     if(isLibrasAirportCourse(course)){
         return librasKnownScreenshot(moduleIndex);
     }
@@ -2111,7 +2132,9 @@ function lessonScreenshotCards(course, moduleIndex){
     }
 
     const module = courseModules(course)[moduleIndex] || {};
-    const screenshots = Array.isArray(module.screenshots) ? module.screenshots : [];
+    const screenshots = isLibrasBoardingTrail(course, moduleIndex)
+        ? [librasKnownScreenshot(6)]
+        : (Array.isArray(module.screenshots) ? module.screenshots : []);
 
     if(!Array.isArray(screenshots) || screenshots.length === 0){
         return "";
