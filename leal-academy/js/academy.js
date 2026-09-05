@@ -1042,59 +1042,59 @@ function normalizeQuiz(course){
 
 const librasCorrectVisualProfiles = [
     {
-        title:"Acessibilidade comunicacional em LIBRAS",
-        asset:"libras-aplicado-01-inicio-atendimento.png",
-        caption:"Cumprimento, apresentação e preferência comunicacional com sinais de referência aplicados ao balcão de atendimento."
+        title:"Inicio do atendimento em LIBRAS",
+        asset:"libras-ines-01-inicio-atendimento.png",
+        caption:"Frames de videos publicos do Dicionario INES para VOCE, AJUDAR e AEROPORTO, aplicados a abertura do atendimento aeroportuario."
     },
     {
-        title:"Cultura surda e respeito no atendimento",
-        asset:"libras-aplicado-02-cultura-surda.png",
-        caption:"Pronomes e apontamento espacial para falar diretamente com o passageiro surdo, preservando autonomia."
+        title:"Cultura surda e autonomia",
+        asset:"libras-ines-02-cultura-surda.png",
+        caption:"Sinais INES para SURDO, VOCE e INFORMACAO, vinculados ao atendimento direto e respeitoso."
     },
     {
-        title:"Parâmetros dos sinais e expressão",
-        asset:"libras-aplicado-03-parametros.png",
-        caption:"Configuração de mão, ponto, movimento, orientação e expressão com referência visual de Libras."
+        title:"Parametros dos sinais",
+        asset:"libras-ines-03-parametros.png",
+        caption:"Sequencias de movimento INES para observar configuracao de mao, movimento, apontamento e expressao."
     },
     {
-        title:"Alfabeto manual, números e códigos",
-        asset:"libras-aplicado-04-alfabeto-numeros.png",
-        caption:"Alfabeto manual e numerais para soletrar nomes, voos, portões, assentos, etiquetas e protocolos."
+        title:"Alfabeto manual completo A-Z",
+        asset:"libras-ines-04-alfabeto-numeros.png",
+        caption:"Alfabeto manual completo para nomes, siglas, portoes, assentos, etiquetas e protocolos; Y reconstruido como configuracao publica quando o video INES retorna 404."
     },
     {
         title:"Primeiro contato e triagem",
-        asset:"libras-aplicado-05-primeiro-contato.png",
-        caption:"Saudação, apresentação, EU/VOCÊ e demonstrativos aplicados aos primeiros segundos de atendimento."
+        asset:"libras-ines-05-primeiro-contato.png",
+        caption:"Sinais INES para VOCE, PRECISAR, AQUI e AJUDAR em triagem inicial."
     },
     {
         title:"Check-in, documento e bagagem",
-        asset:"libras-aplicado-06-checkin.png",
-        caption:"Datilologia e numerais para confirmar documento, voo, assento, destino final e etiqueta da bagagem."
+        asset:"libras-ines-06-checkin.png",
+        caption:"Sinais INES para DOCUMENTO, BILHETE, PASSAPORTE e BAGAGEM no fluxo de check-in."
     },
     {
-        title:"Embarque, conexão e portão",
-        asset:"libras-aplicado-07-embarque-conexao.png",
-        caption:"PORTÃO B12 tratado como código aeroportuário: datilologia/numerais, placa, mapa, horário e painel."
+        title:"Embarque, portao e conexao",
+        asset:"libras-ines-07-embarque-conexao.png",
+        caption:"Sinais INES para PORTAO, AVIAO, HORA e MAPA; codigos como B12 devem ser feitos por datilologia/numerais."
     },
     {
         title:"Bagagem no desembarque",
-        asset:"libras-aplicado-08-bagagem-desembarque.png",
-        caption:"Cores, números e descrição visual para AHL, DPR, OHD, etiqueta, mala, protocolo e prazo."
+        asset:"libras-ines-08-bagagem-desembarque.png",
+        caption:"Sinais INES para MALA, BAGAGEM, PROBLEMA e AGUARDAR no atendimento de ocorrencia de bagagem."
     },
     {
         title:"Atendimento PNAE com autonomia",
-        asset:"libras-aplicado-09-pnae-autonomia.png",
-        caption:"Pronomes, demonstrativos e referência espacial para perguntar, orientar e acompanhar com consentimento."
+        asset:"libras-ines-09-pnae-autonomia.png",
+        caption:"Sinais INES para AJUDAR, ACOMPANHAR, ESPERAR e CONFIRMAR com consentimento e autonomia."
     },
     {
-        title:"Diálogos práticos em aeroporto",
-        asset:"libras-aplicado-10-dialogos.png",
-        caption:"Cumprimentos, perguntas, respostas, negação/interrogação e confirmação final em diálogos de aeroporto."
+        title:"Dialogos praticos em aeroporto",
+        asset:"libras-ines-10-dialogos.png",
+        caption:"Sinais INES para PEDIR, NAO, QUERER e OBRIGADO em sequencias de pergunta, resposta e encerramento."
     },
     {
-        title:"Simulações avaliativas",
-        asset:"libras-aplicado-11-simulacoes.png",
-        caption:"Avaliação de sinais estudados, datilologia, numerais, expressões, contexto aeroportuário e confirmação."
+        title:"Simulacoes avaliativas",
+        asset:"libras-ines-11-simulacoes.png",
+        caption:"Sinais INES para PROBLEMA, AGUA, BANHEIRO, CANCELAR, IR e PASSAGEIRO em cenarios avaliativos."
     }
 ];
 
@@ -1107,19 +1107,19 @@ function applyCorrectLibrasVisuals(course){
         const profile = librasCorrectVisualProfiles[index] || librasCorrectVisualProfiles[librasCorrectVisualProfiles.length - 1];
         const current = Array.isArray(module.screenshots) ? module.screenshots[0] : null;
         const currentSrc = String(current?.src || "");
-        const hasSupabaseVisual = currentSrc.includes("libras-aplicado-") && current?.zoomSrc;
+        const hasSupabaseVisual = currentSrc.includes("libras-ines-") && current?.zoomSrc;
         const hasBrokenLegacyVisual = !currentSrc
             || currentSrc.startsWith("data:image/svg")
             || currentSrc.includes("libras-10-seguranca")
-            || !currentSrc.includes("libras-aplicado-");
+            || !currentSrc.includes("libras-ines-");
 
         if(hasSupabaseVisual && !hasBrokenLegacyVisual){
             return;
         }
 
         module.screenshots = [{
-            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260904-libras-aplicado-1",
-            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260904-libras-aplicado-1",
+            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260905-libras-ines-1",
+            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260905-libras-ines-1",
             title:profile.title,
             caption:profile.caption
         }];
