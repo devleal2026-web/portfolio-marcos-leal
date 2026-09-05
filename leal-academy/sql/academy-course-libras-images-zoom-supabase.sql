@@ -6,7 +6,6 @@ with target_course as (
     select id, modules
     from academy_courses
     where id = 'libras-atendimento-aeroportos'
-       or slug = 'libras-atendimento-aeroportos'
        or lower(title) like '%libras%aeroporto%'
     limit 1
 ), visual_map(module_index, screenshots) as (
@@ -53,5 +52,4 @@ where c.id = rebuilt.id;
 select id, title, jsonb_array_length(modules) as total_trilhas
 from academy_courses
 where id = 'libras-atendimento-aeroportos'
-   or slug = 'libras-atendimento-aeroportos'
    or lower(title) like '%libras%aeroporto%';

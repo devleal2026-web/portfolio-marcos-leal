@@ -1118,8 +1118,8 @@ function applyCorrectLibrasVisuals(course){
         }
 
         module.screenshots = [{
-            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260905-libras-ines-y-1",
-            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260905-libras-ines-y-1",
+            src:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset}`) + "?v=20260905-libras-labs-empty-1",
+            zoomSrc:academyDeploymentAssetPath(`leal-academy/assets/academy-screenshots/libras-aeroportos/${profile.asset.replace(".png", "-hd.png")}`) + "?v=20260905-libras-labs-empty-1",
             title:profile.title,
             caption:profile.caption
         }];
@@ -2168,10 +2168,39 @@ function isSupportMaterialLink(link){
     return kind === "material" || kind === "support" || href.endsWith(".pdf");
 }
 
-function renderCourseLinks(links){
+const publishedAcademyPages = new Set([
+    "access.html",
+    "admin.html",
+    "assessment.html",
+    "certificate.html",
+    "course.html",
+    "index.html",
+    "operational-library.html"
+]);
+
+function hasUsableCourseLink(link, options = {}){
+    const href = String(link?.href || "").trim();
+
+    if(!href || href === "#" || /^javascript:/i.test(href)){
+        return false;
+    }
+
+    if(options.requirePublishedPage && /\.html(?:$|[?#])/i.test(href)){
+        const cleanHref = href.split(/[?#]/)[0].split("/").pop();
+        return publishedAcademyPages.has(cleanHref);
+    }
+
+    return true;
+}
+
+function renderCourseLinks(links, options = {}){
     return links.map(link => {
         const href = resolveAcademyAssetPath(link.href);
         const label = link.label || "Abrir";
+
+        if(!hasUsableCourseLink(link, options)){
+            return "";
+        }
 
         return `
             <a class="lab-link" href="${escapeHtml(href)}" target="_blank" rel="noopener">
@@ -2186,7 +2215,7 @@ function renderLabs(course){
     const labs = document.getElementById("labLinks");
     const labLinks = (Array.isArray(course.labs) ? course.labs : []).filter(link => !isSupportMaterialLink(link));
 
-    labs.innerHTML = renderCourseLinks(labLinks) || `<div class="assessment-empty">Sem laboratorio vinculado.</div>`;
+    labs.innerHTML = renderCourseLinks(labLinks, { requirePublishedPage:true }) || `<div class="assessment-empty">Nenhum material de laboratório disponível para este curso.</div>`;
 }
 
 function renderSupportMaterials(course){
