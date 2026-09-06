@@ -18,7 +18,7 @@ values (
     'DCS na pratica',
     'atendimento',
     'Intermediario',
-    '4h',
+    '5h40',
     '#0f4c81',
     'Curso pratico em portugues Brasil para ensinar o aluno a usar o Amadeus Altea no atendimento aeroportuario: comandos, atalhos, acoes de tela, quando usar, respostas esperadas, erros comuns e proximos passos.',
     $modules_amadeus$[
@@ -88,9 +88,9 @@ values (
     "content": "Objetivo da trilha\nEnsinar como tratar assentos no Altea sem criar conflito operacional.\n\nComandos/acoes\n- Open Seat Map/Seat Map: exibe mapa de assentos disponivel.\n- Seat preference: registra preferencia quando nao ha assento especifico.\n- Change seat: altera assento ja atribuido quando permitido.\n- Clear/cancel seat change: cancela tentativa se houver restricao ou erro.\n\nPara que serve\nSelecionar, confirmar ou alterar assento respeitando regra comercial e operacional.\n\nQuando usar\nNo check-in, no portao, em reacomodacao, em atendimento PNAE, em familia/grupo ou quando o passageiro solicita troca.\n\nRespostas e conduta\n- Seat confirmed: confirmar verbalmente/visualmente e emitir novo cartao se necessario.\n- Seat not available: oferecer alternativa real, nao prometer bloqueio.\n- Restricted seat: verificar saida de emergencia, passageiro com assistencia, menor, infant, regra de seguranca ou cobranca.\n- Chargeable seat: seguir politica da companhia antes de confirmar.\n\nExercicio\nPassageiro WCHR pede saida de emergencia. O aluno deve recusar a troca com base em seguranca e oferecer assento adequado."
   },
   {
-    "title": "Comandos de bagagem: volumes, peso e etiqueta",
+    "title": "Bagagem no Altea: volumes, peso, etiqueta e lista",
     "type": "Oficina operacional",
-    "duration": "30 min",
+    "duration": "34 min",
     "screenshots": [
       {
         "src": "../assets/academy-screenshots/amadeus-altea/manual-amadeus-080.png",
@@ -98,7 +98,46 @@ values (
         "caption": "Imagem extraida do manual local fornecido pelo usuario para apoiar a trilha: Comandos de bagagem: volumes, peso e etiqueta. O texto do curso traduz e organiza a aplicacao pratica em portugues Brasil."
       }
     ],
-    "content": "Objetivo da trilha\nEnsinar o aluno a registrar bagagem e interpretar respostas do sistema.\n\nComandos/acoes\n- Add bag/Register bag: inclui volume no atendimento.\n- Update baggage details: corrige peso, quantidade ou informacao permitida.\n- Print/Reprint bag tag: imprime ou reimprime etiqueta quando autorizado.\n- Excess baggage: trata excesso quando a regra exigir cobranca/autorizacao.\n- Rush/cabin/special baggage: usar somente quando o fluxo da companhia permitir.\n\nPara que serve\nVincular volumes ao passageiro/voo e garantir rastreabilidade ate o destino correto.\n\nQuando usar\nDurante check-in, drop-off, conexao, regularizacao de etiqueta, excesso, item especial ou reimpressao controlada.\n\nRespostas e conduta\n- Tag issued: conferir numero, nome, voo e destino final antes de entregar.\n- Interline/through baggage warning: confirmar se a mala segue ate o destino ou precisa retirada.\n- Excess/weight alert: aplicar regra de franquia antes de aceitar.\n- Print failed: nao criar etiqueta duplicada sem controle; verificar impressora e registro.\n\nSimulacao\nPassageiro tem dois volumes e conexao internacional. O aluno deve explicar como conferir destino final e quando orientar retirada de bagagem."
+    "content": "Objetivo da trilha\nEnsinar o aluno a trabalhar a bagagem dentro do fluxo de atendimento: consultar a lista, inserir volume, conferir tipo, peso, destino, etiqueta e status antes de liberar o passageiro.\n\nComandos/acoes\n- Baggage/Bag tab: abre a area de bagagem do passageiro ou do produto selecionado.\n- Add bag/Register bag: inclui volume no atendimento.\n- Update baggage details: corrige quantidade, peso, destino, tipo ou informacao permitida pela companhia.\n- Baggage list/View bags: consulta a lista de volumes associados ao passageiro, voo ou atendimento.\n- Bag tag/Print tag: imprime etiqueta quando os dados estao corretos.\n- Reprint bag tag: reimprime somente quando permitido e com controle operacional.\n\nPara que serve\nGarantir que a mala esteja vinculada ao passageiro correto, ao voo correto, ao destino correto e ao numero de etiqueta correto.\n\nQuando usar\nDurante check-in, drop-off, conexao, regularizacao de etiqueta, excesso, item especial, reimpressao controlada ou duvida sobre volumes ja aceitos.\n\nRespostas e conduta\n- Bag accepted/tag issued: conferir numero da etiqueta, nome, voo, origem, destino final, quantidade e peso.\n- Baggage already exists: abrir a lista de bagagem antes de criar novo volume para evitar duplicidade.\n- Weight/excess warning: aplicar franquia, cobranca ou autorizacao conforme regra da companhia.\n- Destination/interline warning: confirmar se a mala segue ate o destino final ou se o passageiro deve retirar e redespachar.\n- Print failed: verificar impressora/status da etiqueta antes de repetir impressao.\n\nSimulacao\nPassageiro informa que ja despachou uma mala e quer incluir outra. O aluno deve abrir a lista de bagagem, confirmar a etiqueta existente e somente depois inserir o novo volume."
+  },
+  {
+    "title": "Consultar e pesquisar bagagem por numero de etiqueta",
+    "type": "Pesquisa operacional",
+    "duration": "28 min",
+    "screenshots": [
+      {
+        "src": "../assets/academy-screenshots/amadeus-altea/manual-amadeus-080.png",
+        "title": "Print do manual Amadeus Altea - pagina 80",
+        "caption": "Imagem extraida do manual local fornecido pelo usuario para apoiar consulta, lista e pesquisa de bagagem no Altea. O texto traduz e organiza a aplicacao pratica em portugues Brasil."
+      }
+    ],
+    "content": "Objetivo da trilha\nEnsinar a localizar uma bagagem ja registrada sem criar nova etiqueta indevidamente.\n\nComandos/acoes\n- View bag/Baggage list: abre a lista de bagagens associadas ao passageiro ou ao voo.\n- Search bag by tag number: pesquisa pelo numero da etiqueta quando o passageiro apresenta comprovante ou quando ha duvida operacional.\n- Expand bag details: mostra status, rota, destino, peso, data, voo e historico quando disponivel.\n- Filter/flight list: filtra volumes por voo, trecho ou lista operacional conforme permissao do perfil.\n\nPara que serve\nConfirmar se a bagagem existe no sistema, se pertence ao passageiro correto e se esta associada ao voo/trecho esperado.\n\nQuando usar\nUse quando o passageiro perdeu o comprovante, apresenta etiqueta ilegivel, questiona quantidade de volumes, informa conexao, solicita reimpressao ou quando o agente precisa checar se a mala ja foi registrada.\n\nRespostas e conduta\n- Tag found: conferir nome, voo, data, origem, destino e quantidade antes de orientar.\n- No bag found/no item: revisar numero da etiqueta, companhia, data e voo. Nao cadastrar outra mala sem confirmar.\n- Multiple results: comparar data, voo, rota e passageiro; nao selecionar pelo primeiro resultado.\n- Bag not associated to customer: nao vincular manualmente sem regra/permissao. Acionar apoio.\n\nExercicio\nO passageiro apresenta a etiqueta 123456 e diz que a mala deveria seguir ate GRU. O aluno deve pesquisar pelo numero, abrir detalhes e explicar quais campos precisa conferir antes de responder."
+  },
+  {
+    "title": "Tipos de bagagem e itens especiais no Altea",
+    "type": "Consulta de tabela",
+    "duration": "26 min",
+    "screenshots": [
+      {
+        "src": "../assets/academy-screenshots/amadeus-altea/manual-amadeus-082.png",
+        "title": "Print do manual Amadeus Altea - pagina 82",
+        "caption": "Imagem extraida do manual local fornecido pelo usuario para apoiar a leitura de tipos, propriedades e campos de bagagem no Altea."
+      }
+    ],
+    "content": "Objetivo da trilha\nEnsinar o aluno a consultar o tipo de bagagem correto antes de aceitar itens fora do fluxo simples.\n\nComandos/acoes\n- Baggage type/list of bag types: abre ou consulta a lista de tipos de bagagem disponiveis no perfil.\n- Special baggage/oversized/sport equipment: identifica item especial quando a companhia disponibiliza esse fluxo.\n- Cabin/unchecked/limited release: usar somente quando a regra e o perfil permitirem.\n- Remarks/comentarios de bagagem: registrar observacao operacional quando exigida.\n\nPara que serve\nDiferenciar mala comum, item especial, excesso, bagagem de cabine, equipamento esportivo, item fragil ou volume que exige autorizacao.\n\nQuando usar\nUse antes de aceitar bagagem fora do padrao: excesso de peso, dimensao irregular, item esportivo, bagagem fragil, bagagem com restricao, conexao interline ou volume que exige etiqueta/observacao especifica.\n\nRespostas e conduta\n- Type accepted: prosseguir conferindo peso, rota e etiqueta.\n- Type restricted/not allowed: nao forcar aceite; aplicar regra da companhia ou acionar supervisor.\n- Additional information required: preencher campos exigidos, como peso, dimensao, comentario ou autorizacao.\n- Charge/payment required: direcionar para cobranca/autorizacao antes de finalizar.\n\nSimulacao\nPassageiro apresenta prancha/equipamento esportivo. O aluno deve consultar o tipo de bagagem, verificar se exige pagamento/autorizacao e explicar por que nao deve registrar como mala comum sem validar."
+  },
+  {
+    "title": "Rush bag e criacao de rush tag",
+    "type": "Excecao de bagagem",
+    "duration": "32 min",
+    "screenshots": [
+      {
+        "src": "../assets/academy-screenshots/amadeus-altea/manual-amadeus-084.png",
+        "title": "Print do manual Amadeus Altea - pagina 84",
+        "caption": "Imagem extraida do manual local fornecido pelo usuario para apoiar o estudo de excecoes de bagagem, regularizacao e etiqueta rush."
+      }
+    ],
+    "content": "Objetivo da trilha\nEnsinar o conceito operacional de rush bag/rush tag e quando esse fluxo pode ser usado sem gerar rastreabilidade incorreta.\n\nComandos/acoes\n- Rush bag/Rush tag: cria ou prepara etiqueta de encaminhamento emergencial quando a mala precisa seguir sem o passageiro no mesmo fluxo normal.\n- Create rush tag: preencher rota, voo, data, destino e dados exigidos antes da emissao.\n- Search bag before rush: pesquisar etiqueta existente antes de criar rush tag.\n- Print rush tag/Reprint: imprimir ou reimprimir somente com controle e autorizacao.\n- Remarks/history: registrar motivo, voo de envio, destino e responsavel quando o sistema permitir.\n\nPara que serve\nEncaminhar bagagem atrasada, separada, regularizada ou recuperada, mantendo controle de rota e historico.\n\nQuando usar\nUse em irregularidade de bagagem, conexao perdida da mala, mala localizada apos o voo, regularizacao operacional, envio posterior autorizado ou orientacao de setor de bagagem. Nao usar para substituir check-in normal.\n\nRespostas e conduta\n- Rush tag created: conferir numero, rota, destino, voo, data e motivo antes de imprimir.\n- Existing bag/tag found: avaliar se deve atualizar/encaminhar a etiqueta existente, nao duplicar.\n- Missing routing/flight/date: completar dados obrigatorios antes de emitir.\n- Not authorized/restricted: acionar supervisor ou setor de bagagem; nao criar alternativa manual sem regra.\n- Print failed: verificar impressora e historico antes de repetir.\n\nExercicio\nUma mala ficou retida e precisa seguir no proximo voo. O aluno deve pesquisar a etiqueta original, confirmar destino, escolher voo/data de envio e explicar quais dados precisam aparecer na rush tag."
   },
   {
     "title": "SSR e assistencias: ler, confirmar e comunicar",
@@ -318,6 +357,56 @@ values (
       "Seat confirmed"
     ],
     "correct": 0
+  },
+  {
+    "question": "Antes de criar uma nova etiqueta de bagagem, o agente deve:",
+    "options": [
+      "Consultar a lista de bagagem do passageiro para evitar duplicidade",
+      "Criar outra etiqueta sempre que o passageiro pedir",
+      "Ignorar etiquetas ja existentes",
+      "Usar qualquer destino para acelerar o atendimento"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Na pesquisa de bagagem por numero de etiqueta, a conduta correta e:",
+    "options": [
+      "Conferir nome, voo, data, origem, destino e status antes de orientar",
+      "Responder apenas olhando os tres ultimos digitos",
+      "Cadastrar outra mala se aparecer mais de um resultado",
+      "Reimprimir sem verificar a lista"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "A lista de tipos de bagagem serve principalmente para:",
+    "options": [
+      "Selecionar corretamente mala comum, item especial, excesso ou fluxo restrito",
+      "Trocar assento do passageiro",
+      "Cancelar automaticamente o check-in",
+      "Substituir a regra da companhia"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Rush tag deve ser usada quando:",
+    "options": [
+      "Ha encaminhamento autorizado de bagagem fora do fluxo normal, com rota e controle definidos",
+      "O passageiro quer uma etiqueta mais bonita",
+      "O agente nao encontrou o passageiro no sistema",
+      "A impressora comum esta sem papel"
+    ],
+    "correct": 0
+  },
+  {
+    "question": "Antes de criar uma rush tag, e indispensavel:",
+    "options": [
+      "Pesquisar etiqueta existente, confirmar destino, voo, data, motivo e autorizacao",
+      "Apagar o historico anterior da bagagem",
+      "Usar sempre o voo mais cheio",
+      "Emitir sem registrar responsavel"
+    ],
+    "correct": 0
   }
 ]$quiz_amadeus$::jsonb,
     $cover_amadeus$../assets/academy-screenshots/amadeus-altea/manual-amadeus-007.png$cover_amadeus$ ,
@@ -332,7 +421,11 @@ Customer View - mostra ficha do passageiro, voo, status, assento, conexoes, baga
 Accept - aceita passageiro no voo/check-in. Use somente apos documento, voo, rota, alertas e pendencias conferidos. Respostas comuns: accepted, warning, rejected, missing data.
 Advanced Options - abre opcoes como standby, through check-in ou voos especificos quando disponiveis. Use em situacoes que nao seguem o check-in simples.
 Seat Map / Change seat - consulta, escolhe ou altera assento. Respostas comuns: seat confirmed, not available, restricted, chargeable.
-Add bag / Update baggage details / Print bag tag - registra volumes, peso e etiqueta. Respostas comuns: tag issued, excess alert, interline warning, print failed.
+Add bag / Update baggage details / Print bag tag - registra volumes, peso e etiqueta. Respostas comuns: tag issued, baggage already exists, excess alert, interline warning, print failed.
+Baggage list / View bags - consulta volumes ja associados ao passageiro, voo ou atendimento. Use antes de inserir nova mala, reimprimir etiqueta ou responder duvida sobre quantidade/status.
+Search bag by tag number - pesquisa bagagem pelo numero da etiqueta. Use para localizar volume, confirmar rota/destino/status e evitar duplicidade.
+Baggage type / List of bag types - consulta tipos de bagagem e itens especiais permitidos no perfil. Use para excesso, item esportivo, volume fragil, cabine, oversized ou fluxo restrito.
+Rush bag / Create rush tag - cria etiqueta rush para encaminhamento autorizado de bagagem fora do fluxo normal. Use apos pesquisar etiqueta existente e confirmar destino, voo, data, motivo e autorizacao.
 View SSR / Services - consulta ou confirma servicos especiais. Respostas comuns: confirmed, requested, pending, conflict, restriction.
 Document/API fields - registra ou valida dados documentais/regulatorios. Respostas comuns: valid, incomplete, invalid, warning, supervisor required.
 Boarding Monitor / Scan boarding pass / Board - controla embarque. Respostas comuns: boarded, not accepted, wrong flight, duplicate, security warning.
