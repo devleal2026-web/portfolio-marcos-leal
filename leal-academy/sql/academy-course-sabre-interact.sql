@@ -28,7 +28,7 @@ values (
     "duration": "22 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-01.png?v=sabre-avatar-realista-2",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-01.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - mapa do Interact",
         "caption": "Visao didatica das abas e fluxo de trabalho do Interact: voo, check-in, embarque e operacoes."
       }
@@ -41,7 +41,7 @@ values (
     "duration": "28 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-02.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-02.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - listas do voo",
         "caption": "Fluxo visual para carregar voo, consultar listas, filtros e totais antes da acao."
       }
@@ -54,7 +54,7 @@ values (
     "duration": "30 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-03.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-03.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - busca de passageiro",
         "caption": "Pesquisa segura por diferentes chaves: nome, assento, linha, localizador ou documento quando permitido."
       }
@@ -67,7 +67,7 @@ values (
     "duration": "32 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-04.png?v=sabre-avatar-realista-2",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-04.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - check-in",
         "caption": "Fluxo didatico do aceite de passageiro: comando, validacao, resposta e proximo passo."
       }
@@ -80,7 +80,7 @@ values (
     "duration": "28 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-05.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-05.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - assentos",
         "caption": "Mapa didatico para escolha/troca de assento, com restricao e resposta do sistema."
       }
@@ -93,7 +93,7 @@ values (
     "duration": "34 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-06.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-06.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - bagagem",
         "caption": "Fluxo didatico de inclusao de bagagem, peso, destino e etiqueta."
       }
@@ -106,7 +106,7 @@ values (
     "duration": "30 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-07.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-07.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - pesquisa de bagagem",
         "caption": "Consulta didatica de totais, bagagem por passageiro, franquia e pesquisa por etiqueta."
       }
@@ -119,7 +119,7 @@ values (
     "duration": "30 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-08.png?v=sabre-layout-08-1",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-08.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - rush tag",
         "caption": "Fluxo didatico para encaminhamento autorizado de bagagem fora do fluxo normal."
       }
@@ -132,7 +132,7 @@ values (
     "duration": "32 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-09.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-09.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - SSR e documentos",
         "caption": "Fluxo didatico para leitura e inclusao de SSR, DOC, DOCS e alertas documentais."
       }
@@ -145,7 +145,7 @@ values (
     "duration": "32 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-10.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-10.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - embarque",
         "caption": "Fluxo didatico para board/unboard, passageiros embarcados, nao embarcados e zonas."
       }
@@ -158,7 +158,7 @@ values (
     "duration": "34 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-11.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-11.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - operacoes",
         "caption": "Fluxo didatico de operacoes: status de voo, gate, standby, oversale e irregularidade."
       }
@@ -171,7 +171,7 @@ values (
     "duration": "26 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-12.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-12.png?v=sabre-safe-layout-1",
         "title": "Imagem didatica autoral - checklist final",
         "caption": "Checklist visual para consolidar comando, resposta e proximo passo em Sabre Interact."
       }
@@ -357,7 +357,7 @@ values (
     "correct": 0
   }
 ]$quiz_sabre$::jsonb,
-    $cover_sabre$../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-01.png?v=sabre-avatar-realista-2$cover_sabre$,
+    $cover_sabre$../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-01.png?v=sabre-safe-layout-1$cover_sabre$,
     $material_sabre$Sabre Interact - Curso pratico de atendimento aeroportuario
 
 Resumo
