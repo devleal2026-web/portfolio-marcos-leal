@@ -119,7 +119,7 @@ values (
     "duration": "30 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-08.png?v=c47980b",
+        "src": "../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-08.png?v=sabre-layout-08-1",
         "title": "Imagem didatica autoral - rush tag",
         "caption": "Fluxo didatico para encaminhamento autorizado de bagagem fora do fluxo normal."
       }
