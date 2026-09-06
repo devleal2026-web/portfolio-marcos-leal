@@ -357,6 +357,56 @@ values (
     "correct": 0
   }
 ]$quiz_sabre$::jsonb,
-    $cover_sabre$../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-01.png?v=sabre-avatar-realista-1'sabre-interact-atendimento-aeroportuario';
+    $cover_sabre$../assets/academy-screenshots/sabre-interact/sabre-interact-trilha-01.png?v=sabre-avatar-realista-1$cover_sabre$,
+    $material_sabre$Sabre Interact - Curso pratico de atendimento aeroportuario
 
+Resumo
+Curso objetivo para treinar uso operacional do Sabre Interact/SabreSonic em ambiente aeroportuario: voo, listas, passageiro, check-in, assento, bagagem, documentos, embarque e operacoes.
+
+Comandos e funcoes estudados
+Flights/F1 - acompanhar voo, listas e detalhes operacionais.
+Check-in/F2 - pesquisar passageiro, aceitar, tratar assento, bagagem, SSR e documentos.
+Boarding/F3 - controlar embarque, boarded/unboarded, zonas e passageiros pendentes.
+Operations/F4 - acompanhar status de voo, gate, standby, oversale, irregularidade e atualizacoes operacionais.
+Passenger Lists/Psgr Lists - exibir passageiros do voo e aplicar filtros.
+Passenger Details/Psgr Details - abrir dados do passageiro selecionado.
+C / C1 / C1/8A - aceitar passageiro/check-in e, quando permitido, associar assento.
+Seat Map / Change Seat / Offload Seat - consultar, atribuir, trocar ou devolver assento conforme regra.
+AB / B / MB - incluir bagagem ou bagagem com etiqueta manual/pre-impressa conforme configuracao.
+.B / .B1 / .B/<bagtag> / .BA - consultar totais, bagagem por passageiro, etiqueta e franquia.
+Rush tag - encaminhamento autorizado de bagagem fora do fluxo normal, com rota, voo, data e motivo.
+SSR / DOC / .DOC / DOCS - consultar/inserir servicos especiais e documentos.
+BRD | 1 / BRD | 1X / .QB / .QN / .BZ - embarcar, desfazer embarque, listar embarcados, pendentes e zonas.
+Update Flight / Gate edit / Set Boarding On - atualizar status/gate quando o perfil permite.
+
+Regra de ouro
+Nao execute comando por habito. Leia a resposta. Warning, no match, no passenger found, already onboard, not checked in, wrong flight, restricted, permission denied, printer failed, missing document e standby pending sao mensagens de parada.
+
+Referencias do conteudo
+- Sabre Developer Hub - Check-In APIs. Referencia publica sobre integracao de funcionalidades de check-in no ecossistema Sabre. Link: https://developer.sabre.com/
+- SabreSonic Interact for Airport Training Guide, pagina publica indexada no SlideShare/Scribd. Usado apenas como referencia tematica publica para abas e funcoes; imagens proprietarias nao foram copiadas. Link: https://es.slideshare.net/slideshow/comprehensive-training-guide-for-sabresonic-airport-check-in-operations/288438791
+- Sabre Format Guide/Airport Check-in, pagina publica indexada no CourseHero. Usado como referencia publica para categorias de comandos de check-in, bagagem, embarque e passageiros; sem reproducao integral. Link: https://www.coursehero.com/file/136447772/Sabre/
+
+Observacao
+As imagens deste curso sao didaticas e autorais. Elas nao sao prints oficiais do Sabre e nao reproduzem telas proprietarias. Nomes de comandos, permissoes e respostas podem variar por companhia, versao, ambiente e perfil de usuario. O curso nao substitui treinamento oficial Sabre, manual interno da companhia ou validacao de supervisor.$material_sabre$,
+    500
+)
+on conflict (id) do update set
+    title = excluded.title,
+    eyebrow = excluded.eyebrow,
+    category = excluded.category,
+    level = excluded.level,
+    duration = excluded.duration,
+    color = excluded.color,
+    summary = excluded.summary,
+    modules = excluded.modules,
+    labs = excluded.labs,
+    quiz = excluded.quiz,
+    cover_path = excluded.cover_path,
+    material = excluded.material,
+    sort_order = excluded.sort_order;
+
+select id, title, jsonb_array_length(modules::jsonb) as trilhas, jsonb_array_length(quiz::jsonb) as questoes
+from public.academy_courses
+where id = 'sabre-interact-atendimento-aeroportuario';
 
