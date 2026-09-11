@@ -1,7 +1,7 @@
--- Curso novo: ATI - Area de Transito/Transferencia Internacional de Bagagens - GRU.
--- Base: conteudo operacional fornecido pelo usuario.
+-- Curso novo: ATI - Área de Trânsito/Transferência Internacional de Bagagens - GRU.
+-- Base: conteúdo operacional fornecido pelo usuário.
 -- Este script altera somente o registro id = 'ati-bagagem-internacional-gru'.
--- Nao altera cursos existentes nem interfere em imagens ou provas de outros cursos.
+-- Não altera cursos existentes nem interfere em imagens ou provas de outros cursos.
 
 grant usage on schema public to anon, authenticated;
 grant select on public.academy_courses to anon, authenticated;
@@ -14,186 +14,186 @@ insert into public.academy_courses (
 )
 values (
     'ati-bagagem-internacional-gru',
-    'ATI GRU - Transito e Transferencia Internacional de Bagagens',
-    'Bagagem internacional em conexao',
+    'ATI GRU - Trânsito e Transferência Internacional de Bagagens',
+    'Bagagem internacional em conexão',
     'bagagem',
-    'Intermediario',
+    'Intermediário',
     '3h20',
     '#0b6b78',
-    'Curso objetivo sobre criterios de entrada na ATI de GRU, regra das 4 horas, excecoes por perda de conexao, bagagem sem etiqueta, controle APAC, troca de etiqueta e checklist de decisao.',
+    'Curso objetivo sobre critérios de entrada na ATI de GRU, regra das 4 horas, exceções por perda de conexão, bagagem sem etiqueta, controle APAC, troca de etiqueta e checklist de decisão.',
     $modules_ati$[
   {
-    "title": "O que e a ATI em GRU",
+    "title": "O que é a ATI em GRU",
     "type": "Fundamento operacional",
     "duration": "18 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-01.png?v=ati-realista-1",
-        "title": "Operacao realista de bagagem internacional em transito",
-        "caption": "Cena de apoio para compreender a ATI como area de controle temporario, tratamento e encaminhamento de bagagens internacionais em conexao."
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-01.png?v=ati-realista-2",
+        "title": "Operação realista de bagagem internacional em trânsito",
+        "caption": "Cena de apoio para compreender a ATI como área de controle temporário, tratamento e encaminhamento de bagagens internacionais em conexão."
       }
     ],
-    "content": "O que e a ATI em GRU\n\nObjetivo da trilha\nEntender a funcao da Area de Transito/Transferencia Internacional de Bagagens no Aeroporto Internacional de Sao Paulo/Guarulhos.\n\nA ATI e uma area operacional destinada ao controle, armazenamento temporario, tratamento e encaminhamento de bagagens internacionais em conexao por GRU. Sua funcao principal e manter a rastreabilidade da bagagem enquanto ela aguarda tratamento ou liberacao para o proximo fluxo.\n\nO profissional deve compreender que a ATI nao e apenas um local para deixar malas. Cada entrada precisa ter justificativa operacional, identificacao valida e criterio de encaminhamento.\n\nFluxo simplificado\nChegada do voo -> descarregamento -> identificacao da bagagem de conexao -> verificacao de rota e tempo -> ATI ou Linha de Transferencia -> tratamento -> liberacao -> make-up/transferencia -> carregamento no proximo voo.\n\nPonto critico\nATI nao deve ser confundida com Linha de Transferencia. A decisao depende de rota, destino, tempo de conexao, identificacao e situacao operacional.\n\nMensagem principal\nA ATI existe para garantir controle, rastreabilidade e encaminhamento correto das bagagens internacionais em transito por GRU."
+    "content": "O que é a ATI em GRU\n\nObjetivo da trilha\nEntender a função da Área de Trânsito/Transferência Internacional de Bagagens no Aeroporto Internacional de São Paulo/Guarulhos.\n\nA ATI é uma área operacional destinada ao controle, armazenamento temporário, tratamento e encaminhamento de bagagens internacionais em conexão por GRU. Sua função principal é manter a rastreabilidade da bagagem enquanto ela aguarda tratamento ou liberação para o próximo fluxo.\n\nO profissional deve compreender que a ATI não é apenas um local para deixar malas. Cada entrada precisa ter justificativa operacional, identificação válida e critério de encaminhamento.\n\nFluxo simplificado\nChegada do voo -> descarregamento -> identificação da bagagem de conexão -> verificação de rota e tempo -> ATI ou Linha de Transferência -> tratamento -> liberação -> make-up/transferência -> carregamento no próximo voo.\n\nPonto crítico\nATI não deve ser confundida com Linha de Transferência. A decisão depende de rota, destino, tempo de conexão, identificação e situação operacional.\n\nMensagem principal\nA ATI existe para garantir controle, rastreabilidade e encaminhamento correto das bagagens internacionais em trânsito por GRU."
   },
   {
-    "title": "Criterios para entrada de bagagens na ATI",
+    "title": "Critérios para entrada de bagagens na ATI",
     "type": "Triagem operacional",
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-02.png?v=ati-realista-1",
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-02.png?v=ati-realista-2",
         "title": "Triagem realista de bagagens por fluxo",
-        "caption": "Separacao operacional de bagagens conforme rota, destino e elegibilidade para ATI."
+        "caption": "Separação operacional de bagagens conforme rota, destino e elegibilidade para ATI."
       }
     ],
-    "content": "Criterios para entrada de bagagens na ATI\n\nObjetivo da trilha\nAprender quais bagagens podem ou nao podem ser aceitas na ATI.\n\nA ATI de GRU recebe bagagens internacionais em transito que atendem aos criterios operacionais do fluxo. Nem toda bagagem com destino final internacional deve entrar na ATI. O agente precisa analisar toda a rota.\n\nNao podem ser aceitas na ATI\n- Bagagens com destino domestico dentro do Brasil.\n- Bagagens cujo destino seja o proprio GRU.\n- Bagagens internacionais fora da rota adequada para ATI.\n- Bagagens com trecho domestico intermediario antes do destino internacional, quando esse fluxo nao corresponde a ATI.\n\nExemplo operacional\nUma bagagem GRU -> FLN -> SCL tem destino final internacional, mas possui conexao domestica em FLN. Portanto, nao deve ser aceita na ATI apenas porque o destino final e internacional.\n\nConduta esperada\nAntes de aceitar a bagagem, conferir origem, destino, proximo aeroporto, conexoes, tempo, etiqueta e situacao operacional.\n\nMensagem principal\nO destino final sozinho nao decide ATI. A rota completa decide."
+    "content": "Critérios para entrada de bagagens na ATI\n\nObjetivo da trilha\nAprender quais bagagens podem ou não podem ser aceitas na ATI.\n\nA ATI de GRU recebe bagagens internacionais em trânsito que atendem aos critérios operacionais do fluxo. Nem toda bagagem com destino final internacional deve entrar na ATI. O agente precisa analisar toda a rota.\n\nNão podem ser aceitas na ATI\n- Bagagens com destino doméstico dentro do Brasil.\n- Bagagens cujo destino seja o próprio GRU.\n- Bagagens internacionais fora da rota adequada para ATI.\n- Bagagens com trecho doméstico intermediário antes do destino internacional, quando esse fluxo não corresponde à ATI.\n\nExemplo operacional\nUma bagagem GRU -> FLN -> SCL tem destino final internacional, mas possui conexão doméstica em FLN. Portanto, não deve ser aceita na ATI apenas porque o destino final é internacional.\n\nConduta esperada\nAntes de aceitar a bagagem, conferir origem, destino, próximo aeroporto, conexões, tempo, etiqueta e situação operacional.\n\nMensagem principal\nO destino final sozinho não decide ATI. A rota completa decide."
   },
   {
-    "title": "Regra das 4 horas: ATI ou Linha de Transferencia",
-    "type": "Tempo de conexao",
+    "title": "Regra das 4 horas: ATI ou Linha de Transferência",
+    "type": "Tempo de conexão",
     "duration": "20 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-03.png?v=ati-realista-1",
-        "title": "Conferencia de tempo de conexao",
-        "caption": "Agentes analisam etiqueta, documentos e tempo disponivel antes de decidir ATI ou transferencia direta."
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-03.png?v=ati-realista-2",
+        "title": "Conferência de tempo de conexão",
+        "caption": "Agentes analisam etiqueta, documentos e tempo disponível antes de decidir ATI ou transferência direta."
       }
     ],
-    "content": "Regra das 4 horas: ATI ou Linha de Transferencia\n\nObjetivo da trilha\nAplicar corretamente o criterio de tempo para definir o fluxo da bagagem.\n\nO tempo de conexao e um dos principais criterios para determinar se a bagagem deve entrar na ATI ou seguir diretamente para a Linha de Transferencia.\n\nConexao superior a 4 horas\nBagagens elegiveis com conexao superior a 4 horas podem ser encaminhadas para a ATI, desde que os demais criterios tambem estejam corretos. A bagagem permanece sob controle ate o momento adequado para tratamento e liberacao.\n\nConexao inferior a 4 horas\nBagagens com conexao inferior a 4 horas normalmente nao devem entrar na ATI. Elas devem seguir para a Linha de Transferencia para preservar o tempo operacional ate o proximo voo.\n\nRegra pratica\nConexao maior que 4 horas -> ATI, se elegivel.\nConexao menor que 4 horas -> Linha de Transferencia, salvo excecao operacional.\n\nMensagem principal\nTempo curto exige fluxo direto. Tempo maior permite controle temporario, desde que a rota esteja correta."
+    "content": "Regra das 4 horas: ATI ou Linha de Transferência\n\nObjetivo da trilha\nAplicar corretamente o critério de tempo para definir o fluxo da bagagem.\n\nO tempo de conexão é um dos principais critérios para determinar se a bagagem deve entrar na ATI ou seguir diretamente para a Linha de Transferência.\n\nConexão superior a 4 horas\nBagagens elegíveis com conexão superior a 4 horas podem ser encaminhadas para a ATI, desde que os demais critérios também estejam corretos. A bagagem permanece sob controle até o momento adequado para tratamento e liberação.\n\nConexão inferior a 4 horas\nBagagens com conexão inferior a 4 horas normalmente não devem entrar na ATI. Elas devem seguir para a Linha de Transferência para preservar o tempo operacional até o próximo voo.\n\nRegra prática\nConexão maior que 4 horas -> ATI, se elegível.\nConexão menor que 4 horas -> Linha de Transferência, salvo exceção operacional.\n\nMensagem principal\nTempo curto exige fluxo direto. Tempo maior permite controle temporário, desde que a rota esteja correta."
   },
   {
-    "title": "Excecao: bagagem que perdeu conexao",
+    "title": "Exceção: bagagem que perdeu conexão",
     "type": "Reroute e RUSH",
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-04.png?v=ati-realista-1",
-        "title": "Tratamento realista de bagagem que perdeu conexao",
-        "caption": "Preparacao de nova etiqueta e novo encaminhamento apos perda de conexao."
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-04.png?v=ati-realista-2",
+        "title": "Tratamento realista de bagagem que perdeu conexão",
+        "caption": "Preparação de nova etiqueta e novo encaminhamento após perda de conexão."
       }
     ],
-    "content": "Excecao: bagagem que perdeu conexao\n\nObjetivo da trilha\nEntender quando uma bagagem pode ser tratada na ATI fora do fluxo normal por perda de conexao.\n\nQuando a bagagem perde sua conexao, pode ser necessario realizar novo tratamento para encaminha-la em outro voo disponivel. Essa situacao pode envolver reroute, RUSH ou nova etiqueta.\n\nReroute\nE a alteracao do encaminhamento originalmente previsto para a bagagem. Deve ser feito com base em voo disponivel, rota valida e autorizacao operacional.\n\nRUSH\nE o encaminhamento de bagagem desacompanhada em voo posterior, conforme procedimento aplicavel. Deve manter rastreabilidade, registro e comunicacao correta.\n\nRegra critica\nBagagens com destino internacional que nao foram carregadas no mesmo voo do passageiro nao devem seguir em novo voo com etiqueta antiga quando houver novo tratamento. A etiqueta deve refletir o novo voo/encaminhamento quando aplicavel.\n\nMensagem principal\nBagagem que perdeu conexao exige novo controle. Nao trate como simples permanencia na ATI."
+    "content": "Exceção: bagagem que perdeu conexão\n\nObjetivo da trilha\nEntender quando uma bagagem pode ser tratada na ATI fora do fluxo normal por perda de conexão.\n\nQuando a bagagem perde sua conexão, pode ser necessário realizar novo tratamento para encaminhá-la em outro voo disponível. Essa situação pode envolver reroute, RUSH ou nova etiqueta.\n\nReroute\nÉ a alteração do encaminhamento originalmente previsto para a bagagem. Deve ser feito com base em voo disponível, rota válida e autorização operacional.\n\nRUSH\nÉ o encaminhamento de bagagem desacompanhada em voo posterior, conforme procedimento aplicável. Deve manter rastreabilidade, registro e comunicação correta.\n\nRegra crítica\nBagagens com destino internacional que não foram carregadas no mesmo voo do passageiro não devem seguir em novo voo com etiqueta antiga quando houver novo tratamento. A etiqueta deve refletir o novo voo/encaminhamento quando aplicável.\n\nMensagem principal\nBagagem que perdeu conexão exige novo controle. Não trate como simples permanência na ATI."
   },
   {
-    "title": "Bagagem sem etiqueta: identificacao obrigatoria",
+    "title": "Bagagem sem etiqueta: identificação obrigatória",
     "type": "Rastreabilidade",
     "duration": "20 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-05.png?v=ati-realista-1",
-        "title": "Conferencia realista de bagagem sem etiqueta",
-        "caption": "Agentes verificam documentacao e identificacao antes de aceitar uma bagagem sem tag."
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-05.png?v=ati-realista-2",
+        "title": "Conferência realista de bagagem sem etiqueta",
+        "caption": "Agentes verificam documentação e identificação antes de aceitar uma bagagem sem tag."
       }
     ],
-    "content": "Bagagem sem etiqueta: identificacao obrigatoria\n\nObjetivo da trilha\nEvitar entrada indevida de bagagem sem rastreabilidade na ATI.\n\nUma bagagem sem etiqueta nao pode ser simplesmente aceita na ATI. A ausencia de etiqueta impede a confirmacao imediata de rota, passageiro, voo e destino.\n\nPara recebimento, deve existir documentacao que comprove a identificacao e a vinculacao ao passageiro.\n\nDocumento minimo exigido\n- Bingo com a numeracao atual da bagagem.\n- Reserva do passageiro.\n\nEssas informacoes permitem confirmar a bagagem e manter a rastreabilidade antes da entrada na area.\n\nConduta esperada\nSe nao houver identificacao suficiente, nao aceitar automaticamente. Acionar procedimento local, supervisao ou area responsavel.\n\nMensagem principal\nSem etiqueta, nao ha rastreabilidade suficiente. Primeiro identifique, depois decida."
+    "content": "Bagagem sem etiqueta: identificação obrigatória\n\nObjetivo da trilha\nEvitar entrada indevida de bagagem sem rastreabilidade na ATI.\n\nUma bagagem sem etiqueta não pode ser simplesmente aceita na ATI. A ausência de etiqueta impede a confirmação imediata de rota, passageiro, voo e destino.\n\nPara recebimento, deve existir documentação que comprove a identificação e a vinculação ao passageiro.\n\nDocumento mínimo exigido\n- Bingo com a numeração atual da bagagem.\n- Reserva do passageiro.\n\nEssas informações permitem confirmar a bagagem e manter a rastreabilidade antes da entrada na área.\n\nConduta esperada\nSe não houver identificação suficiente, não aceitar automaticamente. Acionar procedimento local, supervisão ou área responsável.\n\nMensagem principal\nSem etiqueta, não há rastreabilidade suficiente. Primeiro identifique, depois decida."
   },
   {
-    "title": "Controle fisico local: APAC",
-    "type": "Entrada e saida",
+    "title": "Controle físico local: APAC",
+    "type": "Entrada e saída",
     "duration": "22 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-06.png?v=ati-realista-1",
-        "title": "Controle realista de entrada e saida",
-        "caption": "Registro fisico local com leitura de etiqueta, controle de carrinhos e area segura de armazenagem."
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-06.png?v=ati-realista-2",
+        "title": "Controle realista de entrada e saída",
+        "caption": "Registro físico local com leitura de etiqueta, controle de carrinhos e área segura de armazenagem."
       }
     ],
-    "content": "Controle fisico local: APAC\n\nObjetivo da trilha\nCompreender a importancia do controle fisico local de todas as movimentacoes na ATI.\n\nTodas as bagagens que entram ou saem da ATI devem ser informadas ao APAC. Isso garante que o controle local reflita a realidade fisica da area.\n\nO controle precisa manter correspondencia entre tres pontos:\n- Bagagem fisica presente na ATI.\n- Identificacao registrada.\n- Movimentacao de entrada ou saida.\n\nSe uma bagagem entra sem registro, sai sem comunicacao ou tem numero alterado sem atualizacao, a rastreabilidade fica comprometida.\n\nConduta esperada\nAo receber, liberar, transferir, retirar ou redirecionar uma bagagem da ATI, informar o APAC conforme procedimento local.\n\nMensagem principal\nO controle fisico e tao importante quanto o controle no sistema. Bagagem fisica e registro precisam bater."
+    "content": "Controle físico local: APAC\n\nObjetivo da trilha\nCompreender a importância do controle físico local de todas as movimentações na ATI.\n\nTodas as bagagens que entram ou saem da ATI devem ser informadas ao APAC. Isso garante que o controle local reflita a realidade física da área.\n\nO controle precisa manter correspondência entre três pontos:\n- Bagagem física presente na ATI.\n- Identificação registrada.\n- Movimentação de entrada ou saída.\n\nSe uma bagagem entra sem registro, sai sem comunicação ou tem número alterado sem atualização, a rastreabilidade fica comprometida.\n\nConduta esperada\nAo receber, liberar, transferir, retirar ou redirecionar uma bagagem da ATI, informar o APAC conforme procedimento local.\n\nMensagem principal\nO controle físico é tão importante quanto o controle no sistema. Bagagem física e registro precisam bater."
   },
   {
-    "title": "Troca de etiqueta e alteracao da numeracao",
-    "type": "Atualizacao de controle",
+    "title": "Troca de etiqueta e alteração da numeração",
+    "type": "Atualização de controle",
     "duration": "22 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-07.png?v=ati-realista-1",
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-07.png?v=ati-realista-2",
         "title": "Troca realista de etiqueta",
-        "caption": "Substituicao de etiqueta e atualizacao do controle para manter a nova numeracao vinculada ao volume correto."
+        "caption": "Substituição de etiqueta e atualização do controle para manter a nova numeração vinculada ao volume correto."
       }
     ],
-    "content": "Troca de etiqueta e alteracao da numeracao\n\nObjetivo da trilha\nGarantir que a nova numeracao da bagagem seja comunicada e registrada corretamente.\n\nDurante o tratamento na ATI, pode ser necessario substituir a etiqueta original. Se a bagagem passa a possuir nova numeracao, essa alteracao deve ser comunicada ao APAC.\n\nExemplo\nEtiqueta original: 1234567890.\nNova etiqueta: 9876543210.\n\nO controle fisico nao pode continuar considerando apenas a numeracao anterior. Caso contrario, a mala pode parecer ausente, duplicada ou incorreta no acompanhamento.\n\nConduta esperada\nConferir a mala fisica, remover ou inutilizar a referencia anterior quando aplicavel, aplicar a nova etiqueta e informar a nova numeracao ao controle local.\n\nMensagem principal\nTrocou a etiqueta, mudou a identidade operacional da bagagem. O APAC precisa saber."
+    "content": "Troca de etiqueta e alteração da numeração\n\nObjetivo da trilha\nGarantir que a nova numeração da bagagem seja comunicada e registrada corretamente.\n\nDurante o tratamento na ATI, pode ser necessário substituir a etiqueta original. Se a bagagem passa a possuir nova numeração, essa alteração deve ser comunicada ao APAC.\n\nExemplo\nEtiqueta original: 1234567890.\nNova etiqueta: 9876543210.\n\nO controle físico não pode continuar considerando apenas a numeração anterior. Caso contrário, a mala pode parecer ausente, duplicada ou incorreta no acompanhamento.\n\nConduta esperada\nConferir a mala física, remover ou inutilizar a referência anterior quando aplicável, aplicar a nova etiqueta e informar a nova numeração ao controle local.\n\nMensagem principal\nTrocou a etiqueta, mudou a identidade operacional da bagagem. O APAC precisa saber."
   },
   {
-    "title": "Conferencia da etiqueta e da rota completa",
+    "title": "Conferência da etiqueta e da rota completa",
     "type": "Leitura operacional",
     "duration": "26 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-08.png?v=ati-realista-1",
-        "title": "Conferencia realista de tag, rota e decisao",
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-08.png?v=ati-realista-2",
+        "title": "Conferência realista de tag, rota e decisão",
         "caption": "Equipe confere etiqueta, rota e dados operacionais antes do encaminhamento."
       }
     ],
-    "content": "Conferencia da etiqueta e da rota completa\n\nObjetivo da trilha\nLer a etiqueta como fonte principal de decisao operacional.\n\nA etiqueta de bagagem traz informacoes essenciais para decidir se a bagagem deve ir para ATI, Linha de Transferencia ou outro fluxo.\n\nO que conferir\n- Numero da bagagem.\n- Destino.\n- Rota completa.\n- Aeroportos de conexao.\n- Voo.\n- Companhia.\n- Horario da conexao.\n- Situacao operacional.\n\nNao e suficiente verificar somente o destino final. Uma bagagem com destino internacional pode ter trecho domestico intermediario e, por isso, nao atender aos criterios da ATI.\n\nConduta esperada\nLer a etiqueta, comparar com a reserva quando necessario, avaliar tempo e rota, e so depois definir o encaminhamento.\n\nMensagem principal\nEtiqueta bem lida evita bagagem no fluxo errado."
+    "content": "Conferência da etiqueta e da rota completa\n\nObjetivo da trilha\nLer a etiqueta como fonte principal de decisão operacional.\n\nA etiqueta de bagagem traz informações essenciais para decidir se a bagagem deve ir para ATI, Linha de Transferência ou outro fluxo.\n\nO que conferir\n- Número da bagagem.\n- Destino.\n- Rota completa.\n- Aeroportos de conexão.\n- Voo.\n- Companhia.\n- Horário da conexão.\n- Situação operacional.\n\nNão é suficiente verificar somente o destino final. Uma bagagem com destino internacional pode ter trecho doméstico intermediário e, por isso, não atender aos critérios da ATI.\n\nConduta esperada\nLer a etiqueta, comparar com a reserva quando necessário, avaliar tempo e rota, e só depois definir o encaminhamento.\n\nMensagem principal\nEtiqueta bem lida evita bagagem no fluxo errado."
   },
   {
-    "title": "Checklist de decisao e fechamento do fluxo",
-    "type": "Checklist pratico",
+    "title": "Checklist de decisão e fechamento do fluxo",
+    "type": "Checklist prático",
     "duration": "24 min",
     "screenshots": [
       {
-        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-09.png?v=ati-realista-1",
+        "src": "../assets/academy-screenshots/ati-bagagem-gru/ati-gru-trilha-09.png?v=ati-realista-2",
         "title": "Checklist realista antes do encaminhamento",
-        "caption": "Revisao final de etiqueta, rota, tempo, controle e destino antes de liberar a bagagem."
+        "caption": "Revisão final de etiqueta, rota, tempo, controle e destino antes de liberar a bagagem."
       }
     ],
-    "content": "Checklist de decisao e fechamento do fluxo\n\nObjetivo da trilha\nAplicar um roteiro rapido para decidir corretamente o encaminhamento da bagagem.\n\nAntes de aceitar uma bagagem na ATI, pergunte:\n1. A bagagem tem GRU como destino? Se sim, nao aceitar na ATI.\n2. O proximo destino e domestico? Se sim, nao aceitar na ATI.\n3. Existe trecho domestico intermediario antes do destino internacional? Se sim, nao aceitar na ATI.\n4. A rota esta adequada ao fluxo internacional da ATI? Se nao, nao aceitar.\n5. A bagagem possui identificacao valida? Se estiver sem etiqueta, exigir bingo com numeracao atual + reserva do passageiro.\n6. A conexao e superior a 4 horas? Se sim, ATI, desde que os demais criterios estejam atendidos.\n7. A conexao e inferior a 4 horas? Se sim, Linha de Transferencia, salvo excecao operacional.\n8. A bagagem perdeu conexao? Avaliar tratamento, reroute ou RUSH.\n9. A bagagem entrou ou saiu da ATI? Informar APAC.\n10. Houve troca de etiqueta? Informar a nova numeracao ao APAC.\n\nMensagem principal\nA ATI funciona com decisao, registro e rastreabilidade. Sem esses tres pontos, o fluxo fica inseguro."
+    "content": "Checklist de decisão e fechamento do fluxo\n\nObjetivo da trilha\nAplicar um roteiro rápido para decidir corretamente o encaminhamento da bagagem.\n\nAntes de aceitar uma bagagem na ATI, pergunte:\n1. A bagagem tem GRU como destino? Se sim, não aceitar na ATI.\n2. O próximo destino é doméstico? Se sim, não aceitar na ATI.\n3. Existe trecho doméstico intermediário antes do destino internacional? Se sim, não aceitar na ATI.\n4. A rota está adequada ao fluxo internacional da ATI? Se não, não aceitar.\n5. A bagagem possui identificação válida? Se estiver sem etiqueta, exigir bingo com numeração atual + reserva do passageiro.\n6. A conexão é superior a 4 horas? Se sim, ATI, desde que os demais critérios estejam atendidos.\n7. A conexão é inferior a 4 horas? Se sim, Linha de Transferência, salvo exceção operacional.\n8. A bagagem perdeu conexão? Avaliar tratamento, reroute ou RUSH.\n9. A bagagem entrou ou saiu da ATI? Informar APAC.\n10. Houve troca de etiqueta? Informar a nova numeração ao APAC.\n\nMensagem principal\nA ATI funciona com decisão, registro e rastreabilidade. Sem esses três pontos, o fluxo fica inseguro."
   }
 ]$modules_ati$::jsonb,
     $labs_ati$[]$labs_ati$::jsonb,
     $quiz_ati$[
   {
-    "question": "Qual e a principal finalidade da ATI em GRU?",
+    "question": "Qual é a principal finalidade da ATI em GRU?",
     "options": [
-      "Controlar, tratar e encaminhar bagagens internacionais em conexao",
+      "Controlar, tratar e encaminhar bagagens internacionais em conexão",
       "Guardar qualquer bagagem que chegou ao aeroporto",
-      "Substituir a Linha de Transferencia",
-      "Atender passageiro no balcao de check-in"
+      "Substituir a Linha de Transferência",
+      "Atender passageiro no balcão de check-in"
     ],
     "correct": 0
   },
   {
     "question": "Uma bagagem com destino GRU deve ser aceita na ATI?",
     "options": [
-      "Nao, porque GRU e o destino da bagagem",
-      "Sim, se houver espaco na area",
+      "Não, porque GRU é o destino da bagagem",
+      "Sim, se houver espaço na área",
       "Sim, sempre que for internacional",
       "Somente se estiver sem etiqueta"
     ],
     "correct": 0
   },
   {
-    "question": "No exemplo GRU -> FLN -> SCL, por que a bagagem nao deve ser aceita automaticamente na ATI?",
+    "question": "No exemplo GRU -> FLN -> SCL, por que a bagagem não deve ser aceita automaticamente na ATI?",
     "options": [
-      "Porque existe trecho domestico intermediario antes do destino internacional",
-      "Porque SCL nao e destino internacional",
-      "Porque FLN e sempre destino final",
+      "Porque existe trecho doméstico intermediário antes do destino internacional",
+      "Porque SCL não é destino internacional",
+      "Porque FLN é sempre destino final",
       "Porque toda bagagem para SCL deve ficar em GRU"
     ],
     "correct": 0
   },
   {
-    "question": "Pela regra operacional apresentada, conexao superior a 4 horas pode indicar:",
+    "question": "Pela regra operacional apresentada, conexão superior a 4 horas pode indicar:",
     "options": [
-      "ATI, desde que os demais criterios estejam corretos",
-      "Linha de Transferencia obrigatoria",
-      "Recusa automatica da bagagem",
+      "ATI, desde que os demais critérios estejam corretos",
+      "Linha de Transferência obrigatória",
+      "Recusa automática da bagagem",
       "DPR imediato"
     ],
     "correct": 0
   },
   {
-    "question": "Bagagem com conexao inferior a 4 horas normalmente deve seguir para:",
+    "question": "Bagagem com conexão inferior a 4 horas normalmente deve seguir para:",
     "options": [
-      "Linha de Transferencia",
+      "Linha de Transferência",
       "ATI obrigatoriamente",
-      "Area de achados e perdidos",
+      "Área de achados e perdidos",
       "Sala de desembarque"
     ],
     "correct": 0
   },
   {
-    "question": "Quando a bagagem perdeu a conexao, pode ser necessario:",
+    "question": "Quando a bagagem perdeu a conexão, pode ser necessário:",
     "options": [
       "Novo tratamento, reroute ou RUSH conforme procedimento",
       "Manter sempre a etiqueta antiga",
@@ -203,12 +203,12 @@ values (
     "correct": 0
   },
   {
-    "question": "Uma bagagem sem etiqueta so deve ser recebida se houver:",
+    "question": "Uma bagagem sem etiqueta só deve ser recebida se houver:",
     "options": [
-      "Bingo com numeracao atual da bagagem e reserva do passageiro",
-      "Apenas descricao verbal da mala",
+      "Bingo com numeração atual da bagagem e reserva do passageiro",
+      "Apenas descrição verbal da mala",
       "Apenas foto enviada por mensagem",
-      "Autorizacao informal de qualquer pessoa"
+      "Autorização informal de qualquer pessoa"
     ],
     "correct": 0
   },
@@ -223,19 +223,19 @@ values (
     "correct": 0
   },
   {
-    "question": "Se a etiqueta original for substituida e houver nova numeracao, a conduta correta e:",
+    "question": "Se a etiqueta original for substituída e houver nova numeração, a conduta correta é:",
     "options": [
-      "Informar a nova numeracao ao APAC",
-      "Manter apenas o numero antigo",
+      "Informar a nova numeração ao APAC",
+      "Manter apenas o número antigo",
       "Apagar o controle anterior sem registro",
-      "Enviar a bagagem sem atualizar ninguem"
+      "Enviar a bagagem sem atualizar ninguém"
     ],
     "correct": 0
   },
   {
-    "question": "Ao decidir ATI ou transferencia, o agente deve verificar:",
+    "question": "Ao decidir ATI ou transferência, o agente deve verificar:",
     "options": [
-      "Numero da bagagem, destino, rota, conexoes, voo, companhia, horario e situacao",
+      "Número da bagagem, destino, rota, conexões, voo, companhia, horário e situação",
       "Somente a cor da mala",
       "Somente o destino final",
       "Somente o peso"
@@ -243,17 +243,17 @@ values (
     "correct": 0
   },
   {
-    "question": "Qual afirmacao esta correta?",
+    "question": "Qual afirmação está correta?",
     "options": [
-      "Destino final internacional nao basta; a rota completa deve ser analisada",
+      "Destino final internacional não basta; a rota completa deve ser analisada",
       "Toda bagagem internacional entra na ATI",
       "Toda mala sem etiqueta pode entrar se estiver no carrinho",
-      "A Linha de Transferencia e igual a ATI"
+      "A Linha de Transferência é igual à ATI"
     ],
     "correct": 0
   },
   {
-    "question": "Os tres pilares operacionais da ATI neste curso sao:",
+    "question": "Os três pilares operacionais da ATI neste curso são:",
     "options": [
       "Controle, rastreabilidade e encaminhamento correto",
       "Rapidez, improviso e armazenamento",
@@ -263,25 +263,25 @@ values (
     "correct": 0
   }
 ]$quiz_ati$::jsonb,
-    '../assets/academy-screenshots/ati-bagagem-gru/ati-gru-cover.png?v=ati-realista-1',
-    $material_ati$ATI GRU - Area de Transito/Transferencia Internacional de Bagagens
+    '../assets/academy-screenshots/ati-bagagem-gru/ati-gru-cover.png?v=ati-realista-2',
+    $material_ati$ATI GRU - Área de Trânsito/Transferência Internacional de Bagagens
 
 Resumo
-Curso objetivo para orientar a analise e o tratamento de bagagens internacionais em conexao por GRU, com foco em criterios de entrada na ATI, regra das 4 horas, excecoes por perda de conexao, bagagem sem etiqueta, controle APAC, troca de etiqueta e checklist de decisao.
+Curso objetivo para orientar a análise e o tratamento de bagagens internacionais em conexão por GRU, com foco em critérios de entrada na ATI, regra das 4 horas, exceções por perda de conexão, bagagem sem etiqueta, controle APAC, troca de etiqueta e checklist de decisão.
 
 Pontos principais
-- ATI nao e Linha de Transferencia.
-- Nao aceitar bagagens com destino GRU ou destino domestico.
-- Nao decidir apenas pelo destino final; analisar a rota completa.
-- Conexao maior que 4 horas pode seguir para ATI se os demais criterios estiverem corretos.
-- Conexao menor que 4 horas normalmente segue para Linha de Transferencia.
-- Bagagem que perdeu conexao pode exigir reroute, RUSH e nova etiqueta.
-- Bagagem sem etiqueta exige bingo com numeracao atual + reserva do passageiro.
-- Toda entrada e saida da ATI deve ser informada ao APAC.
-- Troca de etiqueta com nova numeracao deve ser comunicada ao APAC.
+- ATI não é Linha de Transferência.
+- Não aceitar bagagens com destino GRU ou destino doméstico.
+- Não decidir apenas pelo destino final; analisar a rota completa.
+- Conexão maior que 4 horas pode seguir para ATI se os demais critérios estiverem corretos.
+- Conexão menor que 4 horas normalmente segue para Linha de Transferência.
+- Bagagem que perdeu conexão pode exigir reroute, RUSH e nova etiqueta.
+- Bagagem sem etiqueta exige bingo com numeração atual + reserva do passageiro.
+- Toda entrada e saída da ATI deve ser informada ao APAC.
+- Troca de etiqueta com nova numeração deve ser comunicada ao APAC.
 
 Aviso operacional
-Este curso e material didatico interno. A aplicacao pratica deve respeitar procedimento local, companhia aerea, contrato, supervisao e regras vigentes no aeroporto.$material_ati$,
+Este curso é material didático interno. A aplicação prática deve respeitar procedimento local, companhia aérea, contrato, supervisão e regras vigentes no aeroporto.$material_ati$,
     520
 )
 on conflict (id) do update set
