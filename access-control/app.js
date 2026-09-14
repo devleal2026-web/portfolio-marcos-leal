@@ -2,14 +2,22 @@ const STORAGE_KEY = "leal_access_control_v1";
 
 const seed = {
   projects: [
+    { id: "portfolio", slug: "portfolio", name: "Portfólio DevLeal2026", type: "Site", url: "https://devleal2026.lealacademy.com.br/", status: "Ativo" },
     { id: "leal-academy", slug: "leal-academy", name: "Leal Academy", type: "Plataforma", url: "https://www.lealacademy.com.br/", status: "Ativo" },
     { id: "aero-access", slug: "aero-access", name: "Aero Access", type: "Aplicativo", url: "https://aeroaccess.lealacademy.com.br/", status: "Ativo" },
-    { id: "simulador-aviacao", slug: "simulador-aviacao", name: "Simulador Operacional Aviação", type: "Simulador", url: "https://www.lealacademy.com.br/", status: "Em revisão" },
-    { id: "neuroloop", slug: "neuroloop", name: "NeuroLoop", type: "Jogo", url: "https://www.lealacademy.com.br/jogos/neuroloop/", status: "Ativo" },
-    { id: "mibis", slug: "mibis", name: "MIBIS", type: "Jogo", url: "https://www.lealacademy.com.br/jogos/mibis/", status: "Ativo" },
-    { id: "access-control", slug: "access-control", name: "Painel de Controle", type: "Painel", url: "https://www.lealacademy.com.br/controle", status: "Ativo" }
-  ],
-  users: [
+    { id: "access-control", slug: "access-control", name: "Painel de Controle", type: "Painel", url: "https://www.lealacademy.com.br/controle", status: "Ativo" },
+    { id: "sistema-achados-perdidos", slug: "sistema-achados-perdidos", name: "Sistema de Achados e Perdidos", type: "Aplicativo", url: "https://devleal2026.lealacademy.com.br/projetos/sistema-achados-perdidos/", status: "Ativo" },
+    { id: "quadroo", slug: "quadroo", name: "Quadroo", type: "Aplicativo", url: "https://devleal2026.lealacademy.com.br/projetos/quadroo/", status: "Ativo" },
+    { id: "neuroloop", slug: "neuroloop", name: "NeuroLoop", type: "Jogo", url: "https://devleal2026.lealacademy.com.br/projetos/neuroloop/", status: "Ativo" },
+    { id: "adivinhe-o-animal", slug: "adivinhe-o-animal", name: "Adivinhe o Animal", type: "Jogo", url: "https://devleal2026.lealacademy.com.br/projetos/adivinhe-o-animal/", status: "Ativo" },
+    { id: "insect-hunter", slug: "insect-hunter", name: "Insect Hunter", type: "Jogo", url: "https://devleal2026.lealacademy.com.br/projetos/insect-hunter/", status: "Ativo" },
+    { id: "construindo-palavras", slug: "construindo-palavras", name: "Construindo Palavras", type: "Jogo educativo", url: "https://devleal2026.lealacademy.com.br/projetos/construindo-palavras/", status: "Ativo" },
+    { id: "avisou", slug: "avisou", name: "AvisoU", type: "Aplicativo", url: "https://devleal2026.lealacademy.com.br/projetos/avisou/", status: "Ativo" },
+    { id: "mibis", slug: "mibis", name: "Mibis", type: "Jogo", url: "https://devleal2026.lealacademy.com.br/projetos/mibis/", status: "Ativo" },
+    { id: "laura-lara-aventura", slug: "laura-lara-aventura", name: "Laura & Lara - A Grande Missão Sapeca", type: "Jogo educativo", url: "https://devleal2026.lealacademy.com.br/projetos/laura-lara-aventura/", status: "Ativo" },
+    { id: "alf", slug: "alf", name: "ALF - Bagagens Extraviadas", type: "Vídeo operacional", url: "https://devleal2026.lealacademy.com.br/videos/alf/", status: "Ativo" },
+    { id: "airport-baggage-simulator", slug: "airport-baggage-simulator", name: "Airport Baggage Simulator", type: "Simulador", url: "https://devleal2026.lealacademy.com.br/videos/airport-baggage-simulator/", status: "Ativo" }
+  ],  users: [
     { id: "u-admin", name: "Administrador geral", email: "devleal2026@gmail.com", role: "Admin global", status: "Ativo" },
     { id: "u-suporte", name: "Suporte operacional", email: "suporte@lealacademy.com.br", role: "Admin do projeto", status: "Pendente" }
   ],
@@ -27,10 +35,35 @@ let state = loadState();
 let remoteReady = false;
 let remoteMessage = "Modo local ativo. Execute o SQL do painel para ativar logs reais no Supabase.";
 
+function mergeSeed(stored) {
+  const merged = stored && typeof stored === "object" ? stored : structuredClone(seed);
+  merged.projects = Array.isArray(merged.projects) ? merged.projects : [];
+  merged.users = Array.isArray(merged.users) ? merged.users : [];
+  merged.permissions = Array.isArray(merged.permissions) ? merged.permissions : [];
+  merged.logs = Array.isArray(merged.logs) ? merged.logs : [];
+
+  seed.projects.forEach((project) => {
+    if (!merged.projects.some((item) => item.id === project.id || item.slug === project.slug)) {
+      merged.projects.push(project);
+    }
+  });
+  seed.users.forEach((user) => {
+    if (!merged.users.some((item) => item.id === user.id || item.email === user.email)) {
+      merged.users.push(user);
+    }
+  });
+  seed.permissions.forEach((permission) => {
+    if (!merged.permissions.some((item) => item.userId === permission.userId && item.projectId === permission.projectId)) {
+      merged.permissions.push(permission);
+    }
+  });
+  return merged;
+}
+
 function loadState() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : structuredClone(seed);
+    return stored ? mergeSeed(JSON.parse(stored)) : structuredClone(seed);
   } catch (error) {
     return structuredClone(seed);
   }
@@ -140,11 +173,18 @@ async function syncFromSupabase() {
       logs: logsRes.data
     });
 
-    state = {
+    const mergedRemote = mergeSeed({
       projects: remoteState.projects.length ? remoteState.projects : state.projects,
       users: remoteState.users.length ? remoteState.users : state.users,
       permissions: remoteState.permissions.length ? remoteState.permissions : state.permissions,
       logs: remoteState.logs.length ? remoteState.logs : state.logs
+    });
+
+    state = {
+      projects: mergedRemote.projects,
+      users: mergedRemote.users,
+      permissions: mergedRemote.permissions,
+      logs: mergedRemote.logs
     };
 
     setRemoteStatus(true, "Logs reais ativos. Acessos e downloads registrados pelo Supabase quando o SQL estiver executado.");
@@ -346,3 +386,6 @@ document.querySelector("#exportData").addEventListener("click", () => {
   await syncFromSupabase();
   renderAll();
 })();
+
+
+

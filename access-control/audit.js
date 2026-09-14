@@ -4,10 +4,10 @@
 
   function detectProject() {
     const path = location.pathname.toLowerCase();
-    if (path.includes("/academy")) return "leal-academy";
+    const projectMatch = path.match(/\/(projetos|videos|jogos)\/([^/?#]+)/);
+    if (projectMatch && projectMatch[2]) return projectMatch[2];
+    if (path.includes("/academy") || path.includes("/leal-academy") || path.includes("/lealacademy")) return "leal-academy";
     if (path.includes("/aero-access")) return "aero-access";
-    if (path.includes("/jogos/neuroloop")) return "neuroloop";
-    if (path.includes("/jogos/mibis")) return "mibis";
     if (path.includes("/access-control") || path.includes("/controle")) return "access-control";
     return "site-principal";
   }
@@ -86,3 +86,4 @@
     }, true);
   }
 })();
+

@@ -60,12 +60,21 @@ alter table public.control_access_logs add column if not exists path text;
 alter table public.control_access_logs add column if not exists metadata jsonb not null default '{}'::jsonb;
 
 insert into public.control_projects (slug, name, type, url, status) values
+('portfolio', 'Portfólio DevLeal2026', 'Site', 'https://devleal2026.lealacademy.com.br/', 'Ativo'),
 ('leal-academy', 'Leal Academy', 'Plataforma', 'https://www.lealacademy.com.br/', 'Ativo'),
 ('aero-access', 'Aero Access', 'Aplicativo', 'https://aeroaccess.lealacademy.com.br/', 'Ativo'),
-('simulador-aviacao', 'Simulador Operacional Aviação', 'Simulador', 'https://www.lealacademy.com.br/', 'Em revisão'),
-('neuroloop', 'NeuroLoop', 'Jogo', 'https://www.lealacademy.com.br/jogos/neuroloop/', 'Ativo'),
-('mibis', 'MIBIS', 'Jogo', 'https://www.lealacademy.com.br/jogos/mibis/', 'Ativo'),
-('access-control', 'Painel de Controle', 'Painel', 'https://www.lealacademy.com.br/controle', 'Ativo')
+('access-control', 'Painel de Controle', 'Painel', 'https://www.lealacademy.com.br/controle', 'Ativo'),
+('sistema-achados-perdidos', 'Sistema de Achados e Perdidos', 'Aplicativo', 'https://devleal2026.lealacademy.com.br/projetos/sistema-achados-perdidos/', 'Ativo'),
+('quadroo', 'Quadroo', 'Aplicativo', 'https://devleal2026.lealacademy.com.br/projetos/quadroo/', 'Ativo'),
+('neuroloop', 'NeuroLoop', 'Jogo', 'https://devleal2026.lealacademy.com.br/projetos/neuroloop/', 'Ativo'),
+('adivinhe-o-animal', 'Adivinhe o Animal', 'Jogo', 'https://devleal2026.lealacademy.com.br/projetos/adivinhe-o-animal/', 'Ativo'),
+('insect-hunter', 'Insect Hunter', 'Jogo', 'https://devleal2026.lealacademy.com.br/projetos/insect-hunter/', 'Ativo'),
+('construindo-palavras', 'Construindo Palavras', 'Jogo educativo', 'https://devleal2026.lealacademy.com.br/projetos/construindo-palavras/', 'Ativo'),
+('avisou', 'AvisoU', 'Aplicativo', 'https://devleal2026.lealacademy.com.br/projetos/avisou/', 'Ativo'),
+('mibis', 'Mibis', 'Jogo', 'https://devleal2026.lealacademy.com.br/projetos/mibis/', 'Ativo'),
+('laura-lara-aventura', 'Laura & Lara - A Grande Missão Sapeca', 'Jogo educativo', 'https://devleal2026.lealacademy.com.br/projetos/laura-lara-aventura/', 'Ativo'),
+('alf', 'ALF - Bagagens Extraviadas', 'Vídeo operacional', 'https://devleal2026.lealacademy.com.br/videos/alf/', 'Ativo'),
+('airport-baggage-simulator', 'Airport Baggage Simulator', 'Simulador', 'https://devleal2026.lealacademy.com.br/videos/airport-baggage-simulator/', 'Ativo')
 on conflict (slug) do update set
     name = excluded.name,
     type = excluded.type,
@@ -181,4 +190,5 @@ grant select on public.control_access_logs to authenticated;
 
 -- Observacao: eventos anonimos podem ser gravados somente pela funcao control_log_event.
 -- Leitura dos logs fica restrita a usuarios autenticados no Supabase.
+
 
