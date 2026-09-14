@@ -215,6 +215,54 @@ function projectName(id, slug) {
   return project ? project.name : (slug || "Projeto não identificado");
 }
 
+function getProjectAccessStats() {
+  const stats = new Map();
+  state.projects.forEach((project) => {
+    stats.set(project.id, {
+      project,
+      total: 0,
+      users: new Set(),
+      lastDate: null
+    });
+  });
+
+  state.logs.forEach((log) => {
+    const project = byId(state.projects, log.projectId) || byId(state.projects, log.projectSlug);
+    const key = project ? project.id : (log.projectSlug || log.projectId || "site-principal");
+    if (!stats.has(key)) {
+      stats.set(key, {
+        project: { id: key, slug: key, name: projectName(log.projectId, log.projectSlug), type: "Projeto", status: "Ativo" },
+        total: 0,
+        users: new Set(),
+        lastDate: null
+      });
+    }
+    const item = stats.get(key);
+    item.total += 1;
+    item.users.add(log.userEmail || byId(state.users, log.userId)?.email || "visitante sem login");
+    const date = new Date(log.date);
+    if (!item.lastDate || date > item.lastDate) item.lastDate = date;
+  });
+
+  return Array.from(stats.values()).sort((a, b) => b.total - a.total || a.project.name.localeCompare(b.project.name, "pt-BR"));
+}
+
+function renderProjectAccessSummary() {
+  const target = document.querySelector("#projectAccessSummary");
+  if (!target) return;
+  target.innerHTML = getProjectAccessStats().map((item) => {
+    const users = Array.from(item.users).slice(0, 4);
+    const usersLabel = users.length ? users.join(", ") : "Sem acessos registrados";
+    const more = item.users.size > 4 ? ` +${item.users.size - 4}` : "";
+    return `
+      <tr>
+        <td><strong>${escapeHtml(item.project.name)}</strong><br><small class="muted">${escapeHtml(item.project.slug || item.project.id)}</small></td>
+        <td><strong>${item.total}</strong></td>
+        <td>${escapeHtml(usersLabel)}${escapeHtml(more)}</td>
+        <td>${item.lastDate ? item.lastDate.toLocaleString("pt-BR") : "Ainda sem registro"}</td>
+      </tr>`;
+  }).join("");
+}
 function renderMetrics() {
   const activeProjects = state.projects.filter((p) => p.status === "Ativo").length;
   const activeUsers = state.users.filter((u) => u.status === "Ativo").length;
@@ -298,6 +346,7 @@ function renderAll() {
   renderUsers();
   renderPermissions();
   renderLogs();
+  renderProjectAccessSummary();
   saveState();
 }
 
@@ -386,6 +435,7 @@ document.querySelector("#exportData").addEventListener("click", () => {
   await syncFromSupabase();
   renderAll();
 })();
+
 
 
 
