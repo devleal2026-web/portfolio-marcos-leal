@@ -1,1 +1,348 @@
-const STORAGE_KEY="leal_access_control_v1";const seed={projects:[{id:"leal-academy",name:"Leal Academy",type:"Plataforma",url:"https://www.lealacademy.com.br/",status:"Ativo"},{id:"aero-access",name:"Aero Access",type:"Aplicativo",url:"https://aeroaccess.lealacademy.com.br/",status:"Ativo"},{id:"simulador-aviacao",name:"Simulador Operacional Aviação",type:"Simulador",url:"https://www.lealacademy.com.br/",status:"Em revisão"},{id:"jogos",name:"Jogos e desafios",type:"Jogo",url:"https://www.lealacademy.com.br/jogos/",status:"Ativo"},{id:"portfolio",name:"Portfólio Marcos Leal",type:"Site",url:"https://devleal2026.lealacademy.com.br/",status:"Somente leitura"}],users:[{id:"u-admin",name:"Administrador geral",email:"devleal2026@gmail.com",role:"Admin global",status:"Ativo"},{id:"u-suporte",name:"Suporte operacional",email:"suporte@lealacademy.com.br",role:"Admin do projeto",status:"Pendente"}],permissions:[{userId:"u-admin",projectId:"leal-academy",access:"Administrar"},{userId:"u-admin",projectId:"aero-access",access:"Administrar"},{userId:"u-suporte",projectId:"aero-access",access:"Visualizar"}],logs:[{date:new Date().toISOString(),userId:"u-admin",projectId:"leal-academy",event:"Acesso ao painel",result:"Permitido"},{date:new Date(Date.now()-86400000).toISOString(),userId:"u-suporte",projectId:"aero-access",event:"Consulta de projeto",result:"Permitido"},{date:new Date(Date.now()-172800000).toISOString(),userId:"u-suporte",projectId:"portfolio",event:"Tentativa sem permissão",result:"Negado"}]};let state=loadState();function loadState(){try{const stored=localStorage.getItem(STORAGE_KEY);return stored?JSON.parse(stored):structuredClone(seed)}catch{return structuredClone(seed)}}function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}function uid(prefix){return`${prefix}-${Date.now()}-${Math.random().toString(16).slice(2,8)}`}function byId(list,id){return list.find(item=>item.id===id)}function statusBadge(status){const n=String(status||"").toLowerCase();let cls="";if(n.includes("ativo")||n.includes("permitido"))cls="ok";if(n.includes("revisão")||n.includes("pendente")||n.includes("somente"))cls="warn";if(n.includes("bloqueado")||n.includes("negado"))cls="blocked";return`<span class="badge ${cls}">${status}</span>`}function renderMetrics(){const activeProjects=state.projects.filter(p=>p.status==="Ativo").length;const activeUsers=state.users.filter(u=>u.status==="Ativo").length;const deniedLogs=state.logs.filter(log=>log.result==="Negado").length;document.querySelector("#metrics").innerHTML=[["Projetos",state.projects.length],["Projetos ativos",activeProjects],["Usuários ativos",activeUsers],["Acessos negados",deniedLogs]].map(([label,value])=>`<article class="metric"><span>${label}</span><strong>${value}</strong></article>`).join("")}function renderDashboard(){document.querySelector("#dashboardProjects").innerHTML=state.projects.map(project=>`<tr><td><strong>${project.name}</strong></td><td>${project.type}</td><td>${statusBadge(project.status)}</td><td>${project.url?`<a href="${project.url}" target="_blank" rel="noreferrer">Abrir</a>`:`<span class="muted">Sem URL</span>`}</td></tr>`).join("");document.querySelector("#dashboardLogs").innerHTML=state.logs.slice(0,6).map(log=>{const user=byId(state.users,log.userId);const project=byId(state.projects,log.projectId);return`<article class="log-item"><strong>${log.event}</strong><small>${user?.email||"Usuário removido"} · ${project?.name||"Projeto removido"}</small><br><small>${new Date(log.date).toLocaleString("pt-BR")} · ${statusBadge(log.result)}</small></article>`}).join("")}function renderProjects(){document.querySelector("#projectCards").innerHTML=state.projects.map(project=>`<article class="project-card"><header><div><strong>${project.name}</strong><p class="muted">${project.type}</p></div>${statusBadge(project.status)}</header><p>${project.url?`<a href="${project.url}" target="_blank" rel="noreferrer">${project.url}</a>`:"Sem URL cadastrada."}</p><div class="row-actions"><button type="button" data-remove-project="${project.id}">Remover</button></div></article>`).join("")}function renderUsers(){document.querySelector("#userRows").innerHTML=state.users.map(user=>`<tr><td><strong>${user.name}</strong></td><td>${user.email}</td><td>${user.role}</td><td>${statusBadge(user.status)}</td><td><div class="row-actions"><button type="button" data-toggle-user="${user.id}">${user.status==="Bloqueado"?"Ativar":"Bloquear"}</button><button type="button" data-remove-user="${user.id}">Remover</button></div></td></tr>`).join("")}function renderPermissionSelects(){document.querySelector("#permissionUser").innerHTML=state.users.map(user=>`<option value="${user.id}">${user.name} · ${user.email}</option>`).join("");document.querySelector("#permissionProject").innerHTML=state.projects.map(project=>`<option value="${project.id}">${project.name}</option>`).join("")}function renderPermissions(){renderPermissionSelects();document.querySelector("#permissionsGrid").innerHTML=state.permissions.map(permission=>{const user=byId(state.users,permission.userId);const project=byId(state.projects,permission.projectId);return`<article class="permission-card"><header><strong>${project?.name||"Projeto removido"}</strong>${statusBadge(permission.access)}</header><p>${user?.name||"Usuário removido"}</p><p class="muted">${user?.email||""}</p><div class="row-actions"><button type="button" data-remove-permission="${permission.userId}|${permission.projectId}">Remover</button></div></article>`}).join("")}function renderLogs(){document.querySelector("#logRows").innerHTML=state.logs.map(log=>{const user=byId(state.users,log.userId);const project=byId(state.projects,log.projectId);return`<tr><td>${new Date(log.date).toLocaleString("pt-BR")}</td><td>${user?.email||"Usuário removido"}</td><td>${project?.name||"Projeto removido"}</td><td>${log.event}</td><td>${statusBadge(log.result)}</td></tr>`}).join("")}function renderAll(){renderMetrics();renderDashboard();renderProjects();renderUsers();renderPermissions();renderLogs();saveState()}document.querySelectorAll(".nav-item").forEach(button=>{button.addEventListener("click",()=>{document.querySelectorAll(".nav-item").forEach(item=>item.classList.remove("active"));document.querySelectorAll(".view").forEach(view=>view.classList.remove("active"));button.classList.add("active");document.querySelector(`#${button.dataset.view}`).classList.add("active")})});document.querySelector("#projectForm").addEventListener("submit",event=>{event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget));state.projects.unshift({id:uid("p"),...data});state.logs.unshift({date:new Date().toISOString(),userId:"u-admin",projectId:state.projects[0].id,event:"Projeto cadastrado",result:"Permitido"});event.currentTarget.reset();renderAll()});document.querySelector("#userForm").addEventListener("submit",event=>{event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget));state.users.unshift({id:uid("u"),...data});event.currentTarget.reset();renderAll()});document.querySelector("#permissionForm").addEventListener("submit",event=>{event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget));const existing=state.permissions.find(item=>item.userId===data.userId&&item.projectId===data.projectId);if(existing)existing.access=data.access;else state.permissions.unshift(data);state.logs.unshift({date:new Date().toISOString(),userId:data.userId,projectId:data.projectId,event:"Permissão atualizada",result:data.access==="Bloqueado"?"Negado":"Permitido"});renderAll()});document.body.addEventListener("click",event=>{const projectId=event.target.dataset.removeProject;const userId=event.target.dataset.removeUser;const toggleUser=event.target.dataset.toggleUser;const permissionKey=event.target.dataset.removePermission;if(projectId){state.projects=state.projects.filter(project=>project.id!==projectId);state.permissions=state.permissions.filter(permission=>permission.projectId!==projectId)}if(userId){state.users=state.users.filter(user=>user.id!==userId);state.permissions=state.permissions.filter(permission=>permission.userId!==userId)}if(toggleUser){const user=byId(state.users,toggleUser);if(user)user.status=user.status==="Bloqueado"?"Ativo":"Bloqueado"}if(permissionKey){const[u,p]=permissionKey.split("|");state.permissions=state.permissions.filter(permission=>!(permission.userId===u&&permission.projectId===p))}if(projectId||userId||toggleUser||permissionKey)renderAll()});document.querySelector("#addLog").addEventListener("click",()=>{const user=state.users[0];const project=state.projects[0];if(!user||!project)return;state.logs.unshift({date:new Date().toISOString(),userId:user.id,projectId:project.id,event:"Acesso manual registrado",result:"Permitido"});renderAll()});document.querySelector("#exportData").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download=`controle-acessos-${new Date().toISOString().slice(0,10)}.json`;link.click();URL.revokeObjectURL(link.href)});renderAll();
+const STORAGE_KEY = "leal_access_control_v1";
+
+const seed = {
+  projects: [
+    { id: "leal-academy", slug: "leal-academy", name: "Leal Academy", type: "Plataforma", url: "https://www.lealacademy.com.br/", status: "Ativo" },
+    { id: "aero-access", slug: "aero-access", name: "Aero Access", type: "Aplicativo", url: "https://aeroaccess.lealacademy.com.br/", status: "Ativo" },
+    { id: "simulador-aviacao", slug: "simulador-aviacao", name: "Simulador Operacional Aviação", type: "Simulador", url: "https://www.lealacademy.com.br/", status: "Em revisão" },
+    { id: "neuroloop", slug: "neuroloop", name: "NeuroLoop", type: "Jogo", url: "https://www.lealacademy.com.br/jogos/neuroloop/", status: "Ativo" },
+    { id: "mibis", slug: "mibis", name: "MIBIS", type: "Jogo", url: "https://www.lealacademy.com.br/jogos/mibis/", status: "Ativo" },
+    { id: "access-control", slug: "access-control", name: "Painel de Controle", type: "Painel", url: "https://www.lealacademy.com.br/controle", status: "Ativo" }
+  ],
+  users: [
+    { id: "u-admin", name: "Administrador geral", email: "devleal2026@gmail.com", role: "Admin global", status: "Ativo" },
+    { id: "u-suporte", name: "Suporte operacional", email: "suporte@lealacademy.com.br", role: "Admin do projeto", status: "Pendente" }
+  ],
+  permissions: [
+    { userId: "u-admin", projectId: "leal-academy", access: "Administrar" },
+    { userId: "u-admin", projectId: "aero-access", access: "Administrar" },
+    { userId: "u-admin", projectId: "access-control", access: "Administrar" }
+  ],
+  logs: [
+    { date: new Date().toISOString(), userId: "u-admin", userEmail: "devleal2026@gmail.com", projectId: "access-control", event: "Painel carregado", result: "Permitido" }
+  ]
+};
+
+let state = loadState();
+let remoteReady = false;
+let remoteMessage = "Modo local ativo. Execute o SQL do painel para ativar logs reais no Supabase.";
+
+function loadState() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : structuredClone(seed);
+  } catch (error) {
+    return structuredClone(seed);
+  }
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function uid(prefix) {
+  return `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+}
+
+function byId(list, id) {
+  return list.find((item) => item.id === id || item.slug === id);
+}
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>'"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+}
+
+function statusBadge(status) {
+  const label = escapeHtml(status || "");
+  const n = label.toLowerCase();
+  let cls = "";
+  if (n.includes("ativo") || n.includes("permitido")) cls = "ok";
+  if (n.includes("revis") || n.includes("pendente") || n.includes("somente")) cls = "warn";
+  if (n.includes("bloqueado") || n.includes("negado")) cls = "blocked";
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function getControlClient() {
+  const config = window.LEAL_ACCESS_CONTROL_SUPABASE || {};
+  if (window.__lealAccessControlClient) return window.__lealAccessControlClient;
+  if (!window.supabase || typeof window.supabase.createClient !== "function") return null;
+  if (!config.url || !config.key) return null;
+  window.__lealAccessControlClient = window.supabase.createClient(config.url, config.key);
+  return window.__lealAccessControlClient;
+}
+
+function setRemoteStatus(ok, message) {
+  remoteReady = ok;
+  remoteMessage = message;
+  const card = document.querySelector(".status-card");
+  if (!card) return;
+  card.querySelector("strong").textContent = ok ? "Supabase conectado" : "Modo local seguro";
+  card.querySelector("small").textContent = message;
+  card.classList.toggle("online", ok);
+}
+
+function normalizeRemote(data) {
+  const projects = (data.projects || []).map((p) => ({
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    type: p.type,
+    url: p.url || "",
+    status: p.status || "Ativo"
+  }));
+  const users = (data.users || []).map((u) => ({
+    id: u.id,
+    name: u.name,
+    email: u.email,
+    role: u.role || "Visitante",
+    status: u.status || "Ativo"
+  }));
+  const permissions = (data.permissions || []).map((p) => ({
+    userId: p.profile_id,
+    projectId: p.project_id,
+    access: p.access_level || "Visualizar"
+  }));
+  const logs = (data.logs || []).map((log) => ({
+    date: log.created_at,
+    userId: log.profile_id || "remote-user",
+    userEmail: log.user_email || "visitante sem login",
+    projectId: log.project_id || log.project_slug || "site-principal",
+    projectSlug: log.project_slug,
+    event: log.event,
+    result: log.result,
+    path: log.path || ""
+  }));
+  return { projects, users, permissions, logs };
+}
+
+async function syncFromSupabase() {
+  const client = getControlClient();
+  if (!client) {
+    setRemoteStatus(false, "Supabase indisponível nesta página. O painel continua funcionando em modo local.");
+    return;
+  }
+
+  try {
+    const [projectsRes, usersRes, permissionsRes, logsRes] = await Promise.all([
+      client.from("control_projects").select("id,slug,name,type,url,status").order("name", { ascending: true }),
+      client.from("control_profiles").select("id,name,email,role,status").order("name", { ascending: true }),
+      client.from("control_project_access").select("profile_id,project_id,access_level"),
+      client.from("control_access_logs").select("id,profile_id,project_id,project_slug,user_email,event,result,path,created_at").order("created_at", { ascending: false }).limit(100)
+    ]);
+
+    const error = projectsRes.error || usersRes.error || permissionsRes.error || logsRes.error;
+    if (error) throw error;
+
+    const remoteState = normalizeRemote({
+      projects: projectsRes.data,
+      users: usersRes.data,
+      permissions: permissionsRes.data,
+      logs: logsRes.data
+    });
+
+    state = {
+      projects: remoteState.projects.length ? remoteState.projects : state.projects,
+      users: remoteState.users.length ? remoteState.users : state.users,
+      permissions: remoteState.permissions.length ? remoteState.permissions : state.permissions,
+      logs: remoteState.logs.length ? remoteState.logs : state.logs
+    };
+
+    setRemoteStatus(true, "Logs reais ativos. Acessos e downloads registrados pelo Supabase quando o SQL estiver executado.");
+  } catch (error) {
+    setRemoteStatus(false, `Execute/atualize o SQL do painel no Supabase para ativar os logs reais. Detalhe: ${error.message}`);
+  }
+}
+
+async function recordAudit(event, result, metadata = {}) {
+  const user = state.users[0] || seed.users[0];
+  const project = state.projects[0] || seed.projects[0];
+  state.logs.unshift({
+    date: new Date().toISOString(),
+    userId: user.id,
+    userEmail: user.email,
+    projectId: project.id,
+    event,
+    result
+  });
+
+  if (window.LealAccessAudit && typeof window.LealAccessAudit.log === "function") {
+    await window.LealAccessAudit.log(event, result, metadata);
+  }
+}
+
+function projectName(id, slug) {
+  const project = byId(state.projects, id) || byId(state.projects, slug);
+  return project ? project.name : (slug || "Projeto não identificado");
+}
+
+function renderMetrics() {
+  const activeProjects = state.projects.filter((p) => p.status === "Ativo").length;
+  const activeUsers = state.users.filter((u) => u.status === "Ativo").length;
+  const deniedLogs = state.logs.filter((log) => log.result === "Negado").length;
+  document.querySelector("#metrics").innerHTML = [
+    ["Projetos", state.projects.length],
+    ["Projetos ativos", activeProjects],
+    ["Usuários ativos", activeUsers],
+    ["Acessos negados", deniedLogs]
+  ].map(([label, value]) => `<article class="metric"><span>${label}</span><strong>${value}</strong></article>`).join("");
+}
+
+function renderDashboard() {
+  document.querySelector("#dashboardProjects").innerHTML = state.projects.map((project) => `
+    <tr>
+      <td><strong>${escapeHtml(project.name)}</strong></td>
+      <td>${escapeHtml(project.type)}</td>
+      <td>${statusBadge(project.status)}</td>
+      <td>${project.url ? `<a href="${escapeHtml(project.url)}" target="_blank" rel="noreferrer">Abrir</a>` : `<span class="muted">Sem URL</span>`}</td>
+    </tr>`).join("");
+
+  document.querySelector("#dashboardLogs").innerHTML = state.logs.slice(0, 8).map((log) => `
+    <article class="log-item">
+      <strong>${escapeHtml(log.event)}</strong>
+      <small>${escapeHtml(log.userEmail || byId(state.users, log.userId)?.email || "visitante")} · ${escapeHtml(projectName(log.projectId, log.projectSlug))}</small><br>
+      <small>${new Date(log.date).toLocaleString("pt-BR")} · ${statusBadge(log.result)}</small>
+    </article>`).join("");
+}
+
+function renderProjects() {
+  document.querySelector("#projectCards").innerHTML = state.projects.map((project) => `
+    <article class="project-card">
+      <header><div><strong>${escapeHtml(project.name)}</strong><p class="muted">${escapeHtml(project.type)}</p></div>${statusBadge(project.status)}</header>
+      <p>${project.url ? `<a href="${escapeHtml(project.url)}" target="_blank" rel="noreferrer">${escapeHtml(project.url)}</a>` : "Sem URL cadastrada."}</p>
+      <div class="row-actions"><button type="button" data-remove-project="${escapeHtml(project.id)}">Remover</button></div>
+    </article>`).join("");
+}
+
+function renderUsers() {
+  document.querySelector("#userRows").innerHTML = state.users.map((user) => `
+    <tr>
+      <td><strong>${escapeHtml(user.name)}</strong></td><td>${escapeHtml(user.email)}</td><td>${escapeHtml(user.role)}</td><td>${statusBadge(user.status)}</td>
+      <td><div class="row-actions"><button type="button" data-toggle-user="${escapeHtml(user.id)}">${user.status === "Bloqueado" ? "Ativar" : "Bloquear"}</button><button type="button" data-remove-user="${escapeHtml(user.id)}">Remover</button></div></td>
+    </tr>`).join("");
+}
+
+function renderPermissionSelects() {
+  document.querySelector("#permissionUser").innerHTML = state.users.map((user) => `<option value="${escapeHtml(user.id)}">${escapeHtml(user.name)} · ${escapeHtml(user.email)}</option>`).join("");
+  document.querySelector("#permissionProject").innerHTML = state.projects.map((project) => `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`).join("");
+}
+
+function renderPermissions() {
+  renderPermissionSelects();
+  document.querySelector("#permissionsGrid").innerHTML = state.permissions.map((permission) => {
+    const user = byId(state.users, permission.userId);
+    return `
+      <article class="permission-card">
+        <header><strong>${escapeHtml(projectName(permission.projectId))}</strong>${statusBadge(permission.access)}</header>
+        <p>${escapeHtml(user?.name || "Usuário removido")}</p>
+        <p class="muted">${escapeHtml(user?.email || "")}</p>
+        <div class="row-actions"><button type="button" data-remove-permission="${escapeHtml(permission.userId)}|${escapeHtml(permission.projectId)}">Remover</button></div>
+      </article>`;
+  }).join("");
+}
+
+function renderLogs() {
+  document.querySelector("#logRows").innerHTML = state.logs.map((log) => `
+    <tr>
+      <td>${new Date(log.date).toLocaleString("pt-BR")}</td>
+      <td>${escapeHtml(log.userEmail || byId(state.users, log.userId)?.email || "visitante")}</td>
+      <td>${escapeHtml(projectName(log.projectId, log.projectSlug))}</td>
+      <td>${escapeHtml(log.event)}${log.path ? `<br><small class="muted">${escapeHtml(log.path)}</small>` : ""}</td>
+      <td>${statusBadge(log.result)}</td>
+    </tr>`).join("");
+}
+
+function renderAll() {
+  renderMetrics();
+  renderDashboard();
+  renderProjects();
+  renderUsers();
+  renderPermissions();
+  renderLogs();
+  saveState();
+}
+
+document.querySelectorAll(".nav-item").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".nav-item").forEach((item) => item.classList.remove("active"));
+    document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
+    button.classList.add("active");
+    document.querySelector(`#${button.dataset.view}`).classList.add("active");
+  });
+});
+
+document.querySelector("#projectForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const data = Object.fromEntries(new FormData(event.currentTarget));
+  state.projects.unshift({ id: uid("p"), slug: data.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""), ...data });
+  await recordAudit("Projeto cadastrado", "Permitido", { project: data.name });
+  event.currentTarget.reset();
+  renderAll();
+});
+
+document.querySelector("#userForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const data = Object.fromEntries(new FormData(event.currentTarget));
+  state.users.unshift({ id: uid("u"), ...data });
+  await recordAudit("Usuário cadastrado", "Permitido", { email: data.email });
+  event.currentTarget.reset();
+  renderAll();
+});
+
+document.querySelector("#permissionForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const data = Object.fromEntries(new FormData(event.currentTarget));
+  const existing = state.permissions.find((item) => item.userId === data.userId && item.projectId === data.projectId);
+  if (existing) existing.access = data.access;
+  else state.permissions.unshift(data);
+  await recordAudit("Permissão atualizada", data.access === "Bloqueado" ? "Negado" : "Permitido", data);
+  renderAll();
+});
+
+document.body.addEventListener("click", async (event) => {
+  const projectId = event.target.dataset.removeProject;
+  const userId = event.target.dataset.removeUser;
+  const toggleUser = event.target.dataset.toggleUser;
+  const permissionKey = event.target.dataset.removePermission;
+  if (projectId) {
+    state.projects = state.projects.filter((project) => project.id !== projectId);
+    state.permissions = state.permissions.filter((permission) => permission.projectId !== projectId);
+    await recordAudit("Projeto removido", "Permitido", { projectId });
+  }
+  if (userId) {
+    state.users = state.users.filter((user) => user.id !== userId);
+    state.permissions = state.permissions.filter((permission) => permission.userId !== userId);
+    await recordAudit("Usuário removido", "Permitido", { userId });
+  }
+  if (toggleUser) {
+    const user = byId(state.users, toggleUser);
+    if (user) user.status = user.status === "Bloqueado" ? "Ativo" : "Bloqueado";
+    await recordAudit("Status de usuário alterado", user?.status === "Bloqueado" ? "Negado" : "Permitido", { userId: toggleUser });
+  }
+  if (permissionKey) {
+    const [u, p] = permissionKey.split("|");
+    state.permissions = state.permissions.filter((permission) => !(permission.userId === u && permission.projectId === p));
+    await recordAudit("Permissão removida", "Permitido", { userId: u, projectId: p });
+  }
+  if (projectId || userId || toggleUser || permissionKey) renderAll();
+});
+
+document.querySelector("#addLog").addEventListener("click", async () => {
+  await recordAudit("Acesso manual registrado", "Permitido", { origin: "panel" });
+  await syncFromSupabase();
+  renderAll();
+});
+
+document.querySelector("#exportData").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify({ remoteReady, remoteMessage, ...state }, null, 2)], { type: "application/json" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `controle-acessos-${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+});
+
+(async function init() {
+  renderAll();
+  await syncFromSupabase();
+  renderAll();
+})();
