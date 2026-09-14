@@ -74,6 +74,19 @@
   status = 200
   force = true
 
+
+[[redirects]]
+  from = "/controle"
+  to = "/access-control/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/controle/"
+  to = "/access-control/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/pages/admin.html"
   to = "/netlify/academy/admin.html"

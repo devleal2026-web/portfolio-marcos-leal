@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel de Controle de Acessos | Leal Academy</title>
+  <meta name="description" content="Painel central para organizar projetos, usuários, permissões e logs de acesso dos projetos Leal Academy.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="app-shell">
+    <div>
+      <p class="eyebrow">Painel central</p>
+      <h1>Controle de acessos dos projetos</h1>
+      <p class="lead">Ambiente isolado para organizar projetos, usuários, permissões e histórico sem alterar os sistemas existentes.</p>
+    </div>
+    <div class="status-card" aria-label="Status do painel">
+      <span class="status-dot"></span>
+      <strong>Modo seguro</strong>
+      <small>Cadastro local inicial. Integração real pode ser feita por projeto, com aprovação.</small>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Navegação do painel">
+      <button class="nav-item active" data-view="dashboard" type="button">Dashboard</button>
+      <button class="nav-item" data-view="projects" type="button">Projetos</button>
+      <button class="nav-item" data-view="users" type="button">Usuários</button>
+      <button class="nav-item" data-view="permissions" type="button">Permissões</button>
+      <button class="nav-item" data-view="logs" type="button">Logs</button>
+      <button class="nav-item" data-view="security" type="button">Segurança</button>
+    </aside>
+
+    <section class="content">
+      <section class="view active" id="dashboard">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Visão geral</p>
+            <h2>Central de governança</h2>
+          </div>
+          <button class="primary-action" id="exportData" type="button">Exportar JSON</button>
+        </div>
+        <div class="metrics" id="metrics"></div>
+        <div class="grid-two">
+          <article class="panel">
+            <h3>Projetos monitorados</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Projeto</th><th>Tipo</th><th>Status</th><th>URL</th></tr></thead>
+                <tbody id="dashboardProjects"></tbody>
+              </table>
+            </div>
+          </article>
+          <article class="panel">
+            <h3>Últimos acessos</h3>
+            <div class="timeline" id="dashboardLogs"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="projects">
+        <div class="section-head"><div><p class="eyebrow">Inventário</p><h2>Projetos cadastrados</h2></div></div>
+        <form class="form-panel" id="projectForm">
+          <label>Nome do projeto<input name="name" required placeholder="Ex.: Aero Access"></label>
+          <label>Tipo<select name="type"><option>Plataforma</option><option>Aplicativo</option><option>Curso</option><option>Jogo</option><option>Simulador</option><option>Site</option></select></label>
+          <label>URL<input name="url" type="url" placeholder="https://..."></label>
+          <label>Status<select name="status"><option>Ativo</option><option>Em revisão</option><option>Pausado</option><option>Somente leitura</option></select></label>
+          <button class="primary-action" type="submit">Adicionar projeto</button>
+        </form>
+        <div class="cards" id="projectCards"></div>
+      </section>
+
+      <section class="view" id="users">
+        <div class="section-head"><div><p class="eyebrow">Identidade</p><h2>Usuários e perfis</h2></div></div>
+        <form class="form-panel" id="userForm">
+          <label>Nome<input name="name" required placeholder="Nome do usuário"></label>
+          <label>E-mail<input name="email" type="email" required placeholder="usuario@gmail.com"></label>
+          <label>Perfil<select name="role"><option>Admin global</option><option>Admin do projeto</option><option>Instrutor</option><option>Agente</option><option>Aluno</option><option>Visitante</option></select></label>
+          <label>Status<select name="status"><option>Ativo</option><option>Bloqueado</option><option>Pendente</option></select></label>
+          <button class="primary-action" type="submit">Adicionar usuário</button>
+        </form>
+        <div class="table-wrap panel-table">
+          <table>
+            <thead><tr><th>Usuário</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="userRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="view" id="permissions">
+        <div class="section-head"><div><p class="eyebrow">Acesso por projeto</p><h2>Permissões</h2></div></div>
+        <form class="form-panel" id="permissionForm">
+          <label>Usuário<select name="userId" id="permissionUser"></select></label>
+          <label>Projeto<select name="projectId" id="permissionProject"></select></label>
+          <label>Nível de acesso<select name="access"><option>Visualizar</option><option>Operar</option><option>Administrar</option><option>Bloqueado</option></select></label>
+          <button class="primary-action" type="submit">Salvar permissão</button>
+        </form>
+        <div class="permissions-grid" id="permissionsGrid"></div>
+      </section>
+
+      <section class="view" id="logs">
+        <div class="section-head"><div><p class="eyebrow">Auditoria</p><h2>Logs de acesso</h2></div><button class="secondary-action" id="addLog" type="button">Simular log</button></div>
+        <div class="table-wrap panel-table">
+          <table>
+            <thead><tr><th>Data</th><th>Usuário</th><th>Projeto</th><th>Evento</th><th>Resultado</th></tr></thead>
+            <tbody id="logRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="view" id="security">
+        <div class="section-head"><div><p class="eyebrow">Plano seguro</p><h2>Como integrar sem prejudicar projetos</h2></div></div>
+        <div class="security-list">
+          <article><strong>1. Painel isolado</strong><p>Este painel não altera Leal Academy, Aero Access, jogos ou simuladores. Ele funciona em pasta própria.</p></article>
+          <article><strong>2. Integração gradual</strong><p>O próximo passo é conectar Supabase somente ao painel, com tabelas próprias e permissões por projeto.</p></article>
+          <article><strong>3. Sem atualização global</strong><p>Qualquer mudança futura deve usar identificador específico de projeto, nunca regras por nome ou texto.</p></article>
+          <article><strong>4. Auditoria</strong><p>Logs devem registrar quem acessou, qual projeto, quando acessou e se a tentativa foi aceita ou negada.</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
