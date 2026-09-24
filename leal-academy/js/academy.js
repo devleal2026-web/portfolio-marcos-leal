@@ -1679,9 +1679,30 @@ function renderHome(){
         })
         : academyCourses;
 
-    count.textContent = visibleCourses.length;
+    const aeroEnglishSearch = normalizeSearch("Aero English idiomas inglês espanhol francês italiano aviação conversação entrevista profissional");
+    const showAeroEnglish = !query || aeroEnglishSearch.includes(query);
+    const aeroEnglishCard = showAeroEnglish ? `
+        <a class="academy-course-card" href="https://aeroenglish.netlify.app/" target="_blank" rel="noopener noreferrer" data-external-course="aero-english">
+            <div class="course-card-image" style="background-image:linear-gradient(135deg, rgba(8,47,73,.18), rgba(15,118,110,.5)), url('/leal-academy/assets/academy-covers/aero-english.jpg')">
+                <strong class="course-card-image-title">Aero English</strong>
+                <span class="course-card-icon" aria-hidden="true">🌐</span>
+            </div>
+            <div class="course-card-body">
+                <span>Idiomas e comunicação profissional</span>
+                <h2>Aero English</h2>
+                <p>Curso visual com professora virtual, prática de escuta, escrita, repetição, fala e entrevistas de emprego.</p>
+                <div class="course-card-footer">
+                    <strong>150 lições visuais</strong>
+                    <small>4 idiomas</small>
+                    <small>Abrir curso ↗</small>
+                </div>
+            </div>
+        </a>
+    ` : "";
 
-    grid.innerHTML = visibleCourses.map(course => {
+    count.textContent = visibleCourses.length + (showAeroEnglish ? 1 : 0);
+
+    const courseCards = visibleCourses.map(course => {
         const visual = courseVisual(course);
         const percent = courseProgress(course);
 
@@ -1705,7 +1726,9 @@ function renderHome(){
                 </div>
             </a>
         `;
-    }).join("") || `
+    }).join("") + aeroEnglishCard;
+
+    grid.innerHTML = courseCards || `
         <article class="academy-empty-state">
             <strong>Nenhum curso encontrado.</strong>
             <p>Confira o termo digitado ou pesquise por uma sigla operacional, como AHL, OHD, DPR, RFP, RL ou AVSEC.</p>
