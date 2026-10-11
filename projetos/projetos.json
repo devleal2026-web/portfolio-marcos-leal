@@ -1,5 +1,26 @@
 [
   {
+    "titulo": "KidPass",
+    "descricao": "Controle seguro de entrega e retirada de crianças com autorizações, histórico e validação facial.",
+    "imagem": "assets/projetos/kidpass.png",
+    "tecnologias": "PWA • JavaScript • Supabase • PostgreSQL • Reconhecimento facial",
+    "pagina": "projetos/kidpass/"
+  },
+  {
+    "titulo": "Desfralde Inteligente",
+    "descricao": "Aplicativo de apoio às famílias para organizar rotinas, acompanhar o progresso e incentivar a autonomia infantil.",
+    "imagem": "assets/projetos/desfralde-inteligente.jpg",
+    "tecnologias": "Web responsiva • Experiência familiar • Acompanhamento de rotina",
+    "pagina": "projetos/desfralde-inteligente/"
+  },
+  {
+    "titulo": "Aero English",
+    "descricao": "Curso visual de idiomas com professora virtual, níveis progressivos e prática de escuta, escrita, repetição e fala.",
+    "imagem": "assets/projetos/aero-english.jpg",
+    "tecnologias": "Android • Kotlin • Web Speech API • Educação multilíngue",
+    "pagina": "projetos/aero-english/"
+  },
+  {
     "titulo": "Sistema de Achados e Perdidos",
     "descricao": "Aplicativo Android para registro, busca, matches e entrega de objetos perdidos.",
     "imagem": "assets/projetos/encontrefacil.jpg",
