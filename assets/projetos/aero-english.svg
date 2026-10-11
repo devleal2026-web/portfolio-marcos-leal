@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
-  <title id="title">Aero English</title>
-  <desc id="desc">Logotipo do curso Aero English com avião e nome do aplicativo.</desc>
-  <defs><linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10283f"/><stop offset="1" stop-color="#1d5274"/></linearGradient><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#071824" flood-opacity=".35"/></filter></defs>
-  <rect width="1200" height="750" rx="64" fill="url(#sky)"/><circle cx="1025" cy="110" r="190" fill="#27a6c9" opacity=".16"/><circle cx="120" cy="690" r="240" fill="#f0ae3b" opacity=".12"/>
-  <g transform="translate(600 290)" filter="url(#shadow)"><rect x="-165" y="-165" width="330" height="330" rx="82" fill="#fff"/><path d="M-108 30C-45 22 8-8 83-89c14-15 37-12 46 6 7 13 4 29-8 39C48 20-13 60-93 85l-46 64-31 5 25-79-58 8-28 32-25 3 15-61c4-15 15-27 30-31l74-21-54-85 35-6z" fill="#10283f"/><path d="M64-112l58 52c12 11 14 29 5 42-77 68-139 106-223 132" fill="none" stroke="#f0ae3b" stroke-width="18" stroke-linecap="round"/></g>
-  <text x="600" y="565" text-anchor="middle" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="86" font-weight="900" letter-spacing="2">AERO ENGLISH</text><text x="600" y="625" text-anchor="middle" fill="#b9d9e7" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="31" font-weight="700" letter-spacing="5">LISTEN · WRITE · REPEAT · SPEAK</text>
-</svg>
