@@ -4,21 +4,24 @@
     "descricao": "Controle seguro de entrega e retirada de crianças com autorizações, histórico e validação facial.",
     "imagem": "assets/projetos/kidpass.png",
     "tecnologias": "PWA • JavaScript • Supabase • PostgreSQL • Reconhecimento facial",
-    "pagina": "projetos/kidpass/"
+    "pagina": "projetos/kidpass/",
+    "app": "https://kidpass-devleal.netlify.app/"
   },
   {
     "titulo": "Desfralde Inteligente",
     "descricao": "Aplicativo de apoio às famílias para organizar rotinas, acompanhar o progresso e incentivar a autonomia infantil.",
-    "imagem": "assets/projetos/desfralde-inteligente.jpg",
+    "imagem": "assets/projetos/desfralde-inteligente.png",
     "tecnologias": "Web responsiva • Experiência familiar • Acompanhamento de rotina",
-    "pagina": "projetos/desfralde-inteligente/"
+    "pagina": "projetos/desfralde-inteligente/",
+    "app": "https://lara-laura-desfralde.devleal2026.chatgpt.site/"
   },
   {
     "titulo": "Aero English",
     "descricao": "Curso visual de idiomas com professora virtual, níveis progressivos e prática de escuta, escrita, repetição e fala.",
-    "imagem": "assets/projetos/aero-english.jpg",
+    "imagem": "assets/projetos/aero-english.svg",
     "tecnologias": "Android • Kotlin • Web Speech API • Educação multilíngue",
-    "pagina": "projetos/aero-english/"
+    "pagina": "projetos/aero-english/",
+    "app": "https://aeroenglish.netlify.app/"
   },
   {
     "titulo": "Sistema de Achados e Perdidos",

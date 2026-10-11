@@ -998,21 +998,24 @@
             descricao: "Controle seguro de entrega e retirada de crian&ccedil;as com autoriza&ccedil;&otilde;es, hist&oacute;rico e valida&ccedil;&atilde;o facial.",
             imagem: "assets/projetos/kidpass.png",
             tecnologias: "PWA &bull; JavaScript &bull; Supabase &bull; PostgreSQL &bull; Reconhecimento facial",
-            pagina: "projetos/kidpass/"
+            pagina: "projetos/kidpass/",
+            app: "https://kidpass-devleal.netlify.app/"
         },
         {
             titulo: "Desfralde Inteligente",
             descricao: "Aplicativo de apoio &agrave;s fam&iacute;lias para organizar rotinas, acompanhar o progresso e incentivar a autonomia infantil.",
-            imagem: "assets/projetos/desfralde-inteligente.jpg",
+            imagem: "assets/projetos/desfralde-inteligente.png",
             tecnologias: "Web responsiva &bull; Experi&ecirc;ncia familiar &bull; Acompanhamento de rotina",
-            pagina: "projetos/desfralde-inteligente/"
+            pagina: "projetos/desfralde-inteligente/",
+            app: "https://lara-laura-desfralde.devleal2026.chatgpt.site/"
         },
         {
             titulo: "Aero English",
             descricao: "Curso visual de idiomas com professora virtual, n&iacute;veis progressivos e pr&aacute;tica de escuta, escrita, repeti&ccedil;&atilde;o e fala.",
-            imagem: "assets/projetos/aero-english.jpg",
+            imagem: "assets/projetos/aero-english.svg",
             tecnologias: "Android &bull; Kotlin &bull; Web Speech API &bull; Educa&ccedil;&atilde;o multil&iacute;ngue",
-            pagina: "projetos/aero-english/"
+            pagina: "projetos/aero-english/",
+            app: "https://aeroenglish.netlify.app/"
         },
         {
             titulo: "Sistema de Achados e Perdidos",
@@ -1135,6 +1138,7 @@
                     <h3>${projeto.titulo}</h3>
                     <p>${projeto.descricao}</p>
                     <strong>${projeto.tecnologias}</strong>
+                    ${projeto.app ? `<a href="${projeto.app}" class="btn" target="_blank" rel="noopener">Abrir aplicativo</a>` : ""}
                     ${projeto.pagina ? `<a href="${projeto.pagina}" class="btn secondary">P&aacute;gina do projeto</a>` : ""}
                     ${projeto.web ? `<a href="${projeto.web}" class="btn">Jogar online</a>` : ""}
                     ${projeto.apk ? `
