@@ -13,7 +13,7 @@ VIDEOS = [
     {
         "slug": "aero-access",
         "title": "Aero Access",
-        "category": "Operação aeroportuária",
+        "category": "Controle aduaneiro",
         "description": "Solução digital para inspeção, rastreabilidade e tratamento seguro de ocorrências com bagagens.",
         "duration": "PT1M30.75S",
         "seconds": 91,
@@ -21,9 +21,9 @@ VIDEOS = [
     },
     {
         "slug": "alf",
-        "title": "ALF — Bagagens Extraviadas",
-        "category": "Operação aeroportuária",
-        "description": "Fluxo estruturado para registrar, acompanhar e solucionar ocorrências de bagagens extraviadas.",
+        "title": "ALF — Controle Aduaneiro de Bagagens",
+        "category": "Controle aduaneiro",
+        "description": "Sistema que otimiza o controle e a liberação de bagagens na alfândega, tornando o fluxo aduaneiro mais ágil, organizado e rastreável.",
         "duration": "PT44.48S",
         "seconds": 44,
         "upload": "2026-07-26T10:40:05-03:00",
