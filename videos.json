@@ -10,9 +10,9 @@
     "pagina": "videos/aero-access/"
   },
   {
-    "titulo": "ALF — Bagagens Extraviadas",
-    "categoria": "Acessibilidade aeroportuária",
-    "descricao": "Fluxo estruturado para registrar, acompanhar e solucionar ocorrências de bagagens extraviadas.",
+    "titulo": "ALF — Controle Aduaneiro de Bagagens",
+    "categoria": "Controle aduaneiro",
+    "descricao": "Sistema que otimiza o controle e a liberação de bagagens na alfândega, tornando o fluxo aduaneiro mais ágil, organizado e rastreável.",
     "arquivo": "assets/videos/alf.mp4",
     "poster": "assets/videos/posters/alf.jpg",
     "pagina": "videos/alf/"
