@@ -1,8 +1,8 @@
 [
   {
     "titulo": "Aero Access",
-    "categoria": "Operação aeroportuária",
-    "descricao": "Solução digital para inspeção, rastreabilidade e tratamento seguro de ocorrências com bagagens.",
+    "categoria": "Acessibilidade aeroportuária",
+    "descricao": "Sistema de acessibilidade para atendimento inclusivo de passageiros, com apoio à mobilidade, orientação e autonomia no ambiente aeroportuário.",
     "arquivo": "assets/videos/aero-access.mp4",
     "poster": "assets/videos/posters/aero-access.jpg",
     "apk": "assets/apks/aero-access-v1.0.apk",
@@ -11,7 +11,7 @@
   },
   {
     "titulo": "ALF — Bagagens Extraviadas",
-    "categoria": "Operação aeroportuária",
+    "categoria": "Acessibilidade aeroportuária",
     "descricao": "Fluxo estruturado para registrar, acompanhar e solucionar ocorrências de bagagens extraviadas.",
     "arquivo": "assets/videos/alf.mp4",
     "poster": "assets/videos/posters/alf.jpg",
