@@ -737,15 +737,18 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261015">
 </head>
 
 <body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 <header class="navbar">
     <a href="./" aria-label="Página inicial DevLeal2026">
         <img src="logo.png" alt="DevLeal2026 — logo de Marcos Leal Desenvolvedor" class="logo">
     </a>
 
-    <nav class="menu" aria-label="Menu principal">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">☰</button>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
         <a href="#sobre">Sobre</a>
         <a href="#servicos">Servi&ccedil;os</a>
         <a href="#tecnologias">Tecnologias</a>
@@ -757,7 +760,7 @@
     </nav>
 </header>
 
-<main>
+<main id="conteudo">
     <section class="hero">
         <div class="hero-inner">
             <div>
@@ -777,7 +780,7 @@
             </div>
 
             <aside class="hero-panel" aria-label="Resumo profissional">
-                <img src="logo.png" alt="Marca Leal Desenvolvedor">
+                <img src="assets/marcos-leal-futurista.png" alt="Retrato profissional de Marcos Leal" width="1024" height="1280" fetchpriority="high">
                 <div class="metric-grid">
                     <div class="metric">
                         <strong>Web</strong>
@@ -1377,6 +1380,8 @@
 <script src="/access-control/supabase-config.js?v=20260914-audit-2"></script>
 <script>window.LEAL_AUDIT_PROJECT = "portfolio";</script>
 <script src="/access-control/audit.js?v=20260914-audit-2"></script>
+<button class="back-to-top" type="button" aria-label="Voltar ao topo">↑</button>
+<script src="assets/portfolio-advanced.js?v=20261015"></script>
 </body>
 </html>
 
