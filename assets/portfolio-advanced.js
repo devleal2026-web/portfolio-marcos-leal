@@ -1,1 +1,16 @@
-(()=>{const t=document.querySelector('.menu-toggle'),m=document.querySelector('#menu-principal'),b=document.querySelector('.back-to-top');if(!t||!m||!b)return;const l=[...m.querySelectorAll('a[href^="#"]')];t.addEventListener('click',()=>{const o=m.classList.toggle('open');t.setAttribute('aria-expanded',String(o));t.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')});l.forEach(a=>a.addEventListener('click',()=>{m.classList.remove('open');t.setAttribute('aria-expanded','false')}));const s=l.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean),i=new IntersectionObserver(e=>e.forEach(n=>{if(n.isIntersecting)l.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+n.target.id))}),{rootMargin:'-30% 0px -60%',threshold:0});s.forEach(n=>i.observe(n));addEventListener('scroll',()=>b.classList.toggle('visible',scrollY>700),{passive:true});b.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m.classList.contains('open')){m.classList.remove('open');t.setAttribute('aria-expanded','false');t.focus()}})})();
+(()=>{
+  const toggle=document.querySelector('.menu-toggle');
+  const menu=document.querySelector('#menu-principal');
+  const back=document.querySelector('.back-to-top');
+  const contact=document.querySelector('.contact-menu');
+  if(!toggle||!menu)return;
+  const closeMenu=()=>{menu.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menu')};
+  toggle.addEventListener('click',()=>{const open=menu.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Fechar menu':'Abrir menu')});
+  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{closeMenu();if(contact)contact.open=false}));
+  document.addEventListener('click',event=>{if(contact&&contact.open&&!contact.contains(event.target))contact.open=false});
+  document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;if(contact&&contact.open){contact.open=false;contact.querySelector('summary')?.focus();return}if(menu.classList.contains('open')){closeMenu();toggle.focus()}});
+  const sectionLinks=[...menu.querySelectorAll('a[href^="#"]')];
+  const sections=sectionLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)sectionLinks.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+entry.target.id))}),{rootMargin:'-30% 0px -60%',threshold:0});sections.forEach(section=>observer.observe(section))}
+  if(back){addEventListener('scroll',()=>back.classList.toggle('visible',scrollY>700),{passive:true});back.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}))}
+})();
