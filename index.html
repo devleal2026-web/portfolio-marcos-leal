@@ -737,7 +737,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261017-2">
+    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261017-3">
 </head>
 
 <body>
@@ -773,7 +773,6 @@
 
                 <div class="buttons">
                     <a href="https://wa.me/5511950436161?text=Ol%C3%A1%20Marcos%2C%20vim%20pelo%20seu%20portf%C3%B3lio." target="_blank" rel="noopener" class="btn">Conversar no WhatsApp</a>
-                    <a href="#projetos-area" class="btn secondary">Ver projetos</a>
                 </div>
             </div>
 
@@ -1133,32 +1132,35 @@
     function renderizarProjetos() {
         const destinos = [
             "leal-academy/pages/academy-access.html",
-            "projetos/kidpass/",
-            "projetos/desfralde-inteligente/",
-            "projetos/aero-english/",
-            "projetos/sistema-achados-perdidos/",
+            "https://kidpass-devleal.netlify.app/",
+            "https://lara-laura-desfralde.devleal2026.chatgpt.site/",
+            "https://aeroenglish.netlify.app/",
+            "assets/apks/encontre-facil-v1.0.apk",
             "https://quadroo.netlify.app",
-            "projetos/neuroloop/",
-            "projetos/adivinhe-o-animal/",
-            "projetos/insect-hunter/",
-            "projetos/construindo-palavras/",
-            "projetos/avisou/",
-            "projetos/aero-access/",
-            "projetos/mibis/",
-            "projetos/laura-lara-aventura/",
+            "jogos/neuroloop/",
+            "assets/apks/adivinhe-o-animal-v1.0.apk",
+            "assets/apks/insect-hunter-v1.0.apk",
+            "assets/apks/construindo-palavras-v1.0.apk",
+            "assets/apks/avisou-v1.0.0.apk",
+            "aero-access-web/",
+            "jogos/mibis/",
+            "assets/apks/laura-lara-aventura-v1.0.apk",
             "projetos/alf/",
             "projetos/airport-baggage-simulator/"
         ];
 
-        containerProjetos.innerHTML = projetos.map((projeto, indice) => `
-            <a class="projeto" href="${destinos[indice]}" aria-label="Abrir projeto ${projeto.titulo}">
+        containerProjetos.innerHTML = projetos.map((projeto, indice) => {
+            const destino = destinos[indice];
+            const baixarApk = destino.endsWith(".apk");
+            return `
+            <a class="projeto" href="${destino}" ${baixarApk ? "download" : ""} aria-label="${baixarApk ? "Baixar APK do projeto" : "Abrir projeto"} ${projeto.titulo}">
                 <span class="projeto-visual">
                     <img src="${projeto.imagem}" alt="" loading="${indice < 8 ? "eager" : "lazy"}">
                 </span>
                 <span class="projeto-title">${projeto.titulo}</span>
                 <span class="projeto-arrow" aria-hidden="true">↗</span>
-            </a>
-        `).join("");
+            </a>`;
+        }).join("");
     }
 
     function renderizarVideos() {
