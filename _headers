@@ -1,2 +1,0 @@
-/*
-  Content-Security-Policy: script-src 'self' https://cdn.jsdelivr.net 'sha256-bUlK93/RnPzOHcgPvlFzfYoadN6Uz1sUDWgNCnVOEsg=' 'sha256-vT5UzXqD5bUt67GJUAcbNXBv6mKa2xGrVdLXlO43ZYQ='; object-src 'none'; base-uri 'self'
