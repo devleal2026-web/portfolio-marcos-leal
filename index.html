@@ -737,7 +737,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261018-1">
+    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261018-2">
 </head>
 
 <body>
@@ -876,7 +876,7 @@
             <p class="section-subtitle">Selecione um projeto para abrir sua p&aacute;gina completa.</p>
             <div class="portfolio-meta">
                 <span class="free-apps">Aplicativos gratuitos</span>
-                <button type="button" class="pix-copy copiar-pix" data-pix="17909502877" title="Copiar chave PIX">Doa&ccedil;&otilde;es via PIX: 17909502877</button>
+                <button type="button" class="pix-copy pix-open" aria-controls="pix-dialog" title="Abrir op&ccedil;&otilde;es para doa&ccedil;&atilde;o">Doa&ccedil;&otilde;es via PIX: 17909502877</button>
                 <div class="site-stats" aria-label="Estat&iacute;sticas do portf&oacute;lio" aria-live="polite">
                     <span title="Acessos contabilizados neste navegador">&#9673; <b id="total-acessos">--</b> acessos</span>
                     <span title="Downloads iniciados neste navegador">&#8595; <b id="total-downloads">--</b> downloads</span>
@@ -933,6 +933,33 @@
         </div>
     </section>
 </main>
+
+<dialog id="pix-dialog" class="pix-dialog" aria-labelledby="pix-dialog-title">
+    <form method="dialog"><button class="pix-close" type="submit" aria-label="Fechar painel PIX">&times;</button></form>
+    <div class="pix-dialog-grid">
+        <div class="pix-qr-wrap">
+            <img src="assets/pix-doacao-qrcode.png" alt="QR Code Pix para doa&ccedil;&atilde;o aos projetos DevLeal2026" width="512" height="512">
+            <b>Valor livre</b>
+        </div>
+        <div class="pix-details">
+            <span class="pix-kicker">Apoie os projetos</span>
+            <h2 id="pix-dialog-title">Doa&ccedil;&atilde;o via PIX</h2>
+            <p>Escaneie o QR Code no aplicativo do seu banco ou copie o c&oacute;digo Pix.</p>
+            <dl>
+                <div><dt>Benefici&aacute;rio</dt><dd>Marcos Ant&ocirc;nio de Sousa Leal</dd></div>
+                <div><dt>Chave PIX</dt><dd>17909502877</dd></div>
+                <div><dt>Cidade</dt><dd>Guarulhos/SP</dd></div>
+                <div><dt>Descri&ccedil;&atilde;o</dt><dd>Doa&ccedil;&atilde;o aos projetos DevLeal2026</dd></div>
+            </dl>
+            <code class="pix-payload">00020126550014br.gov.bcb.pix0111179095028770218DOACAO DEVLEAL20265204000053039865802BR5921MARCOS ANTONIO S LEAL6009GUARULHOS62070503***63049DD7</code>
+            <div class="pix-actions">
+                <button type="button" class="copiar-pix" data-pix="00020126550014br.gov.bcb.pix0111179095028770218DOACAO DEVLEAL20265204000053039865802BR5921MARCOS ANTONIO S LEAL6009GUARULHOS62070503***63049DD7">Copiar Pix Copia e Cola</button>
+                <button type="button" class="copiar-pix secondary" data-pix="17909502877">Copiar chave PIX</button>
+            </div>
+            <small>Confira os dados antes de concluir a doa&ccedil;&atilde;o no aplicativo banc&aacute;rio.</small>
+        </div>
+    </div>
+</dialog>
 
 <div id="video-modal" class="video-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
     <div class="video-dialog">
@@ -1331,6 +1358,17 @@
         });
     }
 
+    function ativarPainelPix() {
+        const painel = document.getElementById("pix-dialog");
+        if (!painel) return;
+        document.querySelectorAll(".pix-open").forEach(botao => {
+            botao.addEventListener("click", () => painel.showModal());
+        });
+        painel.addEventListener("click", evento => {
+            if (evento.target === painel) painel.close();
+        });
+    }
+
     async function carregarVideos() {
         try {
             const resposta = await fetch("videos.json");
@@ -1383,6 +1421,7 @@
     }
 
     renderizarProjetos();
+    ativarPainelPix();
     ativarBotoesPix();
     carregarVideos();
     renderizarApresentacoes();
