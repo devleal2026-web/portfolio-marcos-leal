@@ -1341,6 +1341,35 @@
         }
     }
 
+    let sincronizacaoContadoresEmAndamento = false;
+
+    async function sincronizarContadoresGlobais() {
+        if (sincronizacaoContadoresEmAndamento) return;
+        sincronizacaoContadoresEmAndamento = true;
+        try {
+            const totalAcessos = await consultarContador("acessos");
+            document.getElementById("total-acessos").textContent = formatarContagem(totalAcessos);
+            await carregarTotalDownloads();
+
+            const nomes = new Set();
+            document.querySelectorAll("[data-download-count]").forEach(elemento => {
+                nomes.add(elemento.dataset.downloadCount);
+            });
+            await Promise.all(Array.from(nomes, carregarContagemDownload));
+        } finally {
+            sincronizacaoContadoresEmAndamento = false;
+        }
+    }
+
+    function ativarAtualizacaoAutomaticaContadores() {
+        window.setInterval(() => {
+            if (!document.hidden) sincronizarContadoresGlobais();
+        }, 15000);
+        window.addEventListener("focus", sincronizarContadoresGlobais);
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) sincronizarContadoresGlobais();
+        });
+    }
     function ativarPreviasAutomaticas() {
         const observador = new IntersectionObserver(entradas => {
             entradas.forEach(entrada => {
@@ -1447,6 +1476,7 @@
     renderizarApresentacoes();
     atualizarTotalAcessos();
     carregarTotalDownloads();
+    ativarAtualizacaoAutomaticaContadores();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="/access-control/supabase-config.js?v=20260914-audit-2"></script>
