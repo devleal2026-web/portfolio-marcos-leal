@@ -737,7 +737,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261017-10">
+    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261018-1">
 </head>
 
 <body>
@@ -1033,7 +1033,7 @@
         },
         {
             titulo: "Adivinhe o Animal",
-            descricao: "Jogo de adivinhacao em que vence quem reconhecer mais animais.",
+            descricao: "Jogo de adivinha&ccedil;&atilde;o em que vence quem reconhecer mais animais.",
             imagem: "assets/projetos/adivinheoanimal.jpg",
             tecnologias: "Android &bull; Kotlin",
             apk: "assets/apks/adivinhe-o-animal-v1.0.apk",
@@ -1041,7 +1041,7 @@
         },
         {
             titulo: "Insect Hunter",
-            descricao: "Jogo para esmagar o maior numero de insetos.",
+            descricao: "Jogo para esmagar o maior n&uacute;mero de insetos.",
             imagem: "assets/projetos/insecthunter.jpg",
             tecnologias: "Android &bull; Kotlin",
             apk: "assets/apks/insect-hunter-v1.0.apk",
@@ -1161,7 +1161,10 @@
                 <span class="projeto-visual">
                     <img src="${projeto.imagem}" alt="" loading="${indice < 8 ? "eager" : "lazy"}">
                 </span>
-                <span class="projeto-title">${projeto.titulo}</span>
+                <span class="projeto-copy">
+                    <span class="projeto-title">${projeto.titulo}</span>
+                    <span class="projeto-description">${projeto.descricao}</span>
+                </span>
                 <span class="projeto-arrow" aria-hidden="true">↗</span>
             </a>`;
         }).join("");
