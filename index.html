@@ -878,8 +878,8 @@
                 <span class="free-apps">Aplicativos gratuitos</span>
                 <button type="button" class="pix-copy pix-open" aria-controls="pix-dialog" title="Abrir op&ccedil;&otilde;es para doa&ccedil;&atilde;o">Doa&ccedil;&otilde;es via PIX: 17909502877</button>
                 <div class="site-stats" aria-label="Estat&iacute;sticas do portf&oacute;lio" aria-live="polite">
-                    <span title="Acessos contabilizados neste navegador">&#9673; <b id="total-acessos">--</b> acessos</span>
-                    <span title="Downloads iniciados neste navegador">&#8595; <b id="total-downloads">--</b> downloads</span>
+                    <span title="Acessos contabilizados globalmente">&#9673; <b id="total-acessos">--</b> acessos</span>
+                    <span title="Downloads contabilizados globalmente">&#8595; <b id="total-downloads">--</b> downloads</span>
                 </div>
             </div>
         </div>
@@ -1238,6 +1238,8 @@
     }
 
     const CONTADOR_STORAGE = "devleal2026-contadores";
+    const CONTADOR_GLOBAL_URL = "https://abacus.jasoncameron.dev";
+    const CONTADOR_GLOBAL_NAMESPACE = "devleal2026-lealacademy-com-br";
 
     function identificadorDownload(arquivo) {
         const nome = arquivo.split("/").pop().replace(/\.[^.]+$/, "");
@@ -1245,18 +1247,36 @@
     }
 
     async function consultarContador(nome, incrementar = false) {
-        let contadores = {};
+        const contadorSeguro = String(nome).toLowerCase().replace(/[^a-z0-9-]+/g, "-");
+        const operacao = incrementar ? "hit" : "get";
         try {
-            contadores = JSON.parse(localStorage.getItem(CONTADOR_STORAGE) || "{}");
-        } catch {
-            contadores = {};
+            const resposta = await fetch(`${CONTADOR_GLOBAL_URL}/${operacao}/${CONTADOR_GLOBAL_NAMESPACE}/${contadorSeguro}`, {
+                method: "GET",
+                mode: "cors",
+                cache: "no-store",
+                keepalive: incrementar
+            });
+            if (resposta.status === 404 && !incrementar) return 0;
+            if (!resposta.ok) throw new Error(`Contador global indisponível (${resposta.status})`);
+            const dados = await resposta.json();
+            const totalGlobal = Number(dados.value);
+            if (!Number.isFinite(totalGlobal)) throw new Error("Resposta inválida do contador global");
+            return totalGlobal;
+        } catch (erro) {
+            let contadores = {};
+            try {
+                contadores = JSON.parse(localStorage.getItem(CONTADOR_STORAGE) || "{}");
+            } catch {
+                contadores = {};
+            }
+            const atual = Number(contadores[contadorSeguro] || 0);
+            if (!incrementar) return atual;
+            const novoTotal = atual + 1;
+            contadores[contadorSeguro] = novoTotal;
+            localStorage.setItem(CONTADOR_STORAGE, JSON.stringify(contadores));
+            console.warn("Contador global temporariamente indisponível; registro mantido neste aparelho.", erro);
+            return novoTotal;
         }
-        const atual = Number(contadores[nome] || 0);
-        if (!incrementar) return atual;
-        const novoTotal = atual + 1;
-        contadores[nome] = novoTotal;
-        localStorage.setItem(CONTADOR_STORAGE, JSON.stringify(contadores));
-        return novoTotal;
     }
 
     function formatarContagem(valor) {
@@ -1436,7 +1456,3 @@
 <script src="assets/portfolio-advanced.js?v=20261017-2"></script>
 </body>
 </html>
-
-
-
-
