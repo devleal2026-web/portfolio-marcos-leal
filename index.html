@@ -737,7 +737,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261017-9">
+    <link rel="stylesheet" href="assets/portfolio-advanced.css?v=20261017-10">
 </head>
 
 <body>
@@ -874,6 +874,14 @@
         <div class="section-heading">
             <h2 class="section-title">Projetos desenvolvidos</h2>
             <p class="section-subtitle">Selecione um projeto para abrir sua p&aacute;gina completa.</p>
+            <div class="portfolio-meta">
+                <span class="free-apps">Aplicativos gratuitos</span>
+                <button type="button" class="pix-copy copiar-pix" data-pix="17909502877" title="Copiar chave PIX">Doa&ccedil;&otilde;es via PIX: 17909502877</button>
+                <div class="site-stats" aria-label="Estat&iacute;sticas do portf&oacute;lio" aria-live="polite">
+                    <span title="Acessos contabilizados neste navegador">&#9673; <b id="total-acessos">--</b> acessos</span>
+                    <span title="Downloads iniciados neste navegador">&#8595; <b id="total-downloads">--</b> downloads</span>
+                </div>
+            </div>
         </div>
 
         <div id="projetos"></div>
@@ -962,10 +970,6 @@
         </div>
     </div>
     <div class="footer-copyright">&copy; 2026 Marcos Leal. Todos os direitos reservados.</div>
-    <div class="site-stats" aria-label="Estat&iacute;sticas do portf&oacute;lio">
-        <span title="Uma visita por sess&atilde;o">&#9673; <b id="total-acessos">--</b> acessos</span>
-        <span title="Downloads de todos os projetos">&#8595; <b id="total-downloads">--</b> downloads</span>
-    </div>
 </footer>
 
 <script>
@@ -1153,7 +1157,7 @@
             const destino = destinos[indice];
             const baixarApk = destino.endsWith(".apk");
             return `
-            <a class="projeto" href="${destino}" ${baixarApk ? "download" : ""} aria-label="${baixarApk ? "Baixar APK do projeto" : "Abrir projeto"} ${projeto.titulo}">
+            <a class="projeto${baixarApk ? " projeto-download" : ""}" href="${destino}" ${baixarApk ? `download data-projeto="${identificadorDownload(destino)}"` : ""} aria-label="${baixarApk ? "Baixar APK do projeto" : "Abrir projeto"} ${projeto.titulo}">
                 <span class="projeto-visual">
                     <img src="${projeto.imagem}" alt="" loading="${indice < 8 ? "eager" : "lazy"}">
                 </span>
@@ -1161,6 +1165,7 @@
                 <span class="projeto-arrow" aria-hidden="true">↗</span>
             </a>`;
         }).join("");
+        ativarContadoresDownloads();
     }
 
     function renderizarVideos() {
@@ -1200,8 +1205,7 @@
         ativarContadoresDownloads();
     }
 
-    const CONTADOR_NAMESPACE = "portfolio-marcos-leal-2026";
-    const CONTADOR_API = "https://api.counterapi.dev/v1";
+    const CONTADOR_STORAGE = "devleal2026-contadores";
 
     function identificadorDownload(arquivo) {
         const nome = arquivo.split("/").pop().replace(/\.[^.]+$/, "");
@@ -1209,15 +1213,18 @@
     }
 
     async function consultarContador(nome, incrementar = false) {
-        const acao = incrementar ? "/up" : "/";
-        const resposta = await fetch(`${CONTADOR_API}/${CONTADOR_NAMESPACE}/${nome}${acao}`, {
-            cache: "no-store",
-            keepalive: incrementar
-        });
-        if ((resposta.status === 400 || resposta.status === 404) && !incrementar) return 0;
-        if (!resposta.ok) throw new Error(`Contador indisponível: ${resposta.status}`);
-        const dados = await resposta.json();
-        return Number(dados.value ?? dados.count ?? 0);
+        let contadores = {};
+        try {
+            contadores = JSON.parse(localStorage.getItem(CONTADOR_STORAGE) || "{}");
+        } catch {
+            contadores = {};
+        }
+        const atual = Number(contadores[nome] || 0);
+        if (!incrementar) return atual;
+        const novoTotal = atual + 1;
+        contadores[nome] = novoTotal;
+        localStorage.setItem(CONTADOR_STORAGE, JSON.stringify(contadores));
+        return novoTotal;
     }
 
     function formatarContagem(valor) {
@@ -1371,6 +1378,7 @@
     }
 
     renderizarProjetos();
+    ativarBotoesPix();
     carregarVideos();
     renderizarApresentacoes();
     atualizarTotalAcessos();
